@@ -4,8 +4,8 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>20</x>
-      <y>230</y>
+      <x>30</x>
+      <y>210</y>
       <w>210</w>
       <h>190</h>
     </coordinates>
@@ -25,13 +25,12 @@ registriertseit: Timestamp</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>400</x>
-      <y>40</y>
+      <x>410</x>
+      <y>20</y>
       <w>320</w>
       <h>250</h>
     </coordinates>
-    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
-Lib::DatabaseEntity
+    <panel_attributes>Lib::DatabaseConnector
 --
 - host : String
 - username : String
@@ -48,8 +47,8 @@ Lib::DatabaseEntity
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>20</x>
-      <y>20</y>
+      <x>30</x>
+      <y>0</y>
       <w>210</w>
       <h>190</h>
     </coordinates>
@@ -65,5 +64,80 @@ kategorieid : Integer
 preis : Decimal
 seit : TimeStamp</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>30</x>
+      <y>510</y>
+      <w>320</w>
+      <h>170</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+Gui:Design
+--
+Design von Elementen wie Button, Banner, 
+Produktfotos und Theme....
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>480</x>
+      <y>340</y>
+      <w>330</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Gui:Templates:Kunde
+--
+- Login
+- Artikelübersicht
+- Artikelsuche
+- Kundenkontoseite
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>480</x>
+      <y>470</y>
+      <w>330</w>
+      <h>110</h>
+    </coordinates>
+    <panel_attributes>Gui:Templates:Admin
+--
+- Login
+- Artikelübersicht
+- Artikelsuche
+- Kundenübersicht
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>280</x>
+      <y>370</y>
+      <w>220</w>
+      <h>160</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>200;30;30;140</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>320</x>
+      <y>500</y>
+      <w>180</w>
+      <h>70</h>
+    </coordinates>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>160;30;30;50</additional_attributes>
   </element>
 </diagram>
