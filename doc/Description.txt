@@ -1,0 +1,24 @@
+03.09.2012 - Skriptprogrammierung
+
+Projekt: Onlineshop
+Name: St@pleWear (@ ist Büroklammer)
+
+Projektteilnehmer:
+Alexander Cremer
+Kirstin Schubert
+Laura Spycher
+Lukas Bonzelett
+Thorsten Jerosch
+
+Tasks:
+
+1) 	Standards einigen:
+		- Umlet Klassendiagramm
+		- Formatierung:
+			- keine Tabs, sondern 4 Leerzeichen je Tab
+			- Geschweifte Klammern in gleicher Zeile
+			- UTF8
+			- Objekte und Klassen: CamelCase und Variablen in HeadlessCamelCase (erster Buchstabe klein)
+		- Trennung von Gui und Logik (z.B. Templates)
+	Schnittstellen definieren:
+		- Mit Umlet Klassendiagramm, z.B. Datenbankklasse, Loginklasse (nutzt Datenbankklasse) etc definieren
