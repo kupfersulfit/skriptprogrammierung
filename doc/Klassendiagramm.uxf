@@ -40,7 +40,7 @@ Lib::DatabaseEntity
 /+erstelleArtikel(Artikel artikel) : boolean/
 /+holeArtikel(ArtikelId : Integer) : Artikel/
 /+sucheArtikel(Pattern : String) : Artikel/
-/+erstelleBenutzer(Kunde : Kunde/
+/+erstelleKunde(Kunde : Kunde)/
 --
 </panel_attributes>
     <additional_attributes/>
