@@ -4,8 +4,52 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>30</x>
+      <x>20</x>
+      <y>230</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>_object: Kunde_
+--
+id: Integer
+name: String
+vorname: String
+strasse: String
+plz: Integer
+zusatz: String
+email: String
+passwort: String
+registriertseit: Timestamp</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>400</x>
       <y>40</y>
+      <w>320</w>
+      <h>250</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+Lib::DatabaseEntity
+--
+- host : String
+- username : String
+- password : String
+--
+/+erstelleArtikel(Artikel artikel) : boolean/
+/+holeArtikel(ArtikelId : Integer) : Artikel/
+/+sucheArtikel(Pattern : String) : Artikel/
+/+erstelleBenutzer(Kunde : Kunde/
+--
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>20</x>
+      <y>20</y>
       <w>210</w>
       <h>190</h>
     </coordinates>
@@ -20,29 +64,6 @@ verfuegbar : Integer
 kategorieid : Integer
 preis : Decimal
 seit : TimeStamp</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <type>com.umlet.element.Class</type>
-    <coordinates>
-      <x>460</x>
-      <y>50</y>
-      <w>320</w>
-      <h>250</h>
-    </coordinates>
-    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
-Lib::DatabaseEntity
---
-- host : String
-- username : String
-- password : String
---
-/+erstelleArtikel(Artikel artikel) : boolean/
-/+holeArtikel(ArtikelId : Integer) : Artikel/
-/+sucheArtikel(Pattern : String) : Artikel/
-/+erstelleBenutzer(Benutzer : Benutzer)/
---
-</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
