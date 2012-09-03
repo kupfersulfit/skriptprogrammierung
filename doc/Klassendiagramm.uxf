@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<diagram program="umlet" version="11.3">
+  <zoom_level>10</zoom_level>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>40</x>
+      <y>40</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>_object: Artikel_
+--
+id: Integer
+name: String
+beschreibung : String
+bildpfad : String
+veroeffentlicht : boolean
+verfuegbar : Integer
+kategorieid : Integer
+preis : Decimal
+seit : TimeStamp</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>470</x>
+      <y>50</y>
+      <w>210</w>
+      <h>190</h>
+    </coordinates>
+    <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
+Lib::DatabaseEntity
+--
+- host : String
+- username : String
+- password : String
+--
+/+erstelleArtikel(Artikel artikel) : boolean/
+/+holeArtikel(ArtikelId : Integer) : Artikel/
+/+sucheArtikel(Pattern : String) : Artikel/
+/+erstelleBenutzer(Benutzer : Benutzer)/
+--
+Responsibilities
+-- Resp1
+*-- Resp2*</panel_attributes>
+    <additional_attributes/>
+  </element>
+</diagram>
