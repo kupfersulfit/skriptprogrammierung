@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS `artikel` (
   `name` varchar(255) COLLATE utf8_bin NOT NULL,
   `beschreibung` varchar(1023) COLLATE utf8_bin NOT NULL,
   `veroeffentlicht` tinyint(1) NOT NULL,
-  `verfueggbar` int(10) unsigned NOT NULL,
+  `verfuegbar` int(10) unsigned NOT NULL,
   `kategorieid` int(11) NOT NULL,
   `preis` decimal(8,2) NOT NULL,
   `bildpfad` varchar(255) COLLATE utf8_bin NOT NULL,
