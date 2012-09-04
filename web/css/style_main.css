@@ -1,0 +1,6 @@
+#menu ul li {
+    display: inline;
+    float: left;
+    list-style: none;
+    margin-right: 10px;
+}

@@ -1,7 +1,9 @@
 <?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+require_once 'templates/header.php';
+?>
+<div id="content">
+    
+</div>
+<?php
+require_once 'templates/footer.php';
 ?>

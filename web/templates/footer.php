@@ -1,7 +1,4 @@
-<?php
-
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-?>
+        <footer>
+        </footer>
+    </body>
+</html>
