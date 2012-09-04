@@ -3,6 +3,7 @@
     <head>
         <title>st@pleware</title>
         <link type="text/css" rel="stylesheet" href="css/style_main.css" />
+        <script type="text/javascript" src="js/jquery-1.8.0.min.js" ></script>
     </head>
     <body>
         <header>
