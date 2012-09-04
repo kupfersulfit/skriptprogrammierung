@@ -187,6 +187,12 @@ Produktfotos und Theme....
 /+zeigeArtikelSuche(Pattern : String) : Artikel/
 /+zeigeKunde(Kunde : Kunde)/
 --
+Entspricht ajax.php, nach folgendem Schema:
+switch $_GET['action']
+ case dosomething:
+	dosomething(thing athing);
+ case doanythingelse:
+	doanythingelse(thing anything);
 </panel_attributes>
     <additional_attributes/>
   </element>
