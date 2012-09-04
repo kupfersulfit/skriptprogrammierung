@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="11.3">
-  <zoom_level>10</zoom_level>
+<diagram program="umlet" version="11.5.1">
+  <zoom_level>9</zoom_level>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>0</x>
-      <y>210</y>
-      <w>210</w>
-      <h>190</h>
+      <x>45</x>
+      <y>216</y>
+      <w>189</w>
+      <h>171</h>
     </coordinates>
     <panel_attributes>_object: Kunde_
 --
@@ -25,10 +25,10 @@ registriertseit: Timestamp</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>230</x>
-      <y>20</y>
-      <w>320</w>
-      <h>250</h>
+      <x>252</x>
+      <y>45</y>
+      <w>288</w>
+      <h>225</h>
     </coordinates>
     <panel_attributes>Lib::DatabaseModel
 --
@@ -47,10 +47,10 @@ registriertseit: Timestamp</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>0</x>
-      <y>0</y>
-      <w>210</w>
-      <h>190</h>
+      <x>45</x>
+      <y>27</y>
+      <w>189</w>
+      <h>171</h>
     </coordinates>
     <panel_attributes>_object: Artikel_
 --
@@ -68,10 +68,10 @@ seit : TimeStamp</panel_attributes>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>0</x>
-      <y>510</y>
-      <w>320</w>
-      <h>170</h>
+      <x>45</x>
+      <y>486</y>
+      <w>288</w>
+      <h>153</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
 Gui:View
@@ -86,9 +86,9 @@ Produktfotos und Theme....
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>450</x>
-      <y>340</y>
-      <w>330</w>
-      <h>110</h>
+      <y>333</y>
+      <w>297</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>Gui:Templates:Kunde
 --
@@ -104,9 +104,9 @@ Produktfotos und Theme....
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>450</x>
-      <y>470</y>
-      <w>330</w>
-      <h>110</h>
+      <y>450</y>
+      <w>297</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>Gui:Templates:Admin
 --
@@ -121,32 +121,32 @@ Produktfotos und Theme....
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>250</x>
-      <y>370</y>
-      <w>220</w>
-      <h>160</h>
+      <x>270</x>
+      <y>360</y>
+      <w>197</w>
+      <h>143</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>200;30;30;140</additional_attributes>
+    <additional_attributes>180;27;27;126</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>290</x>
-      <y>500</y>
-      <w>180</w>
-      <h>70</h>
+      <x>306</x>
+      <y>477</y>
+      <w>161</w>
+      <h>62</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>160;30;30;50</additional_attributes>
+    <additional_attributes>144;27;27;45</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
       <x>450</x>
-      <y>590</y>
-      <w>330</w>
-      <h>110</h>
+      <y>558</y>
+      <w>297</w>
+      <h>99</h>
     </coordinates>
     <panel_attributes>Gui:Templates:Generic
 --
@@ -161,33 +161,36 @@ Produktfotos und Theme....
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>290</x>
-      <y>560</y>
-      <w>180</w>
-      <h>110</h>
+      <x>306</x>
+      <y>531</y>
+      <w>161</w>
+      <h>98</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>160;90;30;30</additional_attributes>
+    <additional_attributes>144;81;27;27</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>560</x>
-      <y>20</y>
-      <w>320</w>
-      <h>250</h>
+      <x>549</x>
+      <y>45</y>
+      <w>405</w>
+      <h>225</h>
     </coordinates>
-    <panel_attributes>Lib::Controller
+    <panel_attributes>Lib::controller.php
 --
-- session : String
 - user : Kunde
+- cart : Warenkorb
 --
-/+zeigeArtikel(Artikel : artikel) : boolean/
-/+zeigeWarenkorb(Kunde : Kunde) : Artikel/
-/+zeigeArtikelSuche(Pattern : String) : Artikel/
-/+zeigeKunde(Kunde : Kunde)/
+/+testeLogin(email:String, password:string(md5)) : bool | json/
+/+sucheArtikel(pattern : String) : Artikel [Liste]/
+/+zeigeKundendetails() : Kunde/
+/+zeigeArtikel() : Artikel [Liste]/
 --
-Entspricht ajax.php, nach folgendem Schema:
+Kümmert sich um Fehlermeldungen.
+Reagiert auf alle anfragen,
+entspricht ajax.php, 
+Schema:
 switch $_GET['action']
  case dosomething:
 	dosomething(thing athing);
