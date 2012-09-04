@@ -40,7 +40,7 @@ registriertseit: Timestamp</panel_attributes>
 /+holeArtikel(ArtikelId : Integer) : Artikel/
 /+sucheArtikel(Pattern : String) : Artikel[]/
 /+erstelleKunde(Kunde : Kunde) :boolean/
-/+holeKunden(Kunde : Kunde) : Kunde/
+/+holeKunden(String : email) : Kunde/
 /+holeBestellungVonKunden(Kunde : kunde) : Bestellung[]/
 /+holeBestellung() : Bestellung[]/
 /+erstelleBestellung(Bestellung : bestellung) :boolean/
@@ -127,8 +127,8 @@ Produktfotos und Theme....
     <coordinates>
       <x>270</x>
       <y>390</y>
-      <w>220</w>
-      <h>160</h>
+      <w>200</w>
+      <h>142</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>180;27;27;126</additional_attributes>
@@ -138,8 +138,8 @@ Produktfotos und Theme....
     <coordinates>
       <x>310</x>
       <y>520</y>
-      <w>180</w>
-      <h>70</h>
+      <w>168</w>
+      <h>60</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>144;27;27;45</additional_attributes>
@@ -167,8 +167,8 @@ Produktfotos und Theme....
     <coordinates>
       <x>310</x>
       <y>580</y>
-      <w>180</w>
-      <h>110</h>
+      <w>168</w>
+      <h>102</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>144;81;27;27</additional_attributes>

@@ -3,10 +3,7 @@
 /*******************************************
 			  Database Model
 *******************************************/
-
-
-class DatabaseModel
-{
+class DatabaseConnector {
 	// Constants
 	private $host = 'localhost';
 	private $database = 'db';''
@@ -38,6 +35,9 @@ class DatabaseModel
 			# MySQL with PDO_MYSQL  
 			$this->databaseConnectionInstance = null;
 			$this->isConnected = false;
+			return true;
+		}else{
+			return false
 		}
 	}
 	
@@ -45,13 +45,29 @@ class DatabaseModel
 		return $this->isConnected;
 	}
 	
-	private function getQueryData($query) {
+	private function executeQuery($query) {
 		if ($this->isConnected) {
 			$queryResult = $this->databaseConnectionInstance->query($query);
 			return $queryResult->fetchAll(PDO::FETCH_ASSOC);
 		}else{
 			return null;
 		}
+	}
+}
+
+class DatabaseModel
+{
+
+	public function erstelleArtikel($artikel) {
+		$dbConnection = new databaseConnector();
+		$dbConnector->connect();
+		$quer //TODO prepared statement
+		if ($dbConnector->executeQuery($query)) {
+			return true;
+		}else{
+			return false;
+		}
+		
 	}
 
 }
