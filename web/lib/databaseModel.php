@@ -17,18 +17,41 @@ class DatabaseModel
     // States
 	private $isConnected = false;
 	
-	public function connect() {
+	private function connect() {
 		try {  
-			# MySQL with PDO_MYSQL  
-			$databaseConnectionInstance = new PDO("mysql:host=$this->host;dbname=$this->$database", $this->user, $this->pass);  
+			if ($this->isConnected == false) {				
+				# MySQL with PDO_MYSQL  
+				$this->databaseConnectionInstance = new PDO("mysql:host=$this->host;dbname=$this->$database", $this->user, $this->pass);
+				$this->isConnected = true;
+				return true;
+			}else{
+				return false;
+			}
 		}  
 		catch(PDOException $e) {  
-			echo "Error while connecting to database: " . $e->getMessage();  
+			return false; 
 		}  
 	}
 	
-	public function isConnected() {
+	private function disconnect() {  
+		if ($this->isConnected) {	
+			# MySQL with PDO_MYSQL  
+			$this->databaseConnectionInstance = null;
+			$this->isConnected = false;
+		}
+	}
+	
+	private function isConnected() {
 		return $this->isConnected;
+	}
+	
+	private function getQueryData($query) {
+		if ($this->isConnected) {
+			$queryResult = $this->databaseConnectionInstance->query($query);
+			return $queryResult->fetchAll(PDO::FETCH_ASSOC);
+		}else{
+			return null;
+		}
 	}
 
 }
