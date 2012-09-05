@@ -11,8 +11,7 @@ class Kunde {
 	private $passwort;
 	private $registriertseit;
 	// Methoden
-	public function __construct($new_var = ??){
-		$this->var = $new_var;
+	public function __construct(){
 	}
 	public function setPasswort(){
 	
@@ -31,8 +30,7 @@ class Artikel {
 	private $preis;
 	private $seit;
 	// Methoden
-	public function __construct($new_var = ??){
-		$this->var = $new_var;
+	public function __construct(){
 	}
 	public function setBeschreibung() {
 		
@@ -45,11 +43,11 @@ class Warenkorb {
 	private $menge;
 	private $summe;
 	// Methoden
-	public function __construct($new_var = ??){
+	public function __construct(){
 		$menge = 0;
 		$artikel_feld = new ARTIKEL();
 	}
-	public function setAtrikelFeld($anzahl){	
+	public function setArtikelFeld($anzahl){	
 		//$menge += anzahl;
 		//$this->artikel_feld['name'] = anzahl;
 	}
