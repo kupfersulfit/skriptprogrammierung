@@ -1,5 +1,8 @@
 <?php
 
+// Set to true for testing
+$testing = true;
+
 require "objects.php";
 
 /*******************************************
@@ -8,7 +11,7 @@ require "objects.php";
 class DatabaseConnector {
 	// Constants
 	private $host = 'localhost';
-	private $database = 'onlineshop';''
+	private $database = 'onlineshop';
     private $user = 'root';
     private $password = 'root';
     // Members
@@ -16,26 +19,27 @@ class DatabaseConnector {
 	
 	public function connect() {
 		try {  
-			if ($this->isConnected() == false) {				
+			if ($this->databaseConnectionInstance == null) {				
 				# MySQL with PDO_MYSQL  
-				$this->databaseConnectionInstance = new PDO("mysql:host=$this->host;dbname=$this->$database", $this->user, $this->pass);
+				$this->databaseConnectionInstance = new PDO("mysql:host=".$this->host.";dbname=".$this->database, $this->user, $this->password);
 				return true;
 			}else{
 				return false;
 			}
 		}  
 		catch(PDOException $e) {  
+            echo "Error: " . $e;
 			return false; 
 		}  
 	}
 	
 	public function disconnect() {  
-		if ($this->isConnected()) {	
-			# MySQL with PDO_MYSQL  
-			$this->databaseConnectionInstance = null;
+        if ($this->databaseConnectionInstance != null) {	
+            # MySQL with PDO_MYSQL  
+            $this->databaseConnectionInstance = null;
 			return true;
 		}else{
-			return false
+			return false;
 		}
 	}
 	
@@ -44,10 +48,10 @@ class DatabaseConnector {
 	}
 	
 	public function executeQuery($query, $params) {
-		if ($this->isConnected()) {
-			$this->databaseConnectionInstance->prepare($query);
-            $this->databaseConnectionInstance->execute($params);
-			return $this->databaseConnectionInstance->fetchAll(PDO::FETCH_ASSOC);
+		if ($this->databaseConnectionInstance != null) {
+			$result = $this->databaseConnectionInstance->prepare($query);
+            $result->execute($params);
+            return $result;
 		}else{
 			return null;
 		}
@@ -56,6 +60,7 @@ class DatabaseConnector {
     public function mapObjects($queryResult, $objectName) {
 		if ($queryResult != null) {
             $queryResult->setFetchMode(PDO::FETCH_CLASS, $objectName);
+            return $queryResult->fetchAll();
         }else{
             return null;
         }
@@ -66,23 +71,45 @@ class DatabaseConnector {
 class DatabaseModel
 {
     
-$params = array(':username' => 'test', ':email' => $mail, ':last_login' => time() - 3600);
-    
-$pdo->prepare('
-   SELECT * FROM users
-   WHERE username = :username
-   AND email = :email
-   AND last_login > :last_login');
-    
-$pdo->execute($params);
-
-
 	public function holeKunde($KundenId) {
-		$dbConnection = new databaseConnector();
+		$dbConnector = new DatabaseConnector();
 		if($dbConnector->connect()) {
-            $query ="SELECT * FROM kunden WHERE id = :id");
-            $params=array(":id" => $KundenId);
-            return mapObjects($dbConnector->executeQuery($query, $params), "Kunden");
+            $query = "SELECT * FROM kunden WHERE id = :id";
+            $params = array(":id" => $KundenId);
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunden");
+        }else{
+            return null;
+        }
+	}
+    
+    public function holeAlleKunden() {
+		$dbConnector = new DatabaseConnector();
+		if($dbConnector->connect()) {
+            $query = "SELECT * FROM kunden";
+            $params = array();
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunden");
+        }else{
+            return null;
+        }
+	}
+    
+    public function holeArtikel($ArtikelId) {
+		$dbConnector = new DatabaseConnector();
+		if($dbConnector->connect()) {
+            $query = "SELECT * FROM artikel WHERE id = :id";
+            $params = array(":id" => $ArtikelId);
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Artikel");
+        }else{
+            return null;
+        }
+	}
+    
+    public function holeAlleArtikel() {
+		$dbConnector = new DatabaseConnector();
+		if($dbConnector->connect()) {
+            $query = "SELECT * FROM artikel";
+            $params = array();
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Artikel");
         }else{
             return null;
         }
@@ -90,5 +117,27 @@ $pdo->execute($params);
 
 }
 
+/* 
+ * Testcase
+ */
+if ($testing) {
+    $testInstance = new DatabaseModel(); 
+    echo "<br/>Artikel mit ID 1<br/>";
+    $dbo = $testInstance->holeArtikel("1");
+    print_r($dbo);
+    echo "<br/>Alle Artikel<br/>";
+    $dbo = $testInstance->holeAlleArtikel("*");
+    print_r($dbo);
+    echo "<br/>Kunden mit ID 1<br/>";
+    $dbo = $testInstance->holeKunde("1");
+    print_r($dbo);
+    echo "<br/>Alle Kunden<br/>";
+    $dbo = $testInstance->holeAlleKunden("*");
+    print_r($dbo);
+    exit;
+}
+/* 
+ * End Testcase
+ */
 
 ?>
