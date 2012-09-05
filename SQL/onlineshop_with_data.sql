@@ -3,11 +3,10 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 05. September 2012 um 13:24
+-- Erstellungszeit: 05. September 2012 um 14:12
 -- Server Version: 5.1.63
 -- PHP-Version: 5.3.5-1ubuntu7.10
 
-SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
@@ -25,24 +24,25 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 -- Tabellenstruktur für Tabelle `artikel`
 --
 
+DROP TABLE IF EXISTS `artikel`;
 CREATE TABLE IF NOT EXISTS `artikel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_bin NOT NULL,
-  `beschreibung` varchar(1023) COLLATE utf8_bin NOT NULL,
+  `name` varchar(255) binary NOT NULL,
+  `beschreibung` varchar(1023) binary NOT NULL,
   `veroeffentlicht` tinyint(1) NOT NULL,
   `verfuegbar` int(10) unsigned NOT NULL,
   `kategorieid` int(11) NOT NULL,
   `preis` decimal(8,2) NOT NULL,
-  `bildpfad` varchar(255) COLLATE utf8_bin NOT NULL,
-  `seit` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `bildpfad` varchar(255) binary NOT NULL,
+  `seit` timestamp NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=13 ;
+) TYPE=MyISAM  AUTO_INCREMENT=13 ;
 
 --
 -- Daten für Tabelle `artikel`
 --
 
-INSERT INTO `artikel` (`id`, `name`, `beschreibung`, `veroeffentlicht`, `verfuegbar`, `kategorieid`, `preis`, `bildpfad`, `seit`) VALUES
+REPLACE INTO `artikel` (`id`, `name`, `beschreibung`, `veroeffentlicht`, `verfuegbar`, `kategorieid`, `preis`, `bildpfad`, `seit`) VALUES
 (1, 'Rapid Elektroheftgerät Classic 106E TwinRig', 'Für Broschüren- und Ringösenheftung, sowie normales Heften Set bestehend aus zwei Heftgeräten 106e, sowie Zubehör für deren Verbindung, um gleichzeitig mehrfach zu heften Heftleistung: 50 Blatt (80 g/qm Papier) Einstellbare Heftkraft Einstellbare Hefttiefe bis zu 100 mm Montierte Zwinge für Tischbefestigung Schutzblende vor dem Heftmechanismus, Stromversorgung wird unterbrochen, sobald diese angehoben wird Austauschbarer Hefteinsatz gewährleistet einen langjährigen Gebrauch Lieferung inklusive Arbeitstisch für Broschürenheftung und normale Heftung, sowie Fußpedal und Fiberoptikkabel für die Verbindung der beiden Heftgeräte Einsatzhefter für Ringösenheftung nicht im Lieferung enthalten (separates Zubehör)', 1, 1, 2, '2300.00', 'artikel_1.jpg', '2012-09-04 09:42:47'),
 (3, 'Herlitz 1601350 Big Butler V, Schreibtischbox/ Stiftablage, Farbe anthrazit (I like big butlers and i cannot lie...)', 'Schreibtischbox, Herlitz     Big Butler, aus Kunststoff     mit Klebefilm und -abroller, Anspitzer und Zettelhalter     anthrazit     1 Stück in Schachtel', 1, 1, 1, '23.00', 'artikel_3.jpg', '2012-09-02 12:32:30'),
 (4, 'Verbotene Fantasien einer Sekretärin', 'Kurzbeschreibung Hocherotischer Film von Phil Defrys! Die bildhübsche Sekretärin Sandra steht total auf ihren Chef. Sie begehrt ihn mit Haut und Haaren und malt sich in ihrer Fantasie die wildesten Sex-Abenteuer aus, die sie in ihren schlaflosen Nächten niederschreibt. Jetzt soll Sandra ihren Boss auf eine Geschäftsreise begleiten. Werden ihre Fantasien jetzt endlich Wirklichkeit? Produktbeschreibungen Ein Phil Defrys Film! Sekretärin Sandra begehrt ihren Chef und in ihren schlaflosen Nächten schreibt sie sich ihre erotischen Fantasien von der Seele. Nun sollen beide auf Geschäftsreise. Werden Sandras Fantasien jetzt Wirklichkeit? Deutscher Ton. DVD, ca. 58 Minuten. ', 1, 1, 2, '42.00', 'artikel_4.jpg', '2012-08-05 12:38:04'),
@@ -62,10 +62,11 @@ INSERT INTO `artikel` (`id`, `name`, `beschreibung`, `veroeffentlicht`, `verfueg
 -- Tabellenstruktur für Tabelle `bestellungen`
 --
 
+DROP TABLE IF EXISTS `bestellungen`;
 CREATE TABLE IF NOT EXISTS `bestellungen` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `kundenid` int(11) NOT NULL,
-  `bestelldatum` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `bestelldatum` timestamp NOT NULL,
   `statusid` int(11) NOT NULL,
   `zahlungsmethodeid` int(11) NOT NULL,
   `lieferungsmethodeid` int(11) NOT NULL,
@@ -74,13 +75,13 @@ CREATE TABLE IF NOT EXISTS `bestellungen` (
   KEY `lieferungsmethodeid` (`lieferungsmethodeid`),
   KEY `kundenid` (`kundenid`),
   KEY `statusid` (`statusid`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+) TYPE=MyISAM  AUTO_INCREMENT=2 ;
 
 --
 -- Daten für Tabelle `bestellungen`
 --
 
-INSERT INTO `bestellungen` (`id`, `kundenid`, `bestelldatum`, `statusid`, `zahlungsmethodeid`, `lieferungsmethodeid`) VALUES
+REPLACE INTO `bestellungen` (`id`, `kundenid`, `bestelldatum`, `statusid`, `zahlungsmethodeid`, `lieferungsmethodeid`) VALUES
 (1, 1, '2012-09-05 13:22:03', 1, 2, 2);
 
 -- --------------------------------------------------------
@@ -89,18 +90,19 @@ INSERT INTO `bestellungen` (`id`, `kundenid`, `bestelldatum`, `statusid`, `zahlu
 -- Tabellenstruktur für Tabelle `bestellungen_artikel`
 --
 
+DROP TABLE IF EXISTS `bestellungen_artikel`;
 CREATE TABLE IF NOT EXISTS `bestellungen_artikel` (
   `bestellungid` int(11) NOT NULL,
   `artikelid` int(11) NOT NULL,
   `anzahl` int(10) unsigned NOT NULL,
   UNIQUE KEY `bestellungid` (`bestellungid`,`artikelid`)
-) ENGINE=MyISAM DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
+) TYPE=MyISAM;
 
 --
 -- Daten für Tabelle `bestellungen_artikel`
 --
 
-INSERT INTO `bestellungen_artikel` (`bestellungid`, `artikelid`, `anzahl`) VALUES
+REPLACE INTO `bestellungen_artikel` (`bestellungid`, `artikelid`, `anzahl`) VALUES
 (1, 2, 2),
 (1, 3, 1);
 
@@ -110,20 +112,21 @@ INSERT INTO `bestellungen_artikel` (`bestellungid`, `artikelid`, `anzahl`) VALUE
 -- Tabellenstruktur für Tabelle `kategorien`
 --
 
+DROP TABLE IF EXISTS `kategorien`;
 CREATE TABLE IF NOT EXISTS `kategorien` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_bin NOT NULL,
-  `beschreibung` varchar(1023) COLLATE utf8_bin NOT NULL,
+  `name` varchar(255) binary NOT NULL,
+  `beschreibung` varchar(1023) binary NOT NULL,
   `superkategorie` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `superkategorie` (`superkategorie`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=5 ;
+) TYPE=MyISAM  AUTO_INCREMENT=5 ;
 
 --
 -- Daten für Tabelle `kategorien`
 --
 
-INSERT INTO `kategorien` (`id`, `name`, `beschreibung`, `superkategorie`) VALUES
+REPLACE INTO `kategorien` (`id`, `name`, `beschreibung`, `superkategorie`) VALUES
 (1, 'Schreibwaren', 'Schreibwaren fürs Büro', 0),
 (2, 'Buch und DVD', 'Bücher, DVDs', 0),
 (3, 'Büromöbel', 'Möbel fürs Büro', 0),
@@ -135,24 +138,25 @@ INSERT INTO `kategorien` (`id`, `name`, `beschreibung`, `superkategorie`) VALUES
 -- Tabellenstruktur für Tabelle `kunden`
 --
 
+DROP TABLE IF EXISTS `kunden`;
 CREATE TABLE IF NOT EXISTS `kunden` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8_bin NOT NULL,
-  `vorname` varchar(255) COLLATE utf8_bin NOT NULL,
-  `strasse` varchar(255) COLLATE utf8_bin NOT NULL,
+  `name` varchar(255) binary NOT NULL,
+  `vorname` varchar(255) binary NOT NULL,
+  `strasse` varchar(255) binary NOT NULL,
   `plz` int(5) unsigned zerofill NOT NULL,
-  `zusatz` varchar(255) COLLATE utf8_bin NOT NULL,
-  `email` varchar(255) COLLATE utf8_bin NOT NULL,
-  `passwort` varchar(127) COLLATE utf8_bin NOT NULL,
-  `registriertseit` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `zusatz` varchar(255) binary NOT NULL,
+  `email` varchar(255) binary NOT NULL,
+  `passwort` varchar(127) binary NOT NULL,
+  `registriertseit` timestamp NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+) TYPE=MyISAM  AUTO_INCREMENT=3 ;
 
 --
 -- Daten für Tabelle `kunden`
 --
 
-INSERT INTO `kunden` (`id`, `name`, `vorname`, `strasse`, `plz`, `zusatz`, `email`, `passwort`, `registriertseit`) VALUES
+REPLACE INTO `kunden` (`id`, `name`, `vorname`, `strasse`, `plz`, `zusatz`, `email`, `passwort`, `registriertseit`) VALUES
 (1, 'Josef', 'Ackermann', 'Seestr. 23', 83128, '', 'josef.ackermann@lionsclub.com', 'porsche', '2012-09-05 13:11:11'),
 (2, 'Springer', 'Friede', 'Fichtenweg 23', 12529, '', 'friede.springer@springergroup.com', 'maybach', '2012-09-05 13:15:22');
 
@@ -162,19 +166,20 @@ INSERT INTO `kunden` (`id`, `name`, `vorname`, `strasse`, `plz`, `zusatz`, `emai
 -- Tabellenstruktur für Tabelle `lieferungsmethoden`
 --
 
+DROP TABLE IF EXISTS `lieferungsmethoden`;
 CREATE TABLE IF NOT EXISTS `lieferungsmethoden` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(127) COLLATE utf8_bin NOT NULL,
-  `beschreibung` varchar(511) COLLATE utf8_bin NOT NULL,
+  `name` varchar(127) binary NOT NULL,
+  `beschreibung` varchar(511) binary NOT NULL,
   `kosten` decimal(8,2) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=4 ;
+) TYPE=MyISAM  AUTO_INCREMENT=4 ;
 
 --
 -- Daten für Tabelle `lieferungsmethoden`
 --
 
-INSERT INTO `lieferungsmethoden` (`id`, `name`, `beschreibung`, `kosten`) VALUES
+REPLACE INTO `lieferungsmethoden` (`id`, `name`, `beschreibung`, `kosten`) VALUES
 (1, 'Paketversand', 'Versanddauer ca. 3-4 Werktage', '12.99'),
 (2, 'Expressversand', 'Versanddauer zum nächsten Werktag', '25.99'),
 (3, 'Selbstabholung', 'Sie können die Ware bei uns im Lager in Bielefeld abholen. Hierfür berechnen wir Ihen eine Bearbeitungsgebühr.', '4.99');
@@ -185,18 +190,19 @@ INSERT INTO `lieferungsmethoden` (`id`, `name`, `beschreibung`, `kosten`) VALUES
 -- Tabellenstruktur für Tabelle `status`
 --
 
+DROP TABLE IF EXISTS `status`;
 CREATE TABLE IF NOT EXISTS `status` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(127) COLLATE utf8_bin NOT NULL,
-  `beschreibung` varchar(511) COLLATE utf8_bin NOT NULL,
+  `name` varchar(127) binary NOT NULL,
+  `beschreibung` varchar(511) binary NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+) TYPE=MyISAM  AUTO_INCREMENT=3 ;
 
 --
 -- Daten für Tabelle `status`
 --
 
-INSERT INTO `status` (`id`, `name`, `beschreibung`) VALUES
+REPLACE INTO `status` (`id`, `name`, `beschreibung`) VALUES
 (1, 'Offen', 'Der Artikel wird verpackt oder befindet sich auf dem Weg in die Versandabteilung.'),
 (2, 'Versandt', 'Die Leiferung wurde dem Logistikpartner übergeben.');
 
@@ -206,20 +212,21 @@ INSERT INTO `status` (`id`, `name`, `beschreibung`) VALUES
 -- Tabellenstruktur für Tabelle `zahlungsmethoden`
 --
 
+DROP TABLE IF EXISTS `zahlungsmethoden`;
 CREATE TABLE IF NOT EXISTS `zahlungsmethoden` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(127) COLLATE utf8_bin NOT NULL,
-  `beschreibung` varchar(255) COLLATE utf8_bin NOT NULL,
-  `skript` varchar(255) COLLATE utf8_bin NOT NULL,
+  `name` varchar(127) binary NOT NULL,
+  `beschreibung` varchar(255) binary NOT NULL,
+  `skript` varchar(255) binary NOT NULL,
   `kosten` decimal(8,2) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `skript` (`skript`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+) TYPE=MyISAM  AUTO_INCREMENT=3 ;
 
 --
 -- Daten für Tabelle `zahlungsmethoden`
 --
 
-INSERT INTO `zahlungsmethoden` (`id`, `name`, `beschreibung`, `skript`, `kosten`) VALUES
+REPLACE INTO `zahlungsmethoden` (`id`, `name`, `beschreibung`, `skript`, `kosten`) VALUES
 (1, 'Barzahlung', 'Barzahlung bei Selbstabholung', '', '0.00'),
 (2, 'Rechnung', 'Zahlung auf Rechnung nach Erhalt der Ware.', 'null', '9.99');
