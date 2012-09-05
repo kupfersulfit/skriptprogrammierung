@@ -189,13 +189,12 @@ Produktfotos und Theme....
 /+login(email:String, password:string(md5)) : json/
 /+logout()/
 /+sucheArtikel(pattern : String) : Artikel []/
-/+holeKundenDetails() : Kunde/
+/+holeKunde() : Kunde/
 /+zeigeArtikel() : Artikel []/
 /+erstelleArtikel(artikel : Artikel) : bool/
+/+loescheArtikel(artikel : Artikel)/
 /+registriereKunde(kunde : Kunde) : bool/
-/+holeKunde(email : String) Kunde/
-/+holeBestellungen() : Bestellung[]/
-/+bestelle(bestellung : Bestellung) : bool/
+/+aktualisiereWarenkorb(warenkorb = 0 :Warenkorb) : Warenkorb/
 --
 Kümmert sich um Fehlermeldungen.
 Reagiert auf alle anfragen,
