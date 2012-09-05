@@ -71,10 +71,10 @@ class DatabaseConnector {
 class DatabaseModel
 {
     public function erstelleKunde($Kunde) {
-        /******************/
+
 		$dbConnector = new DatabaseConnector();
 		if($dbConnector->connect()) {
-            $query = "SELECT * FROM kunden WHERE id = :id";
+            $quyery = "SELECT * FROM kunden WHERE id = :id";
             $params = array(":id" => $KundenId);
             return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunden");
         }else{
@@ -151,10 +151,10 @@ if ($testing) {
  * End Testcase
  */
  
- 
+
  /*
   * 
-  * /+erstelleArtikel(Artikel artikel) : boolean/
+/+erstelleArtikel(Artikel artikel) : boolean/
 /+holeArtikel(ArtikelId : Integer) : Artikel/
 /+holeAlleArtikel() : Artikel[]/
 /+sucheArtikel(Pattern : String) : Artikel[]/
@@ -165,9 +165,8 @@ if ($testing) {
 /+holeAlleBestellung() : Bestellung[]/
 /+holeBestellung() : Bestellung[]/
 /+erstelleBestellung(Bestellung : bestellung) :boolean/
---
+
 * 
-* 
-* /
+*/
 
 ?>

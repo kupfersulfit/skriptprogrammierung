@@ -67,7 +67,7 @@ class Kunde {
 		return $this->passwort;
 	}
 	public function setRegestriertseit($seit){
-		$this->regestriertseit = $seit
+		$this->regestriertseit = $seit;
 	}
 	public function getRegestriertseit(){
 		return $this->regestriertseit;
