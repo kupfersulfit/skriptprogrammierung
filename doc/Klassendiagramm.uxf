@@ -28,7 +28,7 @@
       <x>342</x>
       <y>153</y>
       <w>288</w>
-      <h>225</h>
+      <h>261</h>
     </coordinates>
     <panel_attributes>Lib::DatabaseModel
 --
@@ -38,10 +38,13 @@
 --
 /+erstelleArtikel(Artikel artikel) : boolean/
 /+holeArtikel(ArtikelId : Integer) : Artikel/
+/+holeAlleArtikel() : Artikel[]/
 /+sucheArtikel(Pattern : String) : Artikel[]/
 /+erstelleKunde(Kunde : Kunde) :boolean/
 /+holeKunden(String : email) : Kunde/
-/+holeBestellungVonKunden(Kunde : kunde) : Bestellung[]/
+/+holeAlleKunden() : Kunde[]/
+/+holeBestellungenVonKunden(Kunde : kunde) : Bestellung[]/
+/+holeAlleBestellung() : Bestellung[]/
 /+holeBestellung() : Bestellung[]/
 /+erstelleBestellung(Bestellung : bestellung) :boolean/
 --

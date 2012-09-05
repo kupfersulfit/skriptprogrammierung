@@ -150,5 +150,24 @@ if ($testing) {
 /* 
  * End Testcase
  */
+ 
+ 
+ /*
+  * 
+  * /+erstelleArtikel(Artikel artikel) : boolean/
+/+holeArtikel(ArtikelId : Integer) : Artikel/
+/+holeAlleArtikel() : Artikel[]/
+/+sucheArtikel(Pattern : String) : Artikel[]/
+/+erstelleKunde(Kunde : Kunde) :boolean/
+/+holeKunden(String : email) : Kunde/
+/+holeAlleKunden() : Kunde[]/
+/+holeBestellungenVonKunden(Kunde : kunde) : Bestellung[]/
+/+holeAlleBestellung() : Bestellung[]/
+/+holeBestellung() : Bestellung[]/
+/+erstelleBestellung(Bestellung : bestellung) :boolean/
+--
+* 
+* 
+* /
 
 ?>
