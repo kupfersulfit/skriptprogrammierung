@@ -1,7 +1,7 @@
 <?php
     session_start();
     ini_set('display_errors', '1'); 
-    include_once 'controller_functions.php';
+    require_once 'controller_functions.php';
     if(!isset($_SESSION['kunde'])){ 
         $_SESSION['kunde'] = "gast";
     }
