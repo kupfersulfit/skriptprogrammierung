@@ -1,5 +1,5 @@
 <?php
-    include_once("objects.php");
+    include_once "objects.php";
 
     /** Gibt alle Artikel zur&uuml;ck 
         @return Artikel[]

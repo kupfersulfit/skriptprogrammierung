@@ -1,7 +1,6 @@
 <?php
     session_start();
-/*    include_once 'controller_functions.php';
-    include_once "objects.php";*/
+    include_once 'controller_functions.php';
     if(!isset($_SESSION['kunde'])){ 
         $_SESSION['kunde'] = "gast";
     }
