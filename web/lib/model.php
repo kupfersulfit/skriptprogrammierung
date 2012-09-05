@@ -70,6 +70,17 @@ class DatabaseConnector {
 
 class DatabaseModel
 {
+    public function erstelleKunde($Kunde) {
+        /******************/
+		$dbConnector = new DatabaseConnector();
+		if($dbConnector->connect()) {
+            $query = "SELECT * FROM kunden WHERE id = :id";
+            $params = array(":id" => $KundenId);
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunden");
+        }else{
+            return null;
+        }
+	}
     
 	public function holeKunde($KundenId) {
 		$dbConnector = new DatabaseConnector();
@@ -139,5 +150,24 @@ if ($testing) {
 /* 
  * End Testcase
  */
+ 
+ 
+ /*
+  * 
+  * /+erstelleArtikel(Artikel artikel) : boolean/
+/+holeArtikel(ArtikelId : Integer) : Artikel/
+/+holeAlleArtikel() : Artikel[]/
+/+sucheArtikel(Pattern : String) : Artikel[]/
+/+erstelleKunde(Kunde : Kunde) :boolean/
+/+holeKunden(String : email) : Kunde/
+/+holeAlleKunden() : Kunde[]/
+/+holeBestellungenVonKunden(Kunde : kunde) : Bestellung[]/
+/+holeAlleBestellung() : Bestellung[]/
+/+holeBestellung() : Bestellung[]/
+/+erstelleBestellung(Bestellung : bestellung) :boolean/
+--
+* 
+* 
+* /
 
 ?>
