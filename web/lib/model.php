@@ -70,6 +70,17 @@ class DatabaseConnector {
 
 class DatabaseModel
 {
+    public function erstelleKunde($Kunde) {
+        /******************/
+		$dbConnector = new DatabaseConnector();
+		if($dbConnector->connect()) {
+            $query = "SELECT * FROM kunden WHERE id = :id";
+            $params = array(":id" => $KundenId);
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunden");
+        }else{
+            return null;
+        }
+	}
     
 	public function holeKunde($KundenId) {
 		$dbConnector = new DatabaseConnector();
