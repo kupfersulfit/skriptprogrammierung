@@ -71,7 +71,6 @@ class DatabaseConnector {
 class DatabaseModel
 {
     public function erstelleKunde($Kunde) {
-
 		$dbConnector = new DatabaseConnector();
 		if($dbConnector->connect()) {
             $quyery = "INSERT INTO kunden VALUES('', ':name', ':vorname', ':strasse', ':plz', ':zusatz', ':email', ':passwort', ':registriertseit'";
@@ -111,6 +110,28 @@ class DatabaseModel
             return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunden");
         }else{
             return null;
+        }
+	}
+    
+    ///TODO
+    public function erstelleArtikel($Artikel) {
+		$dbConnector = new DatabaseConnector();
+		if($dbConnector->connect()) {
+            $quyery = "INSERT INTO artikel VALUES('', ':name', ':vorname', ':strasse', ':plz', ':zusatz', ':email', ':passwort', ':registriertseit'";
+            $params = array(
+            ":name" => $Kunde->name, 
+            ":vorname" => $Kunde->name,
+            ":strasse" => $Kunde->name
+            ":plz" => $Kunde->name, 
+            ":zusatz" => $Kunde->name,
+            ":email" => $Kunde->name
+            ":passwort" => $Kunde->name, 
+            ":registriertseit" => $Kunde->name
+            );
+            $dbConnector->executeQuery($query, $params);
+            return true;
+        }else{
+            return false;
         }
 	}
     
