@@ -125,6 +125,44 @@ class DatabaseModel
             return null;
         }
 	}
+    
+    public function holeBestellungenVonKunden($KundenId) {
+		$dbConnector = new DatabaseConnector();
+		if($dbConnector->connect()) {
+            $query = "SELECT * FROM bestellung WHERE kundenid = :kundenid";
+            $params = array(":kundenid" => $KundenId);
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Bestellung");
+        }else{
+            return null;
+        }
+	}
+    
+    public function holeAlleBestellungen() {
+		$dbConnector = new DatabaseConnector();
+		if($dbConnector->connect()) {
+            $query = "SELECT * FROM bestellung";
+            $params = array();
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Bestellung");
+        }else{
+            return null;
+        }
+	}
+    
+    public function pruefeLogin($Email, $PasswortHash) {
+		$dbConnector = new DatabaseConnector();
+		if($dbConnector->connect()) {
+            $query = "SELECT * FROM kunden WHERE passwort = :passwort AND email = :email";
+            $params = array(":passwort" => $PasswortHash, ":email" => $Email);
+            $result = $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Bestellung");
+            if (sizeof($result) == 1) {
+                return true;
+            }else{
+                return false;
+            } 
+        }else{
+            return false;
+        }
+	}
 
 }
 
