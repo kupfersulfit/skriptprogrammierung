@@ -1,7 +1,8 @@
 <?php
     session_start();
-    include_once('controller_functions.php');
-    if(!isset($_SESSION['kunde'])){ //session und TODO warenkorb erstellen
+    ini_set('display_errors', '1'); 
+    require_once 'controller_functions.php';
+    if(!isset($_SESSION['kunde'])){ 
         $_SESSION['kunde'] = "gast";
     }
 
@@ -10,26 +11,22 @@
         die();
     }
 
-    //public actions
     switch($_REQUEST['action']){
         case 'zeigeArtikel':
             exit();
         case 'sucheArtikel':
             exit();
+        case 'holeWarenkorb':
+            exit();
         case 'aktualisiereWarenkorb':
             exit();
         case 'login':
             exit();
-    }
-
-    //private actions
-    if(!isset($_SESSION['kunde'])){
-        echo json_encode(array('error' => 'unknown action or not logged in'));
-        die();
-    }
-
-    switch($_REQUEST['action']){
+        case 'registriereKunde':
+            exit();
         case 'holeKunde':
+            exit();
+        case 'aktualisiereKunde':
             exit();
         case 'logout':
             exit();
@@ -40,4 +37,5 @@
         default:   
             echo json_encode(array('error' => 'unknown action'));     
     }
+
 ?>

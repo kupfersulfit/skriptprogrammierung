@@ -184,10 +184,11 @@ Produktfotos und Theme....
 - user : Kunde
 - cart : Warenkorb
 --
-/+login(email:String, password:string(md5)) : json/
+/+login(email:String, password:string) : json/
 /+logout()/
 /+sucheArtikel(pattern : String) : Artikel []/
 /+holeKunde() : Kunde/
+/+aktualisiereKunde(kunde : Kunde) 
 /+zeigeArtikel() : Artikel []/
 /+erstelleArtikel(artikel : Artikel) : bool/
 /+loescheArtikel(artikel : Artikel)/
