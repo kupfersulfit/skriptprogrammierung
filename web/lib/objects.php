@@ -12,9 +12,7 @@ class Kunde {
 	private $registriertseit;
 	// Methoden
 	public function __construct($values){
-	
-		$values; //ist ein ass.array noch zurechtschneiden
-	
+		
 		$this->id = $values['id'];
 		$this->setName($values['name']);
 		$this->setVorname($values['vorname']);
@@ -67,7 +65,7 @@ class Kunde {
 		return $this->passwort;
 	}
 	public function setRegestriertseit($seit){
-		$this->regestriertseit = $seit
+		$this->regestriertseit = $seit;
 	}
 	public function getRegestriertseit(){
 		return $this->regestriertseit;
@@ -75,73 +73,75 @@ class Kunde {
 }
 
 class Artikel {
-	// Member-Variablen
-	private $id;
-	private $name;
-	private $beschreibung;
-	private $bildpfad;
-	private $veroeffentlicht;
-	private $verfuegbar;
-	private $kategorieid;
-	private $preis;
-	private $seit;
-	// Methoden
-	public function __construct(){
-	}
-	public function setId(){
-	
-	}
-	public function getId(){
-	
-	}
-	public function setName(){
-	
-	}
-	public function getName(){
-	
-	}
-	public function setBeschreibung() {
-		
-	}
-	public function getBeschreibung(){
-	
-	}
-	public function setBildpfad(){
-	
-	}
-	public function getBildpfad(){
-	
-	}	
-	public function setVeroeffentlicht(){
-	
-	}
-	public function getVeroeffentlicht(){
-	
-	}
-	public function setVerfuegbar(){
-	
-	}
-	public function getVerfuegbar(){
-	
-	}	
-	public function setKategorieid(){
-	
-	}
-	public function getKategorieid(){
-	
-	}
-	public function setPreis(){
-	
-	}
-	public function getPreis(){
-	
-	}
-	public function setSeit(){
-	
-	}
-	public function getSeit(){
-	
-	}
+ // Member-Variablen
+ private $id;
+ private $name;
+ private $beschreibung;
+ private $bildpfad;
+ private $veroeffentlicht;
+ private $verfuegbar;
+ private $kategorieId;
+ private $preis;
+ private $seit;
+ // Methoden
+ public function __construct($values){
+    $this->id = $values["id"];
+    $this->setName($values["name"]);
+    $this->setBeschreibung($values["beschreibung"]);
+    $this->setBildpfad($values["bildpfad"]);
+    $this->setVeroeffentlicht($values["veroeffentlicht"]);
+	$this->setVerfuegbar($values["verfuegbar"]);
+	$this->setPreis($values["preis"]);
+	$this->setSeit($values["seit"]);
+ }
+ public function getId(){
+	return $this->id;
+ }
+ public function setName($name){
+	$this->name = $name;
+ }
+ public function getName(){
+	return $this->name;
+ }
+ public function setBeschreibung($beschreibung) {
+	$this->beschreibung = $beschreibung;
+ }
+ public function getBeschreibung(){
+    return $this->beschreibung;
+ }
+ public function setBildpfad($bildpfad){
+    $this->bildpfad = $bildpfad;
+ }
+ public function getBildpfad(){
+    return $this->bildpfad;
+ } 
+ public function setVeroeffentlicht($veroeffentlicht){
+    $this->veroeffentlicht=$veroeffentlicht;
+ }
+ public function getVeroeffentlicht(){
+    return $this->veroeffentlicht;
+ }
+ public function setVerfuegbar($verfuegbar){
+    $this->verfuegbar=$verfuegbar;
+ }
+ public function getVerfuegbar(){
+    return $this->verfuegbar;
+ } 
+ public function getKategorieId(){
+    return $this->kategorieid;
+ }
+ public function setPreis($preis){
+    $this->preis = $preis;
+ }
+ public function getPreis(){
+    return $this->preis;
+ }
+ public function setSeit($seit){
+    $this->seit = $seit;
+ }
+ public function getSeit(){
+    return $this->seit;
+ }
 }
 
 class Warenkorb {

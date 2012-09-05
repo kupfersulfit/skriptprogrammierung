@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 05. September 2012 um 14:17
+-- Erstellungszeit: 05. September 2012 um 14:47
 -- Server Version: 5.1.63
 -- PHP-Version: 5.3.5-1ubuntu7.10
 
@@ -27,13 +27,13 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 
 CREATE TABLE IF NOT EXISTS `artikel` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `beschreibung` varchar(1023) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `beschreibung` varchar(1023) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `veroeffentlicht` tinyint(1) NOT NULL,
   `verfuegbar` int(10) unsigned NOT NULL,
   `kategorieid` int(11) NOT NULL,
   `preis` decimal(8,2) NOT NULL,
-  `bildpfad` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `bildpfad` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `seit` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=13 ;
@@ -112,8 +112,8 @@ INSERT INTO `bestellungen_artikel` (`bestellungid`, `artikelid`, `anzahl`) VALUE
 
 CREATE TABLE IF NOT EXISTS `kategorien` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `beschreibung` varchar(1023) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `beschreibung` varchar(1023) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `superkategorie` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   KEY `superkategorie` (`superkategorie`)
@@ -137,13 +137,13 @@ INSERT INTO `kategorien` (`id`, `name`, `beschreibung`, `superkategorie`) VALUES
 
 CREATE TABLE IF NOT EXISTS `kunden` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `vorname` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `strasse` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `vorname` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `strasse` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `plz` int(5) unsigned zerofill NOT NULL,
-  `zusatz` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `passwort` varchar(127) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `zusatz` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `passwort` varchar(127) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `registriertseit` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
@@ -164,8 +164,8 @@ INSERT INTO `kunden` (`id`, `name`, `vorname`, `strasse`, `plz`, `zusatz`, `emai
 
 CREATE TABLE IF NOT EXISTS `lieferungsmethoden` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(127) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `beschreibung` varchar(511) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `name` varchar(127) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `beschreibung` varchar(511) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `kosten` decimal(8,2) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
@@ -187,8 +187,8 @@ INSERT INTO `lieferungsmethoden` (`id`, `name`, `beschreibung`, `kosten`) VALUES
 
 CREATE TABLE IF NOT EXISTS `status` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(127) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `beschreibung` varchar(511) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `name` varchar(127) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `beschreibung` varchar(511) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
 
@@ -208,9 +208,9 @@ INSERT INTO `status` (`id`, `name`, `beschreibung`) VALUES
 
 CREATE TABLE IF NOT EXISTS `zahlungsmethoden` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(127) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `beschreibung` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
-  `skript` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin NOT NULL,
+  `name` varchar(127) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `beschreibung` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `skript` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `kosten` decimal(8,2) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `skript` (`skript`)
