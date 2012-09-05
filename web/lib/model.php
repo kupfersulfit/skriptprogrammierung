@@ -1,5 +1,8 @@
 <?php
 
+// Set to true for testing
+$testing = true;
+
 require "objects.php";
 
 /*******************************************
@@ -79,6 +82,17 @@ class DatabaseModel
         }
 	}
     
+    public function holeAlleKunden() {
+		$dbConnection = new DatabaseConnector();
+		if($dbConnector->connect()) {
+            $query = "SELECT * FROM kunden";
+            $params = array();
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunden");
+        }else{
+            return null;
+        }
+	}
+    
     public function holeArtikel($ArtikelId) {
 		$dbConnector = new DatabaseConnector();
 		if($dbConnector->connect()) {
@@ -89,12 +103,33 @@ class DatabaseModel
             return null;
         }
 	}
+    
+    public function holeAlleArtikel() {
+		$dbConnector = new DatabaseConnector();
+		if($dbConnector->connect()) {
+            $query = "SELECT * FROM artikel";
+            $params = array();
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Artikel");
+        }else{
+            return null;
+        }
+	}
 
 }
 
+/* 
+ * Testcase
+ */
+if ($testing) {
     $testInstance = new DatabaseModel();
-    $dbo = $testInstance->holeArtikel("1");
+    $dbo = $testInstance->holeArtikel("*");
     print_r($dbo);
-
+    $dbo = $testInstance->holeArtikel("*");
+    print_r($dbo);
+    exit;
+}
+/* 
+ * End Testcase
+ */
 
 ?>
