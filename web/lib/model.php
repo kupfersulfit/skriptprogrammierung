@@ -25,14 +25,15 @@ class DatabaseConnector {
 			}
 		}  
 		catch(PDOException $e) {  
+            echo "Error: " . $e;
 			return false; 
 		}  
 	}
 	
 	public function disconnect() {  
-		if ($this->databaseConnectionInstance != null) {	
-			# MySQL with PDO_MYSQL  
-			$this->databaseConnectionInstance = null;
+        if ($this->databaseConnectionInstance != null) {	
+            # MySQL with PDO_MYSQL  
+            $this->databaseConnectionInstance = null;
 			return true;
 		}else{
 			return false;
@@ -55,8 +56,8 @@ class DatabaseConnector {
     
     public function mapObjects($queryResult, $objectName) {
 		if ($queryResult != null) {
-            print_r($queryResult);
             $queryResult->setFetchMode(PDO::FETCH_CLASS, $objectName);
+            return $queryResult->fetchAll();
         }else{
             return null;
         }
@@ -91,8 +92,9 @@ class DatabaseModel
 
 }
 
-$testInstance = new DatabaseModel();
-print_r($testInstance->holeArtikel("1"));
+    $testInstance = new DatabaseModel();
+    $dbo = $testInstance->holeArtikel("1");
+    print_r($dbo);
 
 
 ?>
