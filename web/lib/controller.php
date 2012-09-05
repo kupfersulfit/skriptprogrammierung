@@ -1,7 +1,8 @@
 <?php
     session_start();
-    include_once('controller_functions.php');
-    if(!isset($_SESSION['kunde'])){ //session und TODO warenkorb erstellen
+/*    include_once 'controller_functions.php';
+    include_once "objects.php";*/
+    if(!isset($_SESSION['kunde'])){ 
         $_SESSION['kunde'] = "gast";
     }
 
@@ -36,4 +37,5 @@
         default:   
             echo json_encode(array('error' => 'unknown action'));     
     }
+
 ?>
