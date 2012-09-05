@@ -3,7 +3,7 @@
 // Set to true for testing
 $testing = true;
 
-require "objects.php";
+require_once "objects.php";
 
 /*******************************************
 			  Database Model
@@ -74,11 +74,21 @@ class DatabaseModel
 
 		$dbConnector = new DatabaseConnector();
 		if($dbConnector->connect()) {
-            $quyery = "SELECT * FROM kunden WHERE id = :id";
-            $params = array(":id" => $KundenId);
-            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunden");
+            $quyery = "INSERT INTO kunden VALUES('', ':name', ':vorname', ':strasse', ':plz', ':zusatz', ':email', ':passwort', ':registriertseit'";
+            $params = array(
+            ":name" => $Kunde->name, 
+            ":vorname" => $Kunde->name,
+            ":strasse" => $Kunde->name
+            ":plz" => $Kunde->name, 
+            ":zusatz" => $Kunde->name,
+            ":email" => $Kunde->name
+            ":passwort" => $Kunde->name, 
+            ":registriertseit" => $Kunde->name
+            );
+            $dbConnector->executeQuery($query, $params);
+            return true;
         }else{
-            return null;
+            return false;
         }
 	}
     
