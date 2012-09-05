@@ -1,5 +1,5 @@
 <?php
-class KUNDE {
+class Kunde {
 	// Member-Variablen
 	private $id;
 	private $name;
@@ -19,7 +19,7 @@ class KUNDE {
 	}
 }
 
-class ARTIKEL {
+class Artikel {
 	// Member-Variablen
 	private $id;
 	private $name;
@@ -39,7 +39,7 @@ class ARTIKEL {
 	}
 }
 
-class WARENKORB {
+class Warenkorb {
 	// Member-Variablen
 	private $artikel_feld;
 	private $menge;

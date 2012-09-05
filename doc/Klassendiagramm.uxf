@@ -40,7 +40,7 @@ registriertseit: Timestamp</panel_attributes>
 /+holeArtikel(ArtikelId : Integer) : Artikel/
 /+sucheArtikel(Pattern : String) : Artikel[]/
 /+erstelleKunde(Kunde : Kunde) :boolean/
-/+holeKunden(Kunde : Kunde) : Kunde/
+/+holeKunden(String : email) : Kunde/
 /+holeBestellungVonKunden(Kunde : kunde) : Bestellung[]/
 /+holeBestellung() : Bestellung[]/
 /+erstelleBestellung(Bestellung : bestellung) :boolean/
