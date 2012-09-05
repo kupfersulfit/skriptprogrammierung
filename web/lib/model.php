@@ -82,11 +82,11 @@ class DatabaseModel
         }
 	}
     
-	public function holeKunde($KundenId) {
+	public function holeKunde($Email) {
 		$dbConnector = new DatabaseConnector();
 		if($dbConnector->connect()) {
-            $query = "SELECT * FROM kunden WHERE id = :id";
-            $params = array(":id" => $KundenId);
+            $query = "SELECT * FROM kunden WHERE email = :email";
+            $params = array(":email" => $Email);
             return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunden");
         }else{
             return null;
@@ -140,7 +140,7 @@ if ($testing) {
     $dbo = $testInstance->holeAlleArtikel("*");
     print_r($dbo);
     echo "<br/>Kunden mit ID 1<br/>";
-    $dbo = $testInstance->holeKunde("1");
+    $dbo = $testInstance->holeKunde("josef.ackermann@lionsclub.com");
     print_r($dbo);
     echo "<br/>Alle Kunden<br/>";
     $dbo = $testInstance->holeAlleKunden("*");
