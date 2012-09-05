@@ -1,0 +1,19 @@
+#articleList {
+    width: 800px;
+    float: left;
+}
+
+#mini_shopping_card {
+    border-left: 2px solid #c9c9c9;
+    width: 212px;
+    float: right;
+    padding: 5px;
+}
+
+#basket {
+    
+}
+
+#shopping_card_logo {
+    
+}

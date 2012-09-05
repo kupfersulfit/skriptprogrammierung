@@ -1,6 +1,66 @@
+body {
+    color: black;
+    font-family: Verdana, Arial, sans-serif;
+}
+
+header {
+    border-bottom: 2px solid #c9c9c9;
+    position: relative;
+    width: 1024px;
+}
+
+.clear {
+    width: 0;
+    height: 0;
+    font-size: 0;
+    clear: both;
+}
+
+#content {
+    width: 1024px;
+}
+
+#menu ul {
+    margin-right: 17px;
+    padding: 0;
+}
+
 #menu ul li {
     display: inline;
-    float: left;
+    float: right;
     list-style: none;
-    margin-right: 10px;
+    margin-right: 3px;
+    background-color: #dddddd;
+    padding: 3px 5px;
+    border-radius: 5px 0 0 0;
+}
+
+#menu ul li:hover {
+    background-color: lightblue;
+}
+
+#menu ul li .active {
+    background-color: #c9c9c9;
+}
+    
+#loginContainer {
+    padding: 10px;
+    background-color: #c9c9c9;
+    position: absolute;
+    right: 20px;
+    bottom: -134px;
+    display: none;
+}
+
+#loginButton {
+    border: 0;
+    padding: 3px;
+}
+
+#loginContainer p {
+    width: 276px;
+}
+
+#loginContainer p input {
+    float: right;
 }
