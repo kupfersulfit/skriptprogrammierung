@@ -72,7 +72,7 @@ class DatabaseModel
 {
     
 	public function holeKunde($KundenId) {
-		$dbConnection = new DatabaseConnector();
+		$dbConnector = new DatabaseConnector();
 		if($dbConnector->connect()) {
             $query = "SELECT * FROM kunden WHERE id = :id";
             $params = array(":id" => $KundenId);
@@ -83,7 +83,7 @@ class DatabaseModel
 	}
     
     public function holeAlleKunden() {
-		$dbConnection = new DatabaseConnector();
+		$dbConnector = new DatabaseConnector();
 		if($dbConnector->connect()) {
             $query = "SELECT * FROM kunden";
             $params = array();
@@ -121,10 +121,18 @@ class DatabaseModel
  * Testcase
  */
 if ($testing) {
-    $testInstance = new DatabaseModel();
-    $dbo = $testInstance->holeArtikel("*");
+    $testInstance = new DatabaseModel(); 
+    echo "<br/>Artikel mit ID 1<br/>";
+    $dbo = $testInstance->holeArtikel("1");
     print_r($dbo);
-    $dbo = $testInstance->holeArtikel("*");
+    echo "<br/>Alle Artikel<br/>";
+    $dbo = $testInstance->holeAlleArtikel("*");
+    print_r($dbo);
+    echo "<br/>Kunden mit ID 1<br/>";
+    $dbo = $testInstance->holeKunde("1");
+    print_r($dbo);
+    echo "<br/>Alle Kunden<br/>";
+    $dbo = $testInstance->holeAlleKunden("*");
     print_r($dbo);
     exit;
 }
