@@ -10,26 +10,22 @@
         die();
     }
 
-    //public actions
     switch($_REQUEST['action']){
         case 'zeigeArtikel':
             exit();
         case 'sucheArtikel':
             exit();
+        case 'holeWarenkorb':
+            exit();
         case 'aktualisiereWarenkorb':
             exit();
         case 'login':
             exit();
-    }
-
-    //private actions
-    if(!isset($_SESSION['kunde'])){
-        echo json_encode(array('error' => 'unknown action or not logged in'));
-        die();
-    }
-
-    switch($_REQUEST['action']){
+        case 'registriereKunde':
+            exit();
         case 'holeKunde':
+            exit();
+        case 'aktualisiereKunde':
             exit();
         case 'logout':
             exit();
