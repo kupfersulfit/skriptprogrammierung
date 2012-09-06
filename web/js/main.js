@@ -45,6 +45,9 @@ function getCustomerContent(pageName) {
         url: 'templates/customer/' + pageName + ".php",
         success: function (data) {
             jQuery('#left').html(data);
+            if(pageName == 'home') {
+                getArticleList();
+            }
         }
     });
 }

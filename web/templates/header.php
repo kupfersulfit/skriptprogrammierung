@@ -4,6 +4,7 @@
             <title>st@pleware</title>
             <link type="text/css" rel="stylesheet" href="css/style_main.css" />
             <link type="text/css" rel="stylesheet" href="css/style_article_overview.css" />
+            <link href="fav.ico" rel="shortcut icon">
             <script type="text/javascript" src="js/jquery-1.8.0.min.js" ></script>
             <script type="text/javascript" src="js/main.js" ></script>
             <script type="text/javascript" src="js/article.js" ></script>

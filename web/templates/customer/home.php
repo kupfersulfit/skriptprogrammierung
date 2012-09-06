@@ -1,2 +1,3 @@
-<div>dummy</div>
-<div>dummy</div>
+<section id="articleList">
+    
+</section>

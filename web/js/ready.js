@@ -22,7 +22,7 @@ jQuery(document).ready(function (){
         jQuery('#container').fadeOut('slow');
         getCustomerContent('home');
         setAnker('home');
-        get
+        getArticleList();
     });
     
     jQuery('#adminTab').click(function() {

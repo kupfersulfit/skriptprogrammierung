@@ -8,20 +8,16 @@ function getArticleList() {
         },
         dataType : 'json',
         success : function (json) {
-            jQuery('#left').html(json);
+            jQuery('#articleList').html(json);
             
-            /*
-            beschreibung null	
-            bildpfad "artikel_1.jpg"
-            id "1"
-            kategorieId null	
-            name null	
-            preis "2300.00" 
-            seit "2012-09-04 09:42:47"	
-            verfuegbar "1"	
-            veroeffentlicht "1"
-             */
-            
+            for (var i = 0; i < json.length; ++i) {
+                var article = new Article();
+                article.create(json[i]);
+                jQuery('#articleList').append(article.renderHTML());
+                if (i%2 != 0) {
+                    jQuery('#articleList').append('<div class="clear" ></div>');
+                }
+            }
             console.debug(json)
         },
         error : function (json) {
