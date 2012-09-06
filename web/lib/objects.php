@@ -255,15 +255,19 @@ class Warenkorb {
 	// Methoden
 	public function __construct($values = array()){
 		$this->artikel_feld = array();
-		foreach($values as $val){
-			$this->artikel_feld[] = new Artikel($val);
-		}
+        if(count($values) > 0){
+		    foreach(array_keys($values) as $val){
+		        $this->artikel_feld[] = new Artikel($val);
+		    }
+        }
 	}
     public function assoc(){ //gibt ein assoziatives array zurueck welches das aktuelle objekt repraesentiert
 		$ret = array();
-		foreach($this->artikel_feld as $artikel){
-			$ret[] = $artikel->assoc();
-		}
+        if(count($this->artikel_feld) > 0){
+    		foreach(array_keys($this->artikel_feld) as $artikel[]){
+    			$ret[] = $artikel->assoc();
+    		}
+        }
 		return $ret;
 	}
 	public function setArtikelFeld($neu_artikel_feld){

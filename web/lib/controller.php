@@ -1,8 +1,7 @@
 <?php
     ini_set('display_errors', '1'); //TODO just for debugging !!!! 
-    require_once 'controller_functions.php';
-    require_once 'model.php';
     require_once 'objects.php';
+    require_once 'controller_functions.php';
     session_start();
     
     if(!isset($_SESSION['model'])){
@@ -10,8 +9,7 @@
     }
 
     if(!isset($_SESSION['kunde'])){
-        $gast = new Kunde(array("id" => -1, "name" => "Guest"));
-        $_SESSION['kunde'] = $gast;
+        $_SESSION['kunde'] = new Kunde(array("id" => -1, "name" => "Guest"));
     }
 
     if(!isset($_REQUEST['action'])){
@@ -57,11 +55,13 @@
         case 'registriereKunde':
             exit();
         case 'holeKunde':
-            echo json_encode(array("id" => "1", "name" => "mustermann", "vorname" => "max", "strasse" => "Elmstreet 666", "plz" => "66666", "zusatz" => "", "email" => "max@mustermann.de", "passwort" => "", "registriertseit" => "2012-09-06"));
+            holeKunde();
+            //echo json_encode(array("id" => "1", "name" => "mustermann", "vorname" => "max", "strasse" => "Elmstreet 666", "plz" => "66666", "zusatz" => "", "email" => "max@mustermann.de", "passwort" => "", "registriertseit" => "2012-09-06"));
             exit();
         case 'aktualisiereKunde':
             exit();
         case 'logout':
+            logout();
             exit();
         case 'erstelleArtikel':
             exit();

@@ -1,13 +1,14 @@
 <?php
     require_once "objects.php";
     require_once "model.php";
-    
+
     $salt = "Die github gui ist doof";
    
     /** Gibt eine Fehlermeldung aus */
     function err($nachricht){
         echo json_encode(array("error" => "$nachricht"));
     }
+
     /** Zeigt alle Artikel an */
     function zeigeArtikel(){
         $artikelArray = $_SESSION['model']->holeAlleArtikel();
@@ -84,7 +85,7 @@
         }
         $hash = crypt($passwort, $salt);
         if($_SESSION['model']->pruefeLogin($email, $hash) == true){
-            $_SESSION['kunde'] = unserialize($_SESSION['model'])->holeKunde($email);
+            $_SESSION['kunde'] = $_SESSION['model']->holeKunde($email);
             holeKunde(); //kundendaten ausgeben
         }else{
             err("login failed");
@@ -93,6 +94,7 @@
 
     /** Zerst&ouml;rt das Kundenobjekt in der Session (nicht den Warenkorb) */
     function logout(){
+        $_SESSION['kunde'] = new Kunde(array("id" => -1, "name" => "Guest"));
     }
 
     /** Versucht einen neuen Kunden anzulegen 
@@ -104,7 +106,7 @@
         @return Kunde
     */
     function holeKunde(){
-        
+        echo json_encode($_SESSION['kunde']->assoc()); 
     }
 
     /** Aktualisiert das Kundenobjekt in Session und Datenbank
