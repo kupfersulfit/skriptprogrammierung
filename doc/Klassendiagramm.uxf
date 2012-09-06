@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<diagram program="umlet" version="11.3">
-  <zoom_level>9</zoom_level>
+<diagram program="umlet" version="11.5.1">
+  <zoom_level>8</zoom_level>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>207</x>
-      <y>306</y>
-      <w>189</w>
-      <h>171</h>
+      <x>488</x>
+      <y>304</y>
+      <w>168</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>_object: Kunde_
 --
@@ -25,10 +25,10 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>414</x>
-      <y>135</y>
-      <w>288</w>
-      <h>261</h>
+      <x>672</x>
+      <y>152</y>
+      <w>256</w>
+      <h>232</h>
     </coordinates>
     <panel_attributes>Lib::DatabaseModel
 --
@@ -54,10 +54,10 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>243</x>
-      <y>0</y>
-      <w>153</w>
-      <h>72</h>
+      <x>520</x>
+      <y>32</y>
+      <w>136</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>_object: Warenkorb_
 --
@@ -70,10 +70,10 @@
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>207</x>
-      <y>576</y>
-      <w>288</w>
-      <h>153</h>
+      <x>488</x>
+      <y>544</y>
+      <w>256</w>
+      <h>136</h>
     </coordinates>
     <panel_attributes>&lt;&lt;Stereotype&gt;&gt;
 Gui:View
@@ -87,10 +87,10 @@ Produktfotos und Theme....
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>612</x>
-      <y>423</y>
-      <w>297</w>
-      <h>99</h>
+      <x>848</x>
+      <y>408</y>
+      <w>264</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>Gui:Templates:Kunde
 --
@@ -105,10 +105,10 @@ Produktfotos und Theme....
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>612</x>
-      <y>540</y>
-      <w>297</w>
-      <h>99</h>
+      <x>848</x>
+      <y>512</y>
+      <w>264</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>Gui:Templates:Admin
 --
@@ -123,32 +123,32 @@ Produktfotos und Theme....
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>441</x>
-      <y>450</y>
-      <w>188</w>
-      <h>143</h>
+      <x>696</x>
+      <y>432</y>
+      <w>168</w>
+      <h>128</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>171;27;27;126</additional_attributes>
+    <additional_attributes>152;24;24;112</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>468</x>
-      <y>567</y>
-      <w>161</w>
-      <h>53</h>
+      <x>720</x>
+      <y>536</y>
+      <w>144</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>144;27;27;36</additional_attributes>
+    <additional_attributes>128;24;24;32</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>612</x>
-      <y>648</y>
-      <w>297</w>
-      <h>99</h>
+      <x>848</x>
+      <y>608</y>
+      <w>264</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>Gui:Templates:Generic
 --
@@ -163,21 +163,21 @@ Produktfotos und Theme....
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>468</x>
-      <y>612</y>
-      <w>161</w>
-      <h>98</h>
+      <x>720</x>
+      <y>576</y>
+      <w>144</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>144;81;27;27</additional_attributes>
+    <additional_attributes>128;72;24;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>711</x>
-      <y>135</y>
-      <w>378</w>
-      <h>225</h>
+      <x>936</x>
+      <y>152</y>
+      <w>336</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>Lib::controller.php
 --
@@ -210,10 +210,10 @@ switch $_GET['action']
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>207</x>
-      <y>117</y>
-      <w>189</w>
-      <h>171</h>
+      <x>488</x>
+      <y>136</y>
+      <w>168</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>_object: Artikel_
 --
@@ -231,21 +231,21 @@ switch $_GET['action']
   <element>
     <type>com.umlet.element.Relation</type>
     <coordinates>
-      <x>270</x>
-      <y>45</y>
-      <w>44</w>
-      <h>89</h>
+      <x>544</x>
+      <y>72</y>
+      <w>40</w>
+      <h>80</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
-    <additional_attributes>27;72;27;27</additional_attributes>
+    <additional_attributes>24;64;24;24</additional_attributes>
   </element>
   <element>
     <type>com.umlet.element.Class</type>
     <coordinates>
-      <x>0</x>
-      <y>117</y>
-      <w>189</w>
-      <h>171</h>
+      <x>280</x>
+      <y>136</y>
+      <w>168</w>
+      <h>152</h>
     </coordinates>
     <panel_attributes>_object: Bestellung_
 --
@@ -254,7 +254,101 @@ switch $_GET['action']
 -bestelldatum : timestamp
 -statusid: Integer
 -zahlungsmethodeid: Integer
--lieferungsmethode: Integer</panel_attributes>
+-lieferungsmethodeid: Integer</panel_attributes>
     <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>424</x>
+      <y>152</y>
+      <w>80</w>
+      <h>176</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>64;160;40;160;40;24;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>8</x>
+      <y>48</y>
+      <w>136</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>_object: Status_
+--
+-id: Integer
+-name: String
+-beschreibung: String
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>8</x>
+      <y>160</y>
+      <w>136</w>
+      <h>96</h>
+    </coordinates>
+    <panel_attributes>_object: Zahlungsmethode_
+--
+-id: Integer
+-name: String
+-beschreibung: String
+-skript: String
+-kosten: Decimal</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Class</type>
+    <coordinates>
+      <x>8</x>
+      <y>280</y>
+      <w>136</w>
+      <h>88</h>
+    </coordinates>
+    <panel_attributes>_object: Lieferungsmethode_
+--
+-id: Integer
+-name: String
+-beschreibung: String
+-kosten: Decimal
+</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>120</x>
+      <y>48</y>
+      <w>176</w>
+      <h>168</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>160;152;144;152;144;24;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>120</x>
+      <y>160</y>
+      <w>176</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>160;48;120;48;120;24;24;24</additional_attributes>
+  </element>
+  <element>
+    <type>com.umlet.element.Relation</type>
+    <coordinates>
+      <x>120</x>
+      <y>200</y>
+      <w>176</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>160;24;120;24;120;104;24;104</additional_attributes>
   </element>
 </diagram>

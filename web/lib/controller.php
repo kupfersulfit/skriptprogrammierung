@@ -46,6 +46,7 @@
         case 'registriereKunde':
             exit();
         case 'holeKunde':
+            echo json_encode(array("id" => "1", "name" => "mustermann", "vorname" => "max", "strasse" => "Elmstreet 666", "plz" => "66666", "zusatz" => "", "email" => "max@mustermann.de", "passwort" => "", "registriertseit" => "2012-09-06"));
             exit();
         case 'aktualisiereKunde':
             exit();
