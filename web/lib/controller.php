@@ -8,8 +8,9 @@
         $_SESSION['model'] = new DatabaseModel();
     }
 
-    if(!isset($_SESSION['kunde'])){ 
-        $_SESSION['kunde'] = "gast";
+    if(!isset($_SESSION['kunde'])){
+        $gast = new Kunde(array("id" => -1, "name" => "Guest"));
+        $_SESSION['kunde'] = $gast;
     }
 
     if(!isset($_REQUEST['action'])){
@@ -42,6 +43,15 @@
             } 
             exit();
         case 'login':
+            if(!isset($_POST['email'])){
+                err("'email' parameter missing");
+            }else if(!isset($_POST['passwort'])){
+                err("'passwort' parameter missing");
+            }else if($_SESSION['kunde']->getEmail() != ""){
+                err("already logged in");
+            }else{
+                login($_POST['email'], $_POST['passwort']);
+            }
             exit();
         case 'registriereKunde':
             exit();
