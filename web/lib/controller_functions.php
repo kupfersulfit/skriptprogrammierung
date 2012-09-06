@@ -84,7 +84,7 @@
         }
         $hash = crypt($passwort, $salt);
         if($_SESSION['model']->pruefeLogin($email, $hash) == true){
-            $_SESSION['kunde'] = $_SESSION['model']->holeKunde($email);
+            $_SESSION['kunde'] = unserialize($_SESSION['model'])->holeKunde($email);
             holeKunde(); //kundendaten ausgeben
         }else{
             err("login failed");

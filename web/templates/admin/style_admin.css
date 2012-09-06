@@ -1,0 +1,11 @@
+body {
+    color: black;
+    font-family: Verdana, Arial, sans-serif;
+    font-size: 16px;
+    font-weight: normal;
+    width: 1024px;
+/*    position: absolute;
+    left: 50%;
+    margin-left: -512px;*/
+    margin: auto;
+}
