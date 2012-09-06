@@ -4,9 +4,9 @@ body {
     font-size: 16px;
     font-weight: normal;
     width: 1024px;
-/*    position: absolute;
-    left: 50%;
-    margin-left: -512px;*/
+    /*    position: absolute;
+        left: 50%;
+        margin-left: -512px;*/
     margin: auto;
 }
 
@@ -149,9 +149,13 @@ header {
 }
 
 #left {
-    width: 797px;
+    width: 796px;
     float: left;
     border-left: 1px solid lightblue;
+    border-bottom: 1px solid lightblue;
+    border-right: 1px solid lightblue;
+    margin-bottom: 20px;
+    background-color: #E8F6FF;
 }
 
 #shopping_cart {
@@ -171,14 +175,14 @@ header {
 
 #articleList {
     padding-top: 41px;
-/*    height: 797px;
-    overflow: scroll;*/
+    /*    height: 797px;
+        overflow: scroll;*/
 }
 
 .arcticle {
     background-color: #efefef;
     width: 310px;
-    min-height: 400px;
+    height: 558px;
     padding: 5px;
     margin-bottom: 51px;
     border-radius: 3px;
@@ -187,20 +191,45 @@ header {
     margin-left: 51px;
 }
 
+.articleValues {
+    color: #FF6600;
+    float: right;
+}
+
+.articleTags {
+    color: cornflowerblue;
+    margin: 10px 0 0 0;
+}
+
 .articleTitel {
     line-height: 40px;
     font-size: 20px;
     cursor: help;
+    color: #FF6600;
+    float: left;
+    width: 270px;
 }
 
-.articleContent { }
+.pin {
+    height: 40px;
+    width: 40px;
+    background-image: url('../media/un_pin.png');
+    background-position: 0 0;
+    float: left;
+}
+
+.articleContent { 
+}
 
 .articleImg {
+    background-color: #FFFFFF;
     width: 300px;
     height: 300px;
     overflow: hidden;
-    border: 5px solid #FFFFFF;
+    border: 1px solid #c9c9c9;
     border-radius: 3px;
+    padding: 4px;
+    overflow: hidden;
 }
 
 .articleDetails {
@@ -209,10 +238,25 @@ header {
 
 .articleDetails ul{
     background-color: #FFFFFF;
+    border: 1px solid #c9c9c9;
     border-radius: 3px;
     margin: 0;
     padding: 5px;
     list-style: none;
+}
+
+.in, .out {
+    background-color: lawngreen;
+    margin-top: 5px;
+    width: 11px;
+    height: 11px;
+    border-radius: 5px;
+    float: right;
+    cursor: help;
+}
+
+.out {
+    background-color: red;
 }
 
 .articleDescription {
@@ -221,4 +265,12 @@ header {
     padding: 5px;
     border-radius: 3px;
     background-color: #FFFFFF;
+    width: 298px;
+    border: 1px solid #c9c9c9;
+    position: absolute;
+    font-size: 14px;
+}
+
+.shadowedDescription {
+    box-shadow: 0px 10px 5px #888;
 }
