@@ -4,7 +4,7 @@ body {
 }
 
 header {
-    border-bottom: 2px solid #c9c9c9;
+    border-bottom: 2px solid lightblue;
     position: relative;
     width: 1024px;
 }
@@ -21,7 +21,6 @@ header {
 }
 
 #menu ul {
-    margin-right: 17px;
     padding: 0;
 }
 
@@ -29,27 +28,34 @@ header {
     display: inline;
     float: right;
     list-style: none;
-    margin-right: 3px;
+    margin-left: 3px;
     background-color: #dddddd;
-    padding: 3px 5px;
-    border-radius: 5px 0 0 0;
+    padding: 3px;
+    border-radius: 5px 5px 0 0;
+    cursor: pointer;
 }
 
 #menu ul li:hover {
     background-color: lightblue;
 }
 
-#menu ul li .active {
-    background-color: #c9c9c9;
+.active {
+    background-color: lightblue !important;
 }
-    
-#loginContainer {
+
+#container {
     padding: 10px;
-    background-color: #c9c9c9;
+    background-color: lightblue;
     position: absolute;
-    right: 20px;
-    bottom: -134px;
+    right: 0px;
+    bottom: -168px;
     display: none;
+    border-radius: 5px 0 5px 5px;
+    color: #FFFFFF;
+}
+
+#loginContainer {
+    height: 100px;
 }
 
 #loginButton {
@@ -59,8 +65,75 @@ header {
 
 #loginContainer p {
     width: 276px;
+    
 }
 
 #loginContainer p input {
     float: right;
+    color: darkgray;
+}
+
+#registerLink {
+    color: blue;
+    cursor: pointer;
+    font-size: 12px;
+}
+
+#registerContainer {
+    display: none;
+}
+
+#register_login {
+    height: 30px;
+    vertical-align: middle;
+    text-align: center;
+}
+#registerContainer p {
+    margin: 2px;
+    width: 276px;
+}
+
+#registerContainer p input {
+    width: 272px;
+    color: darkgray;
+}
+
+#registerContainer p #street {
+    width: 170px;
+}
+
+#registerContainer p #nr {
+    width: 100px;
+    margin-left: 2px;
+}
+
+#edition {
+    width: 272px;
+    resize: none;
+}
+
+#registerButton {
+    border: 0;
+    margin-top: 20px;
+    padding: 3px;
+}
+
+
+#left {
+    width: 798px;
+    float: left;
+}
+
+#shopping_cart {
+    border-left: 2px solid #c9c9c9;
+    width: 224px;
+    float: right;
+}
+
+#basket {
+    padding: 5px;
+}
+
+#shopping_cart_logo {
+
 }

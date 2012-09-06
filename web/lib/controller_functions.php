@@ -1,10 +1,24 @@
 <?php
     require_once "objects.php";
-    require_once "model.php";
+//    require_once "model.php";
+    
+    /** Gibt eine Fehlermeldung aus */
+    function err($nachricht){
+        echo json_encode(array("error" => "$nachricht"));
+    }
     /** Gibt alle Artikel zur&uuml;ck 
         @return Artikel[]
     */
     function zeigeArtikel(){
+        $artikelArray = null; //TODO holeVeroeffentlichteArtikelAusDatenbank()
+        if($artikelArray == null){
+            err("no existing article");
+        }else{
+            for($i = 0; $i < count($artikelArray); $i++){ //convert object to assoc array
+                $artikelArray[$i] = $artikelArray[$i]->assoc();
+            }
+            echo json_encode($artikelArray);
+        }
     }
 
     /** Sucht einen Artikel 
@@ -12,18 +26,37 @@
         @return Artikel
     */
     function sucheArtikel($suchstring){
+        $artikel = null; //TODO sucheArtikelInDatenbank()
+        if($artikel == null){
+            err("no article found");
+        }else{
+            echo json_encode($artikel->assoc());
+        }
     }
 
-    /** Gibt den aktuellen Warenkorb zur&uuml;ck
-        @return Warenkorb
-    */
+    /** Gibt falls vorhanden den aktuellen Warenkorb aus, sonst eine Fehlermeldung */
     function holeWarenkorb(){
+        if(isset($_SESSION['korb'])){
+            echo json_encode($_SESSION['korb']->assoc());
+        }else{
+            err("no shopping cart available");
+        }
     }
 
     /** Gleicht den in der Session gespeicherten Warenkorb dem aktuellen an
-        @param warenkorb Warenkorb Objekt
+        @param warenkorb nicht geprueftes Warenkorbobjekt
+        @return Warenkorbobjekt mit den korrekten Daten (Preis etc. aus DB)
     */
     function aktualisiereWarenkorb($warenkorb){
+        $korb = json_decode($warenkorb); //assoc array erzeugen
+        $korb = new Warenkorb($korb); //warenkorbobjekt erzeugen
+        $artikelListe = $korb->getArtikelFeld(); //hole liste aller artikel im korb
+        for($i = 0; $i < count($artikelListe); $i++){ //ueberschreibe vom client empfangene mit aus der db geholten daten (um zb preisfaelschungen zu vermeiden)
+            $artikelListe[$i] = null; //TODO holeArtikelAusDatenbank(artikelId)
+        }
+        $korb->setArtikelFeld($artikelListe); //update warenkorb mit den 'korrekten' daten
+        $_SESSION['korb'] = $korb;
+        echo json_encode($_SESSION['korb']->assoc());
     }
 
     /** Testet den gegebenen Login und ersetzt ggf. die Sessionvariable "Kunde"

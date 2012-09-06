@@ -85,16 +85,37 @@ class Artikel {
 	private $preis;
 	private $seit;
 	// Methoden
-	public function __construct($values){
-		$this->id = $values["id"];
-	    $this->setName($values["name"]);
-	    $this->setBeschreibung($values["beschreibung"]);
-	    $this->setBildpfad($values["bildpfad"]);
-	    $this->setVeroeffentlicht($values["veroeffentlicht"]);
-		$this->setVerfuegbar($values["verfuegbar"]);
-		$this->setPreis($values["preis"]);
-		$this->setSeit($values["seit"]);
+	public function __construct($values=array()){
+		if(isset($values["id"]))
+            $this->id = $values["id"];
+		if(isset($values["name"]))
+	        $this->setName($values["name"]);
+		if(isset($values["beschreibung"]))
+	        $this->setBeschreibung($values["beschreibung"]);
+		if(isset($values["bildpfad"]))
+	        $this->setBildpfad($values["bildpfad"]);
+		if(isset($values["veroeffentlicht"]))
+	        $this->setVeroeffentlicht($values["veroeffentlicht"]);
+		if(isset($values["verfuegbar"]))
+		    $this->setVerfuegbar($values["verfuegbar"]);
+		if(isset($values["preis"]))
+		    $this->setPreis($values["preis"]);
+		if(isset($values["seit"]))
+		    $this->setSeit($values["seit"]);
 	}
+    public function assoc(){ //gibt ein assoziatives array zurueck welches das aktuelle objekt repraesentiert
+        $ret = array();
+        $ret['id'] = $this->id;
+        $ret['name'] = $this->name;
+        $ret['beschreibung'] = $this->beschreibung;
+        $ret['bildpfad'] = $this->bildpfad;
+        $ret['veroeffentlicht'] = $this->veroeffentlicht;
+        $ret['verfuegbar'] = $this->verfuegbar;
+        $ret['kategorieId'] = $this->kategorieId;
+        $ret['preis'] = $this->preis;
+        $ret['seit'] = $this->seit;
+        return $ret;
+    }
 	public function getId(){
 		return $this->id;
 	}
