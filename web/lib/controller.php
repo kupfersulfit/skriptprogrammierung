@@ -1,8 +1,9 @@
 <?php
-    session_start();
     ini_set('display_errors', '1'); //TODO just for debugging !!!! 
     require_once 'controller_functions.php';
+    require_once 'model.php';
     require_once 'objects.php';
+    session_start();
     
     if(!isset($_SESSION['model'])){
         $_SESSION['model'] = new DatabaseModel();
