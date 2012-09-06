@@ -4,6 +4,10 @@
     require_once 'controller_functions.php';
     require_once 'objects.php';
     
+    if(!isset($_SESSION['model'])){
+        $_SESSION['model'] = new DatabaseModel();
+    }
+
     if(!isset($_SESSION['kunde'])){ 
         $_SESSION['kunde'] = "gast";
     }
