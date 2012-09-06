@@ -80,6 +80,14 @@ class DatabaseConnector {
  */
 class DatabaseModel {
 
+    /**
+     * @brief Erstellt einen neuen Kunden in der Datenbank auf Grundlage des übergebenen Kundenobjekts.
+     * 
+     * @param String $kunde
+     *  Objekt des anzulegenden Kunden
+     * @retval boolean
+     *  True on success.
+     */
     public function erstelleKunde($kunde) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
@@ -101,6 +109,14 @@ class DatabaseModel {
         }
     }
 
+    /**
+     * @brief Holt Kunde mit gegebener ID
+     * 
+     * @param String $email
+     *  Email des gewünschten Kundens
+     * @retval Kunde
+     *  Objekt des gewünschten Kunden 
+     */
     public function holeKunde($email) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
@@ -112,6 +128,12 @@ class DatabaseModel {
         }
     }
 
+    /**
+     * @brief Holt alle Kunden.
+     * 
+     * @retval Kunden[]
+     *  Objektarray der Kunden.
+     */
     public function holeAlleKunden() {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
@@ -123,19 +145,27 @@ class DatabaseModel {
         }
     }
 
-    public function erstelleArtikel($Artikel) {
+    /**
+     * @brief Erstellt einen neuen Artikel in der Datenbank auf Grundlage des übergebenen Artikeobjekts.
+     * 
+     * @param String $artikel
+     *  Objekt des anzulegenden Artikels
+     * @retval boolean
+     *  True on success.
+     */
+    public function erstelleArtikel($artikel) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
-            $query = "INSERT INTO artikel VALUES('', ':name', ':vorname', ':strasse', ':plz', ':zusatz', ':email', ':passwort', ':registriertseit'";
+            $query = "INSERT INTO artikel VALUES('', ':name', ':beschreibung', ':veroeffentlicht', ':verfuegbar', ':katgorieid', ':preis', ':bildpfad', ':seit'";
             $params = array(
-            ":name" => $kunde->name,
-            ":vorname" => $kunde->vorname,
-            ":strasse" => $kunde->strasse,
-            ":plz" => $kunde->plz,
-            ":zusatz" => $kunde->zusatz,
-            ":email" => $kunde->email,
-            ":passwort" => $kunde->passwort,
-            ":registriertseit" => $kunde->registriertseit
+            ":name" => $artikel->name,
+            ":beschreibung" => $artikel->beschreibung,
+            ":veroeffentlicht" => $artikel->veroeffentlicht,
+            ":verfuegbar" => $artikel->verfuegbar,
+            ":katgorieid" => $artikel->preis,
+            ":preis" => $artikel->katgorieid,
+            ":bildpfad" => $artikel->passwort,
+            ":seit" => $artikel->seit
             );
             $dbConnector->executeQuery($query, $params);
             return true;
@@ -144,6 +174,14 @@ class DatabaseModel {
         }
     }
 
+    /**
+     * @brief Holt Artikel mit gegebener ID
+     * 
+     * @param String $artikelId
+     *  ID des gewünschten Artikels
+     * @retval Artikel
+     *  Objekt des gewünschten Artikels 
+     */
     public function holeArtikel($artikelId) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
@@ -154,7 +192,13 @@ class DatabaseModel {
             return null;
         }
     }
-
+    
+    /**
+     * @brief Holt alle Artikeln.
+     * 
+     * @retval Artikel[]
+     *  Objektarray der Artikel.
+     */
     public function holeAlleArtikel() {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
@@ -166,6 +210,12 @@ class DatabaseModel {
         }
     }
     
+    /**
+     * @brief Holt alle  Artikeln, welche als veröffentlicht gespeichert wurden
+     * 
+     * @retval Artikel[]
+     *  Objektarray der veröffentlichten Artikel
+     */
     public function holeAlleVeroeffentlichtenArtikel() {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
@@ -177,6 +227,14 @@ class DatabaseModel {
         }
     }
     
+    /**
+     * @brief Sucht nach Artikeln mit gegebenen Pattern
+     * 
+     * @param String $pattern
+     *  Pattern enthalten in Name / Beschreibung der gesuchten Artikel
+     * @retval Artikel[]
+     *  Objektarray der gesuchten Artikel
+     */
     public function sucheArtikel($pattern) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
