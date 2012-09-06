@@ -11,65 +11,106 @@ class Kunde {
 	private $passwort;
 	private $registriertseit;
 	// Methoden
-	public function __construct($values){
-		
-		$this->id = $values['id'];
-		$this->setName($values['name']);
-		$this->setVorname($values['vorname']);
-		$this->setPlz($values['plz']);
-		$this->setZusatz($values['zusatz']);
-		$this->setEmail($values['email']);
-		$this->setPasswort($values['passwort']);
-		$this->setRegestriertseit($values['regestriertseit']);
+	public function __construct($values=array()){
+		if(isset($values["id"])){
+			if($values["id"] != "" && is_int($values["id"])){
+				$this->id = $values['id'];
+			}else{
+				$values["id"] = 0;
+			}
+		}
+		if(isset($values["name"]))
+			$this->setName($values['name']);
+		if(isset($values["vorname"]))
+			$this->setVorname($values['vorname']);
+		if(isset($values["strasse"]))
+			$this->setStrasse($values['strasse']);
+		if(isset($values["plz"]))
+			$this->setPlz($values['plz']);
+		if(isset($values["zusatz"]))
+			$this->setZusatz($values['zusatz']);
+		if(isset($values["email"]))
+			$this->setEmail($values['email']);
+		if(isset($values["passwort"]))
+			$this->setPasswort($values['passwort']);
+		if(isset($values["registriertseit"]))
+			$this->registriertseit = $values['registriertseit'];
 	}
-//	public function setId($id){
-//		$this->id = $id;
-//	}
 	public function getId(){
 		return $this->id;
 	}
 	public function setName($name){
-		$this->name = $name;
+		if($name != "" && is_string($name) && strlen($name) < 256){
+			$this->name = $name;
+		}else{
+			throw new Exception("Name ungültig.");
+		}
 	}
 	public function getName(){
 		return $this->name;
 	}
 	public function setVorname($vorname){
-		$this->vorname = $vorname;
+		if($vorname != "" && is_string($vorname) && strlen($vorname) < 256){
+			$this->vorname = $vorname;
+		}else{
+			throw new Exception("Vorname ungültig.");
+		}
 	}
 	public function getVorname(){
 		return $this->vorname;
 	}
+	public function setStrasse($strasse){
+		if($strasse != "" && is_string($strasse) && strlen($strasse) < 256){
+			$this->strasse = $strasse;
+		}else{
+			throw new Exception("Strasse ungültig.");
+		}
+	}
+	public function getStrasse(){
+		return $this->strasse;
+	}
 	public function setPlz($plz){
-		//ist numerisch?
-		$this->plz = $plz;
+		if (preg_match("^[0-9]{5}$" , $plz)) {
+			$this->plz = $plz;
+		}else{
+			throw new Exception("PLZ ungültig.");
+		}
 	}
 	public function getPlz(){
 		return $this->plz;
 	}
 	public function setZusatz($zusatz){
-		$this->zusatz = $zusatz;
+		if(is_string($zusatz) && strlen($zusatz) < 256){
+			$this->zusatz = $zusatz;
+		}else{
+			throw new Exception("Zusatz ungültig, vermutlich zu lang.");
+		}
 	}
 	public function getZusatz(){
 		return $this->zusatz;
 	}
 	public function setEmail($email){
-		$this->email = $email;
+		if(preg_match("/[^a-zA-Z0-9-_@.!#$%&'*\/+=?^`{\|}~]/", $email)) {
+			$this->email = $email;
+		}else{
+			throw new Exception("emailadresse ungültig.");
+		}
 	}
 	public function getEmail(){
 		return $this->email;
 	}
 	public function setPasswort($pw){
-		$this->passwort = $pw;
+		if($pw != "" && is_string($pw) && strlen($pw) < 128){
+			$this->passwort = $pw;
+		}else{
+			throw new Exception("Passwort ungültig.");
+		}
 	}
 	public function getPasswort(){
 		return $this->passwort;
 	}
-	public function setRegestriertseit($seit){
-		$this->regestriertseit = $seit;
-	}
-	public function getRegestriertseit(){
-		return $this->regestriertseit;
+	public function getRegistriertseit(){
+		return $this->registriertseit;
 	}
 }
 
@@ -86,8 +127,13 @@ class Artikel {
 	private $seit;
 	// Methoden
 	public function __construct($values=array()){
-		if(isset($values["id"]))
-            $this->id = $values["id"];
+		if(isset($values["id"])){
+			if($values["id"] != "" && is_int($values["id"])){
+				$this->id = $values["id"];
+			}else{
+				$this->id = 0;
+			}
+		}
 		if(isset($values["name"]))
 	        $this->setName($values["name"]);
 		if(isset($values["beschreibung"]))
@@ -98,10 +144,12 @@ class Artikel {
 	        $this->setVeroeffentlicht($values["veroeffentlicht"]);
 		if(isset($values["verfuegbar"]))
 		    $this->setVerfuegbar($values["verfuegbar"]);
+		if(isset($values["kategorieId"]))
+			$this->kategorieId = $values["kategorieId"];
 		if(isset($values["preis"]))
 		    $this->setPreis($values["preis"]);
 		if(isset($values["seit"]))
-		    $this->setSeit($values["seit"]);
+			$this->seit = $values["seit"];
 	}
     public function assoc(){ //gibt ein assoziatives array zurueck welches das aktuelle objekt repraesentiert
         $ret = array();
@@ -117,84 +165,99 @@ class Artikel {
         return $ret;
     }
 	public function getId(){
-		return $this->id;
+        return $this->id;
 	}
 	public function setName($name){
-		$this->name = $name;
+       if(is_string($name) && strlen($name)<256 && $name!=""){
+           $this->name = $name;
+       }else{
+           throw new Exception('Name hat ungueltiges Format.');
+       }
 	}
 	public function getName(){
-		return $this->name;
+        return $this->name;
 	}
 	public function setBeschreibung($beschreibung) {
-		$this->beschreibung = $beschreibung;
+       if(is_string($beschreibung) && strlen($beschreibung)<1023){
+           $this->beschreibung = $beschreibung;
+       }else{
+           throw new Exception('Beschreibung hat ungueltiges Format.');
+       }
 	}
 	public function getBeschreibung(){
-	    return $this->beschreibung;
+       return $this->beschreibung;
 	}
 	public function setBildpfad($bildpfad){
-	    $this->bildpfad = $bildpfad;
+       if(is_string($bildpfad) && strlen($bildpfad)<255){
+           $this->bildpfad = $bildpfad;
+       }else{
+           throw new Exception('Bildpfad hat ungueltiges Format.');
+       }
 	}
 	public function getBildpfad(){
-	    return $this->bildpfad;
+       return $this->bildpfad;
 	} 
 	public function setVeroeffentlicht($veroeffentlicht){
-	    $this->veroeffentlicht=$veroeffentlicht;
+       if($veroeffentlicht ==0 || $veroeffentlicht==1){
+           $this->veroeffentlicht=$veroeffentlicht;
+       }else{
+           throw new Exception('Veroeffentlicht hat ungueltiges Format.');
+       }
 	}
 	public function getVeroeffentlicht(){
-	    return $this->veroeffentlicht;
+       return $this->veroeffentlicht;
 	}
 	public function setVerfuegbar($verfuegbar){
-	    $this->verfuegbar=$verfuegbar;
+       if(is_int($verfuegbar) && $verfuegbar >= 0){
+           $this->verfuegbar=$verfuegbar;
+       }else{
+           throw new Exception('Verfuegbar hat ungueltiges Format.');
+       }
 	}
 	public function getVerfuegbar(){
-	    return $this->verfuegbar;
+       return $this->verfuegbar;
 	} 
 	public function getKategorieId(){
-	    return $this->kategorieid;
+       return $this->kategorieid;
 	}
 	public function setPreis($preis){
-	    $this->preis = $preis;
+       if(is_float($preis) && $preis >0.0){
+           $this->preis = $preis;
+       }else{
+           throw new Exception('Preis hat ungueltiges Format.');
+       }
 	}
 	public function getPreis(){
-	    return $this->preis;
-	}
-	public function setSeit($seit){
-	    $this->seit = $seit;
+       return $this->preis;
 	}
 	public function getSeit(){
-	    return $this->seit;
+       return $this->seit;
 	}
 }
 
 class Warenkorb {
 	// Member-Variablen
 	private $artikel_feld;
-	private $menge;
-	private $summe;
 	// Methoden
-	public function __construct(){
-		$menge = 0;
-		$artikel_feld = new ARTIKEL();
+	public function __construct($values = array()){
+		$this->artikel_feld = array();
+		foreach($values as $val){
+			$this->artikel_feld[] = new Artikel($val);
+		}
 	}
-	public function setArtikelFeld($anzahl){	
-		//$menge += anzahl;
-		//$this->artikel_feld['name'] = anzahl;
+    public function assoc(){ //gibt ein assoziatives array zurueck welches das aktuelle objekt repraesentiert
+		$ret = array();
+		foreach($this->artikel_feld as $artikel){
+			$ret[] = $artikel->assoc();
+		}
+		return $ret;
+	}
+	public function setArtikelFeld($neu_artikel_feld){
+		$this->artikel_feld = $neu_artikel_feld;
 	}
 	public function getArtikelFeld(){
 		return $this->artikel_feld;
 	}	
-	public function setMenge($menge){
-		$this->menge = $menge;
-	}
-	public function getMenge(){
-		return $this->menge;
-	}
-	public function setSumme($summe){
-		$this->summe = $summe;
-	}
-	public function getSumme(){
-		return $this->summe;
-	}
 }
 
 
