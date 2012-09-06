@@ -71,24 +71,19 @@ class DatabaseConnector {
 
 class DatabaseModel {
 
-    public function erstelleKunde($Kunde) {
+    public function erstelleKunde($kunde) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
-            $quyery = "INSERT INTO kunden VALUES('', ':name', ':vorname', ':strasse', ':plz', ':zusatz', ':email', ':passwort', ':registriertseit'";
+            $query = "INSERT INTO kunden VALUES('', ':name', ':vorname', ':strasse', ':plz', ':zusatz', ':email', ':passwort', ':registriertseit')";
             $params = array(
-            ":name" => $Kunde->name,
-            ":vorname" => $Kunde->name,
-            ":strasse" => $Kunde->name,
-            ":plz" => $Kunde->name,
-            ":zusatz" => $Kunde->name,
-<<<<<<< HEAD
-            ":email" => $Kunde->name
-            ":passwort" => $Kunde->passwort, 
-=======
-            ":email" => $Kunde->name,
-            ":passwort" => $Kunde->name,
->>>>>>> 37f19c6ebe1f3cbd04bb23526bdb2ce92ea228cb
-            ":registriertseit" => $Kunde->name
+            ":name" => $kunde->name,
+            ":vorname" => $kunde->vorname,
+            ":strasse" => $kunde->strasse,
+            ":plz" => $kunde->plz,
+            ":zusatz" => $kunde->zusatz,
+            ":email" => $kunde->email
+            ":passwort" => $kunde->passwort, 
+            ":registriertseit" => $kunde->registriertseit
             );
             $dbConnector->executeQuery($query, $params);
             return true;
@@ -97,11 +92,11 @@ class DatabaseModel {
         }
     }
 
-    public function holeKunde($Email) {
+    public function holeKunde($email) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
             $query = "SELECT * FROM kunden WHERE email = :email";
-            $params = array(":email" => $Email);
+            $params = array(":email" => $email);
             return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunden");
         } else {
             return null;
@@ -119,20 +114,19 @@ class DatabaseModel {
         }
     }
 
-    ///TODO
     public function erstelleArtikel($Artikel) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
-            $quyery = "INSERT INTO artikel VALUES('', ':name', ':vorname', ':strasse', ':plz', ':zusatz', ':email', ':passwort', ':registriertseit'";
+            $query = "INSERT INTO artikel VALUES('', ':name', ':vorname', ':strasse', ':plz', ':zusatz', ':email', ':passwort', ':registriertseit'";
             $params = array(
-            ":name" => $Kunde->name,
-            ":vorname" => $Kunde->name,
-            ":strasse" => $Kunde->name,
-            ":plz" => $Kunde->name,
-            ":zusatz" => $Kunde->name,
-            ":email" => $Kunde->name,
-            ":passwort" => $Kunde->name,
-            ":registriertseit" => $Kunde->name
+            ":name" => $kunde->name,
+            ":vorname" => $kunde->vorname,
+            ":strasse" => $kunde->strasse,
+            ":plz" => $kunde->plz,
+            ":zusatz" => $kunde->zusatz,
+            ":email" => $kunde->email,
+            ":passwort" => $kunde->passwort,
+            ":registriertseit" => $kunde->registriertseit
             );
             $dbConnector->executeQuery($query, $params);
             return true;
@@ -141,11 +135,11 @@ class DatabaseModel {
         }
     }
 
-    public function holeArtikel($ArtikelId) {
+    public function holeArtikel($artikelId) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
             $query = "SELECT * FROM artikel WHERE id = :id";
-            $params = array(":id" => $ArtikelId);
+            $params = array(":id" => $artikelId);
             return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Artikel");
         } else {
             return null;
@@ -163,7 +157,7 @@ class DatabaseModel {
         }
     }
 
-    public function holeBestellungenVonKunden($KundenId) {
+    public function holeBestellungenVonKunden($kundenId) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
             $query = "SELECT * FROM bestellung WHERE kundenid = :kundenid";
@@ -182,6 +176,27 @@ class DatabaseModel {
             return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Bestellung");
         } else {
             return null;
+        }
+    }
+    
+    public function erstelleBestellung($bestellung, $alleArtikel) {
+        $dbConnector = new DatabaseConnector();
+        if ($dbConnector->connect()) {
+            $query = "INSERT INTO kunden VALUES('', ':kundenid', ':bestelldatum', ':statusid', ':zahlungsmethodeid', ':lieferungsmethodeid')";
+            $params = array(
+            ":name" => $kunde->name,
+            ":vorname" => $kunde->vorname,
+            ":strasse" => $kunde->strasse,
+            ":plz" => $kunde->plz,
+            ":zusatz" => $kunde->zusatz,
+            ":email" => $kunde->email
+            ":passwort" => $kunde->passwort, 
+            ":registriertseit" => $kunde->registriertseit
+            );
+            $dbConnector->executeQuery($query, $params);
+            return true;
+        } else {
+            return false;
         }
     }
 
@@ -225,7 +240,6 @@ if ($testing) {
 /*
  * End Testcase
  */
-
 
 /*
  * 
