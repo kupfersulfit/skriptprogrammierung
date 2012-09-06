@@ -14,7 +14,7 @@ function getArticleList() {
                 var article = new Article();
                 article.create(json[i]);
                 jQuery('#articleList').append(article.renderHTML());
-                if (i != 0 && i%2 == 0) {
+                if (i%2 != 0) {
                     jQuery('#articleList').append('<div class="clear" ></div>');
                 }
             }

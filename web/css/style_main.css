@@ -171,6 +171,8 @@ header {
 
 #articleList {
     padding-top: 41px;
+/*    height: 797px;
+    overflow: scroll;*/
 }
 
 .arcticle {
@@ -186,8 +188,9 @@ header {
 }
 
 .articleTitel {
-    line-height: 60px;
-    font-size: 26px;
+    line-height: 40px;
+    font-size: 20px;
+    cursor: help;
 }
 
 .articleContent { }

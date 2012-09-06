@@ -52,8 +52,8 @@ Article.prototype.renderHTML = function() {
 
 Article.cutTitle = function(title) {
     if (title != null) {
-        if ( title.length > 30) {
-            return title.substring(0,27) + '...';
+        if ( title.length > 27) {
+            return title.substring(0,24) + '...';
         } else {
             return title;
         }
