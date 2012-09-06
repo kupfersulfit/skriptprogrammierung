@@ -6,11 +6,22 @@
     function err($nachricht){
         echo json_encode(array("error" => "$nachricht"));
     }
-    /** Gibt alle Artikel zur&uuml;ck 
-        @return Artikel[]
-    */
+    /** Zeigt alle Artikel an */
     function zeigeArtikel(){
-        $artikelArray = $_SESSION['model']->holeAlleArtikel(); //TODO holeVeroeffentlichteArtikelAusDatenbank()
+        $artikelArray = $_SESSION['model']->holeAlleArtikel();
+        if(count($artikelArray) == 0){
+            err("no existing article");
+        }else{
+            for($i = 0; $i < count($artikelArray); $i++){ //convert object to assoc array
+                $artikelArray[$i] = $artikelArray[$i]->assoc();
+            }
+            echo json_encode($artikelArray);
+        }
+    }
+
+    /* Zeigt alle veroeffentlichten Artikel an */
+    function zeigeVeroeffentlichteArtikel(){
+        $artikelArray = $_SESSION['model']->holeAlleVeroeffentlichtenArtikel();
         if(count($artikelArray) == 0){
             err("no existing article");
         }else{
