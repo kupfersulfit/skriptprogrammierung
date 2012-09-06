@@ -189,7 +189,67 @@ class DatabaseModel {
     }
 
     /**
-     * @brief Erstellt eine Bestellung auf Grundlage der Paramter, welche aus mehreren Artikelnzuordnungen bestehen kann
+     * @brief Holt eine Lieferungsmethode mit gegebener Suchpattern
+     * 
+     * @param String $lieferungsmethodenPattern
+     *  Pattern enthalten in Name / Beschreibung der gesuchten Lieferungsmethode
+     * @retval Lieferungsmethode
+     *  Objekt der gesuchten Lieferungsmethode
+     */
+    public function holeLieferungsmethode($lieferungsmethodenPattern) {
+        $dbConnector = new DatabaseConnector();
+        if ($dbConnector->connect()) {
+            $query = "SELECT * FROM lieferungsmethoden WHERE name LIKE ':lieferungsmethodenPattern' OR  beschreibung LIKE ':lieferungsmethodenPattern'";
+            $params = array(":lieferungsmethodenPattern" => $lieferungsmethodenPattern);
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Lieferungsmethode");
+        } else {
+            return null;
+        }
+    }
+    
+    
+    /**
+     * @brief Holt eine Zahlungsmethode mit gegebener Suchpattern
+     * 
+     * @param String $zahlungsmethodePattern
+     *  Pattern enthalten in Name / Beschreibung der gesuchten Zahlungsmethode
+     * @retval Zahlungsmethode
+     *  Objekt der gesuchten Zahlungsmethode
+     */
+    public function holeZahlungsmethode($zahlungsmethodePattern) {
+        $dbConnector = new DatabaseConnector();
+        if ($dbConnector->connect()) {
+            $query = "SELECT * FROM zahlungsmethoden WHERE name LIKE ':zahlungsmethodePattern' OR  beschreibung LIKE ':zahlungsmethodePattern'";
+            $params = array(":zahlungsmethodePattern" => $zahlungsmethodePattern);
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Lieferungsmethode");
+        } else {
+            return null;
+        }
+    }
+    
+    
+    /**
+     * @brief Holt einen Status mit gegebener Suchpattern
+     * 
+     * @param String $statusPattern
+     *  Pattern enthalten in Name / Beschreibung des gesuchten Status
+     * @retval Lieferungsmethode
+     *  Objekt des gesuchten Status
+     */
+    public function holeStatus($statusPattern) {
+        $dbConnector = new DatabaseConnector();
+        if ($dbConnector->connect()) {
+            $query = "SELECT * FROM status WHERE name LIKE ':statusPattern' OR  beschreibung LIKE ':statusPattern'";
+            $params = array(":statusPattern" => $statusPattern);
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Status");
+        } else {
+            return null;
+        }
+    }
+
+
+    /**
+     * @brief Gibt alle Bestellungen von Kunden mit übergebener ID zurück
      * 
      * @param Integer $kundenId
      *  ID des Kunden, dessen Bestellungen geholt werden sollen
