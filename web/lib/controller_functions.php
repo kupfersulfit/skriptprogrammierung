@@ -1,6 +1,6 @@
 <?php
     require_once "objects.php";
-//    require_once "model.php";
+    require_once "model.php";
     
     /** Gibt eine Fehlermeldung aus */
     function err($nachricht){
@@ -10,8 +10,8 @@
         @return Artikel[]
     */
     function zeigeArtikel(){
-        $artikelArray = null; //TODO holeVeroeffentlichteArtikelAusDatenbank()
-        if($artikelArray == null){
+        $artikelArray = $_SESSION['model']->holeAlleArtikel(); //TODO holeVeroeffentlichteArtikelAusDatenbank()
+        if(count($artikelArray) == 0){
             err("no existing article");
         }else{
             for($i = 0; $i < count($artikelArray); $i++){ //convert object to assoc array

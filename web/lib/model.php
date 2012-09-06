@@ -159,6 +159,29 @@ class DatabaseModel {
             return null;
         }
     }
+    
+    public function holeAlleVeroeffentlichenArtikel() {
+        $dbConnector = new DatabaseConnector();
+        if ($dbConnector->connect()) {
+            $query = "SELECT * FROM artikel WHERE veroeffentlicht=1";
+            $params = array();
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Artikel");
+        } else {
+            return null;
+        }
+    }
+    
+    public function sucheArtikel($pattern) {
+        $dbConnector = new DatabaseConnector();
+        if ($dbConnector->connect()) {
+            $query = "SELECT * FROM artikel WHERE name LIKE '%:pattern%' OR beschreibung='%:pattern%";
+            $params = array(":pattern" => $pattern);
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Artikel");
+        } else {
+            return null;
+        }
+    }
+
 
     public function holeBestellungenVonKunden($kundenId) {
         $dbConnector = new DatabaseConnector();
