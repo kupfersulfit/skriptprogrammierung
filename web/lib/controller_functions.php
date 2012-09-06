@@ -40,7 +40,7 @@
         @return Artikel
     */
     function sucheArtikel($suchstring){
-        $artikel = null; //TODO sucheArtikelInDatenbank()
+        $artikel = $_SESSION['model']->sucheArtikel($suchstring); //TODO FINDET NICHTS
         if($artikel == null){
             err("no article '$suchstring' found");
         }else{
@@ -66,7 +66,10 @@
         $korb = new Warenkorb($korb); //warenkorbobjekt erzeugen
         $artikelListe = $korb->getArtikelFeld(); //hole liste aller artikel im korb
         for($i = 0; $i < count($artikelListe); $i++){ //ueberschreibe vom client empfangene mit aus der db geholten daten (um zb preisfaelschungen zu vermeiden)
-      //      $artikelListe[$i] = null; //TODO holeArtikelAusDatenbank(artikelId)
+            $artikelId = $artikelListe[$i]->getId();
+            $art = $_SESSION['model']->holeArtikel(3);
+            //print_r($art); //TODO hier sollte eig nur EIN artikel rauskommen, kein array von artikeln, oder?!
+            //$artikelListe[$i] = $_SESSION['model']->holeArtikel($artikelId); //TODO durch das array (vorige zeile) funzt das so nicht
         }
         $korb->setArtikelFeld($artikelListe); //update warenkorb mit den 'korrekten' daten
         $_SESSION['korb'] = $korb;
