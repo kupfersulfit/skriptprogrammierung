@@ -42,7 +42,7 @@
     function sucheArtikel($suchstring){
         $artikel = null; //TODO sucheArtikelInDatenbank()
         if($artikel == null){
-            err("no article found");
+            err("no article '$suchstring' found");
         }else{
             echo json_encode($artikel->assoc());
         }
@@ -62,11 +62,11 @@
         @return Warenkorbobjekt mit den korrekten Daten (Preis etc. aus DB)
     */
     function aktualisiereWarenkorb($warenkorb){
-        $korb = json_decode($warenkorb); //assoc array erzeugen
+        $korb = json_decode($warenkorb, true); //assoc array erzeugen
         $korb = new Warenkorb($korb); //warenkorbobjekt erzeugen
         $artikelListe = $korb->getArtikelFeld(); //hole liste aller artikel im korb
         for($i = 0; $i < count($artikelListe); $i++){ //ueberschreibe vom client empfangene mit aus der db geholten daten (um zb preisfaelschungen zu vermeiden)
-            $artikelListe[$i] = null; //TODO holeArtikelAusDatenbank(artikelId)
+      //      $artikelListe[$i] = null; //TODO holeArtikelAusDatenbank(artikelId)
         }
         $korb->setArtikelFeld($artikelListe); //update warenkorb mit den 'korrekten' daten
         $_SESSION['korb'] = $korb;

@@ -222,7 +222,7 @@ class Artikel {
        return $this->veroeffentlicht;
 	}
 	public function setVerfuegbar($verfuegbar){
-       if(is_int($verfuegbar) && $verfuegbar >= 0){
+       if(/*is_int($verfuegbar) &&*/ $verfuegbar >= 0){
            $this->verfuegbar=$verfuegbar;
        }else{
            throw new Exception('Verfuegbar hat ungueltiges Format.');
@@ -235,7 +235,7 @@ class Artikel {
        return $this->kategorieid;
 	}
 	public function setPreis($preis){
-       if(is_float($preis) && $preis >0.0){
+       if(/*is_float($preis) &&*/ $preis >0.0){
            $this->preis = $preis;
        }else{
            throw new Exception('Preis hat ungueltiges Format.');
@@ -253,18 +253,18 @@ class Warenkorb {
 	// Member-Variablen
 	private $artikel_feld;
 	// Methoden
-	public function __construct($values = array()){
+	public function __construct($values = array(array())){
 		$this->artikel_feld = array();
         if(count($values) > 0){
-		    foreach(array_keys($values) as $val){
-		        $this->artikel_feld[] = new Artikel($val);
+		    foreach($values as $val){
+                $this->artikel_feld[] = new Artikel($val);
 		    }
         }
 	}
     public function assoc(){ //gibt ein assoziatives array zurueck welches das aktuelle objekt repraesentiert
 		$ret = array();
         if(count($this->artikel_feld) > 0){
-    		foreach(array_keys($this->artikel_feld) as $artikel[]){
+    		foreach($this->artikel_feld as $artikel){
     			$ret[] = $artikel->assoc();
     		}
         }
