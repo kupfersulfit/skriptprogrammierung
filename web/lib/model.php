@@ -1,7 +1,7 @@
 <?php
 
 // Set to true for testing
-$testing = true;
+$testing = false;
 
 require_once "objects.php";
 
@@ -160,7 +160,7 @@ class DatabaseModel {
         }
     }
     
-    public function holeAlleVeroeffentlichenArtikel() {
+    public function holeAlleVeroeffentlichtenArtikel() {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
             $query = "SELECT * FROM artikel WHERE veroeffentlicht=1";
@@ -265,13 +265,13 @@ if ($testing) {
     $dbo = $testInstance->holeArtikel("1");
     print_r($dbo);
     echo "<br/>Alle Artikel<br/>";
-    $dbo = $testInstance->holeAlleArtikel("*");
+    $dbo = $testInstance->holeAlleArtikel();
     print_r($dbo);
-    echo "<br/>Kunden mit ID 1<br/>";
+    echo "<br/>Kunden mit emailadresse<br/>";
     $dbo = $testInstance->holeKunde("josef.ackermann@lionsclub.com");
     print_r($dbo);
     echo "<br/>Alle Kunden<br/>";
-    $dbo = $testInstance->holeAlleKunden("*");
+    $dbo = $testInstance->holeAlleKunden();
     print_r($dbo);
     exit;
 }
