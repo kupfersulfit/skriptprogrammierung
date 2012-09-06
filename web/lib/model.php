@@ -81,7 +81,7 @@ class DatabaseModel
             ":plz" => $Kunde->name, 
             ":zusatz" => $Kunde->name,
             ":email" => $Kunde->name
-            ":passwort" => $Kunde->name, 
+            ":passwort" => $Kunde->passwort, 
             ":registriertseit" => $Kunde->name
             );
             $dbConnector->executeQuery($query, $params);
