@@ -81,7 +81,7 @@ class DatabaseModel {
             ":strasse" => $kunde->strasse,
             ":plz" => $kunde->plz,
             ":zusatz" => $kunde->zusatz,
-            ":email" => $kunde->email
+            ":email" => $kunde->email,
             ":passwort" => $kunde->passwort, 
             ":registriertseit" => $kunde->registriertseit
             );
@@ -189,7 +189,7 @@ class DatabaseModel {
             ":strasse" => $kunde->strasse,
             ":plz" => $kunde->plz,
             ":zusatz" => $kunde->zusatz,
-            ":email" => $kunde->email
+            ":email" => $kunde->email,
             ":passwort" => $kunde->passwort, 
             ":registriertseit" => $kunde->registriertseit
             );
