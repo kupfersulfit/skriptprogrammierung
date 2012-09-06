@@ -347,7 +347,7 @@ class Status{
 		return $this->id;
 	}
 	public function setName($name){
-       if(is_string($name) && strlen($name)<256 && $name!=""){
+       if(is_string($name) && strlen($name)<128 && $name!=""){
            $this->name = $name;
        }else{
            throw new Exception('Name hat ungueltiges Format.');
@@ -357,7 +357,7 @@ class Status{
 		return $this->name;
 	}
 	public function setBeschreibung($beschreibung) {
-       if(is_string($beschreibung) && strlen($beschreibung)<1023){
+       if(is_string($beschreibung) && strlen($beschreibung)<512){
            $this->beschreibung = $beschreibung;
        }else{
            throw new Exception('Beschreibung hat ungueltiges Format.');
@@ -398,7 +398,7 @@ class Zahlungsmethoden{
 		return $this->id;
 	}
 	public function setName($name){
-       if(is_string($name) && strlen($name)<256 && $name!=""){
+       if(is_string($name) && strlen($name)<128 && $name!=""){
            $this->name = $name;
        }else{
            throw new Exception('Name hat ungueltiges Format.');
@@ -408,7 +408,7 @@ class Zahlungsmethoden{
 		return $this->name;
 	}
 	public function setBeschreibung($beschreibung) {
-       if(is_string($beschreibung) && strlen($beschreibung)<1023){
+       if(is_string($beschreibung) && strlen($beschreibung)<256){
            $this->beschreibung = $beschreibung;
        }else{
            throw new Exception('Beschreibung hat ungueltiges Format.');
@@ -452,7 +452,7 @@ class Lieferungsmethode{
 		return $this->id;
 	}
 	public function setName($name){
-       if(is_string($name) && strlen($name)<256 && $name!=""){
+       if(is_string($name) && strlen($name)<128 && $name!=""){
            $this->name = $name;
        }else{
            throw new Exception('Name hat ungueltiges Format.');
@@ -462,7 +462,7 @@ class Lieferungsmethode{
 		return $this->name;
 	}
 	public function setBeschreibung($beschreibung) {
-       if(is_string($beschreibung) && strlen($beschreibung)<1023){
+       if(is_string($beschreibung) && strlen($beschreibung)<512){
            $this->beschreibung = $beschreibung;
        }else{
            throw new Exception('Beschreibung hat ungueltiges Format.');
