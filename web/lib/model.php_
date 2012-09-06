@@ -54,7 +54,7 @@ class DatabaseConnector {
             $this->lastInsertId = null;
             $result = $this->databaseConnectionInstance->prepare($query);
             $result->execute($params);
-            $this->lastInsertId = $this->databaseConnectionInstance->lastInsertId(); 
+            $this->lastInsertId = $result->lastInsertId(); 
             return $result;
         } else {
             return null;
