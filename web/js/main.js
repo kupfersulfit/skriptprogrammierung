@@ -36,7 +36,7 @@ jQuery(document).ready(function (){
         }
     });
 });
-handle
+
 function openLoginContainer() {
     jQuery('#loginContainer').show();
     jQuery('#registerContainer').hide();
@@ -93,16 +93,17 @@ function getCustomerContent(pageName) {
 function getArticleList() {
     jQuery.ajax({
         type : 'GET',
-        url : 'Controler.php', 
+        url : 'lib/controller.php', 
         data : {
             'action' : 'zeigeArtikel'
         },
-        dataType : 'jsonp',
+        dataType : 'json',
         success : function (json) {
-            
+            jQuery('#left').html(json);
+            console.debug(json)
         },
         error : function (json) {
-        
+            console.debug(json);
         }
     });
 }
