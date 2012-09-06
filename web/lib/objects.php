@@ -425,7 +425,7 @@ class Zahlungsmethoden{
 	}
 }
 
-class Status{
+class Lieferungsmethode{
 	private $id;
 	private $name;
 	private $beschreibung;
