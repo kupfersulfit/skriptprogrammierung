@@ -260,6 +260,14 @@ class Warenkorb {
 	}	
 }
 
+class Bestellung{
+	private $id;
+	private $kundenId;
+	private $bestelldatum;
+	private $statusId;
+	private $zahlungsmethodeId;
+	private $lieferungsmethode;
+}
 
 
 //$obj = new SimpleClass(?Testwert?); // neue Instanz der Klasse
