@@ -283,34 +283,198 @@ class Bestellung{
 	private $lieferungsmethode;
 	
 	public function __construct($values = array()){
-//		$this->id = ;
-//		$this->kundenId = ;
-//		$this->bestelldatum = ;
-//		$this->statusId = ;
-//		$this->zahlungsmehodeId = ;
-//		$this->lieferunsgmethode = ;
+
+		if(isset($values["id"])){
+			if($values["id"] != "" && is_int($values["id"])){
+				$this->id = $values["id"];
+			}else{
+				$this->id = 0;
+			}
+		}
+		if(isset($values["kundenId"]))
+			$this->kosten = $values["kundenId"];
+		if(isset($values["bestelldatum"]))
+			$this->kosten = $values["bestelldatum"];
+		if(isset($values["statusId"]))
+			$this->kosten = $values["statusId"];
+		if(isset($values["zahlungsmethodeId"]))
+			$this->kosten = $values["zahlungsmethodeId"];
+		if(isset($values["lieferungsmethodeId"]))
+			$this->kosten = $values["lieferungsmethodeId"];
 	}
 	
 	function getId(){
 		return $this->id;
 	}
-	function getkundenId(){
+	function getKundenId(){
 		return $this->kundenId;
 	}
-	function getbestelldaum(){
+	function getBestelldaum(){
 		return $this->bestelldatum;
 	}
-	function statusId(){
+	function getStatusId(){
 		return $this->statusId;
 	}
-	function zahlunsgmethodeId(){
+	function getZahlunsgmethodeId(){
 		return $this->zahlungsmethodeId;
 	}
-	function lieferunsgmethode(){
-		return $this->lieferunsgmethode;
+	function getLieferunsgmethodeId(){
+		return $this->lieferunsgmethodeId;
 	}	
 }
 
+class Status{
+	private $id;
+	private $name;
+	private $beschreibung;
+	
+	public function __construct($values = array()){
+
+		if(isset($values["id"])){
+			if($values["id"] != "" && is_int($values["id"])){
+				$this->id = $values["id"];
+			}else{
+				$this->id = 0;
+			}
+		}
+		if(isset($values["name"]))
+			$this->setName($values["name"]);
+		if(isset($values["beschreibung"]))
+	        $this->setBeschreibung($values["beschreibung"]);
+	}
+	
+	function getId(){
+		return $this->id;
+	}
+	public function setName($name){
+       if(is_string($name) && strlen($name)<256 && $name!=""){
+           $this->name = $name;
+       }else{
+           throw new Exception('Name hat ungueltiges Format.');
+       }
+	}
+	function getName(){
+		return $this->name;
+	}
+	public function setBeschreibung($beschreibung) {
+       if(is_string($beschreibung) && strlen($beschreibung)<1023){
+           $this->beschreibung = $beschreibung;
+       }else{
+           throw new Exception('Beschreibung hat ungueltiges Format.');
+       }
+	}
+	function getBeschreibung(){
+		return $this->beschreibung;
+	}
+}
+
+class Zahlungsmethoden{
+	private $id;
+	private $name;
+	private $beschreibung;
+	private $skript;
+	private $kosten;
+	
+	public function __construct($values = array()){
+
+		if(isset($values["id"])){
+			if($values["id"] != "" && is_int($values["id"])){
+				$this->id = $values["id"];
+			}else{
+				$this->id = 0;
+			}
+		}
+		if(isset($values["name"]))
+			$this->setName($values["name"]);
+		if(isset($values["beschreibung"]))
+	        $this->setBeschreibung($values["beschreibung"]);
+		if(isset($values["skript"]))
+			$this->skript = $values["skript"];
+		if(isset($values["kosten"]))
+			$this->kosten = $values["kosten"];
+	}
+	
+	function getId(){
+		return $this->id;
+	}
+	public function setName($name){
+       if(is_string($name) && strlen($name)<256 && $name!=""){
+           $this->name = $name;
+       }else{
+           throw new Exception('Name hat ungueltiges Format.');
+       }
+	}
+	function getName(){
+		return $this->name;
+	}
+	public function setBeschreibung($beschreibung) {
+       if(is_string($beschreibung) && strlen($beschreibung)<1023){
+           $this->beschreibung = $beschreibung;
+       }else{
+           throw new Exception('Beschreibung hat ungueltiges Format.');
+       }
+	}
+	function getBeschreibung(){
+		return $this->beschreibung;
+	}
+	function getSkript(){
+		return $this->skript;
+	}
+	function getKosten(){
+		return $this->kosten;
+	}
+}
+
+class Status{
+	private $id;
+	private $name;
+	private $beschreibung;
+	private $kosten;
+	
+	public function __construct($values = array()){
+	
+		if(isset($values["id"])){
+			if($values["id"] != "" && is_int($values["id"])){
+				$this->id = $values["id"];
+			}else{
+				$this->id = 0;
+			}
+		}
+		if(isset($values["name"]))
+			$this->setName($values["name"]);
+		if(isset($values["beschreibung"]))
+	        $this->setBeschreibung($values["beschreibung"]);
+		if(isset($values["kosten"]))
+			$this->kosten = $values["kosten"];
+	}
+	
+	function getId(){
+		return $this->id;
+	}
+	public function setName($name){
+       if(is_string($name) && strlen($name)<256 && $name!=""){
+           $this->name = $name;
+       }else{
+           throw new Exception('Name hat ungueltiges Format.');
+       }
+	}
+	function getName(){
+		return $this->name;
+	}
+	public function setBeschreibung($beschreibung) {
+       if(is_string($beschreibung) && strlen($beschreibung)<1023){
+           $this->beschreibung = $beschreibung;
+       }else{
+           throw new Exception('Beschreibung hat ungueltiges Format.');
+       }
+	}
+	function getBeschreibung(){
+		return $this->beschreibung;
+	}
+	function getKosten(){
+		return $this->kosten;
+	}
+}
 
 //$obj = new SimpleClass(?Testwert?); // neue Instanz der Klasse
 //$obj->displayVar(); // Aufruf der Methode
