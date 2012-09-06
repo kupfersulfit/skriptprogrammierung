@@ -19,7 +19,7 @@ Article.prototype.create = function(json) {
     
     if (json['bildpfad'] != 'null' 
         && json['bildpfad'] != null 
-        && json['bildpfad'] == '') {
+        && json['bildpfad'] != '') {
         this.bildpfad = json['bildpfad'];
     }
     
@@ -33,17 +33,29 @@ Article.prototype.create = function(json) {
 }
 
 Article.prototype.renderHTML = function() {
-    var strHTML = '<section id="article'+ this.id +'" >';
-    strHTML +=      '<div class="articleTitel" >' + this.name + '</div>';
+    var strHTML = '<section id="article'+ this.id +'" class="arcticle" >';
+    strHTML +=      '<div class="articleTitel" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div>';
     strHTML +=      '<div class="articleContent">';
-    strHTML +=          '<div class="articleImg"><img src="media/'+ this.bildpfad +'" width="300" height="300" />';
+    strHTML +=          '<div class="articleImg"><img src="media/products/'+ this.bildpfad +'" width="300" height="300" /></div>';
     strHTML +=          '<div class="articleDetails"><ul>'; 
-    strHTML +=          '<li>price ' + this.preis + '</li>';
-    strHTML +=          '<li>category ' + this.kategoryId + '</li>';
-    strHTML +=          '<li>' + this.seit + '</li>';
-    strHTML +=          '<li>' + this.verfuegbar + '</li>';
+    strHTML +=              '<li>price ' + this.preis + '</li>';
+    strHTML +=              '<li>category ' + this.kategoryId + '</li>';
+    strHTML +=              '<li>' + this.seit + '</li>';
+    strHTML +=              '<li>' + this.verfuegbar + '</li>';
     strHTML +=          '</ul></div>';
     strHTML +=          '<div class="articleDescription">'+ this.beschreibung +'</div>';
     strHTML +=      '</div>'
     strHTML += '</section>';
+    
+    return strHTML;
+}
+
+Article.cutTitle = function(title) {
+    if (title != null) {
+        if ( title.length > 30) {
+            return title.substring(0,27) + '...';
+        } else {
+            return title;
+        }
+    }
 }
