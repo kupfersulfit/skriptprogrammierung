@@ -36,6 +36,20 @@ class Kunde {
 		if(isset($values["registriertseit"]))
 			$this->registriertseit = $values['registriertseit'];
 	}
+	
+	public function assoc(){ //gibt ein assoziatives array zurueck welches das aktuelle objekt repraesentiert
+        $ret = array();
+        $ret['id'] = $this->id;
+        $ret['name'] = $this->name;
+        $ret['vorname'] = $this->vorname;
+        $ret['strasse'] = $this->strasse;
+        $ret['plz'] = $this->plz;
+        $ret['zusatz'] = $this->zusatz;
+        $ret['email'] = $this->email;
+        $ret['passwort'] = $this->passwort;
+        $ret['registriertseit'] = $this->registriertseit;
+        return $ret;
+    }
 	public function getId(){
 		return $this->id;
 	}
@@ -267,6 +281,34 @@ class Bestellung{
 	private $statusId;
 	private $zahlungsmethodeId;
 	private $lieferungsmethode;
+	
+	public function __construct($values = array()){
+//		$this->id = ;
+//		$this->kundenId = ;
+//		$this->bestelldatum = ;
+//		$this->statusId = ;
+//		$this->zahlungsmehodeId = ;
+//		$this->lieferunsgmethode = ;
+	}
+	
+	function getId(){
+		return $this->id;
+	}
+	function getkundenId(){
+		return $this->kundenId;
+	}
+	function getbestelldaum(){
+		return $this->bestelldatum;
+	}
+	function statusId(){
+		return $this->statusId;
+	}
+	function zahlunsgmethodeId(){
+		return $this->zahlungsmethodeId;
+	}
+	function lieferunsgmethode(){
+		return $this->lieferunsgmethode;
+	}	
 }
 
 
