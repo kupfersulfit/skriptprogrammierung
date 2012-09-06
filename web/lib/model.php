@@ -17,6 +17,7 @@ class DatabaseConnector {
     private $user = 'root';
     private $password = 'root';
     // Members
+    public $lastInsertId = null;
     private $databaseConnectionInstance = null;
 
     public function connect() {
@@ -50,8 +51,10 @@ class DatabaseConnector {
 
     public function executeQuery($query, $params) {
         if ($this->databaseConnectionInstance != null) {
+            $this->lastInsertId = null;
             $result = $this->databaseConnectionInstance->prepare($query);
             $result->execute($params);
+            $this->lastInsertId = $result->lastInsertId(); 
             return $result;
         } else {
             return null;
@@ -180,20 +183,32 @@ class DatabaseModel {
     }
     
     public function erstelleBestellung($bestellung, $alleArtikel) {
+        // 
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
-            $query = "INSERT INTO kunden VALUES('', ':kundenid', ':bestelldatum', ':statusid', ':zahlungsmethodeid', ':lieferungsmethodeid')";
+            $query = "INSERT INTO bestellung VALUES('', ':kundenid', ':bestelldatum', ':statusid', ':zahlungsmethodeid', ':lieferungsmethodeid')";
             $params = array(
-            ":name" => $kunde->name,
-            ":vorname" => $kunde->vorname,
-            ":strasse" => $kunde->strasse,
-            ":plz" => $kunde->plz,
-            ":zusatz" => $kunde->zusatz,
-            ":email" => $kunde->email,
-            ":passwort" => $kunde->passwort, 
-            ":registriertseit" => $kunde->registriertseit
+            ":kundenid" => $bestellung->kundenid,
+            ":bestelldatum" => $bestellung->bestelldatum,
+            ":statusid" => $bestellung->statusid,
+            ":zahlungsmethodeid" => $bestellung->zahlungsmethodeid,
+            ":lieferungsmethodeid" => $bestellung->lieferungsmethodeid,
             );
             $dbConnector->executeQuery($query, $params);
+            // Create articles
+            foreach ($alleArtikel as $artikel)
+            {
+                if ($dbConnector->connect()) {
+                $query = "INSERT INTO bestellung VALUES('', ':kundenid', ':bestelldatum', ':statusid', ':zahlungsmethodeid', ':lieferungsmethodeid')";
+                $params = array(
+                ":kundenid" => $bestellung->kundenid,
+                ":bestelldatum" => $bestellung->bestelldatum,
+                ":statusid" => $bestellung->statusid,
+                ":zahlungsmethodeid" => $bestellung->zahlungsmethodeid,
+                ":lieferungsmethodeid" => $bestellung->lieferungsmethodeid,
+                );
+                $dbConnector->executeQuery($query, $params);
+            }
             return true;
         } else {
             return false;
