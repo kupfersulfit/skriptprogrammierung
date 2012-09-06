@@ -2,6 +2,8 @@
     require_once "objects.php";
     require_once "model.php";
     
+    $salt = "Die github gui ist doof";
+   
     /** Gibt eine Fehlermeldung aus */
     function err($nachricht){
         echo json_encode(array("error" => "$nachricht"));
@@ -76,6 +78,17 @@
         @return username warenkorb
     */
     function login($email, $passwort){
+        if(preg_match("/^[\w!#$%&'*+/=?`{|}~^-]+(?:\.[\w!#$%&'*+\/=?`{|}~^-]+)*@(?:[A-Z0-9-]+.)+[A-Z]{2,6}$/i", $email)){
+            err("invalid email address");
+            return;
+        }
+        $hash = crypt($passwort, $salt);
+        if($_SESSION['model']->pruefeLogin($email, $hash) == true){
+            $_SESSION['kunde'] = $_SESSION['model']->holeKunde($email);
+            holeKunde(); //kundendaten ausgeben
+        }else{
+            err("login failed");
+        }
     }
 
     /** Zerst&ouml;rt das Kundenobjekt in der Session (nicht den Warenkorb) */
@@ -91,6 +104,7 @@
         @return Kunde
     */
     function holeKunde(){
+        
     }
 
     /** Aktualisiert das Kundenobjekt in Session und Datenbank
