@@ -18,6 +18,9 @@
     }
 
     switch($_REQUEST['action']){
+        case 'zeigeVeroeffentlichteArtikel':
+            zeigeVeroeffentlichteArtikel();
+            exit();
         case 'zeigeArtikel':
             zeigeArtikel();
             exit();
