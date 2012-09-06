@@ -149,8 +149,9 @@ header {
 }
 
 #left {
-    width: 798px;
+    width: 797px;
     float: left;
+    border-left: 1px solid lightblue;
 }
 
 #shopping_cart {
@@ -166,4 +167,55 @@ header {
 
 #shopping_cart_logo {
 
+}
+
+#articleList {
+    padding-top: 41px;
+}
+
+.arcticle {
+    background-color: #efefef;
+    width: 310px;
+    min-height: 400px;
+    padding: 5px;
+    margin-bottom: 51px;
+    border-radius: 3px;
+    border: 1px solid #c9c9c9;
+    float: left;
+    margin-left: 51px;
+}
+
+.articleTitel {
+    line-height: 60px;
+    font-size: 26px;
+}
+
+.articleContent { }
+
+.articleImg {
+    width: 300px;
+    height: 300px;
+    overflow: hidden;
+    border: 5px solid #FFFFFF;
+    border-radius: 3px;
+}
+
+.articleDetails {
+    margin-top: 10px;
+}
+
+.articleDetails ul{
+    background-color: #FFFFFF;
+    border-radius: 3px;
+    margin: 0;
+    padding: 5px;
+    list-style: none;
+}
+
+.articleDescription {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #FFFFFF;
 }
