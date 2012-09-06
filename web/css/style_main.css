@@ -1,8 +1,6 @@
 body {
     color: black;
     font-family: Verdana, Arial, sans-serif;
-    font-size: 16px;
-    font-weight: normal;
 }
 
 header {
@@ -33,7 +31,6 @@ header {
     margin-left: 3px;
     background-color: #dddddd;
     padding: 3px;
-    height: 70px;
     border-radius: 5px 5px 0 0;
     cursor: pointer;
 }
@@ -57,61 +54,48 @@ header {
     color: #FFFFFF;
 }
 
-#container label {
-    line-height: 21px;
-}
-
 #loginContainer {
-    height: 110px;
+    height: 100px;
 }
 
 #loginButton {
-    color: darkgray;
     border: 0;
     padding: 3px;
-    border-radius: 3px;
 }
 
 #loginContainer p {
     width: 276px;
-
+    
 }
 
 #loginContainer p input {
     float: right;
-    color: dark;
-}
-
-#registerContainer {
-    display: none;
-    height: 524px;
-}
-
-#register_login {
-    height: 30px;
-    background-color: #F0F0F0;
-    vertical-align: middle;
-    text-align: center;
-    border-radius: 3px;
-    background-image: url('../media/register_login.png');
-    background-position: 0 0;
-    cursor: pointer;
     color: darkgray;
 }
 
 #registerLink {
-    line-height: 30px;
+    color: blue;
+    cursor: pointer;
+    font-size: 12px;
 }
 
+#registerContainer {
+    display: none;
+}
+
+#register_login {
+    height: 30px;
+    vertical-align: middle;
+    text-align: center;
+}
 #registerContainer p {
     margin: 2px;
-    width: 272px;
+    width: 276px;
 }
 
 #registerContainer p input {
     width: 272px;
     color: darkgray;
-    margin: 2px;
 }
 
 #registerContainer p #street {
@@ -119,21 +103,18 @@ header {
 }
 
 #registerContainer p #nr {
-    width: 94px;
+    width: 100px;
     margin-left: 2px;
 }
 
 #edition {
     width: 272px;
     resize: none;
-    margin-left: 2px;
-    height: 55px;
 }
 
-#registerContainer p #registerButton {
+#registerButton {
     border: 0;
-    border-radius: 3px;
-    margin-top: 10px;
+    margin-top: 20px;
     padding: 3px;
 }
 

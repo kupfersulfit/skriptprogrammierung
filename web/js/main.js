@@ -3,7 +3,11 @@ jQuery(document).ready(function (){
     
     jQuery('#loginTab').click(function() {
         if (jQuery('#container').css('display') == 'none') {
-            openLoginContainer();
+            jQuery('#loginContainer').show();
+            jQuery('#registerContainer').hide();
+            jQuery('#container').fadeIn('slow');
+            jQuery('#container').css('bottom','-168px');
+            activeTab('loginTab');
         } else {
             jQuery('#container').fadeOut('slow');
             activeTab();
@@ -26,26 +30,16 @@ jQuery(document).ready(function (){
     
     jQuery('#register_login').click(function(){
         if (jQuery('#loginContainer').css('display') == 'none') {
-            openLoginContainer()
+            jQuery('#loginContainer').show();
+            jQuery('#registerContainer').hide();
+            jQuery('#container').css('bottom','-168px');
         } else {
             jQuery('#registerContainer').show();
             jQuery('#loginContainer').hide();
-            jQuery('#container').css('bottom','-578px');
-            jQuery('#register_login').css('background-position','0 -30px');
-            jQuery('#registerLink').html('login');
+            jQuery('#container').css('bottom','-556px');
         }
     });
 });
-handle
-function openLoginContainer() {
-    jQuery('#loginContainer').show();
-    jQuery('#registerContainer').hide();
-    jQuery('#container').fadeIn('slow');
-    jQuery('#container').css('bottom','-178px');
-    jQuery('#register_login').css('background-position','0 0');
-    activeTab('loginTab');
-    jQuery('#registerLink').html('register');
-}
 
 function activeTab(tabName) {
     jQuery('#menu ul li').removeClass('active');
