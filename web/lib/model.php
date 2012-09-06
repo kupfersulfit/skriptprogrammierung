@@ -5,10 +5,11 @@ $testing = false;
 
 require_once "objects.php";
 
-/* * *****************************************
-  Database Model
- * ***************************************** */
-
+/**
+ * 
+ * @brief Wrapperklasse für PDO Datenbankverbindung
+ * 
+ */
 class DatabaseConnector {
 
     // Constants
@@ -72,6 +73,11 @@ class DatabaseConnector {
 
 }
 
+/**
+ * 
+ * @brief Modell für Datenhaltung / -beschaffung und Objektmapping
+ * 
+ */
 class DatabaseModel {
 
     public function erstelleKunde($kunde) {
@@ -182,7 +188,14 @@ class DatabaseModel {
         }
     }
 
-
+    /**
+     * @brief Erstellt eine Bestellung auf Grundlage der Paramter, welche aus mehreren Artikelnzuordnungen bestehen kann
+     * 
+     * @param Integer $kundenId
+     *  ID des Kunden, dessen Bestellungen geholt werden sollen
+     * @retval Bestellungen[]
+     *  Objektarray der geholten Bestellungen.
+     */
     public function holeBestellungenVonKunden($kundenId) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
@@ -194,6 +207,12 @@ class DatabaseModel {
         }
     }
 
+    /**
+     * @brief Gibt alle vorhanden Bestellungen zurück
+     * 
+     * @retval Bestellungen[]]
+     *  Objektarray vom Typ Bestellung.
+     */
     public function holeAlleBestellungen() {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
@@ -205,6 +224,16 @@ class DatabaseModel {
         }
     }
     
+    /**
+     * @brief Erstellt eine Bestellung auf Grundlage der Paramter, welche aus mehreren Artikelnzuordnungen bestehen kann.
+     * 
+     * @param Bestellung $bestellung
+     *  Objekt des Typs Bestellung, welches alle Daten der anzulegenden Bestellung enthält.
+     * @param Artikel[] $alleArtikel
+     *  Objektarray des Typs Artikel, welches alle Artikel der anzulegenden Bestellung enthält.
+     * @retval boolean
+     *  True on success.
+     */
     public function erstelleBestellung($bestellung, $alleArtikel) {
         // 
         $dbConnector = new DatabaseConnector();
@@ -238,11 +267,21 @@ class DatabaseModel {
         }
     }
 
-    public function pruefeLogin($Email, $PasswortHash) {
+    /**
+     * @brief Prüft auf gültige Logindaten
+     * 
+     * @param string $email
+     *  Emailadresse
+     * * @param string $passwortHash
+     *  Hash des Passworts
+     * @retval boolean
+     *  True on success.
+     */
+    public function pruefeLogin($email, $passwortHash) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
             $query = "SELECT * FROM kunden WHERE passwort = :passwort AND email = :email";
-            $params = array(":passwort" => $PasswortHash, ":email" => $Email);
+            $params = array(":passwort" => $passwortHash, ":email" => $email);
             $result = $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Bestellung");
             if (sizeof($result) == 1) {
                 return true;
