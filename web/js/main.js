@@ -101,3 +101,87 @@ var ShopingCard = {
     }
     
 }
+
+var Customer = {
+    id : '',
+    name : '',
+    vorname : '',
+    strasse : '',
+    plz : '',
+    zusatz : '',  
+    email : '',
+    passwort : '',
+    regiestriertseit : '',
+    register : function() {
+        var valid = true;
+        jQuery('#registerContainer input:text').each(function(){
+            var val = this.value;
+            if (val == '') {
+                jQuery(this).css('border-color','#FA5858');
+                valid = false;
+            } else {
+                jQuery(this).css('border-color','#FFFFFF');
+            }
+        });
+        valid = this.validMail();
+        valid = this.validPassword();
+        
+        if (valid) {
+            
+    }
+    //        this.id = jQuery()
+    },
+    validMail : function() {
+        var email = jQuery('#registerEmail').val();
+        var vEmail = jQuery('#validEmail').val();
+        
+        if (email == '' || vEmail == '' || email != vEmail) {
+            jQuery('#registerEmail').css('border-color','#FA5858');
+            jQuery('#validEmail').css('border-color','#FA5858');
+            return false;
+        } else {
+            this.email = email;
+            jQuery('#registerEmail').css('border-color','#FFFFFF');
+            jQuery('#validEmail').css('border-color','#FFFFFF');
+            return true;
+        }
+    },
+    validPassword : function() {
+        var password = jQuery('#registerPassword').val();
+        var vpassword = jQuery('#validPassword').val();
+        
+        if (password == '' || vpassword == '' || password != vpassword) {
+            jQuery('#registerPassword').css('border-color','#FA5858');
+            jQuery('#validPassword').css('border-color','#FA5858');
+            return false;
+        } else {
+            this.password = password;
+            jQuery('#registerPassword').css('border-color','#FFFFFF');
+            jQuery('#validPassword').css('border-color','#FFFFFF');
+            return true;
+        }
+    },
+    passwordStrength : function() {
+        var pwLength = jQuery('#registerPassword').val().length;
+            
+        if (pwLength == 0) {
+            jQuery('#registerPassword').css('background-color','white');
+        } else if (pwLength < 4) {
+            jQuery('#registerPassword').css('background-color','orange');
+        } else if (pwLength < 6) {
+            jQuery('#registerPassword').css('background-color','yellow');
+        } else if (pwLength >= 6) {
+            jQuery('#registerPassword').css('background-color','lawngreen');
+        }
+    },
+    create : function(id, name, vorname, strasse, plz, zusatz, email, passwort) {
+        this.id = id;
+        this.name = name;
+        this.vorname = vorname;
+        this.strasse = strasse;
+        this.plz = plz;
+        this.zusatz = zusatz;
+        this.email = email;
+        this.passwort = passwort;
+    }
+}
