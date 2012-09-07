@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @brief Objektklasse für 'Kunde' equivalent zum Mapping fuer die Tabelle kunden
+ * @brief Objektklasse fuer 'Kunde' equivalent zum Mapping fuer die Tabelle kunden
  */
 class Kunde {
 	// Member-Variablen
@@ -61,7 +61,7 @@ class Kunde {
 		if($name != "" && is_string($name) && strlen($name) < 256){
 			$this->name = $name;
 		}else{
-			throw new Exception("Name ungültig.");
+			throw new Exception("Name ungueltig.");
 		}
 	}
 	public function getName(){
@@ -71,7 +71,7 @@ class Kunde {
 		if($vorname != "" && is_string($vorname) && strlen($vorname) < 256){
 			$this->vorname = $vorname;
 		}else{
-			throw new Exception("Vorname ungültig.");
+			throw new Exception("Vorname ungueltig.");
 		}
 	}
 	public function getVorname(){
@@ -81,7 +81,7 @@ class Kunde {
 		if($strasse != "" && is_string($strasse) && strlen($strasse) < 256){
 			$this->strasse = $strasse;
 		}else{
-			throw new Exception("Strasse ungültig.");
+			throw new Exception("Strasse ungueltig.");
 		}
 	}
 	public function getStrasse(){
@@ -91,7 +91,7 @@ class Kunde {
 		if (preg_match("/^[0-9]{5}$/" , $plz)) {
 			$this->plz = $plz;
 		}else{
-			throw new Exception("PLZ ungültig.");
+			throw new Exception("PLZ ungueltig.");
 		}
 	}
 	public function getPlz(){
@@ -101,7 +101,7 @@ class Kunde {
 		if(is_string($zusatz) && strlen($zusatz) < 256){
 			$this->zusatz = $zusatz;
 		}else{
-			throw new Exception("Zusatz ungültig, vermutlich zu lang.");
+			throw new Exception("Zusatz ungueltig, vermutlich zu lang.");
 		}
 	}
 	public function getZusatz(){
@@ -111,7 +111,7 @@ class Kunde {
 		if(preg_match("/^[^@]+@[^@]{3,}\.[^\.@0-9]{2,}$/", $email)) {
 			$this->email = $email;
 		}else{
-			throw new Exception("emailadresse ungültig.");
+			throw new Exception("emailadresse ungueltig.");
 		}
 	}
 	public function getEmail(){
@@ -121,7 +121,7 @@ class Kunde {
 		if($pw != "" && is_string($pw) && strlen($pw) < 128){
 			$this->passwort = $pw;
 		}else{
-			throw new Exception("Passwort ungültig.");
+			throw new Exception("Passwort ungueltig.");
 		}
 	}
 	public function getPasswort(){
@@ -133,7 +133,7 @@ class Kunde {
 }
 
 /**
- * @brief Objektklasse für 'Artikel' equivalent zum Mapping fuer die Tabelle artikel
+ * @brief Objektklasse fuer 'Artikel' equivalent zum Mapping fuer die Tabelle artikel
  */
 class Artikel {
 	// Member-Variablen
@@ -286,7 +286,7 @@ class Warenkorb {
 }
 
 /**
- * @brief Objektklasse für 'Bestellung' equivalent zum Mapping fuer die Tabelle bestellungen
+ * @brief Objektklasse fuer 'Bestellung' equivalent zum Mapping fuer die Tabelle bestellungen
  */
 class Bestellung{
 	private $id;
@@ -337,7 +337,7 @@ class Bestellung{
 	}	
 }
 /**
- * @brief Objektklasse für 'Status' equivalent zum Mapping fuer die Tabelle status
+ * @brief Objektklasse fuer 'Status' equivalent zum Mapping fuer die Tabelle status
  */
 class Status{
 	private $id;
@@ -384,7 +384,7 @@ class Status{
 	}
 }
 /**
- * @brief Objektklasse für 'Zahlungsmethoden' equivalent zum Mapping fuer die Tabelle zahlungsmethoden
+ * @brief Objektklasse fuer 'Zahlungsmethoden' equivalent zum Mapping fuer die Tabelle zahlungsmethoden
  */
 class Zahlungsmethoden{
 	private $id;
@@ -443,7 +443,7 @@ class Zahlungsmethoden{
 	}
 }
 /**
- * @brief Objektklasse für 'Lieferungsmethode' equivalent zum Mapping fuer die Tabelle lieferungsmethode
+ * @brief Objektklasse fuer 'Lieferungsmethode' equivalent zum Mapping fuer die Tabelle lieferungsmethode
  */
 class Lieferungsmethode{
 	private $id;
