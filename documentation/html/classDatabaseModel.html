@@ -107,6 +107,8 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Holt alle Artikeln, welche als ver√∂ffentlicht gespeichert wurden.  <a href="#a000ed757760b588d6998ef5c180df34f"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseModel.html#ac2dc51ab0cc99eef20d02b1945ef740b">sucheArtikel</a> ($pattern)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Sucht nach Artikeln mit gegebenen Pattern.  <a href="#ac2dc51ab0cc99eef20d02b1945ef740b"></a><br/></td></tr>
+<tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseModel.html#a05660ada8d2113d1a2f886de27017638">holeKategorie</a> ($kategorieId)</td></tr>
+<tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Holt <a class="el" href="classKategorie.html" title="Objekt f¸r Kategorien equivalent zur Datenbanktabelle &#39;Kategorie&#39;.">Kategorie</a> mit gegebener ID.  <a href="#a05660ada8d2113d1a2f886de27017638"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseModel.html#a233a6064cc83947926f5534f3b2ad145">holeLieferungsmethode</a> ($lieferungsmethodenPattern)</td></tr>
 <tr><td class="mdescLeft">&#160;</td><td class="mdescRight">Holt eine <a class="el" href="classLieferungsmethode.html">Lieferungsmethode</a> mit gegebener Suchpattern.  <a href="#a233a6064cc83947926f5534f3b2ad145"></a><br/></td></tr>
 <tr><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classDatabaseModel.html#a7c7ac6b9730d97d09c67f01e013d14d6">holeZahlungsmethode</a> ($zahlungsmethodePattern)</td></tr>
@@ -387,6 +389,37 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 
 </div>
 </div>
+<a class="anchor" id="a05660ada8d2113d1a2f886de27017638"></a><!-- doxytag: member="DatabaseModel::holeKategorie" ref="a05660ada8d2113d1a2f886de27017638" args="($kategorieId)" -->
+<div class="memitem">
+<div class="memproto">
+      <table class="memname">
+        <tr>
+          <td class="memname"><a class="el" href="classDatabaseModel.html#a05660ada8d2113d1a2f886de27017638">DatabaseModel::holeKategorie</a> </td>
+          <td>(</td>
+          <td class="paramtype">$&#160;</td>
+          <td class="paramname"><em>kategorieId</em></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+</div>
+<div class="memdoc">
+
+<p>Holt <a class="el" href="classKategorie.html" title="Objekt f¸r Kategorien equivalent zur Datenbanktabelle &#39;Kategorie&#39;.">Kategorie</a> mit gegebener ID. </p>
+<dl class="params"><dt><b>Parameter:</b></dt><dd>
+  <table class="params">
+    <tr><td class="paramtype">String</td><td class="paramname">$kategorieId</td><td>ID der gew√ºnschten <a class="el" href="classKategorie.html" title="Objekt f¸r Kategorien equivalent zur Datenbanktabelle &#39;Kategorie&#39;.">Kategorie</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+<dl class="retval"><dt><b>R√ºckgabewerte:</b></dt><dd>
+  <table class="retval">
+    <tr><td class="paramname"><a class="el" href="classKategorie.html" title="Objekt f¸r Kategorien equivalent zur Datenbanktabelle &#39;Kategorie&#39;.">Kategorie</a></td><td>Objekt der gew√ºnschten <a class="el" href="classKategorie.html" title="Objekt f¸r Kategorien equivalent zur Datenbanktabelle &#39;Kategorie&#39;.">Kategorie</a> </td></tr>
+  </table>
+  </dd>
+</dl>
+
+</div>
+</div>
 <a class="anchor" id="ae9cad447a2bcbd83b96de81321010b0f"></a><!-- doxytag: member="DatabaseModel::holeKunde" ref="ae9cad447a2bcbd83b96de81321010b0f" args="($email)" -->
 <div class="memitem">
 <div class="memproto">
@@ -605,7 +638,7 @@ var searchBox = new SearchBox("searchBox", "search",false,'Suchen');
 
 
 <hr class="footer"/><address class="footer"><small>
-Erzeugt am Fre Sep 7 2012 09:40:03 f√ºr Skriptpogrammierung - Stapleware von &#160;<a href="http://www.doxygen.org/index.html">
+Erzeugt am Fre Sep 7 2012 10:09:02 f√ºr Skriptpogrammierung - Stapleware von &#160;<a href="http://www.doxygen.org/index.html">
 <img class="footer" src="doxygen.png" alt="doxygen"/>
 </a> 1.7.6.1
 </small></address>

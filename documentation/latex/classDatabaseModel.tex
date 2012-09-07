@@ -25,6 +25,8 @@
 \begin{DoxyCompactList}\small\item\em \-Holt alle \-Artikeln, welche als veröffentlicht gespeichert wurden. \end{DoxyCompactList}\item 
 \hyperlink{classDatabaseModel_ac2dc51ab0cc99eef20d02b1945ef740b}{suche\-Artikel} (\$pattern)
 \begin{DoxyCompactList}\small\item\em \-Sucht nach \-Artikeln mit gegebenen \-Pattern. \end{DoxyCompactList}\item 
+\hyperlink{classDatabaseModel_a05660ada8d2113d1a2f886de27017638}{hole\-Kategorie} (\$kategorie\-Id)
+\begin{DoxyCompactList}\small\item\em \-Holt \hyperlink{classKategorie}{\-Kategorie} mit gegebener \-I\-D. \end{DoxyCompactList}\item 
 \hyperlink{classDatabaseModel_a233a6064cc83947926f5534f3b2ad145}{hole\-Lieferungsmethode} (\$lieferungsmethoden\-Pattern)
 \begin{DoxyCompactList}\small\item\em \-Holt eine \hyperlink{classLieferungsmethode}{\-Lieferungsmethode} mit gegebener \-Suchpattern. \end{DoxyCompactList}\item 
 \hyperlink{classDatabaseModel_a7c7ac6b9730d97d09c67f01e013d14d6}{hole\-Zahlungsmethode} (\$zahlungsmethode\-Pattern)
@@ -215,6 +217,27 @@
 
 \begin{DoxyRetVals}{\-Rückgabewerte}
 {\em \-Bestellungen\mbox{[}$\,$\mbox{]}} & \-Objektarray der geholten \-Bestellungen. \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{classDatabaseModel_a05660ada8d2113d1a2f886de27017638}{\index{\-Database\-Model@{\-Database\-Model}!hole\-Kategorie@{hole\-Kategorie}}
+\index{hole\-Kategorie@{hole\-Kategorie}!DatabaseModel@{\-Database\-Model}}
+\subsubsection[{hole\-Kategorie}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Model\-::hole\-Kategorie} (
+\begin{DoxyParamCaption}
+\item[{\$}]{kategorie\-Id}
+\end{DoxyParamCaption}
+)}}\label{classDatabaseModel_a05660ada8d2113d1a2f886de27017638}
+
+
+\-Holt \hyperlink{classKategorie}{\-Kategorie} mit gegebener \-I\-D. 
+
+
+\begin{DoxyParams}[1]{\-Parameter}
+\-String & {\em \$kategorie\-Id} & \-I\-D der gewünschten \hyperlink{classKategorie}{\-Kategorie} \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{\-Rückgabewerte}
+{\em \hyperlink{classKategorie}{\-Kategorie}} & \-Objekt der gewünschten \hyperlink{classKategorie}{\-Kategorie} \\
 \hline
 \end{DoxyRetVals}
 \hypertarget{classDatabaseModel_ae9cad447a2bcbd83b96de81321010b0f}{\index{\-Database\-Model@{\-Database\-Model}!hole\-Kunde@{hole\-Kunde}}

@@ -1,4 +1,8 @@
 <?php
+
+/**
+ * @Brief Objektklasse für 'Kunde' equivalent zum Mapping für die Tabelle kunden
+ */
 class Kunde {
 	// Member-Variablen
 	private $id;
@@ -128,6 +132,9 @@ class Kunde {
 	}
 }
 
+/**
+ * @Brief Objektklasse für 'Artikel' equivalent zum Mapping für die Tabelle artikel
+ */
 class Artikel {
 	// Member-Variablen
 	private $id;
@@ -278,6 +285,9 @@ class Warenkorb {
 	}	
 }
 
+/**
+ * @Brief Objektklasse für 'Bestellung' equivalent zum Mapping für die Tabelle bestellungen
+ */
 class Bestellung{
 	private $id;
 	private $kundenId;
@@ -326,7 +336,9 @@ class Bestellung{
 		return $this->lieferunsgmethodeId;
 	}	
 }
-
+/**
+ * @Brief Objektklasse für 'Status' equivalent zum Mapping für die Tabelle status
+ */
 class Status{
 	private $id;
 	private $name;
@@ -371,7 +383,9 @@ class Status{
 		return $this->beschreibung;
 	}
 }
-
+/**
+ * @Brief Objektklasse für 'Zahlungsmethoden' equivalent zum Mapping für die Tabelle zahlungsmethoden
+ */
 class Zahlungsmethoden{
 	private $id;
 	private $name;
@@ -428,7 +442,9 @@ class Zahlungsmethoden{
 		return $this->kosten;
 	}
 }
-
+/**
+ * @Brief Objektklasse für 'Lieferungsmethode' equivalent zum Mapping für die Tabelle lieferungsmethode
+ */
 class Lieferungsmethode{
 	private $id;
 	private $name;

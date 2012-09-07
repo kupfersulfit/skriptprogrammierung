@@ -310,12 +310,12 @@ class DatabaseModel {
     }
 
     /**
-     * @brief Holt Artikel mit gegebener ID
+     * @brief Holt Kategorie mit gegebener ID
      * 
-     * @param String $artikelId
-     *  ID des gewünschten Artikels
-     * @retval Artikel
-     *  Objekt des gewünschten Artikels 
+     * @param String $kategorieId
+     *  ID der gewünschten Kategorie
+     * @retval Kategorie
+     *  Objekt der gewünschten Kategorie 
      */
     public function holeKategorie($kategorieId) {
         $dbConnector = new DatabaseConnector();
