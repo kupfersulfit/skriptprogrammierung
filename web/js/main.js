@@ -77,9 +77,10 @@ var ShopingCard = {
     },
     removeArticle : function(id) {
         for (var i = 0; i < this.articles.length; ++i) {
-            console.debug(this.articles[i]);
-            if (this.articles[i].id == id) {
-                delete this.articles[i];
+            if (typeof this.articles[i] != 'undefined') {
+                if (this.articles[i].id == id) {
+                    delete this.articles[i];
+                }
             }
         }
     },
