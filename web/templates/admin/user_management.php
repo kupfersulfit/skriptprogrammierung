@@ -10,7 +10,13 @@
 				function() {
 					var id=this.id.substr(1,this.id.length);
 					getKunde(id);
-				});
+				}
+			);
+			$(document).on('click', "input[name='kundenSend']", 
+				function() {
+					alert("Kunde ist geändert worden.");
+				}
+			);
 		</script>
 	</head>
 	<body>
