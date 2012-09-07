@@ -171,6 +171,28 @@ class DatabaseModel {
     /**
      * @brief Holt Kunde mit gegebener ID
      * 
+     * @param String $kundenId
+     *  ID des gewünschten Kundens
+     * @retval Kunde
+     *  Objekt des gewünschten Kunden 
+     */
+    public function holeKundeMitId($kundenId) {
+        $dbConnector = new DatabaseConnector();
+        if ($dbConnector->connect()) {
+            $query = "SELECT * FROM kunden WHERE id = :id";
+            $params = array(":id" => $kundenId);
+            $result = $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunde");
+            if (sizeof($result) == 1) {
+				return $result[0];
+			}
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * @brief Holt Kunde mit gegebener EMail
+     * 
      * @param String $email
      *  Email des gewünschten Kundens
      * @retval Kunde
@@ -181,7 +203,10 @@ class DatabaseModel {
         if ($dbConnector->connect()) {
             $query = "SELECT * FROM kunden WHERE email = :email";
             $params = array(":email" => $email);
-            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunde");
+            $result = $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunde");
+            if (sizeof($result) == 1) {
+				return $result[0];
+			}
         } else {
             return null;
         }
