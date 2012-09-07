@@ -95,8 +95,6 @@
             exit();
         case 'erstelleArtikel':
             exit();
-        case 'loescheArtikel':
-            exit();
         default:   
             echo json_encode(array('error' => 'unknown action'));     
     }
