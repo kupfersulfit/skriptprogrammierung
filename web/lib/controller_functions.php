@@ -103,6 +103,19 @@
     /** Versucht einen neuen Kunden anzulegen 
         @param kunde Kundenobjekt des anzulegenden Kunden*/
     function registriereKunde($kunde){
+        $kunde = json_decode($kunde, true);
+        try{
+            $kunde = new Kunde($kunde);
+        }catch(Exception $e){
+            err($e->getMessage());
+            return;
+        }
+        //pruefe ob email bereits vorhanden
+        if($_SESSION['model']->holeKunde($kunde->getEmail()) != null){
+            err("Email already registered");
+        }else{
+            $_SESSION['model']->erstelleKunde($kunde);
+        }
     }
 
     /** Gibt das aktuelle Kundenobjekt zur&uuml;ck 
