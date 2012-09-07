@@ -255,7 +255,9 @@ class Artikel {
        return $this->seit;
 	}
 }
-
+/**
+ * @brief Objektklasse fuer 'Warenkorb'
+ */
 class Warenkorb {
 	// Member-Variablen
 	private $artikel_feld;
