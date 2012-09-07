@@ -4,6 +4,7 @@
 
     /** Gibt eine Fehlermeldung aus */
     function err($nachricht){
+        $nachricht = utf8_encode($nachricht);
         echo json_encode(array("error" => "$nachricht"));
     }
 
@@ -38,7 +39,7 @@
         @return Artikel
     */
     function sucheArtikel($suchstring){
-        $ergebnis = $_SESSION['model']->sucheArtikel($suchstring); //TODO FINDET NICHTS
+        $ergebnis = $_SESSION['model']->sucheArtikel($suchstring); 
         if($ergebnis == null){
             err("no article '$suchstring' found");
         }else{
@@ -67,10 +68,16 @@
         $korb = json_decode($warenkorb, true); //assoc array erzeugen
         $korb = new Warenkorb($korb); //warenkorbobjekt erzeugen
         $artikelListe = $korb->getArtikelFeld(); //hole liste aller artikel im korb
-        for($i = 0; $i < count($artikelListe); $i++){ //ueberschreibe vom client empfangene mit aus der db geholten daten (um zb preisfaelschungen zu vermeiden)
+        for($i = 0; $i < count($artikelListe); $i++){
             $artikelId = $artikelListe[$i]->getId();
-            $art = $_SESSION['model']->holeArtikel($artikelId);
-            $artikelListe[$i] = $_SESSION['model']->holeArtikel($artikelId); //TODO durch das array (vorige zeile) funzt das so nicht
+            $anzahl = $artikelListe[$i]->getVerfuegbar(); //hier steht bei artikeln im warenkorb die anzahl der bestellten artikel (in der db anzahl verfuegbare)
+            $art = $_SESSION['model']->holeArtikel($artikelId); //hole korrekten daten aus der db 
+            if($anzahl > $art->getVerfuegbar()){ //teste ob noch genug artikel auf lager
+                err("not enough ".$art->getName()." available");
+                return;
+            }
+            $artikelListe[$i] = $_SESSION['model']->holeArtikel($artikelId); //ersetze artikeldetails um zb preisfaelschungen zu verhindern
+            $artikelListe[$i]->setVerfuegbar((int) $anzahl);
         }
         $korb->setArtikelFeld($artikelListe); //update warenkorb mit den 'korrekten' daten
         $_SESSION['korb'] = $korb;
@@ -126,6 +133,16 @@
     */
     function holeKunde(){
         echo json_encode($_SESSION['kunde']->assoc()); 
+    }
+
+    /** Gibt ein Array aller Kunden zur&uuml;ck */
+    function holeAlleKunden(){
+        //TODO nur dem admin erlauben !!!!!!!!!!!!!!!!!!!!!!!!
+        $kunden = $_SESSION['model']->holeAlleKunden();
+        for($i = 0; $i < count($kunden); $i++){
+            $kunden[$i] = $kunden[$i]->assoc();
+        }
+        echo json_encode($kunden);
     }
 
     /** Aktualisiert das Kundenobjekt in Session und Datenbank
