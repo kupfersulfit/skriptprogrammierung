@@ -28,7 +28,7 @@
                         if (TRUE) {//Admin
                             ?>
                             <li id="adminTab">
-                                <img id="admin" alt="Admin" src="" height="70" width="100" />
+                                <img id="admin" src="media/admin.png" height="70" width="100" />
                             </li>
                             <?php
                         }

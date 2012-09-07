@@ -22,7 +22,6 @@ jQuery(document).ready(function (){
         jQuery('#container').fadeOut('slow');
         getCustomerContent('home');
         setAnker('home');
-        getArticleList();
     });
     
     jQuery('#adminTab').click(function() {
