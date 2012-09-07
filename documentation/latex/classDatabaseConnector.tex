@@ -9,21 +9,18 @@
 \subsection*{Öffentliche \-Methoden}
 \begin{DoxyCompactItemize}
 \item 
-\hypertarget{classDatabaseConnector_a35b5a0c202be58fb17af638611fb4dc9}{{\bfseries connect} ()}\label{classDatabaseConnector_a35b5a0c202be58fb17af638611fb4dc9}
-
-\item 
-\hypertarget{classDatabaseConnector_a7adf5547e1312d72b3644aa69986a743}{{\bfseries disconnect} ()}\label{classDatabaseConnector_a7adf5547e1312d72b3644aa69986a743}
-
-\item 
-\hypertarget{classDatabaseConnector_a30417e69e7374ecb284861dc304624bd}{{\bfseries is\-Connected} ()}\label{classDatabaseConnector_a30417e69e7374ecb284861dc304624bd}
-
-\item 
-\hypertarget{classDatabaseConnector_a3c9e52fd01af60e5131a9b2d97686519}{{\bfseries execute\-Query} (\$query, \$params)}\label{classDatabaseConnector_a3c9e52fd01af60e5131a9b2d97686519}
-
-\item 
-\hypertarget{classDatabaseConnector_a6952aca4ae6a237b347f2d66e439749c}{{\bfseries map\-Objects} (\$query\-Result, \$object\-Name)}\label{classDatabaseConnector_a6952aca4ae6a237b347f2d66e439749c}
-
-\end{DoxyCompactItemize}
+\hyperlink{classDatabaseConnector_a35b5a0c202be58fb17af638611fb4dc9}{connect} ()
+\begin{DoxyCompactList}\small\item\em \-Connects to database with hardcoded login data. \end{DoxyCompactList}\item 
+\hyperlink{classDatabaseConnector_a7adf5547e1312d72b3644aa69986a743}{disconnect} ()
+\begin{DoxyCompactList}\small\item\em \-Terminates an existing connection to a database. \end{DoxyCompactList}\item 
+\hyperlink{classDatabaseConnector_a30417e69e7374ecb284861dc304624bd}{is\-Connected} ()
+\begin{DoxyCompactList}\small\item\em \-Shows connection status. \end{DoxyCompactList}\item 
+\hyperlink{classDatabaseConnector_a0e2aee996d3606ab10fcce9d64341d9c}{do\-Search} (\$query, \$prepared\-Fieldname, \$search\-Value)
+\begin{DoxyCompactList}\small\item\em \-Searches in database. \end{DoxyCompactList}\item 
+\hyperlink{classDatabaseConnector_a3c9e52fd01af60e5131a9b2d97686519}{execute\-Query} (\$query, \$params)
+\begin{DoxyCompactList}\small\item\em \-Executes a \-Query in a database. \end{DoxyCompactList}\item 
+\hyperlink{classDatabaseConnector_a6952aca4ae6a237b347f2d66e439749c}{map\-Objects} (\$query\-Result, \$object\-Name)
+\begin{DoxyCompactList}\small\item\em \-Maps a result of a \-P\-D\-O\-Statement object to an \-Array of type \$object\-Name. \end{DoxyCompactList}\end{DoxyCompactItemize}
 \subsection*{Öffentliche \-Attribute}
 \begin{DoxyCompactItemize}
 \item 
@@ -34,6 +31,132 @@
 
 \subsection{\-Ausführliche \-Beschreibung}
 \-Wrapperklasse für \-P\-D\-O \-Datenbankverbindung. 
+
+\subsection{\-Dokumentation der \-Elementfunktionen}
+\hypertarget{classDatabaseConnector_a35b5a0c202be58fb17af638611fb4dc9}{\index{\-Database\-Connector@{\-Database\-Connector}!connect@{connect}}
+\index{connect@{connect}!DatabaseConnector@{\-Database\-Connector}}
+\subsubsection[{connect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Connector\-::connect} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDatabaseConnector_a35b5a0c202be58fb17af638611fb4dc9}
+
+
+\-Connects to database with hardcoded login data. 
+
+
+\begin{DoxyRetVals}{\-Rückgabewerte}
+{\em boolean} & \-True in success \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{classDatabaseConnector_a7adf5547e1312d72b3644aa69986a743}{\index{\-Database\-Connector@{\-Database\-Connector}!disconnect@{disconnect}}
+\index{disconnect@{disconnect}!DatabaseConnector@{\-Database\-Connector}}
+\subsubsection[{disconnect}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Connector\-::disconnect} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDatabaseConnector_a7adf5547e1312d72b3644aa69986a743}
+
+
+\-Terminates an existing connection to a database. 
+
+
+\begin{DoxyRetVals}{\-Rückgabewerte}
+{\em boolean} & \-True in success \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{classDatabaseConnector_a0e2aee996d3606ab10fcce9d64341d9c}{\index{\-Database\-Connector@{\-Database\-Connector}!do\-Search@{do\-Search}}
+\index{do\-Search@{do\-Search}!DatabaseConnector@{\-Database\-Connector}}
+\subsubsection[{do\-Search}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Connector\-::do\-Search} (
+\begin{DoxyParamCaption}
+\item[{\$}]{query, }
+\item[{\$}]{prepared\-Fieldname, }
+\item[{\$}]{search\-Value}
+\end{DoxyParamCaption}
+)}}\label{classDatabaseConnector_a0e2aee996d3606ab10fcce9d64341d9c}
+
+
+\-Searches in database. 
+
+
+\begin{DoxyParams}[1]{\-Parameter}
+\-String & {\em \$query} & \-S\-Q\-L statement containing \$prepared\-Fieldname e.\-g. \-:pattern \\
+\hline
+\-String & {\em \$prepared\-Fieldname} & \-Name of the pattern to be replaced for executing prepared sql statement \\
+\hline
+\-String & {\em \$search\-Value} & \-Value to search for in database \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{\-Rückgabewerte}
+{\em \-P\-D\-O\-Statement} & \-Executed pdo statement object \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{classDatabaseConnector_a3c9e52fd01af60e5131a9b2d97686519}{\index{\-Database\-Connector@{\-Database\-Connector}!execute\-Query@{execute\-Query}}
+\index{execute\-Query@{execute\-Query}!DatabaseConnector@{\-Database\-Connector}}
+\subsubsection[{execute\-Query}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Connector\-::execute\-Query} (
+\begin{DoxyParamCaption}
+\item[{\$}]{query, }
+\item[{\$}]{params}
+\end{DoxyParamCaption}
+)}}\label{classDatabaseConnector_a3c9e52fd01af60e5131a9b2d97686519}
+
+
+\-Executes a \-Query in a database. 
+
+
+\begin{DoxyParams}[1]{\-Parameter}
+\-String & {\em \$query} & \-S\-Q\-L statement containing \$prepared\-Fieldname e.\-g. \-:pattern \\
+\hline
+ & {\em string\mbox{[}$\,$\mbox{]}\mbox{[}$\,$\mbox{]}} & \$params \-Associative string array with \-:pattern =$>$ value to process the prepared statement \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{\-Rückgabewerte}
+{\em \-P\-D\-O\-Statement} & \-Executed pdo statement object \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{classDatabaseConnector_a30417e69e7374ecb284861dc304624bd}{\index{\-Database\-Connector@{\-Database\-Connector}!is\-Connected@{is\-Connected}}
+\index{is\-Connected@{is\-Connected}!DatabaseConnector@{\-Database\-Connector}}
+\subsubsection[{is\-Connected}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Connector\-::is\-Connected} (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDatabaseConnector_a30417e69e7374ecb284861dc304624bd}
+
+
+\-Shows connection status. 
+
+
+\begin{DoxyRetVals}{\-Rückgabewerte}
+{\em boolean} & \-True on existing connection to database \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{classDatabaseConnector_a6952aca4ae6a237b347f2d66e439749c}{\index{\-Database\-Connector@{\-Database\-Connector}!map\-Objects@{map\-Objects}}
+\index{map\-Objects@{map\-Objects}!DatabaseConnector@{\-Database\-Connector}}
+\subsubsection[{map\-Objects}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Connector\-::map\-Objects} (
+\begin{DoxyParamCaption}
+\item[{\$}]{query\-Result, }
+\item[{\$}]{object\-Name}
+\end{DoxyParamCaption}
+)}}\label{classDatabaseConnector_a6952aca4ae6a237b347f2d66e439749c}
+
+
+\-Maps a result of a \-P\-D\-O\-Statement object to an \-Array of type \$object\-Name. 
+
+
+\begin{DoxyParams}[1]{\-Parameter}
+\-String & {\em \$query\-Result} & \-Executed pdo statement object \\
+\hline
+string & {\em \$object\-Name} & \-Name of object to map database query result to \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{\-Rückgabewerte}
+{\em \-Object\mbox{[}$\,$\mbox{]}} & \-Array of objects from type \$object\-Name \\
+\hline
+\end{DoxyRetVals}
+
 
 \-Die \-Dokumentation für diese \-Klasse wurde erzeugt aufgrund der \-Datei\-:\begin{DoxyCompactItemize}
 \item 

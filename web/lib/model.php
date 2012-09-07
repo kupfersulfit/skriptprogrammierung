@@ -21,6 +21,12 @@ class DatabaseConnector {
     public $lastInsertId = null;
     private $databaseConnectionInstance = null;
 
+	/**
+     * @brief Connects to database with hardcoded login data
+     * 
+     * @retval boolean
+     *  True in success
+     */
     public function connect() {
         try {
             if ($this->databaseConnectionInstance == null) {
@@ -36,6 +42,12 @@ class DatabaseConnector {
         }
     }
 
+	/**
+	 * @brief Terminates an existing connection to a database
+	 * 
+     * @retval boolean
+     *  True in success
+	 */
     public function disconnect() {
         if ($this->databaseConnectionInstance != null) {
             # MySQL with PDO_MYSQL  
@@ -45,11 +57,50 @@ class DatabaseConnector {
             return false;
         }
     }
-
+     
+     /**
+	 * @brief Shows connection status
+	 * 
+     * @retval boolean
+     *  True on existing connection to database
+	 */
     public function isConnected() {
         return $this->databaseConnectionInstance == null ? false : true;
     }
 
+	/**
+     * @brief Searches in database
+     * 
+     * @param String $query
+     *  SQL statement containing $preparedFieldname e.g. :pattern
+     * @param String $preparedFieldname
+     *  Name of the pattern to be replaced for executing prepared sql statement 
+     * @param String $searchValue
+     *  Value to search for in database
+     * @retval PDOStatement
+     *  Executed pdo statement object
+     */
+	public function doSearch($query, $preparedFieldname, $searchValue) {
+        if ($this->databaseConnectionInstance != null) {
+            $result = $this->databaseConnectionInstance->prepare($query);
+            $result->bindValue($preparedFieldname, $searchValue, PDO::PARAM_STR);
+            $result->execute();
+            return $result;
+        } else {
+            return null;
+        }
+    }
+    
+    /**
+     * @brief Executes a Query in a database
+     * 
+     * @param String $query
+     *  SQL statement containing $preparedFieldname e.g. :pattern
+     * @param string[][] $params
+     *  Associative string array with :pattern => value to process the prepared statement
+     * @retval PDOStatement
+     *  Executed pdo statement object
+     */
     public function executeQuery($query, $params) {
         if ($this->databaseConnectionInstance != null) {
             $this->lastInsertId = null;
@@ -62,6 +113,16 @@ class DatabaseConnector {
         }
     }
 
+	/**
+     * @brief Maps a result of a PDOStatement object to an Array of type $objectName
+     * 
+     * @param String $queryResult
+     *  Executed pdo statement object
+     * @param string $objectName
+     *  Name of object to map database query result to
+     * @retval Object[]
+     *  Array of objects from type $objectName
+     */
     public function mapObjects($queryResult, $objectName) {
         if ($queryResult != null) {
             $queryResult->setFetchMode(PDO::FETCH_CLASS, $objectName);
@@ -187,7 +248,10 @@ class DatabaseModel {
         if ($dbConnector->connect()) {
             $query = "SELECT * FROM artikel WHERE id = :id";
             $params = array(":id" => $artikelId);
-            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Artikel");
+            $result = $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Artikel");
+            if (sizeof($result) == 1) {
+				$result[0];
+			}
         } else {
             return null;
         }
@@ -238,9 +302,8 @@ class DatabaseModel {
     public function sucheArtikel($pattern) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
-            $query = "SELECT * FROM artikel WHERE name LIKE '%:pattern%' OR beschreibung='%:pattern%";
-            $params = array(":pattern" => $pattern);
-            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Artikel");
+            $query = "SELECT * FROM artikel WHERE name LIKE :pattern OR beschreibung LIKE :pattern";
+            return $dbConnector->mapObjects($dbConnector->doSearch($query, ":pattern" ,"%".$pattern."%"), "Artikel");
         } else {
             return null;
         }
@@ -429,6 +492,9 @@ if ($testing) {
     print_r($dbo);
     echo "<br/>Alle Kunden<br/>";
     $dbo = $testInstance->holeAlleKunden();
+    print_r($dbo);
+    echo "<br/>Gesuchte Artikel für Butler<br/>";
+    $dbo = $testInstance->sucheArtikel("Butler");
     print_r($dbo);
     exit;
 }
