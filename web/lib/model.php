@@ -250,7 +250,7 @@ class DatabaseModel {
             $params = array(":id" => $artikelId);
             $result = $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Artikel");
             if (sizeof($result) == 1) {
-				$result[0];
+				return $result[0];
 			}
         } else {
             return null;
@@ -324,7 +324,7 @@ class DatabaseModel {
             $params = array(":id" => $kategorieId);
             $result = $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kategorie");
             if (sizeof($result) == 1) {
-				$result[0];
+				return $result[0];
 			}
         } else {
             return null;
