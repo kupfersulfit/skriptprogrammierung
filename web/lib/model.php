@@ -1,7 +1,7 @@
 <?php
 
 // Set to true for testing
-$testing = false;
+$testing = true;
 
 require_once "objects.php";
 
@@ -154,14 +154,14 @@ class DatabaseModel {
         if ($dbConnector->connect()) {
             $query = "INSERT INTO kunden VALUES('', ':name', ':vorname', ':strasse', ':plz', ':zusatz', ':email', ':passwort', ':registriertseit')";
             $params = array(
-            ":name" => $kunde->name,
-            ":vorname" => $kunde->vorname,
-            ":strasse" => $kunde->strasse,
-            ":plz" => $kunde->plz,
-            ":zusatz" => $kunde->zusatz,
-            ":email" => $kunde->email,
-            ":passwort" => $kunde->passwort, 
-            ":registriertseit" => $kunde->registriertseit
+            ":name" => $kunde->getName(),
+            ":vorname" => $kunde->getVorname(),
+            ":strasse" => $kunde->getStrasse(),
+            ":plz" => $kunde->getPlz(),
+            ":zusatz" => $kunde->getZusatz(),
+            ":email" => $kunde->getEmail(),
+            ":passwort" => $kunde->getPasswort(), 
+            ":registriertseit" => $kunde->getRegistriertseit()
             );
             $dbConnector->executeQuery($query, $params);
             return true;
@@ -219,14 +219,14 @@ class DatabaseModel {
         if ($dbConnector->connect()) {
             $query = "INSERT INTO artikel VALUES('', ':name', ':beschreibung', ':veroeffentlicht', ':verfuegbar', ':katgorieid', ':preis', ':bildpfad', ':seit'";
             $params = array(
-            ":name" => $artikel->name,
-            ":beschreibung" => $artikel->beschreibung,
-            ":veroeffentlicht" => $artikel->veroeffentlicht,
-            ":verfuegbar" => $artikel->verfuegbar,
-            ":katgorieid" => $artikel->preis,
-            ":preis" => $artikel->katgorieid,
-            ":bildpfad" => $artikel->passwort,
-            ":seit" => $artikel->seit
+            ":name" => $artikel->getName(),
+            ":beschreibung" => $artikel->getBeschreibung(),
+            ":veroeffentlicht" => $artikel->getVeroeffentlicht(),
+            ":verfuegbar" => $artikel->getVerfuegbar(),
+            ":katgorieid" => $artikel->getPreis(),
+            ":preis" => $artikel->getKatgorieid(),
+            ":bildpfad" => $artikel->getPasswort(),
+            ":seit" => $artikel->getSeit()
             );
             $dbConnector->executeQuery($query, $params);
             return true;
@@ -304,6 +304,28 @@ class DatabaseModel {
         if ($dbConnector->connect()) {
             $query = "SELECT * FROM artikel WHERE name LIKE :pattern OR beschreibung LIKE :pattern";
             return $dbConnector->mapObjects($dbConnector->doSearch($query, ":pattern" ,"%".$pattern."%"), "Artikel");
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * @brief Holt Artikel mit gegebener ID
+     * 
+     * @param String $artikelId
+     *  ID des gewünschten Artikels
+     * @retval Artikel
+     *  Objekt des gewünschten Artikels 
+     */
+    public function holeKategorie($kategorieId) {
+        $dbConnector = new DatabaseConnector();
+        if ($dbConnector->connect()) {
+            $query = "SELECT * FROM kategorien WHERE id = :id";
+            $params = array(":id" => $kategorieId);
+            $result = $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kategorie");
+            if (sizeof($result) == 1) {
+				$result[0];
+			}
         } else {
             return null;
         }
@@ -436,8 +458,8 @@ class DatabaseModel {
                     $query = "INSERT INTO bestellungen_artikel VALUES( ':bestellungid', ':artikelid', ':anzahl' )";
                     $params = array(
                         ":bestellungid" => $lastOrderId,
-                        ":artikelid" => $artikel->bestelldatum,
-                        ":anzahl" => $artikel->statusid
+                        ":artikelid" => $artikel->getBestelldatum(),
+                        ":anzahl" => $artikel->getStatusid()
                     );
                     $dbConnector->executeQuery($query, $params);
                 }
