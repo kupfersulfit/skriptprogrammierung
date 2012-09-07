@@ -84,10 +84,16 @@ function getArtikel(id){
         },
         dataType : 'json',
         success : function(json){
-            var htmltext = 'Hier sollte ein Artikel stehen.';
-            //var artikel=json[0];
-            //htmltext += artikel.name;
+            var htmltext = '';
+            var artikel=json;
+            htmltext += "<table>";
+            htmltext += "<tr><td>Name: </td><td><input type='text' name='name' size='70' value='"+artikel.name+"'></td></tr>";
+            htmltext += "<tr><td>Description: </td><td><textarea name='beschreibung' cols='40' rows='12'>"+artikel.beschreibung+"</textarea></td></tr>";
+            htmltext += "<tr><td>Published: </td><td><input type='text' name='veroeffentlicht' size='40' value='"+artikel.veroeffentlicht+"'></td></tr>";
+            htmltext += "<tr><td>Preis: </td><td><input type='text' name='preis' size='40' value='"+artikel.preis+"'></td></tr>";
+            htmltext += "</table>";
             $("#divArtikelTabelle").html(htmltext);
+            $("#divAddArticle").hide();
         },
         error : function (json) {
        
