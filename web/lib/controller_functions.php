@@ -28,8 +28,11 @@
             err("no existing article");
         }else{
             for($i = 0; $i < count($artikelArray); $i++){ //convert object to assoc array
-                $kategorie = ""; //TODO mit id aus db holen
-                $artikelArray[$i]->setKategorie($kategorie);
+                //kategorienamen aus der db holen und eintragen
+                $kategorie = $artikelArray[$i]->getKategorieId();
+                $kategorie = $_SESSION["model"]->holeKategorie($kategorie); //TODO mit id aus db holen
+                $artikelArray[$i]->setKategorieId($kategorie->getName());
+                //objekt in assoz array umwandeln
                 $artikelArray[$i] = $artikelArray[$i]->assoc();
             }
             echo json_encode($artikelArray);
