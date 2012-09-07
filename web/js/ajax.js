@@ -198,10 +198,9 @@ function getShopping_cart() {
         dataType : 'json',
         success : function (json) {
             for (var article in json) {
-                var obj = jQuery('#article' + json[article].id + ' pin')[0];
+                var obj = jQuery('#article' + json[article].id + ' .pin')[0];
+                console.debug(obj);
                 Article.pin(obj, json[article].id);
-                ShopingCard.addArticle(Article.findArticleById(json[article].id));
-                Article.findArticleById(json[article].id).addToCard();
             }
         },
         error : function (json) {
