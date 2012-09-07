@@ -239,7 +239,7 @@ class Artikel {
        return $this->verfuegbar;
 	} 
 	public function getKategorieId(){
-       return $this->kategorieid;
+       return $this->kategorieId;
 	}
 	public function setPreis($preis){
        if(/*is_float($preis) &&*/ $preis >0.0){

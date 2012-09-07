@@ -6,9 +6,7 @@ $testing = false;
 require_once "objects.php";
 
 /**
- * 
  * @brief Wrapperklasse für PDO Datenbankverbindung
- * 
  */
 class DatabaseConnector {
 
@@ -152,16 +150,16 @@ class DatabaseModel {
     public function erstelleKunde($kunde) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
-            $query = "INSERT INTO kunden VALUES('', ':name', ':vorname', ':strasse', ':plz', ':zusatz', ':email', ':passwort', ':registriertseit')";
+            $query = "INSERT INTO kunden VALUES('', :name, :vorname, :strasse, :plz, :zusatz, :email, :passwort, :registriertseit)";
             $params = array(
-            ":name" => $kunde->getName(),
-            ":vorname" => $kunde->getVorname(),
-            ":strasse" => $kunde->getStrasse(),
-            ":plz" => $kunde->getPlz(),
-            ":zusatz" => $kunde->getZusatz(),
-            ":email" => $kunde->getEmail(),
-            ":passwort" => $kunde->getPasswort(), 
-            ":registriertseit" => $kunde->getRegistriertseit()
+            ":name" => "'".$kunde->getName()."'",
+            ":vorname" => "'".$kunde->getVorname()."'",
+            ":strasse" => "'".$kunde->getStrasse()."'",
+            ":plz" => "'".$kunde->getPlz()."'",
+            ":zusatz" => "'".$kunde->getZusatz()."'",
+            ":email" => "'".$kunde->getEmail()."'",
+            ":passwort" => "'".$kunde->getPasswort()."'", 
+            ":registriertseit" => "'".$kunde->getRegistriertseit()."'"
             );
             $dbConnector->executeQuery($query, $params);
             return true;
@@ -217,16 +215,16 @@ class DatabaseModel {
     public function erstelleArtikel($artikel) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
-            $query = "INSERT INTO artikel VALUES('', ':name', ':beschreibung', ':veroeffentlicht', ':verfuegbar', ':katgorieid', ':preis', ':bildpfad', ':seit'";
+            $query = "INSERT INTO artikel VALUES( null, :name, :beschreibung, :veroeffentlicht, :verfuegbar, :katgorieid, :preis, :bildpfad, :seit)";
             $params = array(
-            ":name" => $artikel->getName(),
-            ":beschreibung" => $artikel->getBeschreibung(),
-            ":veroeffentlicht" => $artikel->getVeroeffentlicht(),
-            ":verfuegbar" => $artikel->getVerfuegbar(),
-            ":katgorieid" => $artikel->getPreis(),
-            ":preis" => $artikel->getKatgorieid(),
-            ":bildpfad" => $artikel->getPasswort(),
-            ":seit" => $artikel->getSeit()
+            ":name" => "'".$artikel->getName()."'",
+            ":beschreibung" => "'".$artikel->getBeschreibung()."'",
+            ":veroeffentlicht" => "'".$artikel->getVeroeffentlicht()."'",
+            ":verfuegbar" => "'".$artikel->getVerfuegbar()."'",
+            ":katgorieid" => "'".$artikel->getPreis()."'",
+            ":preis" => "'".$artikel->getKategorieId()."'",
+            ":bildpfad" => "'".$artikel->getBildpfad()."'",
+            ":seit" => "'".$artikel->getSeit()."'"
             );
             $dbConnector->executeQuery($query, $params);
             return true;
@@ -459,7 +457,7 @@ class DatabaseModel {
                     $params = array(
                         ":bestellungid" => $lastOrderId,
                         ":artikelid" => $artikel->getBestelldatum(),
-                        ":anzahl" => $artikel->getStatusid()
+                        ":anzahl" => $artikel->getStatusId()
                     );
                     $dbConnector->executeQuery($query, $params);
                 }
@@ -503,41 +501,38 @@ class DatabaseModel {
  */
 if ($testing) {
     $testInstance = new DatabaseModel();
-    echo "<br/>Artikel mit ID 1<br/>";
+    echo "<br/>Artikel mit ID 1<br/><div style='border: 1px red solid;'>";
     $dbo = $testInstance->holeArtikel("1");
     print_r($dbo);
-    echo "<br/>Alle Artikel<br/>";
+    echo "</div><br/>Alle Artikel<br/><div style='border: 1px green solid;'>";
     $dbo = $testInstance->holeAlleArtikel();
     print_r($dbo);
-    echo "<br/>Kunden mit emailadresse<br/>";
+    echo "</div><br/>Kunden mit emailadresse<br/><div style='border: 1px blue solid;'>";
     $dbo = $testInstance->holeKunde("josef.ackermann@lionsclub.com");
     print_r($dbo);
-    echo "<br/>Alle Kunden<br/>";
+    echo "</div><br/>Alle Kunden<br/><div style='border: 1px black solid;'>";
     $dbo = $testInstance->holeAlleKunden();
     print_r($dbo);
-    echo "<br/>Gesuchte Artikel für Butler<br/>";
+    echo "</div><br/>Gesuchte Artikel fuer Butler<br/><div style='border: 1px yellow solid;'>";
     $dbo = $testInstance->sucheArtikel("Butler");
     print_r($dbo);
+    echo "</div><br/>Erstelle Artikel 'Testartikel'<br/><div style='border: 1px grey solid;'>";
+    
+    $artikel = new Artikel(
+    array( 
+    "id" => "", 
+    "name" => "Testartikel", 
+    "beschreibung" => "Dies ist ein Testartikel", 
+    "kategorieId" => "1",
+    "preis" => "299"));
+    $dbo = $testInstance->erstelleArtikel($artikel);
+    $dbo = $testInstance->sucheArtikel("Testartikel");
+    print_r($dbo);
+    echo "</div>";
     exit;
 }
 /*
  * End Testcase
  */
 
-/*
- * 
-  /+erstelleArtikel(Artikel artikel) : boolean/
-  /+holeArtikel(ArtikelId : Integer) : Artikel/
-  /+holeAlleArtikel() : Artikel[]/
-  /+sucheArtikel(Pattern : String) : Artikel[]/
-  /+erstelleKunde(Kunde : Kunde) :boolean/
-  /+holeKunden(String : email) : Kunde/
-  /+holeAlleKunden() : Kunde[]/
-  /+holeBestellungenVonKunden(Kunde : kunde) : Bestellung[]/
-  /+holeAlleBestellung() : Bestellung[]/
-  /+holeBestellung() : Bestellung[]/
-  /+erstelleBestellung(Bestellung : bestellung) :boolean/
-
- * 
- */
 ?>
