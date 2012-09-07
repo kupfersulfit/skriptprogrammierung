@@ -1,7 +1,7 @@
 <?php
 
 // Set to true for testing
-$testing = true;
+$testing = false;
 
 require_once "objects.php";
 
