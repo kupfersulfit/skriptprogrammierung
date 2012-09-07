@@ -147,6 +147,7 @@
         if($kunde == null){
             err("no customer found");
         }else{
+            $kunde->setPasswort(" ");
             echo json_encode($kunde->assoc());
         }
     }

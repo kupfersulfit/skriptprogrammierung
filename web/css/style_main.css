@@ -166,12 +166,12 @@ header {
     border-top: 0;
     width: 224px;
     float: right;
+    background-color: #efefef;
 }
 
 #basket {
-    min-height: 600px;
+    min-height: 400px;
     padding: 5px;
-    background-color: #efefef;
 }
 
 #shopping_cart_logo {
@@ -312,7 +312,7 @@ header {
     color: #FF6600;
     padding-left: 10px;
 }
-    
+
 .articleAtCardAmount {
     padding-right: 10px;
     float: left;
@@ -339,4 +339,17 @@ header {
     line-height: 6px;
     font-size: 8px;
     font-weight: bold;
+}
+
+#buyButton {
+    background-image: url('../media/buy.png');
+    height: 50px;
+    width: 222px;
+    text-align: center;
+    color: cornflowerblue;
+    font-size: 16px;
+    border: 1px solid #c9c9c9;
+    background-color: #FFFFFF;
+    margin-left: 1px;
+    margin-bottom: 1px;
 }

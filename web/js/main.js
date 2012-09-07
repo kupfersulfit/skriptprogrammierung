@@ -28,6 +28,12 @@ function refreshHandling() {
         getCustomerContent('home');
         setAnker('home');
     }
+    interval = window.setInterval(function () {
+        if (Article.Instances.length > 0) {
+            window.clearInterval(interval);
+            getShopping_cart();
+        }
+    }, 200);
 }
 
 function setAnker(anker) {
@@ -64,18 +70,29 @@ function getAdminContent(pageName) {
 var ShopingCard = {
     articles : new Array(),    
     addArticle : function(article) {
-        this.articles.push({'id' : article.id, 'verfuegbar': 1});
+        this.articles.push({
+            'id' : article.id, 
+            'verfuegbar': 1
+        });
     },
     removeArticle : function(id) {
-        
+        for (var i = 0; i < this.articles.length; ++i) {
+            if (typeof this.articles[i] != 'undefined') {
+                if (this.articles[i].id == id) {
+                    delete this.articles[i];
+                }
+            }
+        }
     },
     getArticlesJSONstring : function () {
         var jsonStr = '[';
         
-        for (var i = 0; i < ShopingCard.articles.length; ++i) {
-            jsonStr += '{"id":"' + ShopingCard.articles[i].id + '", "verfuegbar":"' + ShopingCard.articles[i].verfuegbar + '"}';
-            if (i != ShopingCard.articles.length - 1) {
-                jsonStr += ', ';
+        for (var i = 0; i < this.articles.length; ++i) {
+            if (typeof this.articles[i] != 'undefined') {
+                jsonStr += '{"id":' + this.articles[i].id + ', "verfuegbar":"' + this.articles[i].verfuegbar + '"}';
+                if (i != this.articles.length - 1) {
+                    jsonStr += ', ';
+                }
             }
         }
         
