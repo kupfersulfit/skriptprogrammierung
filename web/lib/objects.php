@@ -480,6 +480,68 @@ class Lieferungsmethode{
 	}
 }
 
+
+/**
+ * @brief Objekt für Kategorien equivalent zur Datenbanktabelle 'Kategorie' 
+ */ 
+class Kategorie{
+	private $id;
+	private $name;
+	private $beschreibung;
+	private $superkategorie;
+	
+	public function __construct($values = array()){
+	
+		if(isset($values["id"])){
+			if($values["id"] != "" && is_int($values["id"])){
+				$this->id = $values["id"];
+			}else{
+				$this->id = 0;
+			}
+		}
+		if(isset($values["name"]))
+			$this->setName($values["name"]);
+		if(isset($values["beschreibung"]))
+	        $this->setBeschreibung($values["beschreibung"]);
+		if(isset($values["superkategorie"]))
+			$this->setSuperkategorie = $values["superkategorie"];
+	}
+	
+	function getId(){
+		return $this->id;
+	}
+	public function setName($name){
+       if(is_string($name) && strlen($name)<128 && $name!=""){
+           $this->name = $name;
+       }else{
+           throw new Exception('Name hat ungueltiges Format.');
+       }
+	}
+	function getName(){
+		return $this->name;
+	}
+	public function setBeschreibung($beschreibung) {
+       if(is_string($beschreibung) && strlen($beschreibung)<512){
+           $this->beschreibung = $beschreibung;
+       }else{
+           throw new Exception('Beschreibung hat ungueltiges Format.');
+       }
+	}
+	function getBeschreibung(){
+		return $this->beschreibung;
+	}
+	public function setSuperkategorie($superkategorie) {
+       if(is_numeric($superkategorie)){
+           $this->superkategorie = $superkategorie;
+       }else{
+           throw new Exception('Superkategorie hat ungueltiges Format.');
+       }
+	}
+	function getSuperkategorie(){
+		return $this->superkategorie;
+	}
+}
+
 //$obj = new SimpleClass(?Testwert?); // neue Instanz der Klasse
 //$obj->displayVar(); // Aufruf der Methode
 
