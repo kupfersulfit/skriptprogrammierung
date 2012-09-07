@@ -24,7 +24,6 @@
     /* Zeigt alle veroeffentlichten Artikel an */
     function zeigeVeroeffentlichteArtikel(){
         $artikelArray = $_SESSION['model']->holeAlleVeroeffentlichtenArtikel();
-        print_r($artikelArray);
         if(count($artikelArray) == 0){
             err("no existing article");
         }else{
@@ -32,7 +31,7 @@
                 //kategorienamen aus der db holen und eintragen
                 $kategorie = $artikelArray[$i]->getKategorieId();
                 $kategorie = $_SESSION["model"]->holeKategorie($kategorie); //TODO mit id aus db holen
-                $artikelArray[$i]->setKategorieId($kategorie);
+                $artikelArray[$i]->setKategorieId($kategorie->getName());
                 //objekt in assoz array umwandeln
                 $artikelArray[$i] = $artikelArray[$i]->assoc();
             }
