@@ -39,15 +39,15 @@ class Kunde {
 	
 	public function assoc(){ //gibt ein assoziatives array zurueck welches das aktuelle objekt repraesentiert
         $ret = array();
-        $ret['id'] = $this->id;
-        $ret['name'] = $this->name;
-        $ret['vorname'] = $this->vorname;
-        $ret['strasse'] = $this->strasse;
-        $ret['plz'] = $this->plz;
-        $ret['zusatz'] = $this->zusatz;
-        $ret['email'] = $this->email;
-        $ret['passwort'] = $this->passwort;
-        $ret['registriertseit'] = $this->registriertseit;
+        $ret['id'] = utf8_encode($this->id);
+        $ret['name'] = utf8_encode($this->name);
+        $ret['vorname'] = utf8_encode($this->vorname);
+        $ret['strasse'] = utf8_encode($this->strasse);
+        $ret['plz'] = utf8_encode($this->plz);
+        $ret['zusatz'] = utf8_encode($this->zusatz);
+        $ret['email'] = utf8_encode($this->email);
+        $ret['passwort'] = utf8_encode($this->passwort);
+        $ret['registriertseit'] = utf8_encode($this->registriertseit);
         return $ret;
     }
 	public function getId(){
