@@ -34,7 +34,7 @@ function getKunde(id){
 		dataType : 'json',
 		success : function(json){
 			
-			var htmltext = '';
+			var htmltext = 'Hier sollte ein Kunde stehen.';
 //			var kunde = json['id'];
 //			htmltext += kunde.name;
 			$("#tabelle").html(htmltext);
@@ -77,7 +77,7 @@ function getArtikel(id){
         },
         dataType : 'json',
         success : function(json){
-            var htmltext = '';
+            var htmltext = 'Hier sollte ein Artikel stehen.';
             //var artikel=json[0];
             //htmltext += artikel.name;
             $("#divArtikelTabelle").html(htmltext);
