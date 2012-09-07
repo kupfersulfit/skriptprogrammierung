@@ -2,8 +2,6 @@
     require_once "objects.php";
     require_once "model.php";
 
-    $salt = "Die github gui ist doof";
-   
     /** Gibt eine Fehlermeldung aus */
     function err($nachricht){
         echo json_encode(array("error" => "$nachricht"));
@@ -68,7 +66,7 @@
         for($i = 0; $i < count($artikelListe); $i++){ //ueberschreibe vom client empfangene mit aus der db geholten daten (um zb preisfaelschungen zu vermeiden)
             $artikelId = $artikelListe[$i]->getId();
             $art = $_SESSION['model']->holeArtikel(3);
-            //print_r($art); //TODO hier sollte eig nur EIN artikel rauskommen, kein array von artikeln, oder?!
+            print_r($art); //TODO hier sollte eig nur EIN artikel rauskommen, kein array von artikeln, oder?!
             //$artikelListe[$i] = $_SESSION['model']->holeArtikel($artikelId); //TODO durch das array (vorige zeile) funzt das so nicht
         }
         $korb->setArtikelFeld($artikelListe); //update warenkorb mit den 'korrekten' daten
@@ -82,11 +80,13 @@
         @return username warenkorb
     */
     function login($email, $passwort){
-        if(preg_match("/^[\w!#$%&'*+/=?`{|}~^-]+(?:\.[\w!#$%&'*+\/=?`{|}~^-]+)*@(?:[A-Z0-9-]+.)+[A-Z]{2,6}$/i", $email)){
+        $salz = "Die github gui ist doof";
+
+        if(!preg_match("/^[^@]+@[^@]{3,}\.[^\.@0-9]{2,}$/", $email)){
             err("invalid email address");
             return;
         }
-        $hash = crypt($passwort, $salt);
+        $hash = crypt($passwort, $salz);
         if($_SESSION['model']->pruefeLogin($email, $hash) == true){
             $_SESSION['kunde'] = $_SESSION['model']->holeKunde($email);
             holeKunde(); //kundendaten ausgeben
