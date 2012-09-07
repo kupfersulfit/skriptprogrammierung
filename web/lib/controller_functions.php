@@ -25,7 +25,6 @@
     /* Zeigt alle veroeffentlichten Artikel an */
     function zeigeVeroeffentlichteArtikel(){
         $artikelArray = $_SESSION['model']->holeAlleVeroeffentlichtenArtikel();
-print_r($artikelArray);
         if(count($artikelArray) == 0){
             err("no existing article");
         }else{

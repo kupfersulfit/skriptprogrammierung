@@ -173,7 +173,7 @@ class Artikel {
         $ret['bildpfad'] = utf8_encode($this->bildpfad);
         $ret['veroeffentlicht'] = utf8_encode($this->veroeffentlicht);
         $ret['verfuegbar'] = utf8_encode($this->verfuegbar);
-        $ret['kategorieId'] = utf8_encode($this->kategorieIdi);
+        $ret['kategorieId'] = utf8_encode($this->kategorieId);
         $ret['preis'] = utf8_encode($this->preis);
         $ret['seit'] = utf8_encode($this->seit);
         return $ret;
