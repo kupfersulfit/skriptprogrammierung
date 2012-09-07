@@ -242,7 +242,7 @@ class Artikel {
        return $this->kategorieId;
 	}
 	public function setKategorieId($kategorieId){
-       if(is_ numeric($kategorieId)){
+       if(is_numeric($kategorieId)){
            $this->kategorieId = $kategorieId;
        }else{
            throw new Exception('Kategorie hat ungueltiges Format.');
