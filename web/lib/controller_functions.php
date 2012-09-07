@@ -72,7 +72,12 @@
             $artikelId = $artikelListe[$i]->getId();
             $anzahl = $artikelListe[$i]->getVerfuegbar(); //hier steht bei artikeln im warenkorb die anzahl der bestellten artikel (in der db anzahl verfuegbare)
             $art = $_SESSION['model']->holeArtikel($artikelId); //hole korrekten daten aus der db 
-            if($anzahl > $art->getVerfuegbar()){ //teste ob noch genug artikel auf lager
+            if($art == null){
+                err("unknown article");
+                return;
+            }else if(!$art->getVeroeffentlicht()){
+                err("article not available");
+            }else if($anzahl > $art->getVerfuegbar()){ //teste ob noch genug artikel auf lager
                 err("not enough ".$art->getName()." available");
                 return;
             }
@@ -134,15 +139,22 @@
     function holeKunde(){
         echo json_encode($_SESSION['kunde']->assoc()); 
     }
+    
+    function holeArtikel($id){
+        $art = $_SESSION['model']->holeArtikel($id);
+        if($art == null){
+            err("article not found");
+        }else{
+            echo json_encode($art->assoc());
+        }
+    }
 
     /** Gibt ein Array aller Kunden zur&uuml;ck */
     function holeAlleKunden(){
-        //TODO if $_SESSION['kunde'] isn't admin -> err
+        //TODO nur dem admin erlauben !!!!!!!!!!!!!!!!!!!!!!!!
         $kunden = $_SESSION['model']->holeAlleKunden();
-        print_r($kunden);
         for($i = 0; $i < count($kunden); $i++){
-//            print_r($kunden[$i]);
-//            $kunden[$i] = $kunden[$i]->assoc();
+            $kunden[$i] = $kunden[$i]->assoc();
         }
         echo json_encode($kunden);
     }

@@ -18,7 +18,6 @@ function getArticleList() {
                     jQuery('#articleList').append('<div class="clear" ></div>');
                 }
             }
-            console.debug(json)
         },
         error : function (json) {
             console.debug(json);
@@ -51,11 +50,15 @@ function login() {
                 'email' : jQuery('#email').val(),
                 'passwort' : jQuery('#password').val()
             },
-            dataType : 'jsonp',
+            dataType : 'json',
             success : function (json) {
                 console.debug(json);
-                jQuery('#email, #password').css('border-color','#FFFFFF');
-                jQuery('#email').val('');
+                if (json['error']) {
+                    jQuery('#email, #password').css('border-color','#FA5858');
+                } else {
+                    jQuery('#email, #password').css('border-color','#FFFFFF');
+                    jQuery('#email').val('');
+                }
             },
             error : function (json) {
                 console.debug(json);
@@ -188,11 +191,11 @@ function deleteArticle() {
 function getShopping_cart() {
     jQuery.ajax({
         type : 'GET',
-        url : 'web/Controler.php', 
+        url : 'lib/controller.php', 
         data : {
             'action' : 'holeWarenkorb'
         },
-        dataType : 'jsonp',
+        dataType : 'json',
         success : function (json) {
             
         },
@@ -202,16 +205,16 @@ function getShopping_cart() {
     });
 }
 
-function modifyShopping_cart() {
+function modifyShopping_cart() {    
     jQuery.ajax({
         type : 'GET',
-        url : 'web/Controler.php', 
+        url : 'lib/controller.php', 
         data : {
-            'action' : 'aktualisiereWarenkorb'
+            'action' : 'aktualisiereWarenkorb',
+            'warenkorb' : ShopingCard.getArticlesJSONstring()
         },
-        dataType : 'jsonp',
         success : function (json) {
-            
+            console.debug(json);
         },
         error : function (json) {
         

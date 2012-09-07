@@ -60,3 +60,27 @@ function getAdminContent(pageName) {
         }
     });
 }
+
+var ShopingCard = {
+    articles : new Array(),    
+    addArticle : function(article) {
+        this.articles.push({'id' : article.id, 'verfuegbar': 1});
+    },
+    removeArticle : function(id) {
+        
+    },
+    getArticlesJSONstring : function () {
+        var jsonStr = '[';
+        
+        for (var i = 0; i < ShopingCard.articles.length; ++i) {
+            jsonStr += '{"id":"' + ShopingCard.articles[i].id + '", "verfuegbar":"' + ShopingCard.articles[i].verfuegbar + '"}';
+            if (i != ShopingCard.articles.length - 1) {
+                jsonStr += ', ';
+            }
+        }
+        
+        jsonStr += ']';
+        return jsonStr;
+    }
+    
+}
