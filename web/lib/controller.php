@@ -53,6 +53,11 @@
             }
             exit();
         case 'registriereKunde':
+            if(!isset($_GET['kunde'])){
+                err("'kunde' parameter missing");
+            }else{
+                registriereKunde($_GET['kunde']);
+            }
             exit();
         case 'holeKunde':
             holeKunde();

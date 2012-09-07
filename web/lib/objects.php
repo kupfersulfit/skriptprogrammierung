@@ -84,7 +84,7 @@ class Kunde {
 		return $this->strasse;
 	}
 	public function setPlz($plz){
-		if (preg_match("^[0-9]{5}$" , $plz)) {
+		if (preg_match("/^[0-9]{5}$/" , $plz)) {
 			$this->plz = $plz;
 		}else{
 			throw new Exception("PLZ ungültig.");
@@ -104,7 +104,7 @@ class Kunde {
 		return $this->zusatz;
 	}
 	public function setEmail($email){
-		if(preg_match("/[^a-zA-Z0-9-_@.!#$%&'*\/+=?^`{\|}~]/", $email)) {
+		if(preg_match("/^[^@]+@[^@]{3,}\.[^\.@0-9]{2,}$/", $email)) {
 			$this->email = $email;
 		}else{
 			throw new Exception("emailadresse ungültig.");
