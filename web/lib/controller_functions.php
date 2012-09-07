@@ -82,7 +82,7 @@
     function login($email, $passwort){
         $salz = "Die github gui ist doof";
 
-        if(preg_match("/^[^@]+@[^@]{3,}\.[^\.@0-9]{2,}$/", $email)){
+        if(!preg_match("/^[^@]+@[^@]{3,}\.[^\.@0-9]{2,}$/", $email)){
             err("invalid email address");
             return;
         }
