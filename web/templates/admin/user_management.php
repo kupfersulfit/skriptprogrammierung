@@ -1,9 +1,3 @@
-<?php
-
-
-
-
-?>
 
 <html>
 	<head>
@@ -14,8 +8,8 @@
 		<script type="text/javascript">
 			$(document).on('click', "input[name='send']", 
 				function() {
-					var id = this.attributes.getNamedItem('id');
-					var bla =2;
+					var id=this.id.substr(1,this.id.length);
+					getKunde(id);
 				});
 		</script>
 	</head>
@@ -26,32 +20,10 @@
 <!-- alle Kunden ausgeben -->
 <form method="post">
 	<p onclick='getAlleKunden()'>ladeKunden</p>
-	<table border=1 id="KundenTable">
-		<thead>
-		<tr>
-			<th>ID</th><th>Name</th><th>Vorname</th><th>Straße</th><th>PLZ</th>
-			<th>Zusatz</th><th>email</th><th>Passwort</th><th>Registriert Seit</th><th>Ändern</th>
-		</tr>
-		</thead>
-		<tbody id='KundenBody'>
-			<tr><td></td></tr>
-		</tbody>
-	</table>
+	<div id="tabelle">
+	
+	</div>
 </form>
 
 	</body>
 </html>
-
-<?
-/*
-		
-function getAdminContent(pageName) {
-    jQuery.ajax({
-        url: 'templates/admin/' + pageName + ".php",
-        success: function (data) {
-            jQuery('#left').html(data);
-        }
-    });
-}
-*/
-?>
