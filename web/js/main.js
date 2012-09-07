@@ -127,9 +127,8 @@ var Customer = {
         valid = this.validPassword();
         
         if (valid) {
-            
-    }
-    //        this.id = jQuery()
+            Customer.create(id, name, vorname, strasse, plz, zusatz, email, passwort);
+        }
     },
     validMail : function() {
         var email = jQuery('#registerEmail').val();
