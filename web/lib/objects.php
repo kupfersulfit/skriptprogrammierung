@@ -143,7 +143,7 @@ class Artikel {
 	private $bildpfad;
 	private $veroeffentlicht;
 	private $verfuegbar;
-	private $kategorie;
+	private $kategorieId;
 	private $preis;
 	private $seit;
 	// Methoden
@@ -165,8 +165,8 @@ class Artikel {
 	        $this->setVeroeffentlicht($values["veroeffentlicht"]);
 		if(isset($values["verfuegbar"]))
 		    $this->setVerfuegbar($values["verfuegbar"]);
-		if(isset($values["kategorie"]))
-			$this->kategorie = $values["kategorie"];
+		if(isset($values["kategorieId"]))
+			$this->kategorieId = $values["kategorieId"];
 		if(isset($values["preis"]))
 		    $this->setPreis($values["preis"]);
 		if(isset($values["seit"]))
@@ -180,7 +180,7 @@ class Artikel {
         $ret['bildpfad'] = utf8_encode($this->bildpfad);
         $ret['veroeffentlicht'] = utf8_encode($this->veroeffentlicht);
         $ret['verfuegbar'] = utf8_encode($this->verfuegbar);
-        $ret['kategorie'] = utf8_encode($this->kategorie);
+        $ret['kategorieId'] = utf8_encode($this->kategorieId);
         $ret['preis'] = utf8_encode($this->preis);
         $ret['seit'] = utf8_encode($this->seit);
         return $ret;
@@ -238,11 +238,11 @@ class Artikel {
 	public function getVerfuegbar(){
        return $this->verfuegbar;
 	} 
-	public function getKategorie(){
-       return $this->kategorie;
+	public function getKategorieId(){
+       return $this->kategorieId;
 	}
-	public function setKategorie($kategorie){
-        $this->kategorie = $kategorie;
+	public function setKategorieId($kategorieId){
+        $this->kategorieId = $kategorieId;
 	}
 	public function setPreis($preis){
        if(/*is_float($preis) &&*/ $preis >0.0){
