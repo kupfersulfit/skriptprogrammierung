@@ -167,15 +167,15 @@ class Artikel {
 	}
     public function assoc(){ //gibt ein assoziatives array zurueck welches das aktuelle objekt repraesentiert
         $ret = array();
-        $ret['id'] = $this->id;
-        $ret['name'] = $this->name;
-        $ret['beschreibung'] = $this->beschreibung;
-        $ret['bildpfad'] = $this->bildpfad;
-        $ret['veroeffentlicht'] = $this->veroeffentlicht;
-        $ret['verfuegbar'] = $this->verfuegbar;
-        $ret['kategorieId'] = $this->kategorieId;
-        $ret['preis'] = $this->preis;
-        $ret['seit'] = $this->seit;
+        $ret['id'] = utf8_encode($this->id);
+        $ret['name'] = utf8_encode($this->name);
+        $ret['beschreibung'] = utf8_encode($this->beschreibung);
+        $ret['bildpfad'] = utf8_encode($this->bildpfad);
+        $ret['veroeffentlicht'] = utf8_encode($this->veroeffentlicht);
+        $ret['verfuegbar'] = utf8_encode($this->verfuegbar);
+        $ret['kategorieId'] = utf8_encode($this->kategorieIdi);
+        $ret['preis'] = utf8_encode($this->preis);
+        $ret['seit'] = utf8_encode($this->seit);
         return $ret;
     }
 	public function getId(){
