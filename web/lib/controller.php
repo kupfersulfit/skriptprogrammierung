@@ -68,8 +68,17 @@
                 registriereKunde($_GET['kunde']);
             }
             exit();
+        case 'holeAngemeldetenKunde':
+            holeAngemeldetenKunde();
+            exit();
         case 'holeKunde':
-            holeKunde();
+            if(!isset($_GET['id'])){
+                err("'id' parameter missing");
+            }else if(!is_numeric($_GET['id'])){
+                err('invalid id format');
+            }else{
+                holeKunde($_GET['id']);
+            }
             exit();
         case 'holeAlleKunden':
             holeAlleKunden();
