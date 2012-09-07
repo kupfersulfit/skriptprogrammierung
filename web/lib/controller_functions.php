@@ -75,8 +75,9 @@
             if($art == null){
                 err("unknown article");
                 return;
-            }
-            if($anzahl > $art->getVerfuegbar()){ //teste ob noch genug artikel auf lager
+            }else if(!$art->getVeroeffentlicht()){
+                err("article not available");
+            }else if($anzahl > $art->getVerfuegbar()){ //teste ob noch genug artikel auf lager
                 err("not enough ".$art->getName()." available");
                 return;
             }
@@ -137,6 +138,15 @@
     */
     function holeKunde(){
         echo json_encode($_SESSION['kunde']->assoc()); 
+    }
+    
+    function holeArtikel($id){
+        $art = $_SESSION['model']->holeArtikel($id);
+        if($art == null){
+            err("article not found");
+        }else{
+            echo json_encode($art->assoc());
+        }
     }
 
     /** Gibt ein Array aller Kunden zur&uuml;ck */

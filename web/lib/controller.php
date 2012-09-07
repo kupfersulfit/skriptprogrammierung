@@ -31,6 +31,15 @@
                 sucheArtikel($_GET['muster']);
             }
             exit();
+        case 'holeArtikel':
+            if(!isset($_GET['id'])){
+                err("'id' parameter not set");
+            }else if(!is_numeric($_GET['id'])){
+                err("format not valid");
+            }else{
+                holeArtikel($_GET['id']);
+            }
+            exit();
         case 'holeWarenkorb':
             holeWarenkorb();
             exit();
@@ -63,7 +72,6 @@
             holeKunde();
             exit();
         case 'holeAlleKunden':
-            //echo '[{"id":"1","name":"Mustermann","vorname":"max","strasse":"Elmstreet 666","plz":"36663","zusatz":"","email":"max@mustermann.de","passwort":"","registriertseit":"2012-09-04 09:42:47"},{"id":"3","name":"Musterfrau","vorname":"Maria","strasse":"Leetstreet 1337","plz":"13337","zusatz":"Testaccount","email":"maria@musterfrau.de","passwort":"","registriertseit":"2012-09-01 12:15:14"}]';
             holeAlleKunden();
             exit();
         case 'aktualisiereKunde':
