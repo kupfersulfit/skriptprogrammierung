@@ -137,12 +137,10 @@
 
     /** Gibt ein Array aller Kunden zur&uuml;ck */
     function holeAlleKunden(){
-        //TODO if $_SESSION['kunde'] isn't admin -> err
+        //TODO nur dem admin erlauben !!!!!!!!!!!!!!!!!!!!!!!!
         $kunden = $_SESSION['model']->holeAlleKunden();
-        print_r($kunden);
         for($i = 0; $i < count($kunden); $i++){
-//            print_r($kunden[$i]);
-//            $kunden[$i] = $kunden[$i]->assoc();
+            $kunden[$i] = $kunden[$i]->assoc();
         }
         echo json_encode($kunden);
     }

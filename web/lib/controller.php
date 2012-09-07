@@ -63,8 +63,8 @@
             holeKunde();
             exit();
         case 'holeAlleKunden':
-            echo '[{"id":"1","name":"Mustermann","vorname":"max","strasse":"Elmstreet 666","plz":"36663","zusatz":"","email":"max@mustermann.de","passwort":"","registriertseit":"2012-09-04 09:42:47"},{"id":"3","name":"Musterfrau","vorname":"Maria","strasse":"Leetstreet 1337","plz":"13337","zusatz":"Testaccount","email":"maria@musterfrau.de","passwort":"","registriertseit":"2012-09-01 12:15:14"}]';
-            //holeAlleKunden();
+            //echo '[{"id":"1","name":"Mustermann","vorname":"max","strasse":"Elmstreet 666","plz":"36663","zusatz":"","email":"max@mustermann.de","passwort":"","registriertseit":"2012-09-04 09:42:47"},{"id":"3","name":"Musterfrau","vorname":"Maria","strasse":"Leetstreet 1337","plz":"13337","zusatz":"Testaccount","email":"maria@musterfrau.de","passwort":"","registriertseit":"2012-09-01 12:15:14"}]';
+            holeAlleKunden();
             exit();
         case 'aktualisiereKunde':
             exit();
