@@ -181,7 +181,10 @@ class DatabaseModel {
         if ($dbConnector->connect()) {
             $query = "SELECT * FROM kunden WHERE id = :id";
             $params = array(":id" => $kundenId);
-            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunde");
+            $result = $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunde");
+            if (sizeof($result) == 1) {
+				return $result[0];
+			}
         } else {
             return null;
         }
@@ -200,7 +203,10 @@ class DatabaseModel {
         if ($dbConnector->connect()) {
             $query = "SELECT * FROM kunden WHERE email = :email";
             $params = array(":email" => $email);
-            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunde");
+            $result = $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunde");
+            if (sizeof($result) == 1) {
+				return $result[0];
+			}
         } else {
             return null;
         }
