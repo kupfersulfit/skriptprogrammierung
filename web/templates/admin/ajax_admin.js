@@ -25,7 +25,7 @@ function getAlleKunden(){
 
 function getKunde(id){
 	jQuery.ajax({
-		type : 'GET',
+		type : 'POST',
 		url : '../../lib/controller.php',
 		data : {
 			'action' : 'holeKunde',
@@ -41,10 +41,31 @@ function getKunde(id){
 			htmltext += '<tr><td>PLZ:</td><td><input name="kundenPlz" id="kundenPlzId" type="text" size="50" maxlength="50" value='+json.plz+'></td></tr>';
 			htmltext += '<tr><td>Zusatz:</td><td><input name="kundenZusatz" id="kundenZusatzId" type="text" size="50" maxlength="50" value='+json.zusatz+'></td></tr>';
 			htmltext += '<tr><td>Email:</td><td><input name="kundeEmail" id="kundenEmailId" type="text" size="50" maxlength="50" value='+json.email+'></td></tr>';
-//			htmltext += '<tr><td>Registriert Seit:</td><td><input name="kundeSeit" id="kundenSeitId" type="text" size="50" maxlength="50" value='+json.registriertseit+'></td></tr>';
+			htmltext += '<tr><td>Registriert Seit:</td><td><input name="kundeSeit" id="kundenSeitId" type="text" size="50" maxlength="50" value='+json.registriertseit+' readonly></td></tr>';
 			htmltext += '</table>';
 			htmltext += '<input type="button" name="kundenSend" id="kundenChange" value="Change"/>';
 			$("#tabelle").html(htmltext);
+			
+//			console.debug(json);
+			Customer.create(json.id, json.name, json.vorname, json.strasse, json.plz, json.zusatz, json.email);
+		},
+		error : function (json) {
+			
+		}
+	});
+}
+
+function refreshKunde(json){
+	jQuery.ajax({
+		type : 'GET',
+		url : '../../lib/controller.php',
+		data : {
+			'action' : 'aktualisiereKunde',
+			'kunde' : Customer 
+		},
+		dataType : 'json',
+		success : function(json){
+			
 		},
 		error : function (json) {
         
