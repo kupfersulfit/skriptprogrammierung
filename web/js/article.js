@@ -54,7 +54,7 @@ Article.prototype.renderHTML = function() {
     date     = date[2] + '.' + date[1] + '.' + date[0];
     
     var strHTML = '<section id="article'+ this.id +'" class="arcticle" >';
-    strHTML +=      '<div class="articleTitel" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div><div class="' + (this.verfuegbar == '1' ? "pin" : 'nopin') + '" ' + (this.verfuegbar == '1' ? 'onclick="Article.pin(this, '+  this.id+');"' : '') + ' ></div>';
+    strHTML +=      '<div class="articleTitel" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div><div class="' + (this.verfuegbar > 0 ? "pin" : 'nopin') + '" ' + (this.verfuegbar == '1' ? 'onclick="Article.pin(this, '+  this.id+');"' : '') + ' ></div>';
     strHTML +=      '<div class="clear"></div>';
     strHTML +=      '<div class="articleContent">';
     strHTML +=          '<div class="articleImg"><img src="media/products/'+ this.bildpfad +'" width="300" height="300" /></div>';
@@ -63,7 +63,7 @@ Article.prototype.renderHTML = function() {
     strHTML +=              '<li>price <span class="articleValues">' + this.preis.replace('.', ',') + ' &euro;</span></li>';
     strHTML +=              '<li>category <span class="articleValues">' + this.kategoryId + '</span></li>';
     strHTML +=              '<li>published since <span class="articleValues">' + date + '</span></li>';
-    strHTML +=              '<li>in stock <div class="' + (this.verfuegbar == '1' ? 'in' : 'out') + '" title="' + (this.verfuegbar == '1' ? 'available' : 'sold') + '">&nbsp;</div></li>';
+    strHTML +=              '<li>in stock <div class="' + (this.verfuegbar > 0 ? 'in' : 'out') + '" title="' + (this.verfuegbar > 0 ? 'available' : 'sold') + '">&nbsp;</div></li>';
     strHTML +=          '</ul></div>';
     strHTML +=          '<p class="articleTags">description</p>';
     strHTML +=          '<div class="articleDescription" '+ Article.cutDescription(this.beschreibung) +'</div>';
