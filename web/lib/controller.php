@@ -62,40 +62,38 @@
             }
             exit();
         case 'registriereKunde':
-            if(!isset($_GET['kunde'])){
+            if(!isset($_POST['kunde'])){
                 err("'kunde' parameter missing");
             }else{
-                registriereKunde($_GET['kunde']);
+                registriereKunde($_POST['kunde']);
             }
             exit();
         case 'holeAngemeldetenKunde':
             holeAngemeldetenKunde();
             exit();
         case 'holeKunde':
-            if(!isset($_GET['id'])){
+            if(!isset($_POST['id'])){
                 err("'id' parameter missing");
-            }else if(!is_numeric($_GET['id'])){
+            }else if(!is_numeric($_POST['id'])){
                 err('invalid id format');
             }else{
-                holeKunde($_GET['id']);
+                holeKunde($_POST['id']);
             }
             exit();
         case 'holeAlleKunden':
             holeAlleKunden();
             exit();
         case 'aktualisiereKunde':
-            if(!isset($_GET['kunde'])){
+            if(!isset($_POST['kunde'])){
                 err("'kunde' parameter missing");
             }else{
-                aktualisiereKunde($_GET['kunde']);
+                aktualisiereKunde($_POST['kunde']);
             }
             exit();
         case 'logout':
             logout();
             exit();
         case 'erstelleArtikel':
-            exit();
-        case 'loescheArtikel':
             exit();
         default:   
             echo json_encode(array('error' => 'unknown action'));     
