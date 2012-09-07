@@ -44,11 +44,11 @@
                     </div>
                     <div id="register_login"><a id="registerLink">register</a></div>
                     <div id="registerContainer">
-                        <p><label for="email" >surname</label></p>
+                        <p><label for="surname" >surname</label></p>
                         <p><input type="text" id="surname" name="surname"/></p>
-                        <p><label for="email" >givenname</label></p>
+                        <p><label for="givenname" >givenname</label></p>
                         <p><input type="text" id="givenname" name="givenname"/></p>
-                        <p><label for="email" >street</label></p>
+                        <p><label for="street" >street</label></p>
                         <p><input type="text" id="street" name="street"/><input type="text" id="nr" name="nr" size="4"/></p>
                         <p><label for="zip" >zip</label></p>
                         <p><input type="text" id="zip" name="zip"/></p>
@@ -57,12 +57,12 @@
                         <p><label for="validEmail" >email validation</label></p>
                         <p><input type="text" id="validEmail" name="validEmail"/></p>
                         <p><label for="registerPassword" >password</label></p>
-                        <p><input type="text" id="registerPassword" name="registerPassword"/></p>
+                        <p><input type="password" id="registerPassword" name="registerPassword" onkeyup="Customer.passwordStrength();" /></p>
                         <p><label for="validPassword" >password validation</label></p>
-                        <p><input type="text" id="validPassword" name="validPassword"/></p>
+                        <p><input type="password" id="validPassword" name="validPassword"/></p>
                         <p><label for="addition" >addition</label></p>
                         <p><textarea id="addition"></textarea></p>
-                        <p><input id="registerButton" type="button" value="register" /></p>
+                        <p><input id="registerButton" type="button" value="register" onclick="Customer.create();" /></p>
                     </div>
                 </div>
             </header>

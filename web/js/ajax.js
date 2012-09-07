@@ -199,7 +199,6 @@ function getShopping_cart() {
         success : function (json) {
             for (var article in json) {
                 var obj = jQuery('#article' + json[article].id + ' .pin')[0];
-                console.debug(obj);
                 Article.pin(obj, json[article].id);
             }
         },
