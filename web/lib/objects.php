@@ -242,11 +242,7 @@ class Artikel {
        return $this->kategorie;
 	}
 	public function setKategorie($kategorie){
-       if(is_numeric($kategorie)){
-           $this->kategorie = $kategorie;
-       }else{
-           throw new Exception('Kategorie hat ungueltiges Format.');
-       }
+        $this->kategorie = $kategorie;
 	}
 	public function setPreis($preis){
        if(/*is_float($preis) &&*/ $preis >0.0){
