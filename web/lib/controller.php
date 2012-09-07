@@ -84,6 +84,11 @@
             holeAlleKunden();
             exit();
         case 'aktualisiereKunde':
+            if(!isset($_GET['kunde'])){
+                err("'kunde' parameter missing");
+            }else{
+                aktualisiereKunde($_GET['kunde']);
+            }
             exit();
         case 'logout':
             logout();

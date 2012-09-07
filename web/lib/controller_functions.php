@@ -28,6 +28,8 @@
             err("no existing article");
         }else{
             for($i = 0; $i < count($artikelArray); $i++){ //convert object to assoc array
+                $kategorie = ""; //TODO mit id aus db holen
+                $artikelArray[$i]->setKategorie($kategorie);
                 $artikelArray[$i] = $artikelArray[$i]->assoc();
             }
             echo json_encode($artikelArray);
@@ -175,6 +177,14 @@
         @param kunde aktualisiertes Kundenobjekt
     */
     function aktualisiereKunde($kunde){
+        $kunde = json_decode($kunde, true);
+        try{
+            $kunde = new Kunde($kunde);
+        }catch(Exception $e){
+            err($e->getMessage());
+            return;
+        }
+        //TODO daten aktualisieren
     }
 
     /** Tr&auml;gt einen neuen Artikel in der Datenbank ein 
