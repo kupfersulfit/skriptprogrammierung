@@ -72,6 +72,10 @@
             $artikelId = $artikelListe[$i]->getId();
             $anzahl = $artikelListe[$i]->getVerfuegbar(); //hier steht bei artikeln im warenkorb die anzahl der bestellten artikel (in der db anzahl verfuegbare)
             $art = $_SESSION['model']->holeArtikel($artikelId); //hole korrekten daten aus der db 
+            if($art == null){
+                err("unknown article");
+                return;
+            }
             if($anzahl > $art->getVerfuegbar()){ //teste ob noch genug artikel auf lager
                 err("not enough ".$art->getName()." available");
                 return;
