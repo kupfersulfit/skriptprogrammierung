@@ -3,7 +3,8 @@ var ShopingCard = {
     addArticle : function(article) {
         this.articles.push({
             'id' : article.id, 
-            'verfuegbar': 1
+            'verfuegbar' : 1,
+            'price' : article.preis 
         });
     },
     removeArticle : function(id) {
@@ -45,6 +46,18 @@ var ShopingCard = {
         
         jsonStr += ']';
         return jsonStr;
+    },
+    callbackTotalPrice : function() {
+        var price = 0;
+        for (var i = 0; i < ShopingCard.articles.length; ++i) {
+            price += ShopingCard.articles[i].verfuegbar * ShopingCard.articles[i].price;
+        }
+        if (price != 0) {
+            price += '';
+            if (!price.match(/[0-9]{1,}\.[0-9]{2}/)) {
+                price += '.00';
+            }
+            jQuery('#shoping_cart_price span').html(price);
+        }
     }
-    
 }

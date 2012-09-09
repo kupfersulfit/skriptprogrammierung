@@ -123,6 +123,8 @@ Article.pin = function(obj, id, session) {
         jQuery(obj).css('background-position','0 0');
         Article.removeFromCard(id);
     }
+    
+    ShopingCard.callbackTotalPrice();
     if (!session) {
         modifyShopping_cart();
     }
@@ -146,8 +148,8 @@ Article.increseAmount = function(id) {
     var amount = jQuery('#articleAtCard' + id + ' input').val();
     ++amount;
     jQuery('#articleAtCard' + id + ' input').val(amount);
-    Article.calculatePrice(id, amount);
     ShopingCard.getArticle(id).verfuegbar = amount;
+    Article.calculatePrice(id, amount);
 }
 
 Article.decreseAmount = function(id) {
@@ -155,8 +157,8 @@ Article.decreseAmount = function(id) {
     if (amount > 1) {
         --amount;
         jQuery('#articleAtCard' + id + ' input').val(amount);
-        Article.calculatePrice(id, amount);
         ShopingCard.getArticle(id).verfuegbar = amount;
+        Article.calculatePrice(id, amount);
     }  
 }
 
@@ -168,4 +170,5 @@ Article.calculatePrice = function(id, amount) {
         price += '.00';
     }
     priceSpan.html(price);
+    ShopingCard.callbackTotalPrice();
 }

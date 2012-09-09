@@ -123,11 +123,11 @@ function registerCustomer() {
 function getCustomerInformation() {
     jQuery.ajax({
         type : 'POST',
-        url : 'web/Controler.php', 
+        url : 'lib/controller.php', 
         data : {
             'action' : 'holeKunde'
         },
-        dataType : 'jsonp',
+        dataType : 'json',
         success : function (json) {
             
         },

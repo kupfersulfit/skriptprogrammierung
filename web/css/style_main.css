@@ -172,6 +172,7 @@ header {
 #basket {
     min-height: 400px;
     padding: 5px;
+    border-bottom: 1px solid lightblue;
 }
 
 #shopping_cart_logo {
@@ -339,6 +340,18 @@ header {
     line-height: 6px;
     font-size: 8px;
     font-weight: bold;
+}
+
+#shoping_cart_price {
+    text-align: right;
+    padding-right: 5px;
+    background-color: #FFFFFF;
+    border-radius: 2px;
+    margin: 5px;
+}
+
+#shoping_cart_price span {
+    color: #FF6600;
 }
 
 #buyButton {
