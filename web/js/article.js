@@ -9,6 +9,7 @@ Article = function() {
     this.seit            = '';
     this.verfuegbar      = '';
     this.veroeffentlicht = '1';
+    this.amount          = '1';
 }
 
 Article.Instances = new Array();
@@ -54,7 +55,7 @@ Article.prototype.renderHTML = function() {
     date     = date[2] + '.' + date[1] + '.' + date[0];
     
     var strHTML = '<section id="article'+ this.id +'" class="arcticle" >';
-    strHTML +=      '<div class="articleTitel" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div><div class="' + (this.verfuegbar > 0 ? "pin" : 'nopin') + '" ' + (this.verfuegbar == '1' ? 'onclick="Article.pin(this, '+  this.id+');"' : '') + ' ></div>';
+    strHTML +=      '<div class="articleTitel" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div><div class="' + (this.verfuegbar > 0 ? "pin" : 'nopin') + '" ' + (this.verfuegbar == '1' ? 'onclick="Article.pin(this, '+  this.id+', false);"' : '') + ' ></div>';
     strHTML +=      '<div class="clear"></div>';
     strHTML +=      '<div class="articleContent">';
     strHTML +=          '<div class="articleImg"><img src="media/products/'+ this.bildpfad +'" width="300" height="300" /></div>';
@@ -108,13 +109,12 @@ Article.longdescription = function (obj) {
     }
 }
 
-Article.pin = function(obj, id) {
+Article.pin = function(obj, id, session) {
     var article = Article.findArticleById(id);
     
     if (jQuery(obj).css('background-position') == '0px 0px') {
         jQuery(obj).css('background-position','0px 40px');
         ShopingCard.addArticle(article);
-        modifyShopping_cart();
         if (article) {
             article.addToCard();
         }
@@ -122,6 +122,8 @@ Article.pin = function(obj, id) {
         ShopingCard.removeArticle(id);
         jQuery(obj).css('background-position','0 0');
         Article.removeFromCard(id);
+    }
+    if (!session) {
         modifyShopping_cart();
     }
 }
@@ -130,7 +132,7 @@ Article.prototype.addToCard = function() {
     var strHTML = '<section class="articleAtCard" id="articleAtCard' + this.id + '">';
     strHTML    +=     '<div class="articleAtCardTitle" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div>';     
     strHTML    +=     '<div class="articleAtCardPrice">price <span>' + this.preis.replace('.', '.') + '</span> &euro;</div>';
-    strHTML    +=     '<div class="articleAtCardAmount"><div class="amountElements"><div class="amountSelect">+</div><div class="amountSelect">-</div></div><input type="number" value="1" size="4" disabled="disbled" /></div>'; 
+    strHTML    +=     '<div class="articleAtCardAmount"><div class="amountElements"><div class="amountSelect" onclick="Article.increseAmount(' + this.id + ');" >+</div><div class="amountSelect" onclick="Article.decreseAmount(' + this.id + ');">-</div></div><input type="number" value="1" size="4" disabled="disbled" /></div>'; 
     strHTML    +=     '<div class="clear"></div>';
     strHTML    += '</section>'
     jQuery('#basket').append(strHTML);
@@ -138,4 +140,32 @@ Article.prototype.addToCard = function() {
 
 Article.removeFromCard = function(id) {
     jQuery('#articleAtCard' + id).detach();
+}
+
+Article.increseAmount = function(id) {
+    var amount = jQuery('#articleAtCard' + id + ' input').val();
+    ++amount;
+    jQuery('#articleAtCard' + id + ' input').val(amount);
+    Article.calculatePrice(id, amount);
+    ShopingCard.getArticle(id).verfuegbar = amount;
+}
+
+Article.decreseAmount = function(id) {
+    var amount = jQuery('#articleAtCard' + id + ' input').val();
+    if (amount > 1) {
+        --amount;
+        jQuery('#articleAtCard' + id + ' input').val(amount);
+        Article.calculatePrice(id, amount);
+        ShopingCard.getArticle(id).verfuegbar = amount;
+    }  
+}
+
+Article.calculatePrice = function(id, amount) {
+    
+    var priceSpan  = jQuery('#articleAtCard' + id + ' .articleAtCardPrice span'); 
+    var price = Article.findArticleById(id).preis * amount + '';
+    if (!price.match(/[0-9]{1,}\.[0-9]{2}/)) {
+        price += '.00';
+    }
+    priceSpan.html(price);
 }

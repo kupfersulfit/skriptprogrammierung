@@ -306,7 +306,7 @@ class DatabaseModel {
     public function holeAlleVeroeffentlichtenArtikel() {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
-            $query = "SELECT * FROM artikel WHERE veroeffentlicht=1";
+            $query = "SELECT * FROM artikel WHERE veroeffentlicht = 1";
             $params = array();
             return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Artikel");
         } else {
