@@ -9,11 +9,16 @@ var Customer = {
     passwort : '',
     regiestriertseit : '',
     register : function() {
+        var firstfocus = true;
         var valid = true;
         jQuery('#registerContainer input:text').each(function(){
             var val = this.value;
             if (val == '') {
                 jQuery(this).css('border-color','#FA5858');
+                if (firstfocus) {
+                    jQuery(this).focus();
+                    firstfocus = false;
+                }
                 valid = false;
             } else {
                 jQuery(this).css('border-color','#FFFFFF');
@@ -31,7 +36,7 @@ var Customer = {
                 jQuery('#addition').val(),
                 jQuery('#registerEmail').val(),
                 jQuery('#registerPassword').val()
-            );
+                );
             registerCustomer();   
         }
     },
@@ -91,9 +96,9 @@ var Customer = {
     getJSONstring : function() {
         var JSONstr = '[';
         for (var key in Customer) { 
-           if (typeof Customer[key] != 'function') {
-               JSONstr += '"' + key + '":"' + Customer[key] + '",';
-           }
+            if (typeof Customer[key] != 'function') {
+                JSONstr += '"' + key + '":"' + Customer[key] + '",';
+            }
         }
         JSONstr = JSONstr.substring(0, (JSONstr.length -1));
         JSONstr += ']';

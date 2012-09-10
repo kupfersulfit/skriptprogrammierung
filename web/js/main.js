@@ -66,7 +66,3 @@ function getAdminContent(pageName) {
         }
     });
 }
-
-function openPayment() {
-    jQuery('#payment').fadeIn('slow');
-}

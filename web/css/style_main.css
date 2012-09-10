@@ -214,7 +214,7 @@ header {
     line-height: 40px;
     font-size: 20px;
     cursor: help;
-    color: #FF6600;
+    color: cornflowerblue;
     float: left;
     width: 270px;
 }
@@ -388,16 +388,31 @@ header {
     position: absolute;
     top: 170px;
     left: 30px;
-/*    height: 600px;*/
-    width: 800px;
-    border: 1px solid #c9c9c9;
-    border-radius: 2px;
-    box-shadow: 10px 10px 5px #888;
-    background-color: #FFFFFF;
+    /*    height: 600px;*/
+    width: 811px;
     display: none;
+    box-shadow: 10px 10px 5px #888; 
+    border: 1px solid #c9c9c9;
+    border-top: 0;
+    border-left: 0;
+    border-radius:  0 0 2px 2px;
     color: darkgray;
+}
+
+#payment_content {
+    height: 571px;
+    background-color: #FFFFFF;
+    border-left: 1px solid #c9c9c9;
+    border-radius:  0 0 0 2px;
     padding: 5px;
 }
+
+#payment_top {
+    width: 812px; 
+    height: 23px;
+    background-image: url('../media/payment_top.png');
+}
+
 #payment hr {
     /* Farbe für Opera und Firefox */
     background-color: #EFEFEF;
@@ -417,18 +432,14 @@ header {
 
 #paymentClose {
     float: right;
-    margin-top: -29px;
-    background-color: #FFFFFF;
-    border: 1px solid #c9c9c9;
-    border-bottom: 0px;
-    padding: 2px 4px 0 4px;
-    border-radius: 2px;
+    margin-right: 5px;
     cursor: pointer;
 }
 
 #payment .payment_text {
     float: right;
     width: 200px;
+    background-color: #E0F1FF;
 }
 
 
@@ -460,7 +471,7 @@ header {
     margin-bottom: 10px;
 }
 
-#creditCrad {
+#credit_card {
     width: 385px;
     height: 226px;
     padding-right: 5px;
@@ -474,9 +485,8 @@ header {
     width: 47px;
     margin-left: 4px;
 }
-
-#payment .help {
-    cursor: help;
+#valid_month {
+    margin-left: 198px;
 }
 
 #delivery {
@@ -495,6 +505,11 @@ header {
     margin-right: 3px;
 }
 
+#payment #deliver_zip {
+    width: 40px;
+    float: none;
+    margin-left: 30px;
+}
 #payment #delivery_nr {
     width: 96px;
 }
