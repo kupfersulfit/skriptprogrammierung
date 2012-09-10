@@ -61,7 +61,7 @@ Article.prototype.renderHTML = function() {
     strHTML +=          '<div class="articleImg"><img src="media/products/'+ this.bildpfad +'" width="300" height="300" /></div>';
     strHTML +=          '<p class="articleTags">details</p>';
     strHTML +=          '<div class="articleDetails"><ul>'; 
-    strHTML +=              '<li>price <span class="articleValues">' + this.preis.replace('.', ',') + ' &euro;</span></li>';
+    strHTML +=              '<li>price <span class="articleValues">' + this.preis + ' &euro;</span></li>';
     strHTML +=              '<li>category <span class="articleValues">' + this.kategoryId + '</span></li>';
     strHTML +=              '<li>published since <span class="articleValues">' + date + '</span></li>';
     strHTML +=              '<li>in stock <div class="' + (this.verfuegbar > 0 ? 'in' : 'out') + '" title="' + (this.verfuegbar > 0 ? 'available' : 'sold') + '">&nbsp;</div></li>';

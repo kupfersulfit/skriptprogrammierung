@@ -71,7 +71,7 @@ function login() {
 function logout() {
     jQuery.ajax({
         type : 'POST',
-        url : 'web/Controler.php', 
+        url : 'lib/controller.php', 
         data : {
             'action' : 'logout'
         },
@@ -88,7 +88,7 @@ function logout() {
 function searchArticle() {
     jQuery.ajax({
         type : 'GET',
-        url : 'web/Controler.php', 
+        url : 'lib/controller.php', 
         data : {
             'action' : 'sucheArtikel'
         },
@@ -140,44 +140,9 @@ function getCustomerInformation() {
 function modifyCustomer() {
     jQuery.ajax({
         type : 'POST',
-        url : 'web/Controler.php', 
+        url : 'lib/controller.php', 
         data : {
             'action' : 'aktualisiereKunde'
-        },
-        dataType : 'jsonp',
-        success : function (json) {
-            
-        },
-        error : function (json) {
-        
-        }
-    });
-}
-
-/* ADMIN */
-function createArticle() {
-    jQuery.ajax({
-        type : 'POST',
-        url : 'web/Controler.php', 
-        data : {
-            'action' : 'erstelleArtikel'
-        },
-        dataType : 'jsonp',
-        success : function (json) {
-            
-        },
-        error : function (json) {
-        
-        }
-    });
-}
-
-function deleteArticle() {
-    jQuery.ajax({
-        type : 'POST',
-        url : 'web/Controler.php', 
-        data : {
-            'action' : 'loescheArtikel'
         },
         dataType : 'jsonp',
         success : function (json) {
@@ -217,6 +182,43 @@ function modifyShopping_cart() {
             'action' : 'aktualisiereWarenkorb',
             'warenkorb' : ShopingCard.getArticlesJSONstring()
         },
+        success : function (json) {
+            
+        },
+        error : function (json) {
+        
+        }
+    });
+}
+
+
+
+/* ADMIN */
+function createArticle() {
+    jQuery.ajax({
+        type : 'POST',
+        url : 'lib/controller.php', 
+        data : {
+            'action' : 'erstelleArtikel'
+        },
+        dataType : 'jsonp',
+        success : function (json) {
+            
+        },
+        error : function (json) {
+        
+        }
+    });
+}
+
+function deleteArticle() {
+    jQuery.ajax({
+        type : 'POST',
+        url : 'lib/controller.php', 
+        data : {
+            'action' : 'loescheArtikel'
+        },
+        dataType : 'jsonp',
         success : function (json) {
             
         },

@@ -51,9 +51,9 @@
                         <p><label for="givenname" >givenname</label></p>
                         <p><input type="text" id="givenname" name="givenname"/></p>
                         <p><label for="street" >street</label></p>
-                        <p><input type="text" id="street" name="street"/><input type="text" id="nr" name="nr" size="4"/></p>
+                        <p><input type="text" id="street" name="street"/><input type="text" id="nr" name="nr" maxlength="4" size="4" /></p>
                         <p><label for="zip" >zip</label></p>
-                        <p><input type="text" id="zip" name="zip"/></p>
+                        <p><input type="text" id="zip" name="zip" maxlength="5" size="5" /></p>
                         <p><label for="registerEmail" >email</label></p>
                         <p><input type="text" id="registerEmail" name="registerEmail"/></p>
                         <p><label for="validEmail" >email validation</label></p>

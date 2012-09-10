@@ -133,8 +133,13 @@ header {
 }
 
 #registerContainer p #nr {
-    width: 94px;
+    width: 96px;
     margin-left: 2px;
+    margin-right: 0;
+}
+
+#registerContainer p #zip {
+    width: 40px;
 }
 
 #addition {
@@ -375,6 +380,7 @@ header {
     background-color: #FFFFFF;
     margin-left: 1px;
     margin-bottom: 1px;
+    cursor: pointer;
 }
 
 /* --- Payment --- */
@@ -382,11 +388,130 @@ header {
     position: absolute;
     top: 170px;
     left: 30px;
-    height: 600px;
+/*    height: 600px;*/
     width: 800px;
     border: 1px solid #c9c9c9;
     border-radius: 2px;
     box-shadow: 10px 10px 5px #888;
     background-color: #FFFFFF;
     display: none;
+    color: darkgray;
+    padding: 5px;
+}
+#payment hr {
+    /* Farbe für Opera und Firefox */
+    background-color: #EFEFEF;
+    /* Farbe für Internet Explorer (IE) */
+    color: #EFEFEF;
+    border: 0;
+    height: 1px; 
+}
+
+.payment_head {
+    color: cornflowerblue;
+    background-color: #EFEFEF;
+    border-radius: 2px;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+#paymentClose {
+    float: right;
+    margin-top: -29px;
+    background-color: #FFFFFF;
+    border: 1px solid #c9c9c9;
+    border-bottom: 0px;
+    padding: 2px 4px 0 4px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+
+#payment .payment_text {
+    float: right;
+    width: 200px;
+}
+
+
+#personality_column_1,
+#delivery_column_1 {
+    width: 384px;
+    float: left;
+    padding-left: 5px;
+    padding-right: 10px;
+    border-right: 1px solid #EFEFEF;
+    margin-bottom: 10px;
+}
+
+#personality_column_2,
+#delivery_column_2 {
+    width: 384px;
+    float: left;
+    padding-left: 10px;
+    margin-bottom: 10px;
+}
+
+#bank_transfer {
+    width: 384px;
+    height: 226px;
+    padding-left: 5px;
+    padding-right: 10px;
+    border-right: 1px solid #EFEFEF;
+    float: left;
+    margin-bottom: 10px;
+}
+
+#creditCrad {
+    width: 385px;
+    height: 226px;
+    padding-right: 5px;
+    padding-left: 10px;
+    float: left;
+    margin-bottom: 10px;
+}
+
+#payment .ccnr,
+#payment #cvc_cvv {
+    width: 47px;
+    margin-left: 4px;
+}
+
+#payment .help {
+    cursor: help;
+}
+
+#delivery {
+    padding-left: 5px;
+    padding-right: 5px;
+    margin-bottom: 10px;
+}
+
+#delivery_column_2 {
+    padding-right: 0;
+    width: 380px;
+}
+
+#payment #delivery_street {
+    width: 150px;
+    margin-right: 3px;
+}
+
+#payment #delivery_nr {
+    width: 96px;
+}
+
+#payButton {
+    height: 40px;
+    width: 100px;
+    color: #FFFFFF;
+    background-color: cornflowerblue;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    border: 0px;
+    border-radius: 6px;
+    float: right;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    cursor: pointer;
 }
