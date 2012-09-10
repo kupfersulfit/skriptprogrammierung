@@ -64,7 +64,7 @@
                         <p><input type="password" id="validPassword" name="validPassword"/></p>
                         <p><label for="addition" >addition</label></p>
                         <p><textarea id="addition"></textarea></p>
-                        <p><input id="registerButton" type="button" value="register" onclick="Customer.create();" /></p>
+                        <p><input id="registerButton" type="button" value="register" onclick="Customer.register();" /></p>
                     </div>
                 </div>
             </header>

@@ -175,9 +175,7 @@ header {
     border-bottom: 1px solid lightblue;
 }
 
-#shopping_cart_logo {
-
-}
+/* --- Article --- */
 
 #articleList {
     padding-top: 41px;
@@ -287,6 +285,8 @@ header {
     box-shadow: 0px 10px 5px #888;
 }
 
+/* --- ShopingCard --- */
+
 .articleAtCard {
     margin-bottom: 10px;
     padding: 5px;
@@ -302,6 +302,16 @@ header {
     padding-bottom: 5px;
     margin-bottom: 5px;
     cursor: help;
+    float: left;
+}
+
+.articleAtCardClose {
+    float: right;
+    cursor: pointer;
+    color: darkgray;
+    font-size: 10px;
+    font-weight: bold;
+    margin-right: 3px;
 }
 
 .articleAtCardPrice {
@@ -365,4 +375,18 @@ header {
     background-color: #FFFFFF;
     margin-left: 1px;
     margin-bottom: 1px;
+}
+
+/* --- Payment --- */
+#payment {
+    position: absolute;
+    top: 170px;
+    left: 30px;
+    height: 600px;
+    width: 800px;
+    border: 1px solid #c9c9c9;
+    border-radius: 2px;
+    box-shadow: 10px 10px 5px #888;
+    background-color: #FFFFFF;
+    display: none;
 }

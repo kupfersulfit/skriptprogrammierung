@@ -9,7 +9,6 @@ var ShopingCard = {
     },
     removeArticle : function(id) {
         var index = this.findArticle(id);
-        delete this.articles[index];
         var tmp = new Array();
         
         for (var i = 0; i < this.articles.length; ++i) {
@@ -52,12 +51,10 @@ var ShopingCard = {
         for (var i = 0; i < ShopingCard.articles.length; ++i) {
             price += ShopingCard.articles[i].verfuegbar * ShopingCard.articles[i].price;
         }
-        if (price != 0) {
-            price += '';
-            if (!price.match(/[0-9]{1,}\.[0-9]{2}/)) {
-                price += '.00';
-            }
-            jQuery('#shoping_cart_price span').html(price);
+        price += '';
+        if (!price.match(/[0-9]{1,}\.[0-9]{2}/)) {
+            price += '.00';
         }
+        jQuery('#shoping_cart_price span').html(price);
     }
 }

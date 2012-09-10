@@ -1,6 +1,6 @@
 var Customer = {
     id : '',
-    name : '',
+    name : 'Guest',
     vorname : '',
     strasse : '',
     plz : '',
@@ -19,8 +19,7 @@ var Customer = {
                 jQuery(this).css('border-color','#FFFFFF');
             }
         });
-        valid = this.validMail();
-        valid = this.validPassword();
+        valid = (this.validMail() && this.validPassword());
         
         if (valid) {
             Customer.create(
@@ -60,7 +59,7 @@ var Customer = {
             jQuery('#validPassword').css('border-color','#FA5858');
             return false;
         } else {
-            this.password = password;
+            this.passwort = password;
             jQuery('#registerPassword').css('border-color','#FFFFFF');
             jQuery('#validPassword').css('border-color','#FFFFFF');
             return true;

@@ -30,7 +30,7 @@ Article.prototype.create = function(json) {
     }
     
     this.id              = json['id'];
-    this.kategoryId      = json['kategoryId'];
+    this.kategoryId      = json['kategorieid'];
     this.name            = json['name'];
     this.preis           = json['preis'];
     this.seit            = json['seit'];
@@ -55,7 +55,7 @@ Article.prototype.renderHTML = function() {
     date     = date[2] + '.' + date[1] + '.' + date[0];
     
     var strHTML = '<section id="article'+ this.id +'" class="arcticle" >';
-    strHTML +=      '<div class="articleTitel" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div><div class="' + (this.verfuegbar > 0 ? "pin" : 'nopin') + '" ' + (this.verfuegbar == '1' ? 'onclick="Article.pin(this, '+  this.id+', false);"' : '') + ' ></div>';
+    strHTML +=      '<div class="articleTitel" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div><div class="' + (this.verfuegbar > 0 ? "pin" : 'nopin') + '" ' + (this.verfuegbar > 0 ? 'onclick="Article.pin(this, '+  this.id+', false);"' : '') + ' ></div>';
     strHTML +=      '<div class="clear"></div>';
     strHTML +=      '<div class="articleContent">';
     strHTML +=          '<div class="articleImg"><img src="media/products/'+ this.bildpfad +'" width="300" height="300" /></div>';
@@ -100,9 +100,10 @@ Article.cutDescription = function(description) {
 Article.longdescription = function (obj) {
     var description1 = obj.getAttribute('description');
     var description2 = obj.innerHTML;
+    
     obj.setAttribute('description', description2);
     obj.innerHTML = description1;
-    if (description1 > description2) {
+    if (description1.length > description2.length) {
         jQuery(obj).addClass('shadowedDescription');
     } else {
         jQuery(obj).removeClass('shadowedDescription');
@@ -119,12 +120,12 @@ Article.pin = function(obj, id, session) {
             article.addToCard();
         }
     } else {
-        ShopingCard.removeArticle(id);
         jQuery(obj).css('background-position','0 0');
         Article.removeFromCard(id);
     }
     
     ShopingCard.callbackTotalPrice();
+    
     if (!session) {
         modifyShopping_cart();
     }
@@ -132,7 +133,8 @@ Article.pin = function(obj, id, session) {
 
 Article.prototype.addToCard = function() {
     var strHTML = '<section class="articleAtCard" id="articleAtCard' + this.id + '">';
-    strHTML    +=     '<div class="articleAtCardTitle" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div>';     
+    strHTML    +=     '<div class="articleAtCardTitle" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div><div class="articleAtCardClose" onclick="Article.pin(jQuery(\'#article' +  this.id + ' .pin\'), ' + this.id + ', false);">x</div>';
+    strHTML    +=     '<div class="clear"></div>'
     strHTML    +=     '<div class="articleAtCardPrice">price <span>' + this.preis.replace('.', '.') + '</span> &euro;</div>';
     strHTML    +=     '<div class="articleAtCardAmount"><div class="amountElements"><div class="amountSelect" onclick="Article.increseAmount(' + this.id + ');" >+</div><div class="amountSelect" onclick="Article.decreseAmount(' + this.id + ');">-</div></div><input type="number" value="1" size="4" disabled="disbled" /></div>'; 
     strHTML    +=     '<div class="clear"></div>';
@@ -141,6 +143,7 @@ Article.prototype.addToCard = function() {
 }
 
 Article.removeFromCard = function(id) {
+    ShopingCard.removeArticle(id);
     jQuery('#articleAtCard' + id).detach();
 }
 
