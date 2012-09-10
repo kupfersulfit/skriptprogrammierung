@@ -71,7 +71,7 @@ function login() {
 function logout() {
     jQuery.ajax({
         type : 'POST',
-        url : 'web/Controler.php', 
+        url : 'lib/controller.php', 
         data : {
             'action' : 'logout'
         },
@@ -88,7 +88,7 @@ function logout() {
 function searchArticle() {
     jQuery.ajax({
         type : 'GET',
-        url : 'web/Controler.php', 
+        url : 'lib/controller.php', 
         data : {
             'action' : 'sucheArtikel'
         },
@@ -105,11 +105,12 @@ function searchArticle() {
 function registerCustomer() {
     jQuery.ajax({
         type : 'POST',
-        url : 'web/Controler.php', 
+        url : 'lib/controller.php', 
         data : {
-            'action' : 'registriereKunde'
+            'action' : 'registriereKunde',
+            'kunde' : Customer.getJSONstring()
         },
-        dataType : 'jsonp',
+        dataType : 'json',
         success : function (json) {
             
         },
@@ -122,11 +123,11 @@ function registerCustomer() {
 function getCustomerInformation() {
     jQuery.ajax({
         type : 'POST',
-        url : 'web/Controler.php', 
+        url : 'lib/controller.php', 
         data : {
             'action' : 'holeKunde'
         },
-        dataType : 'jsonp',
+        dataType : 'json',
         success : function (json) {
             
         },
@@ -139,44 +140,9 @@ function getCustomerInformation() {
 function modifyCustomer() {
     jQuery.ajax({
         type : 'POST',
-        url : 'web/Controler.php', 
+        url : 'lib/controller.php', 
         data : {
             'action' : 'aktualisiereKunde'
-        },
-        dataType : 'jsonp',
-        success : function (json) {
-            
-        },
-        error : function (json) {
-        
-        }
-    });
-}
-
-/* ADMIN */
-function createArticle() {
-    jQuery.ajax({
-        type : 'POST',
-        url : 'web/Controler.php', 
-        data : {
-            'action' : 'erstelleArtikel'
-        },
-        dataType : 'jsonp',
-        success : function (json) {
-            
-        },
-        error : function (json) {
-        
-        }
-    });
-}
-
-function deleteArticle() {
-    jQuery.ajax({
-        type : 'POST',
-        url : 'web/Controler.php', 
-        data : {
-            'action' : 'loescheArtikel'
         },
         dataType : 'jsonp',
         success : function (json) {
@@ -199,7 +165,7 @@ function getShopping_cart() {
         success : function (json) {
             for (var article in json) {
                 var obj = jQuery('#article' + json[article].id + ' .pin')[0];
-                Article.pin(obj, json[article].id);
+                Article.pin(obj, json[article].id, true);
             }
         },
         error : function (json) {
@@ -216,6 +182,43 @@ function modifyShopping_cart() {
             'action' : 'aktualisiereWarenkorb',
             'warenkorb' : ShopingCard.getArticlesJSONstring()
         },
+        success : function (json) {
+            
+        },
+        error : function (json) {
+        
+        }
+    });
+}
+
+
+
+/* ADMIN */
+function createArticle() {
+    jQuery.ajax({
+        type : 'POST',
+        url : 'lib/controller.php', 
+        data : {
+            'action' : 'erstelleArtikel'
+        },
+        dataType : 'jsonp',
+        success : function (json) {
+            
+        },
+        error : function (json) {
+        
+        }
+    });
+}
+
+function deleteArticle() {
+    jQuery.ajax({
+        type : 'POST',
+        url : 'lib/controller.php', 
+        data : {
+            'action' : 'loescheArtikel'
+        },
+        dataType : 'jsonp',
         success : function (json) {
             
         },

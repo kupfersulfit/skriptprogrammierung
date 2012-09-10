@@ -7,9 +7,11 @@
             <link href="fav.ico" rel="shortcut icon">
             <script type="text/javascript" src="js/jquery-1.8.0.min.js" ></script>
             <script type="text/javascript" src="js/main.js" ></script>
-            <script type="text/javascript" src="js/article.js" ></script>
             <script type="text/javascript" src="js/ajax.js" ></script>
             <script type="text/javascript" src="js/ready.js" ></script>
+            <script type="text/javascript" src="js/Article.js" ></script>
+            <script type="text/javascript" src="js/ShopingCard.js" ></script>
+            <script type="text/javascript" src="js/Customer.js" ></script>
         </head>
         <body>
             <header>
@@ -49,9 +51,9 @@
                         <p><label for="givenname" >givenname</label></p>
                         <p><input type="text" id="givenname" name="givenname"/></p>
                         <p><label for="street" >street</label></p>
-                        <p><input type="text" id="street" name="street"/><input type="text" id="nr" name="nr" size="4"/></p>
+                        <p><input type="text" id="street" name="street"/><input type="text" id="nr" name="nr" maxlength="4" size="4" /></p>
                         <p><label for="zip" >zip</label></p>
-                        <p><input type="text" id="zip" name="zip"/></p>
+                        <p><input type="text" id="zip" name="zip" maxlength="5" size="5" /></p>
                         <p><label for="registerEmail" >email</label></p>
                         <p><input type="text" id="registerEmail" name="registerEmail"/></p>
                         <p><label for="validEmail" >email validation</label></p>
@@ -62,7 +64,7 @@
                         <p><input type="password" id="validPassword" name="validPassword"/></p>
                         <p><label for="addition" >addition</label></p>
                         <p><textarea id="addition"></textarea></p>
-                        <p><input id="registerButton" type="button" value="register" onclick="Customer.create();" /></p>
+                        <p><input id="registerButton" type="button" value="register" onclick="Customer.register();" /></p>
                     </div>
                 </div>
             </header>
