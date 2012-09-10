@@ -80,6 +80,9 @@
                 holeKunde($_POST['id']);
             }
             exit();
+        case 'holeRolle':
+            holeRolle();
+            exit();
         case 'holeAlleKunden':
             holeAlleKunden();
             exit();
