@@ -143,6 +143,8 @@
             err("Email already registered");
         }else{
             $kunde->setPasswort(crypt($kunde->getPasswort(), $salz)); //passwort verschluesseln
+            date_default_timezone_set('Europe/Berlin');
+            $kunde->setRegistriertseit(date("Y-m-d H:i:s", time()));
             $_SESSION['model']->erstelleKunde($kunde);
             echo json_encode(array("success" => "success"));
         }
