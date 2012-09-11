@@ -9,12 +9,12 @@
             <script type="text/javascript" src="js/jquery-1.8.1.min.js" ></script>
             <script type="text/javascript" src="js/jquery-ui-autocomplete-1.8.23.min.js" ></script>
             <script type="text/javascript" src="js/main.js" ></script>
-            <script type="text/javascript" src="js/ajax.js" ></script>
-            <script type="text/javascript" src="js/ready.js" ></script>
             <script type="text/javascript" src="js/Article.js" ></script>
             <script type="text/javascript" src="js/ShopingCard.js" ></script>
             <script type="text/javascript" src="js/Customer.js" ></script>
             <script type="text/javascript" src="js/Payment.js" ></script>
+            <script type="text/javascript" src="js/ajax.js" ></script>
+            <script type="text/javascript" src="js/ready.js" ></script>
             <script type="text/javascript" src="templates/admin/ajax_admin.js" ></script>
         </head>
         <body>
