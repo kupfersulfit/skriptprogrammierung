@@ -1,14 +1,12 @@
-<h1 class="admin">Article management</h1>
-<br>
 <div id="divAddArticle">
 <b>Add new Article:</b>
 
-    <table valign='top' id='add' width='1000' border='0' cellspacing='0' cellpadding='4'>
+    <table id='add' border='0' cellspacing='0' cellpadding='4'>
         <tr valign="top">
             <td bgcolor='#ECECEC'>Name:</td>
             <td><input type="text" name="name" id="newName"></td>
             <td bgcolor='#ECECEC' rowspan="6">Description:</td>
-            <td rowspan="6"><textarea cols="67" rows="12" id="newDescr"></textarea><br></td>
+            <td rowspan="6"><textarea cols="52" rows="12" id="newDescr"></textarea><br></td>
         </tr>
         <tr>
             <td bgcolor='#ECECEC'>Number (in stock):</td>
@@ -32,9 +30,9 @@
         </tr>
     </table>
     
-    <input onclick='createArticle()' type="button" name="add" id="newArticleSubmit" value="Add Article">
+    <input onclick='createArticle();' type="button" name="add" id="newArticleSubmit" value="Add Article">
 <br><br>
 </div>
-<button onclick='getAllArticles()'>Show all articles</button>
+<input type="button" onclick='getAllArticles();'value="Show all articles" />
 <br><br>
 <div id="divArtikelTabelle"></div>

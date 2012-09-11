@@ -1,44 +1,15 @@
 table {
-    border: 1px dashed #c9c9c9;
-    padding: 10px;
+    border-collapse: collapse;
+    width: 790px;
+}
+
+td{
+    border: 1px dashed lightblue;
+    text-align: center;
 }
 
 th {
-    color: cornflowerblue;
-}
-
-#modify {
-    border: 1px solid #FF6600;
-    border-collapse: collapse;
-}
-#modify td{
-    border: 1px dashed lightblue;
-}
-
-#all{
-    border: 1px solid #FF6600;
-    border-collapse: collapse;
-}
-
-#all td{
-    border: 1px dashed lightblue;
-}
-
-#all th {
     border: 1px dashed lightblue;
     background-color:#ECECEC;
-    color: #FF6600;
-}
-
-#add {
-    border: 1px solid #FF6600;
-    border-collapse: collapse;
-}
-#add td {
-    border: 1px dashed lightblue;
-}
-
-h1.admin{
-    text-align: center;
-    color:#FF6600;
+    color: cornflowerblue;
 }

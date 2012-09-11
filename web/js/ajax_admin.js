@@ -7,7 +7,7 @@ function getAlleKunden(){
         },
         dataType : 'json',
         success : function(json){
-            var htmltext = '<table><tr><th>ID</th><th>Name</th><th>Vorame</th><th>Email</th><th>&auml;ndern</th></tr>';
+            var htmltext = '<table cellspacing="0" cellpadding="4"><tr><th>ID</th><th>Name</th><th>Vorame</th><th>Email</th><th>&nbsp;</th></tr>';
             for(var i = 0; i < json.length; i++){
                 var row=json[i];
                 htmltext += '<tr><td>'+ row.id+'</td><td>' + row.name + '</td><td>' + row.vorname + '</td><td>' + row.email + '</td><td><input type="button" name="send" id="a'+row.id +'" value="Change"/></td></tr>';
@@ -128,7 +128,7 @@ function modifyArticle(id){
             var htmltext = '';
             var artikel= new Article();
             artikel.create(json);
-            htmltext += "<table valign='top' id='modify' width='800' border='0' cellspacing='0' cellpadding='4'>";
+            htmltext += "<table id='modify' border='0' cellspacing='0' cellpadding='4'>";
             htmltext += "<tr><td bgcolor='#ECECEC'>ID: </td><td>"+artikel.id+"</td></tr>";
             htmltext += "<tr><td bgcolor='#ECECEC'>Name: </td><td><input type='text' name='name' id='modName' size='70' value='"+artikel.name+"'></td></tr>";
             htmltext += "<tr><td bgcolor='#ECECEC'>Description: </td><td><textarea name='beschreibung' id='modDescr' cols='40' rows='12'>"+artikel.beschreibung+"</textarea></td></tr>";

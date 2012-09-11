@@ -107,7 +107,7 @@ jQuery(document).on('click', "input[name='send']",
 );
 jQuery(document).on('click', "input[name='aendereKunde']", 
     function() {
-        //					alert("Kunde ist ge�ndert worden.");
+//      alert("Kunde ist ge�ndert worden.");
         refreshKunde();
         alert("Kunde ist geändert worden.");
     }
@@ -117,7 +117,24 @@ jQuery(document).on('click', "input[name='loescheKunde']",
     function() {
         deleteKunde();
         alert("Kunde ist gelöscht worden.");
- 	
-
     }	
+);
+    
+$(document).on('click', "input[name='aendern']", 
+    function() {
+        var id = this.id.substr(1,this.id.length);
+        modifyArticle(id);
+    }
+);
+$(document).on('click', "input[name='aendereArtikel']", 
+    function() {
+        var id = this.id.substr(1,this.id.length);
+        sendModifiedArticle(id);
+    }
+);
+$(document).on('click', "input[name='loescheArtikel']", 
+    function() {
+        var id = this.id.substr(1,this.id.length);
+        deleteArticle(id);
+    }
 );
