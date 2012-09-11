@@ -97,6 +97,21 @@
             logout();
             exit();
         case 'erstelleArtikel':
+            if(!isset($_POST['artikel'])){
+                err("'artikel' parameter missing");
+            }else{
+                erstelleArtikel($_POST['artikel']);
+            }
+            exit();
+        case 'aktualisiereArtikel':
+            if(!isset($_POST['artikel'])){
+                err("'artikel' parameter missing");
+            }else{
+                //TODO
+            }
+            exit();
+        case 'bestelle':
+            //
             exit();
         default:   
             echo json_encode(array('error' => 'unknown action'));     
