@@ -3,6 +3,8 @@
     require_once 'model.php';
     require_once 'admin.php';
 
+    $salz = "Die github gui ist doof";
+
     /** Gibt eine Fehlermeldung aus */
     function err($nachricht){
         echo json_encode(array(utf8_encode("error") => utf8_encode("$nachricht")));
@@ -106,8 +108,7 @@
         @return username warenkorb
     */
     function login($email, $passwort){
-        $salz = "Die github gui ist doof";
-
+        global $salz;
         if(!preg_match("/^[^@]+@[^@]{3,}\.[^\.@0-9]{2,}$/", $email)){
             err("invalid email address");
             return;
@@ -129,6 +130,7 @@
     /** Versucht einen neuen Kunden anzulegen 
         @param kunde Kundenobjekt des anzulegenden Kunden*/
     function registriereKunde($kunde){
+        global $salz;
         $kunde = json_decode($kunde, true);
         try{
             $kunde = new Kunde($kunde);
@@ -140,6 +142,7 @@
         if($_SESSION['model']->holeKunde($kunde->getEmail()) != null){
             err("Email already registered");
         }else{
+            $kunde->setPasswort(crypt($kunde->getPasswort(), $salz)); //passwort verschluesseln
             $_SESSION['model']->erstelleKunde($kunde);
             echo json_encode(array("success" => "success"));
         }
@@ -231,6 +234,7 @@
 
     /** Gibt die Rolle des aktuell angemeldeten Nutzers aus */
     function istAdmin(){
+        global $adminEmails;
         $angemeldeterNutzer = $_SESSION['kunde']->getEmail();
         if(in_array($angemeldeterNutzer, $adminEmails)){
             return true;
