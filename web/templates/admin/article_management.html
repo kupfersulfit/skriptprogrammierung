@@ -1,0 +1,72 @@
+<html>
+        <head>
+            <title>st@pleware</title>
+            <link type="text/css" rel="stylesheet" href="style_admin.css" />
+            <script type="text/javascript" src="../../js/jquery-1.8.0.min.js" ></script>
+            <script type="text/javascript" src="ajax_admin2.js" ></script>
+            <script type="text/javascript" src="article.js" ></script>
+            <script type="text/javascript">
+                $(document).on('click', "input[name='aendern']", 
+                    function() {
+                        var id = this.id.substr(1,this.id.length);
+                        modifyArticle(id);
+                        
+				});
+                $(document).on('click', "input[name='aendereArtikel']", 
+                    function() {
+                        var id = this.id.substr(1,this.id.length);
+                        sendModifiedArticle(id);
+				});
+                $(document).on('click', "input[name='loescheArtikel']", 
+                    function() {
+                        var id = this.id.substr(1,this.id.length);
+                        deleteArticle(id);
+				});
+            </script>
+        </head>
+        <body>
+        
+<br>
+<h1 class="admin">Article management</h1>
+<br>
+<div id="divAddArticle">
+<b>Add new Article:</b>
+
+    <table valign='top' id='add' width='1000' border='0' cellspacing='0' cellpadding='4'>
+        <tr valign="top">
+            <td bgcolor='#ECECEC'>Name:</td>
+            <td><input type="text" name="name" id="newName"></td>
+            <td bgcolor='#ECECEC' rowspan="6">Description:</td>
+            <td rowspan="6"><textarea cols="67" rows="12" id="newDescr"></textarea><br></td>
+        </tr>
+        <tr>
+            <td bgcolor='#ECECEC'>Number (in stock):</td>
+            <td><input type="text" name="anzahl" id="newNr"></td>
+        </tr>
+        <tr>
+            <td bgcolor='#ECECEC'>Category ID:</td>
+            <td><input type="text" name="kategorie" id="newCat"></td>
+        </tr>
+        <tr>
+            <td bgcolor='#ECECEC'>Price:</td>
+            <td><input type="text" name="preis" id="newPrice"></td>
+        </tr>
+        <tr>
+            <td bgcolor='#ECECEC'>Image source:</td>
+            <td><input type="text" name="bildpfad" id="newImg"></td>
+        </tr>        
+        <tr>
+            <td bgcolor='#ECECEC'>Publish now:</td>
+            <td><input type="checkbox" name="veroeffentlicht" id="newPubl"></td>
+        </tr>
+    </table>
+    
+    <input onclick='createArticle()' type="button" name="add" id="newArticleSubmit" value="Add Article">
+<br><br>
+</div>
+<button onclick='getAllArticles()'>Show all articles</button>
+<br><br>
+<div id="divArtikelTabelle"></div>
+
+</body>
+</html>

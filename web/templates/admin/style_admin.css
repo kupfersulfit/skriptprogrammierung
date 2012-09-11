@@ -4,8 +4,41 @@ body {
     font-size: 16px;
     font-weight: normal;
     width: 1024px;
-/*    position: absolute;
-    left: 50%;
-    margin-left: -512px;*/
     margin: auto;
+}
+
+#modify {
+    border: 1px solid #FF6600;
+    border-collapse: collapse;
+}
+#modify td{
+    border: 1px dashed lightblue;
+}
+
+#all{
+    border: 1px solid #FF6600;
+    border-collapse: collapse;
+}
+
+#all td{
+    border: 1px dashed lightblue;
+}
+
+#all th {
+    border: 1px dashed lightblue;
+    background-color:#ECECEC;
+    color: #FF6600;
+}
+
+#add {
+    border: 1px solid #FF6600;
+    border-collapse: collapse;
+}
+#add td {
+    border: 1px dashed lightblue;
+}
+
+h1.admin{
+    text-align: center;
+    color:#FF6600;
 }
