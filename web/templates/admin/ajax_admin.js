@@ -73,51 +73,131 @@ function refreshKunde(json){
 	});
 }
 
-function getAlleArtikel(){
+function getAllArticles(){
+	jQuery.ajax({
+		type : 'GET',
+		url : '../../lib/controller.php',
+		data : {
+			'action' : 'zeigeArtikel'
+		},
+		dataType : 'json',
+		success : function(json){
+            var htmltext = "<table id='all' border='0' width='1000' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Name</th><th></th></tr>";
+			for(var i = 0; i < json.length; i++){
+				var row=json[i];
+                htmltext+= '<tr><td>'+row.id+'</td><td>' + row.name + '</td><td><input type="button" name="aendern" id="a'+row.id +'" value="change"/></td></tr>';
+			};
+            htmltext += '</table><br><br>';
+            $("#divArtikelTabelle").html(htmltext);
+		},
+		error : function (json) {
+        
+		}
+	});
+}
+
+
+function modifyArticle(id){
+	jQuery.ajax({
+		type : 'GET',
+		url : '../../lib/controller.php',
+		data : {
+			'action' : 'holeArtikel', 
+            'id' : id
+		},
+		dataType : 'json',
+		success : function(json){
+            var htmltext = '';
+            var artikel= new Article();
+            artikel.create(json);
+            htmltext += "<table valign='top' id='modify' width='800' border='0' cellspacing='0' cellpadding='4'>";
+            htmltext += "<tr><td bgcolor='#ECECEC'>ID: </td><td>"+artikel.id+"</td></tr>";
+            htmltext += "<tr><td bgcolor='#ECECEC'>Name: </td><td><input type='text' name='name' id='modName' size='70' value='"+artikel.name+"'></td></tr>";
+            htmltext += "<tr><td bgcolor='#ECECEC'>Description: </td><td><textarea name='beschreibung' id='modDescr' cols='40' rows='12'>"+artikel.beschreibung+"</textarea></td></tr>";
+            htmltext += "<tr><td bgcolor='#ECECEC'>Published: </td><td><input type='checkbox' name='veroeffentlicht' id='modPubl'";
+            if(artikel.veroeffentlicht==1){
+                 htmltext += " checked ";
+            }
+            htmltext +="></td></tr>";
+            htmltext += "<tr><td bgcolor='#ECECEC'>Price: </td><td><input type='text' name='preis' id='modPrice' size='40' value='"+artikel.preis+"'></td></tr>";
+            htmltext += "<tr><td bgcolor='#ECECEC'>Category ID: </td><td><input type='text' name='kategorie' id='modCat' size='40' value='"+artikel.kategoryId+"'></td></tr>";
+            htmltext += "<tr><td bgcolor='#ECECEC'>Image path: </td><td><input type='text' name='bildpfad' id='modImg' size='40' value='"+artikel.bildpfad+"'></td></tr>";
+            htmltext += "<tr><td bgcolor='#ECECEC'>Number(in stock): </td><td><input type='text' name='verfuegbar' id='modNr' size='40' value='"+artikel.verfuegbar+"'></td></tr>";
+            htmltext += "</table>";
+            htmltext += "<input type='button' name='aendereArtikel' id='a"+artikel.id+"' value='ok'>";
+            htmltext += "<input type='button' name='loescheArtikel' id='a"+artikel.id+"' value='delete article'><br><br>";
+            $("#divArtikelTabelle").html(htmltext);
+            $("#divAddArticle").hide();
+		},
+		error : function (json) {
+        
+		}
+	});
+}
+
+function sendModifiedArticle(id){
+	jQuery.ajax({
+		type : 'POST',
+		url : '../../lib/controller.php',
+		data : {
+			'action' : 'aktualisiereArtikel',
+            "id": id,
+            "name": $('#modName'),
+            "beschreibung":$('#modDescr'),
+            "bildpfad":$('#modImg'),
+            "veroeffentlicht":$('#modPubl'),
+            "kategorieId":$('#modCat'),
+            "preis":$('#modPrice'),
+            "verfuegbar":$('#modNr')
+		},
+		dataType : 'json',
+		success : function(json){
+
+		},
+		error : function (json) {
+        
+		}
+	});
+}
+
+function createArticle() {
     jQuery.ajax({
         type : 'GET',
-        url : '../../lib/controller.php',
+        url : '../../lib/controller.php', 
         data : {
-            'action' : 'zeigeArtikel'
+            'action' : 'erstelleArtikel',
+            "name": $('#newName'),
+            "beschreibung":$('#newDescr'),
+            "bildpfad":$('#newImg'),
+            "veroeffentlicht":$("#newPubl").is(":checked"),
+            "kategorieId":$('#newCat'),
+            "preis":$('#newPrice'),
+            "verfuegbar":$('#newNr')
         },
         dataType : 'json',
-        success : function(json){
-            var htmltext = '<table><tr><th>ID</th><th>Name</th><th></th></tr>';
-            for(var i = 0; i < json.length; i++){
-                var row=json[i];
-                htmltext+= '<tr><td>'+row.id+'</td><td>' + row.name + '</td><td><input type="button" name="aendern" id="a'+row.id +'" value="change"/></td></tr>';
-            };
-            htmltext += '</table>';
-            $("#divArtikelTabelle").html(htmltext);
+        success : function (json) {
+            
         },
         error : function (json) {
-       
+        
         }
     });
 }
 
-function getArtikel(id){
+function deleteArticle(id) {
     jQuery.ajax({
-        type : 'GET',
-        url : '../../lib/controller.php',
+        type : 'POST',
+        url : '../../lib/controller.php', 
         data : {
-            'action' : 'holeArtikel', 'id' : id
+            'action' : 'loescheArtikel',
+            "id": id
         },
         dataType : 'json',
-        success : function(json){
-            var htmltext = '';
-            var artikel=json;
-            htmltext += "<table>";
-            htmltext += "<tr><td>Name: </td><td><input type='text' name='name' size='70' value='"+artikel.name+"'></td></tr>";
-            htmltext += "<tr><td>Description: </td><td><textarea name='beschreibung' cols='40' rows='12'>"+artikel.beschreibung+"</textarea></td></tr>";
-            htmltext += "<tr><td>Published: </td><td><input type='text' name='veroeffentlicht' size='40' value='"+artikel.veroeffentlicht+"'></td></tr>";
-            htmltext += "<tr><td>Preis: </td><td><input type='text' name='preis' size='40' value='"+artikel.preis+"'></td></tr>";
-            htmltext += "</table>";
-            $("#divArtikelTabelle").html(htmltext);
-            $("#divAddArticle").hide();
+        success : function (json) {
+            
         },
         error : function (json) {
-       
+        
         }
     });
 }

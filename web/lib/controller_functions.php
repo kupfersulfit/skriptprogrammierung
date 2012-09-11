@@ -3,6 +3,8 @@
     require_once 'model.php';
     require_once 'admin.php';
 
+    $salz = "Die github gui ist doof";
+
     /** Gibt eine Fehlermeldung aus */
     function err($nachricht){
         echo json_encode(array(utf8_encode("error") => utf8_encode("$nachricht")));
@@ -14,12 +16,11 @@
         if(count($artikelArray) == 0){
             err("no existing article");
         }else{
-            for($i = 0; $i < count($artikelArray); $i++){ //convert object to assoc array
+            for($i = 0; $i < count($artikelArray); $i++){ 
                 $kategorie = $artikelArray[$i]->getKategorieId();
-                $kategorie = $_SESSION["model"]->holeKategorie($kategorie);
-                $artikelArray[$i]->setKategorieId($kategorie->getName());
-                //objekt in assoz array umwandeln
-                $artikelArray[$i] = $artikelArray[$i]->assoc();
+                $kategorie = $_SESSION["model"]->holeKategorie($kategorie); //kategorienamen aus der db holen
+                $artikelArray[$i]->setKategorieId($kategorie->getName()); //wird ggf auf null/leerstring gesetzt
+                $artikelArray[$i] = $artikelArray[$i]->assoc(); //objekt in assoz. array umwandeln
             }
             echo json_encode($artikelArray);
         }
@@ -31,12 +32,10 @@
         if(count($artikelArray) == 0){
             err("no existing article");
         }else{
-            for($i = 0; $i < count($artikelArray); $i++){ //convert object to assoc array
-                //kategorienamen aus der db holen und eintragen
+            for($i = 0; $i < count($artikelArray); $i++){
                 $kategorie = $artikelArray[$i]->getKategorieId();
                 $kategorie = $_SESSION["model"]->holeKategorie($kategorie); 
                 $artikelArray[$i]->setKategorieId($kategorie->getName());
-                //objekt in assoz array umwandeln
                 $artikelArray[$i] = $artikelArray[$i]->assoc();
             }
             echo json_encode($artikelArray);
@@ -50,7 +49,7 @@
     function sucheArtikel($suchstring){
         $ergebnis = $_SESSION['model']->sucheArtikel($suchstring); 
         if($ergebnis == null){
-            err("no article '$suchstring' found");
+            err("no article '.$suchstring.' found");
         }else{
             $artikelListe = array();
             foreach($ergebnis as $artikel){
@@ -74,28 +73,33 @@
         @return Warenkorbobjekt mit den korrekten Daten (Preis etc. aus DB)
     */
     function aktualisiereWarenkorb($warenkorb){
-        $korb = json_decode($warenkorb, true); //assoc array erzeugen
-        $korb = new Warenkorb($korb); //warenkorbobjekt erzeugen
-        $artikelListe = $korb->getArtikelFeld(); //hole liste aller artikel im korb
+        $korb = json_decode($warenkorb, true); //assoz array aus json string erzeugen
+        try{
+            $korb = new Warenkorb($korb); //warenkorbobjekt erzeugen
+        }catch(Exception $e){
+            err("some values are invalid");
+            return;
+        }
+        $artikelListe = $korb->getArtikelFeld(); //hole liste aller artikel im neuen korb
         for($i = 0; $i < count($artikelListe); $i++){
             $artikelId = $artikelListe[$i]->getId();
-            $anzahl = $artikelListe[$i]->getVerfuegbar(); //hier steht bei artikeln im warenkorb die anzahl der bestellten artikel (in der db anzahl verfuegbare)
-            $art = $_SESSION['model']->holeArtikel($artikelId); //hole korrekten daten aus der db 
+            $anzahl = $artikelListe[$i]->getVerfuegbar(); //merken zum uebernehmen, hier steht bei artikeln im warenkorb die anzahl der bestellten artikel (in der db anzahl verfuegbare)
+            $art = $_SESSION['model']->holeArtikel($artikelId); //hole korrekten daten aus der db falls die per js bekommenen falsch sein sollten
             if($art == null){
-                err("unknown article");
+                err("unknown article id");
                 return;
             }else if(!$art->getVeroeffentlicht()){
-                err("article not available");
+                err("article not published");
             }else if($anzahl > $art->getVerfuegbar()){ //teste ob noch genug artikel auf lager
                 err("not enough ".$art->getName()." available");
                 return;
             }
-            $artikelListe[$i] = $_SESSION['model']->holeArtikel($artikelId); //ersetze artikeldetails um zb preisfaelschungen zu verhindern
+            $artikelListe[$i] = $art; //ersetze artikeldetails um zb preisfaelschungen zu verhindern
             $artikelListe[$i]->setVerfuegbar((int) $anzahl);
         }
-        $korb->setArtikelFeld($artikelListe); //update warenkorb mit den 'korrekten' daten
-        $_SESSION['korb'] = $korb;
-        echo json_encode($_SESSION['korb']->assoc());
+        $korb->setArtikelFeld($artikelListe); //warenkorb objekt mit den 'korrekten' daten updaten
+        $_SESSION['korb'] = $korb; //neuen warenkorb in der session speichern
+        echo json_encode($_SESSION['korb']->assoc()); //und zurueckschicken
     }
 
     /** Testet den gegebenen Login und ersetzt ggf. die Sessionvariable "Kunde"
@@ -104,8 +108,7 @@
         @return username warenkorb
     */
     function login($email, $passwort){
-        $salz = "Die github gui ist doof";
-
+        global $salz;
         if(!preg_match("/^[^@]+@[^@]{3,}\.[^\.@0-9]{2,}$/", $email)){
             err("invalid email address");
             return;
@@ -127,6 +130,7 @@
     /** Versucht einen neuen Kunden anzulegen 
         @param kunde Kundenobjekt des anzulegenden Kunden*/
     function registriereKunde($kunde){
+        global $salz;
         $kunde = json_decode($kunde, true);
         try{
             $kunde = new Kunde($kunde);
@@ -138,7 +142,9 @@
         if($_SESSION['model']->holeKunde($kunde->getEmail()) != null){
             err("Email already registered");
         }else{
+            $kunde->setPasswort(crypt($kunde->getPasswort(), $salz)); //passwort verschluesseln
             $_SESSION['model']->erstelleKunde($kunde);
+            echo json_encode(array("success" => "success"));
         }
     }
 
@@ -149,9 +155,12 @@
         echo json_encode($_SESSION['kunde']->assoc()); 
     }
     
-    /**  */
+    /** Gibt die Daten eines bestimmten Kunden aus */
     function holeKunde($id){
-        //TODO darf nur der Admin !!!!!!!!!!!!!!!
+        if(!istAdmin()){
+            err('only admins can see customer details');
+            return;
+        }
         $kunde = $_SESSION['model']->holeKundeMitId($id);
         if($kunde == null){
             err("no customer found");
@@ -172,7 +181,10 @@
 
     /** Gibt ein Array aller Kunden zur&uuml;ck */
     function holeAlleKunden(){
-        //TODO nur dem admin erlauben !!!!!!!!!!!!!!!!!!!!!!!!
+        if(!istAdmin()){
+            err('only admins can see all customers');
+            return;
+        }
         $kunden = $_SESSION['model']->holeAlleKunden();
         for($i = 0; $i < count($kunden); $i++){
             $kunden[$i] = $kunden[$i]->assoc();
@@ -198,6 +210,20 @@
         @param artikel der einzutragende Artikel
     */
     function erstelleArtikel($artikel){
+        if(!istAdmin()){
+            err('only admins can create articles');
+            return;
+        }
+        $artikel = json_decode($artikel, true);
+        try{
+            $artikel = new Artikel($artikel);
+        }catch(Exception $e){
+            err($e->getMessage());
+            return;
+        }
+        if($_SESSION['model']->erstelleArtikel($artikel) == false){
+            err('article not created');
+        }
     }
 
     /** L&ouml;scht einen Artikel aus der Datenbank
@@ -208,6 +234,7 @@
 
     /** Gibt die Rolle des aktuell angemeldeten Nutzers aus */
     function istAdmin(){
+        global $adminEmails;
         $angemeldeterNutzer = $_SESSION['kunde']->getEmail();
         if(in_array($angemeldeterNutzer, $adminEmails)){
             return true;
