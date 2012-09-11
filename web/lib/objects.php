@@ -130,6 +130,9 @@ class Kunde {
 	public function getRegistriertseit(){
 		return $this->registriertseit;
 	}
+    public function setRegistriertseit($seit){
+        $this->registriertseit = $seit;
+    }
 }
 
 /**
