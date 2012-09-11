@@ -55,8 +55,6 @@
                 err("'email' parameter missing");
             }else if(!isset($_POST['passwort'])){
                 err("'passwort' parameter missing");
-            }else if($_SESSION['kunde']->getEmail() != ""){
-                err("already logged in");
             }else{
                 login($_POST['email'], $_POST['passwort']);
             }
@@ -78,6 +76,13 @@
                 err('invalid id format');
             }else{
                 holeKunde($_POST['id']);
+            }
+            exit();
+        case 'loescheKunde':
+            if(!isset($_POST['kunde'])){
+                err("'kunde' parameter missing");
+            }else{
+                loescheKunde($_POST['kunde']);
             }
             exit();
         case 'holeRolle':

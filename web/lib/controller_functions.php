@@ -3,8 +3,6 @@
     require_once 'model.php';
     require_once 'admin.php';
 
-    $salz = "Die github gui ist doof";
-
     /** Gibt eine Fehlermeldung aus */
     function err($nachricht){
         echo json_encode(array(utf8_encode("error") => utf8_encode("$nachricht")));
@@ -108,15 +106,17 @@
         @return username warenkorb
     */
     function login($email, $passwort){
-        global $salz;
-        if(!preg_match("/^[^@]+@[^@]{3,}\.[^\.@0-9]{2,}$/", $email)){
+        if($_SESSION['kunde']->getEmail() != ""){
+            err("already logged in");
+            return;
+        }else if(!preg_match("/^[^@]+@[^@]{3,}\.[^\.@0-9]{2,}$/", $email)){
             err("invalid email address");
             return;
         }
-        $hash = crypt($passwort, $salz);
+        $hash = crypt($passwort, $email);
         if($_SESSION['model']->pruefeLogin($email, $hash) == true){
             $_SESSION['kunde'] = $_SESSION['model']->holeKunde($email);
-            $_SESSION['kunde']->setPassword(" ");
+            $_SESSION['kunde']->setPasswort(" ");
             holeAngemeldetenKunde(); //kundendaten ausgeben
         }else{
             err("login failed");
@@ -131,7 +131,6 @@
     /** Versucht einen neuen Kunden anzulegen 
         @param kunde Kundenobjekt des anzulegenden Kunden*/
     function registriereKunde($kunde){
-        global $salz;
         $kunde = json_decode($kunde, true);
         try{
             $kunde = new Kunde($kunde);
@@ -143,12 +142,23 @@
         if($_SESSION['model']->holeKunde($kunde->getEmail()) != null){
             err("Email already registered");
         }else{
-            $kunde->setPasswort(crypt($kunde->getPasswort(), $salz)); //passwort verschluesseln
+            $kunde->setPasswort(crypt($kunde->getPasswort(), $kunde->getEmail())); //passwort verschluesseln
             date_default_timezone_set('Europe/Berlin');
             $kunde->setRegistriertseit(date("Y-m-d H:i:s", time()));
             $_SESSION['model']->erstelleKunde($kunde);
             echo json_encode(array("success" => "success"));
         }
+    }
+
+    /** Loescht den angegebenen Kunden 
+        @param kunde der zu l&ouml;schende Kunde 
+    */
+    function loescheKunde($kunde){
+        if(!istAdmin()){
+            err("only an admin can delete customers");
+            return;
+        }
+        //TODO kunde in db loeschen
     }
 
     /** Gibt das aktuelle Kundenobjekt zur&uuml;ck 
