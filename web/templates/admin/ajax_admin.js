@@ -62,11 +62,11 @@ function refreshKunde(json){
 		url : '../../lib/controller.php',
 		data : {
 			'action' : 'aktualisiereKunde',
-			'kunde' : Customer 
+			'kunde' : Customer.getJSONstring()
 		},
 		dataType : 'json',
 		success : function(json){
-			Customer.getJSONstring();
+			//Customer.getJSONstring();
 		},
 		error : function (json) {
         
@@ -77,10 +77,10 @@ function refreshKunde(json){
 function deleteKunde(json){
 	jQuery.ajax({
 		type : 'GET',
-		url : '../../lib/model.php',
+		url : '../../lib/controller.php',
 		data : {
 			'action' : 'loescheKunde',
-			'kunde' : Customer 
+			'kunde' : Customer.getJSONstring()
 		},
 		dataType : 'json',
 		success : function(json){
