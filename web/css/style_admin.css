@@ -1,10 +1,10 @@
-body {
-    color: black;
-    font-family: Verdana, Arial, sans-serif;
-    font-size: 16px;
-    font-weight: normal;
-    width: 1024px;
-    margin: auto;
+table {
+    border: 1px dashed #c9c9c9;
+    padding: 10px;
+}
+
+th {
+    color: cornflowerblue;
 }
 
 #modify {
