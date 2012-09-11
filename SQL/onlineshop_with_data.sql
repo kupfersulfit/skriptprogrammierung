@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 3.4.5
+-- version 3.5.2
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Erstellungszeit: 07. Sep 2012 um 16:32
--- Server Version: 5.5.16
--- PHP-Version: 5.3.8
+-- Erstellungszeit: 11. Sep 2012 um 23:32
+-- Server Version: 5.5.25a
+-- PHP-Version: 5.4.4
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -147,7 +147,7 @@ CREATE TABLE IF NOT EXISTS `kunden` (
   `passwort` varchar(127) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `registriertseit` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=11 ;
 
 --
 -- Daten für Tabelle `kunden`
@@ -155,7 +155,10 @@ CREATE TABLE IF NOT EXISTS `kunden` (
 
 INSERT INTO `kunden` (`id`, `name`, `vorname`, `strasse`, `plz`, `zusatz`, `email`, `passwort`, `registriertseit`) VALUES
 (1, 'Josef', 'Ackermann', 'Seestr. 23', 83128, '', 'josef.ackermann@lionsclub.com', 'porsche', '2012-09-05 11:11:11'),
-(2, 'Springer', 'Friede', 'Fichtenweg 23', 12529, '', 'friede.springer@springergroup.com', 'maybach', '2012-09-05 11:15:22');
+(2, 'Springer', 'Friede', 'Fichtenweg 23', 12529, '', 'friede.springer@springergroup.com', 'maybach', '2012-09-05 11:15:22'),
+(9, '''test''', '''test''', '''test 12''', 00000, '''''', '''test@test.de''', '''tester''', '0000-00-00 00:00:00'),
+(8, '''test''', '''test''', '''test''', 00000, '''''', '''test@test.de''', '''tester''', '0000-00-00 00:00:00'),
+(10, 'Jesus', 'Nazareth', 'Am Kreuz  0', 12345, 'tod?', 'postvon@oben.com', 'po6UGhZRHlj12', '2012-09-11 21:21:39');
 
 -- --------------------------------------------------------
 
