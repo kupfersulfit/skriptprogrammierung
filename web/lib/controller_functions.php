@@ -226,7 +226,7 @@
             err($e->getMessage());
             return;
         }
-        //TODO aktualisiereKunde
+        $_SESSION['model']->aktualisiereKunde($kunde);
     }
 
     /** Tr&auml;gt einen neuen Artikel in der Datenbank ein 
@@ -284,7 +284,7 @@
         }catch(Exception $e){
             err($e->getMessage());
         }
-        //TODO aktualisiereArtikel
+        $_SESSION['model']->aktualisiereArtikel($artikel);
     }
 
     /** Gibt die Rolle des aktuell angemeldeten Nutzers aus */

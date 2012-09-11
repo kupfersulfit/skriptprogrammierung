@@ -196,7 +196,7 @@ class DatabaseModel {
      * @param String $email
      *  Email des gewünschten Kundens
      */
-    public function aktualisiereKunde($email, $aktuellerKunde) {
+    public function aktualisiereKunde($aktuellerKunde) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
             $query = "UPDATE kunden SET 
@@ -316,7 +316,7 @@ class DatabaseModel {
      * @param String $email
      *  Email des gewünschten Kundens
      */
-    public function aktualisiereArtikel($email, $aktuellerArtikel) {
+    public function aktualisiereArtikel($aktuellerArtikel) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
             $query = "UPDATE artikel SET 
