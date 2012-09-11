@@ -46,7 +46,7 @@ function getKunde(id){
             $("#tabelle").html(htmltext);
 			
             //			console.debug(json);
-            Customer.create(json.id, json.name, json.vorname, json.strasse, json.plz, json.zusatz, json.email);
+            Customer.create(json.id, json.name, json.vorname, json.strasse, json.plz, json.zusatz, json.email, '');
         },
         error : function (json) {
 			
