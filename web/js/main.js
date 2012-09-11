@@ -104,10 +104,19 @@ jQuery(document).on('click', "input[name='send']",
         getKunde(id);
     }
 );
-jQuery(document).on('click', "input[name='kundenSend']", 
+jQuery(document).on('click', "input[name='aendereKunde']", 
     function() {
         //					alert("Kunde ist ge�ndert worden.");
         refreshKunde();
-        alert("Kunde ist ge�ndert worden.");
+        alert("Kunde ist geändert worden.");
     }
+);
+    
+jQuery(document).on('click', "input[name='loescheKunde']", 
+    function() {
+        deleteKunde();
+        alert("Kunde ist gelöscht worden.");
+ 	
+
+    }	
 );
