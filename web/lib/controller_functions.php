@@ -159,7 +159,7 @@
             return;
         }
         try{
-            $kunde = json_decode($kunde, true);
+            $kunde = json_decode($kunde, true); //nicht direkt auf das array element zugreiffen, um die fehlerpruefung mitzunehmen
         }catch(Exception $e){
             err($e->getMessage());
             return;
@@ -226,7 +226,7 @@
             err($e->getMessage());
             return;
         }
-        //TODO daten aktualisieren
+        //TODO aktualisiereKunde
     }
 
     /** Tr&auml;gt einen neuen Artikel in der Datenbank ein 
@@ -257,7 +257,17 @@
             err("only admins can delete articles");
             return;
         }
-        //TODO
+        $artikel = json_decode($artikel, true);
+        try{
+            $artikel = new Artikel($artikel); //um die fehlerpruefung mitzunehmen
+        }catch(Exception $e){
+            err($e->getMessage());
+        }
+        if($_SESSION['model']->loescheArtikel($artikel->getId()) == null){
+            err("article not deleted");
+        }else{
+            echo json_encode(array("success" => "success"));
+        }
     }
 
     /** Aktualisiert Artikeldaten in der DB 
@@ -268,7 +278,13 @@
             err("only admins can update articles");
             return;
         }
-        //TODO
+        $artikel = json_decode($artikel, true);
+        try{
+            $artikel = new Artikel($artikel);
+        }catch(Exception $e){
+            err($e->getMessage());
+        }
+        //TODO aktualisiereArtikel
     }
 
     /** Gibt die Rolle des aktuell angemeldeten Nutzers aus */
