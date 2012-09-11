@@ -116,6 +116,7 @@
         $hash = crypt($passwort, $salz);
         if($_SESSION['model']->pruefeLogin($email, $hash) == true){
             $_SESSION['kunde'] = $_SESSION['model']->holeKunde($email);
+            $_SESSION['kunde']->setPassword(" ");
             holeAngemeldetenKunde(); //kundendaten ausgeben
         }else{
             err("login failed");
