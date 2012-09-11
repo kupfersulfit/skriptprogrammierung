@@ -65,7 +65,7 @@ function refreshKunde(json){
 		},
 		dataType : 'json',
 		success : function(json){
-			
+			Customer.getJSONstring();
 		},
 		error : function (json) {
         
