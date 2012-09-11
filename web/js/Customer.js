@@ -94,14 +94,14 @@ var Customer = {
         this.passwort = passwort;
     },
     getJSONstring : function() {
-        var JSONstr = '[';
+        var JSONstr = '{';
         for (var key in Customer) { 
             if (typeof Customer[key] != 'function') {
                 JSONstr += '"' + key + '":"' + Customer[key] + '",';
             }
         }
         JSONstr = JSONstr.substring(0, (JSONstr.length -1));
-        JSONstr += ']';
+        JSONstr += '}';
         return JSONstr;
     }
 }
