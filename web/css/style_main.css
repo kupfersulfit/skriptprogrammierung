@@ -4,24 +4,38 @@ body {
     font-size: 16px;
     font-weight: normal;
     width: 1024px;
-    /*    position: absolute;
-        left: 50%;
-        margin-left: -512px;*/
     margin: auto;
+    cursor: default;
 }
 
 input {
     border-radius: 2px;
     border-style: solid;
     border-width: 1px;
+    background-color: #E0F1FF;
 }
 
+input[type=button] {
+    height: 40px;
+    min-width: 100px;
+    color: #FFFFFF;
+    background-color: cornflowerblue;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    border: 0px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
 header {
-    border-bottom: 2px solid lightblue;
+    border-bottom: 1px solid #c9c9c9;
     position: relative;
     width: 1024px;
     height: 100px;
-    background-image: url('../media/logo.png');
+    background-image: url('../media/logo_trans_2.png');
 }
 
 .clear {
@@ -35,6 +49,15 @@ header {
     width: 1024px;
 }
 
+#left {
+    width: 796px;
+    float: left;
+    border-right: 1px solid #c9c9c9;
+    margin-top: 1px;
+    margin-bottom: 20px;
+    min-height: 493px;
+}
+/* --- nav --- */
 #menu ul {
     padding: 0;
 }
@@ -44,7 +67,7 @@ header {
     float: right;
     list-style: none;
     margin-left: 14px;
-    background-color: #dddddd;
+    background-color: #EFEFEF;
     padding: 3px;
     height: 70px;
     border-radius: 5px 5px 0 0;
@@ -53,42 +76,106 @@ header {
 }
 
 #menu ul li:hover {
-    background-color: lightblue;
+    background-color: #E0F1FF;
+    margin-top: 24px;
+    border: 1px solid #c9c9c9;
+    border-bottom: 0;
 }
 
-.active {
-    background-color: lightblue !important;
+#menu .active {
+    background-color: #FFFFFF;
+    margin-top: 24px;
+    border: 1px solid #c9c9c9;
+    border-bottom: 0;
 }
 
 #container {
     padding: 10px;
-    background-color: lightblue;
+    background-color: #FFFFFF;
     position: absolute;
     right: 0px;
-    bottom: -168px;
+    bottom: -166px;
     display: none;
-    border-radius: 5px 0 5px 5px;
-    color: #FFFFFF;
+    border: 1px solid #c9c9c9;
+    border-top: 0;
+    border-radius: 2px 0 2px 2px;
+    color: cornflowerblue;
+    box-shadow: 0px 10px 5px #888;
+    z-index: 2;
 }
 
+/* --- search --- */
+#search_container {
+    height: 60px;
+    width: 673px;
+    margin-left: 51px;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #c9c9c9;
+    border-radius: 3px;
+    color: cornflowerblue;
+}
+
+#search {
+    line-height: 40px;
+    height: 40px;
+    width: 549px;
+    padding: 0 10px;
+    margin-right: 20px;
+    border-radius: 3px;
+    color: #c9c9c9;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#searchButton {
+    margin-top: -6px;
+}
+
+#suggestions ul{
+    color: #c9c9c9;
+    width: 537px !important;
+    position: absolute;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    border: 1px solid #c9c9c9;
+    border-radius: 0 0 2px 2px;
+    box-shadow: 0px 10px 5px #888;
+    padding: 5px !important;
+    z-index: 2 !important;
+}
+
+#suggestions ul li {
+    display: block;
+    list-style: none;
+}
+
+#suggestions ul li a{
+    padding: 5px 20px;
+    display: block;
+    border-radius: 3px;
+}
+
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active{
+    background-color: #E0F1FF;
+}
+
+/* --- login/register --- */
 #container label {
     line-height: 21px;
 }
 
 #loginContainer {
-    height: 110px;
+    height: 115px;
 }
 
 #loginButton {
-    color: darkgray;
-    border: 0;
-    padding: 3px;
-    border-radius: 3px;
+    width: 100px;
 }
 
 #loginContainer p {
     width: 276px;
-
 }
 
 #loginContainer p input {
@@ -99,22 +186,28 @@ header {
 #registerContainer {
     display: none;
     height: 524px;
+    margin-top: 14px;
 }
 
 #register_login {
-    height: 30px;
-    background-color: #F0F0F0;
-    vertical-align: middle;
-    text-align: center;
-    border-radius: 3px;
+    height: 40px;
+    background-color: cornflowerblue;
     background-image: url('../media/register_login.png');
     background-position: 0 0;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    border: 0px;
+    border-radius: 6px;
     cursor: pointer;
-    color: darkgray;
+    line-height: 40px;
 }
 
-#registerLink {
-    line-height: 30px;
+#addition {
+    border: 1px solid #F0F0F0;
+    border-radius: 2px;
 }
 
 #registerContainer p {
@@ -151,44 +244,17 @@ header {
 
 #registerContainer p #registerButton {
     border: 0;
-    border-radius: 3px;
     margin-top: 10px;
-    padding: 3px;
-}
-
-#left {
-    width: 796px;
-    float: left;
-    border-left: 1px solid lightblue;
-    border-bottom: 1px solid lightblue;
-    border-right: 1px solid lightblue;
-    margin-bottom: 20px;
-    background-color: #E8F6FF;
-}
-
-#shopping_cart {
-    border: 1px solid lightblue;
-    border-top: 0;
-    width: 224px;
-    float: right;
-    background-color: #efefef;
-}
-
-#basket {
-    min-height: 400px;
-    padding: 5px;
-    border-bottom: 1px solid lightblue;
+    color: #FFFFFF;
 }
 
 /* --- Article --- */
 
 #articleList {
-    padding-top: 41px;
-    /*    height: 797px;
-        overflow: scroll;*/
+    padding-top: 10px;
 }
 
-.arcticle {
+.article {
     background-color: #efefef;
     width: 310px;
     height: 558px;
@@ -214,7 +280,7 @@ header {
     line-height: 40px;
     font-size: 20px;
     cursor: help;
-    color: #FF6600;
+    color: cornflowerblue;
     float: left;
     width: 270px;
 }
@@ -274,11 +340,12 @@ header {
 }
 
 .articleDescription {
+    z-index: 1;
     pointer: help;
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 5px;
-    border-radius: 3px;
+    border-radius: 2px;
     background-color: #FFFFFF;
     width: 298px;
     border: 1px solid #c9c9c9;
@@ -291,6 +358,20 @@ header {
 }
 
 /* --- ShopingCard --- */
+#shoping_cart {
+    border: 1px solid #c9c9c9;
+    border-left: 0;
+    border-top: 0;
+    margin-top: 1px;
+    width: 224px;
+    float: right;
+    /*    background-color: #efefef;*/
+}
+
+#basket {
+    min-height: 400px;
+    padding: 5px;
+}
 
 .articleAtCard {
     margin-bottom: 10px;
@@ -363,24 +444,27 @@ header {
     background-color: #FFFFFF;
     border-radius: 2px;
     margin: 5px;
+    border-bottom: 1px solid #c9c9c9;
+    border-top: 1px solid #c9c9c9;
 }
 
 #shoping_cart_price span {
     color: #FF6600;
+    line-height: 30px;
 }
 
 #buyButton {
-    background-image: url('../media/buy.png');
-    height: 50px;
-    width: 222px;
-    text-align: center;
-    color: cornflowerblue;
-    font-size: 16px;
-    border: 1px solid #c9c9c9;
-    background-color: #FFFFFF;
-    margin-left: 1px;
-    margin-bottom: 1px;
-    cursor: pointer;
+    /*    background-image: url('../media/buy.png');
+        height: 50px;*/
+    width: 212px;
+    margin-bottom: 7px;
+    margin-left: 5px;
+    /*    text-align: center;
+        color: cornflowerblue;
+        font-size: 16px;
+        border: 1px solid #c9c9c9;
+        background-color: #FFFFFF;
+        cursor: pointer;*/
 }
 
 /* --- Payment --- */
@@ -388,20 +472,36 @@ header {
     position: absolute;
     top: 170px;
     left: 30px;
-/*    height: 600px;*/
-    width: 800px;
-    border: 1px solid #c9c9c9;
-    border-radius: 2px;
-    box-shadow: 10px 10px 5px #888;
-    background-color: #FFFFFF;
+    /*    height: 600px;*/
+    width: 811px;
     display: none;
+    box-shadow: 10px 10px 5px #888; 
+    border: 1px solid #c9c9c9;
+    border-top: 0;
+    border-left: 0;
+    border-radius:  0 0 2px 2px;
     color: darkgray;
+    z-index: 1;
+}
+
+#payment_content {
+    height: 571px;
+    background-color: #FFFFFF;
+    border-left: 1px solid #c9c9c9;
+    border-radius:  0 0 0 2px;
     padding: 5px;
 }
+
+#payment_top {
+    width: 812px; 
+    height: 23px;
+    background-image: url('../media/payment_top.png');
+}
+
 #payment hr {
-    /* Farbe für Opera und Firefox */
+    /* Farbe fï¿½r Opera und Firefox */
     background-color: #EFEFEF;
-    /* Farbe für Internet Explorer (IE) */
+    /* Farbe fï¿½r Internet Explorer (IE) */
     color: #EFEFEF;
     border: 0;
     height: 1px; 
@@ -417,18 +517,14 @@ header {
 
 #paymentClose {
     float: right;
-    margin-top: -29px;
-    background-color: #FFFFFF;
-    border: 1px solid #c9c9c9;
-    border-bottom: 0px;
-    padding: 2px 4px 0 4px;
-    border-radius: 2px;
+    margin-right: 5px;
     cursor: pointer;
 }
 
 #payment .payment_text {
     float: right;
     width: 200px;
+    background-color: #E0F1FF;
 }
 
 
@@ -460,7 +556,7 @@ header {
     margin-bottom: 10px;
 }
 
-#creditCrad {
+#credit_card {
     width: 385px;
     height: 226px;
     padding-right: 5px;
@@ -474,9 +570,8 @@ header {
     width: 47px;
     margin-left: 4px;
 }
-
-#payment .help {
-    cursor: help;
+#valid_month {
+    margin-left: 198px;
 }
 
 #delivery {
@@ -495,23 +590,20 @@ header {
     margin-right: 3px;
 }
 
+#payment #deliver_zip {
+    width: 40px;
+    float: none;
+    margin-left: 30px;
+}
 #payment #delivery_nr {
     width: 96px;
 }
 
 #payButton {
-    height: 40px;
     width: 100px;
-    color: #FFFFFF;
-    background-color: cornflowerblue;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
-    border: 0px;
-    border-radius: 6px;
     float: right;
     margin-bottom: 5px;
     margin-right: 5px;
-    cursor: pointer;
 }
+
+/* --- Profile --- */

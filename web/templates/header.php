@@ -1,17 +1,20 @@
 <doctype html>
     <html>
         <head>
+            <meta charset="utf-8" />
             <title>st@pleware</title>
             <link type="text/css" rel="stylesheet" href="css/style_main.css" />
             <link type="text/css" rel="stylesheet" href="css/style_article_overview.css" />
             <link href="fav.ico" rel="shortcut icon">
-            <script type="text/javascript" src="js/jquery-1.8.0.min.js" ></script>
+            <script type="text/javascript" src="js/jquery-1.8.1.min.js" ></script>
+            <script type="text/javascript" src="js/jquery-ui-autocomplete-1.8.23.min.js" ></script>
             <script type="text/javascript" src="js/main.js" ></script>
             <script type="text/javascript" src="js/ajax.js" ></script>
             <script type="text/javascript" src="js/ready.js" ></script>
             <script type="text/javascript" src="js/Article.js" ></script>
             <script type="text/javascript" src="js/ShopingCard.js" ></script>
             <script type="text/javascript" src="js/Customer.js" ></script>
+            <script type="text/javascript" src="js/payment.js" ></script>
         </head>
         <body>
             <header>
@@ -39,12 +42,12 @@
                 </nav>
                 <div class="clear"></div>
                 <div id="container">
+                    <div id="register_login">register</div>
                     <div id="loginContainer" >
                         <p><label for="email" >email</label><input type="text" id="email" name="email" autocomplete="off"/></p>
                         <p><label for="password" >password</label><input type="password" id="password" name="password" autocomplete="off"/></p>
                         <p><input type="button" id="loginButton" value="login"/></p>
                     </div>
-                    <div id="register_login"><a id="registerLink">register</a></div>
                     <div id="registerContainer">
                         <p><label for="surname" >surname</label></p>
                         <p><input type="text" id="surname" name="surname"/></p>
