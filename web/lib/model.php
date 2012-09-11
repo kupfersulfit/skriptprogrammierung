@@ -206,6 +206,10 @@ class DatabaseModel {
             $result = $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunde");
             if (sizeof($result) == 1) {
 				return $result[0];
+			}else if (sizeof($result) > 1) {
+				throw new Exception("Email {$email} not unique.");
+			}else {
+				throw new Exception("User with email {$email} not found.");
 			}
         } else {
             return null;
@@ -552,6 +556,24 @@ if ($testing) {
     "preis" => "299"));
     $dbo = $testInstance->erstelleArtikel($artikel);
     $dbo = $testInstance->sucheArtikel("Testartikel");
+    print_r($dbo);
+    echo "</div>";
+    
+    echo "</div><br/>Erstelle Kunden 'Testkunde'<br/><div style='border: 1px pink solid;'>";
+
+    $kunde = new Kunde(
+    array( 
+    "id" => "", 
+    "name" => "Brot", 
+    "vorname" => "Bernd", 
+    "strasse" => "Am Illuminaten 3",
+    "plz" => 23423,
+    "zusatz" => "",
+    "email" => "ernte23@peanuts.de",
+    "passwort" => "fooobar",
+    "registriertseit" => "23.04.2002"));
+    $dbo = $testInstance->erstelleKunde($kunde);
+    $dbo = $testInstance->holeKunde("ernte23@peanuts.de");
     print_r($dbo);
     echo "</div>";
     exit;
