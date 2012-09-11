@@ -14,7 +14,7 @@
             <script type="text/javascript" src="js/Article.js" ></script>
             <script type="text/javascript" src="js/ShopingCard.js" ></script>
             <script type="text/javascript" src="js/Customer.js" ></script>
-            <script type="text/javascript" src="js/payment.js" ></script>
+            <script type="text/javascript" src="js/Payment.js" ></script>
         </head>
         <body>
             <header>
