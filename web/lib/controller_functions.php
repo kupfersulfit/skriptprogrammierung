@@ -158,7 +158,17 @@
             err("only an admin can delete customers");
             return;
         }
-        //TODO kunde in db loeschen
+        try{
+            $kunde = json_decode($kunde, true);
+        }catch(Exception $e){
+            err($e->getMessage());
+            return;
+        }
+        if($_SESSION['model']->loescheKunde($kunde->getEmail()) == null){
+            err("deletion failed");
+            return;
+        }
+        echo json_encode(array("success" => "success"));
     }
 
     /** Gibt das aktuelle Kundenobjekt zur&uuml;ck 
@@ -170,10 +180,10 @@
     
     /** Gibt die Daten eines bestimmten Kunden aus */
     function holeKunde($id){
-        /*if(!istAdmin()){
+        if(!istAdmin()){
             err('only admins can see customer details');
             return;
-        }*/
+        }
         $kunde = $_SESSION['model']->holeKundeMitId($id);
         if($kunde == null){
             err("no customer found");
@@ -194,10 +204,10 @@
 
     /** Gibt ein Array aller Kunden zur&uuml;ck */
     function holeAlleKunden(){
-        /*if(!istAdmin()){
+        if(!istAdmin()){
             err('only admins can see all customers');
             return;
-        }*/
+        }
         $kunden = $_SESSION['model']->holeAlleKunden();
         for($i = 0; $i < count($kunden); $i++){
             $kunden[$i] = $kunden[$i]->assoc();
@@ -243,6 +253,22 @@
         @param artikel der zu l&ouml;schende Artikel
     */
     function loescheArtikel($artikel){
+        if(!istAdmin()){
+            err("only admins can delete articles");
+            return;
+        }
+        //TODO
+    }
+
+    /** Aktualisiert Artikeldaten in der DB 
+        @param artikel der zu aktualisierende Artikel
+    */
+    function aktualisiereArtikel($artikel){
+        if(!istAdmin()){
+            err("only admins can update articles");
+            return;
+        }
+        //TODO
     }
 
     /** Gibt die Rolle des aktuell angemeldeten Nutzers aus */
