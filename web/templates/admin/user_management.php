@@ -2,6 +2,7 @@
 <html>
 	<head>
 		<title>st@pleware</title>
+                <link type="text/css" rel="stylesheet" href="../../css/style_main.css"/>
 		<link type="text/css" rel="stylesheet" href="style_admin.css"/>
 		<script type="text/javascript" src="../../js/jquery-1.8.1.min.js" ></script>
 		<script type="text/javascript" src="../../js/main.js" ></script>
@@ -17,13 +18,13 @@
 			$(document).on('click', "input[name='aendereKunde']", 
 				function() {
 					refreshKunde();
-					alert("Kunde ist geändert worden.");
+					alert("Kunde ist geï¿½ndert worden.");
 				}
 			);
 			$(document).on('click', "input[name='loescheKunde']", 
 				function() {
 					deleteKunde();
-					alert("Kunde ist gelöscht worden.");
+					alert("Kunde ist gelï¿½scht worden.");
 				}
 			);			
 		</script>
