@@ -14,10 +14,11 @@ function getArticleList() {
                 var article = new Article();
                 article.create(json[i]);
                 jQuery('#articleList').append(article.renderHTML());
-                if (i%2 != 0) {
-                    jQuery('#articleList').append('<div class="clear" ></div>');
-                }
+//                if (i%2 != 0) {
+//                    jQuery('#articleList').append('<div class="clear" ></div>');
+//                }
             }
+            suggest();
         },
         error : function (json) {
             console.debug(json);
@@ -154,7 +155,7 @@ function modifyCustomer() {
     });
 }
 
-function getShopping_cart() {
+function getShoping_cart() {
     jQuery.ajax({
         type : 'GET',
         url : 'lib/controller.php', 
@@ -174,7 +175,7 @@ function getShopping_cart() {
     });
 }
 
-function modifyShopping_cart() {    
+function modifyShoping_cart() {    
     jQuery.ajax({
         type : 'GET',
         url : 'lib/controller.php', 

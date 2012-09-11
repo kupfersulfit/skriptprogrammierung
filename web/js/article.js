@@ -49,12 +49,31 @@ Article.findArticleById = function(id) {
     return false;
 }
 
+Article.findForSearch = function(search) {
+    var matches = new Array();
+    var checkedOptions = jQuery('#search_container input:checkbox');
+        
+    for (var i = 0; i < Article.Instances.length; ++i) {
+        if ((checkedOptions[0].checked && Article.Instances[i].name.toLowerCase().match(search.toLowerCase()))
+            || (checkedOptions[1].checked && Article.Instances[i].kategoryId.toLowerCase().match(search.toLowerCase()))
+            || (checkedOptions[2].checked && Article.Instances[i].beschreibung.toLowerCase().match(search.toLowerCase()))
+            ) {
+            matches.push(Article.Instances[i]);
+        }
+    }
+    if (matches.length > 0) {
+        return matches;
+    } else {
+        return false;
+    }
+}
+
 Article.prototype.renderHTML = function() {
     var date = this.seit.split(' ')[0];
     date     = date.split('-');
     date     = date[2] + '.' + date[1] + '.' + date[0];
     
-    var strHTML = '<section id="article'+ this.id +'" class="arcticle" >';
+    var strHTML = '<section id="article'+ this.id +'" class="article" >';
     strHTML +=      '<div class="articleTitel" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div><div class="' + (this.verfuegbar > 0 ? "pin" : 'nopin') + '" ' + (this.verfuegbar > 0 ? 'onclick="Article.pin(this, '+  this.id+', false);"' : '') + ' ></div>';
     strHTML +=      '<div class="clear"></div>';
     strHTML +=      '<div class="articleContent">';
@@ -127,7 +146,7 @@ Article.pin = function(obj, id, session) {
     ShopingCard.callbackTotalPrice();
     
     if (!session) {
-        modifyShopping_cart();
+        modifyShoping_cart();
     }
 }
 

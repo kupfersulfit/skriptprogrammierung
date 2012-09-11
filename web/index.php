@@ -4,7 +4,7 @@ require_once 'templates/header.php';
 <div id="content">
     <section id="left">
     </section>
-    <section id="shopping_cart">
+    <section id="shoping_cart">
         <div id="basket">
         </div>
         <div id="shoping_cart_price"> <span>0.00</span>&nbsp;&euro;</div>

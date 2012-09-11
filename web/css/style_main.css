@@ -4,9 +4,6 @@ body {
     font-size: 16px;
     font-weight: normal;
     width: 1024px;
-    /*    position: absolute;
-        left: 50%;
-        margin-left: -512px;*/
     margin: auto;
 }
 
@@ -14,10 +11,12 @@ input {
     border-radius: 2px;
     border-style: solid;
     border-width: 1px;
+    background-color: #E0F1FF;
 }
 
 input[type=button] {
     height: 40px;
+    min-width: 100px;
     color: #FFFFFF;
     background-color: cornflowerblue;
     font-size: 16px;
@@ -52,15 +51,12 @@ header {
 #left {
     width: 796px;
     float: left;
-    border-left: 1px solid #c9c9c9;
-    border-bottom: 1px solid #c9c9c9;
     border-right: 1px solid #c9c9c9;
     margin-top: 1px;
     margin-bottom: 20px;
-    background-color: #E0F1FF;
     min-height: 493px;
 }
-
+/* --- nav --- */
 #menu ul {
     padding: 0;
 }
@@ -107,6 +103,64 @@ header {
     z-index: 2;
 }
 
+/* --- search --- */
+#search_container {
+    height: 60px;
+    width: 673px;
+    margin-left: 51px;
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px solid #c9c9c9;
+    border-radius: 3px;
+    color: cornflowerblue;
+}
+
+#search {
+    line-height: 40px;
+    height: 40px;
+    width: 549px;
+    padding: 0 10px;
+    margin-right: 20px;
+    border-radius: 3px;
+    color: #c9c9c9;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#searchButton {
+    margin-top: -6px;
+}
+
+#suggestions ul{
+    color: #c9c9c9;
+    width: 537px !important;
+    position: absolute;
+    background-color: #FFFFFF;
+    cursor: pointer;
+    border: 1px solid #c9c9c9;
+    border-radius: 0 0 2px 2px;
+    box-shadow: 0px 10px 5px #888;
+    padding: 5px !important;
+    z-index: 2 !important;
+}
+
+#suggestions ul li {
+    display: block;
+    list-style: none;
+}
+
+#suggestions ul li a{
+    padding: 5px 20px;
+    display: block;
+    border-radius: 3px;
+}
+
+.ui-menu .ui-menu-item a.ui-state-hover,
+.ui-menu .ui-menu-item a.ui-state-active{
+    background-color: #E0F1FF;
+}
+
+/* --- login/register --- */
 #container label {
     line-height: 21px;
 }
@@ -193,31 +247,13 @@ header {
     color: #FFFFFF;
 }
 
-#shopping_cart {
-    border: 1px solid #c9c9c9;
-    border-left: 0;
-    border-top: 0;
-    margin-top: 1px;
-    width: 224px;
-    float: right;
-    background-color: #efefef;
-}
-
-#basket {
-    min-height: 400px;
-    padding: 5px;
-    border-bottom: 1px solid #c9c9c9;
-}
-
 /* --- Article --- */
 
 #articleList {
-    padding-top: 41px;
-    /*    height: 797px;
-        overflow: scroll;*/
+    padding-top: 10px;
 }
 
-.arcticle {
+.article {
     background-color: #efefef;
     width: 310px;
     height: 558px;
@@ -321,6 +357,21 @@ header {
 }
 
 /* --- ShopingCard --- */
+#shoping_cart {
+    border: 1px solid #c9c9c9;
+    border-left: 0;
+    border-top: 0;
+    margin-top: 1px;
+    width: 224px;
+    float: right;
+    background-color: #efefef;
+}
+
+#basket {
+    min-height: 400px;
+    padding: 5px;
+    border-bottom: 1px solid #c9c9c9;
+}
 
 .articleAtCard {
     margin-bottom: 10px;

@@ -31,7 +31,7 @@ function refreshHandling() {
     interval = window.setInterval(function () {
         if (Article.Instances.length > 0) {
             window.clearInterval(interval);
-            getShopping_cart();
+            getShoping_cart();
         }
     }, 200);
 }
@@ -65,4 +65,31 @@ function getAdminContent(pageName) {
             jQuery('#left').html(data);
         }
     });
+}
+
+function suggest() {
+    var availableTags = new Array();
+    for (var i = 0; i < Article.Instances.length; ++i) {
+        availableTags.push(Article.Instances[i].name);
+    }
+        
+    jQuery( "#search" ).autocomplete({
+        source: availableTags
+    });
+}
+
+function search() {
+    var search = jQuery('#search').val();
+    var article = Article.findForSearch(search);    
+    
+    if (search == '') {
+        jQuery('.article').show(); 
+    } else if (article) {
+        jQuery('.article').hide();
+        for (var i = 0; i < article.length; ++i) {
+            jQuery('#article' + article[i].id).show();
+        }
+    } else {
+        jQuery('.article').hide();
+    }
 }
