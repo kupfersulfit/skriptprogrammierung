@@ -1,4 +1,4 @@
-
+ï»¿
 function getAlleKunden(){
 	jQuery.ajax({
 		type : 'POST',
@@ -8,7 +8,7 @@ function getAlleKunden(){
 		},
 		dataType : 'json',
 		success : function(json){
-			var htmltext = '<table border=1><tr><th>ID</th><th>Name</th><th>Vorame</th><th>Email</th><th>Ändern</th></tr>';
+			var htmltext = '<table border=1><tr><th>ID</th><th>Name</th><th>Vorame</th><th>Email</th><th>Ã„ndern</th></tr>';
 			for(var i = 0; i < json.length; i++){
 				var row=json[i];
 				htmltext += '<tr><td>'+ row.id+'</td><td>' + row.name + '</td><td>' + row.vorname + '</td><td>' + row.email + '</td><td><input type="button" name="send" id="a'+row.id +'" value="Change"/></td></tr>';
@@ -37,7 +37,7 @@ function getKunde(id){
 			var htmltext = '<table>';
 			htmltext += '<tr><td>Name:</td><td><input name="kundenName" id="kundenNamenId" type="text" size="50" maxlength="50" value='+json.name+'></td></tr>';
 			htmltext += '<tr><td>Vorname:</td><td><input name="kundenVorname" id="kundenVornameId" type="text" size="50" maxlength="50" value='+json.vorname+'></td></tr>';
-			htmltext += '<tr><td>Straße:</td><td><input name="kundenStrasse" id="kundenStrasseId" type="text" size="50" maxlength="50" value='+json.strasse+'></td></tr>';			
+			htmltext += '<tr><td>StraÃŸe:</td><td><input name="kundenStrasse" id="kundenStrasseId" type="text" size="50" maxlength="50" value='+json.strasse+'></td></tr>';			
 			htmltext += '<tr><td>PLZ:</td><td><input name="kundenPlz" id="kundenPlzId" type="text" size="50" maxlength="50" value='+json.plz+'></td></tr>';
 			htmltext += '<tr><td>Zusatz:</td><td><input name="kundenZusatz" id="kundenZusatzId" type="text" size="50" maxlength="50" value='+json.zusatz+'></td></tr>';
 			htmltext += '<tr><td>Email:</td><td><input name="kundeEmail" id="kundenEmailId" type="text" size="50" maxlength="50" value='+json.email+'></td></tr>';
