@@ -3,8 +3,6 @@
     require_once 'model.php';
     require_once 'admin.php';
 
-    $salz = "Die github gui ist doof";
-
     /** Gibt eine Fehlermeldung aus */
     function err($nachricht){
         echo json_encode(array(utf8_encode("error") => utf8_encode("$nachricht")));
@@ -108,7 +106,6 @@
         @return username warenkorb
     */
     function login($email, $passwort){
-        global $salz;
         if($_SESSION['kunde']->getEmail() != ""){
             err("already logged in");
             return;
@@ -116,7 +113,7 @@
             err("invalid email address");
             return;
         }
-        $hash = crypt($passwort, $salz);
+        $hash = crypt($passwort, $email);
         if($_SESSION['model']->pruefeLogin($email, $hash) == true){
             $_SESSION['kunde'] = $_SESSION['model']->holeKunde($email);
             $_SESSION['kunde']->setPasswort(" ");
@@ -134,7 +131,6 @@
     /** Versucht einen neuen Kunden anzulegen 
         @param kunde Kundenobjekt des anzulegenden Kunden*/
     function registriereKunde($kunde){
-        global $salz;
         $kunde = json_decode($kunde, true);
         try{
             $kunde = new Kunde($kunde);
@@ -146,7 +142,7 @@
         if($_SESSION['model']->holeKunde($kunde->getEmail()) != null){
             err("Email already registered");
         }else{
-            $kunde->setPasswort(crypt($kunde->getPasswort(), $salz)); //passwort verschluesseln
+            $kunde->setPasswort(crypt($kunde->getPasswort(), $kunde->getEmail())); //passwort verschluesseln
             date_default_timezone_set('Europe/Berlin');
             $kunde->setRegistriertseit(date("Y-m-d H:i:s", time()));
             $_SESSION['model']->erstelleKunde($kunde);
