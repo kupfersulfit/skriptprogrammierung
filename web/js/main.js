@@ -29,7 +29,7 @@ function refreshHandling() {
         setAnker('home');
     }
     interval = window.setInterval(function () {
-        if (Article.Instances.length > 0) {
+        if (typeof Article != 'undefined' && Article.Instances.length > 0) {
             window.clearInterval(interval);
             getShoping_cart();
         }
