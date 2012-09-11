@@ -181,10 +181,10 @@
 
     /** Gibt ein Array aller Kunden zur&uuml;ck */
     function holeAlleKunden(){
-        if(!istAdmin()){
+        /*if(!istAdmin()){
             err('only admins can see all customers');
             return;
-        }
+        }*/
         $kunden = $_SESSION['model']->holeAlleKunden();
         for($i = 0; $i < count($kunden); $i++){
             $kunden[$i] = $kunden[$i]->assoc();
