@@ -78,6 +78,13 @@
                 holeKunde($_POST['id']);
             }
             exit();
+        case 'loescheKunde':
+            if(!isset($_POST['kunde'])){
+                err("'kunde' parameter missing");
+            }else{
+                loescheKunde($_POST['kunde']);
+            }
+            exit();
         case 'holeRolle':
             holeRolle();
             exit();

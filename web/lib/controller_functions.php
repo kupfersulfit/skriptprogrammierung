@@ -150,6 +150,17 @@
         }
     }
 
+    /** Loescht den angegebenen Kunden 
+        @param kunde der zu l&ouml;schende Kunde 
+    */
+    function loescheKunde($kunde){
+        if(!istAdmin()){
+            err("only an admin can delete customers");
+            return;
+        }
+        //TODO kunde in db loeschen
+    }
+
     /** Gibt das aktuelle Kundenobjekt zur&uuml;ck 
         @return Kunde
     */
