@@ -40,12 +40,12 @@
                 </nav>
                 <div class="clear"></div>
                 <div id="container">
+                    <div id="register_login">register</div>
                     <div id="loginContainer" >
                         <p><label for="email" >email</label><input type="text" id="email" name="email" autocomplete="off"/></p>
                         <p><label for="password" >password</label><input type="password" id="password" name="password" autocomplete="off"/></p>
                         <p><input type="button" id="loginButton" value="login"/></p>
                     </div>
-                    <div id="register_login"><a id="registerLink">register</a></div>
                     <div id="registerContainer">
                         <p><label for="surname" >surname</label></p>
                         <p><input type="text" id="surname" name="surname"/></p>

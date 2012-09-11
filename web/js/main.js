@@ -2,10 +2,10 @@ function openLoginContainer() {
     jQuery('#loginContainer').show();
     jQuery('#registerContainer').hide();
     jQuery('#container').fadeIn('slow');
-    jQuery('#container').css('bottom','-178px');
+    jQuery('#container').css('bottom','-193px');
     jQuery('#register_login').css('background-position','0 0');
     activeTab('loginTab');
-    jQuery('#registerLink').html('register');
+    jQuery('#register_login').html('register');
 }
 
 function activeTab(tabName) {

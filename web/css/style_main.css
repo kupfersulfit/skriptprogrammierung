@@ -16,8 +16,22 @@ input {
     border-width: 1px;
 }
 
+input[type=button] {
+    height: 40px;
+    color: #FFFFFF;
+    background-color: cornflowerblue;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    border: 0px;
+    border-radius: 6px;
+    cursor: pointer;
+}
+
+
 header {
-    border-bottom: 2px solid lightblue;
+    border-bottom: 1px solid #c9c9c9;
     position: relative;
     width: 1024px;
     height: 100px;
@@ -35,6 +49,18 @@ header {
     width: 1024px;
 }
 
+#left {
+    width: 796px;
+    float: left;
+    border-left: 1px solid #c9c9c9;
+    border-bottom: 1px solid #c9c9c9;
+    border-right: 1px solid #c9c9c9;
+    margin-top: 1px;
+    margin-bottom: 20px;
+    background-color: #E0F1FF;
+    min-height: 493px;
+}
+
 #menu ul {
     padding: 0;
 }
@@ -44,7 +70,7 @@ header {
     float: right;
     list-style: none;
     margin-left: 14px;
-    background-color: #dddddd;
+    background-color: #EFEFEF;
     padding: 3px;
     height: 70px;
     border-radius: 5px 5px 0 0;
@@ -53,22 +79,32 @@ header {
 }
 
 #menu ul li:hover {
-    background-color: lightblue;
+    background-color: #E0F1FF;
+    margin-top: 24px;
+    border: 1px solid #c9c9c9;
+    border-bottom: 0;
 }
 
-.active {
-    background-color: lightblue !important;
+#menu .active {
+    background-color: #FFFFFF;
+    margin-top: 24px;
+    border: 1px solid #c9c9c9;
+    border-bottom: 0;
 }
 
 #container {
     padding: 10px;
-    background-color: lightblue;
+    background-color: #FFFFFF;
     position: absolute;
     right: 0px;
-    bottom: -168px;
+    bottom: -166px;
     display: none;
-    border-radius: 5px 0 5px 5px;
-    color: #FFFFFF;
+    border: 1px solid #c9c9c9;
+    border-top: 0;
+    border-radius: 2px 0 2px 2px;
+    color: cornflowerblue;
+    box-shadow: 0px 10px 5px #888;
+    z-index: 2;
 }
 
 #container label {
@@ -76,19 +112,15 @@ header {
 }
 
 #loginContainer {
-    height: 110px;
+    height: 115px;
 }
 
 #loginButton {
-    color: darkgray;
-    border: 0;
-    padding: 3px;
-    border-radius: 3px;
+    width: 100px;
 }
 
 #loginContainer p {
     width: 276px;
-
 }
 
 #loginContainer p input {
@@ -99,22 +131,28 @@ header {
 #registerContainer {
     display: none;
     height: 524px;
+    margin-top: 14px;
 }
 
 #register_login {
-    height: 30px;
-    background-color: #F0F0F0;
-    vertical-align: middle;
-    text-align: center;
-    border-radius: 3px;
+    height: 40px;
+    background-color: cornflowerblue;
     background-image: url('../media/register_login.png');
     background-position: 0 0;
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    vertical-align: middle;
+    border: 0px;
+    border-radius: 6px;
     cursor: pointer;
-    color: darkgray;
+    line-height: 40px;
 }
 
-#registerLink {
-    line-height: 30px;
+#addition {
+    border: 1px solid #F0F0F0;
+    border-radius: 2px;
 }
 
 #registerContainer p {
@@ -151,24 +189,15 @@ header {
 
 #registerContainer p #registerButton {
     border: 0;
-    border-radius: 3px;
     margin-top: 10px;
-    padding: 3px;
-}
-
-#left {
-    width: 796px;
-    float: left;
-    border-left: 1px solid lightblue;
-    border-bottom: 1px solid lightblue;
-    border-right: 1px solid lightblue;
-    margin-bottom: 20px;
-    background-color: #E8F6FF;
+    color: #FFFFFF;
 }
 
 #shopping_cart {
-    border: 1px solid lightblue;
+    border: 1px solid #c9c9c9;
+    border-left: 0;
     border-top: 0;
+    margin-top: 1px;
     width: 224px;
     float: right;
     background-color: #efefef;
@@ -177,7 +206,7 @@ header {
 #basket {
     min-height: 400px;
     padding: 5px;
-    border-bottom: 1px solid lightblue;
+    border-bottom: 1px solid #c9c9c9;
 }
 
 /* --- Article --- */
@@ -274,11 +303,12 @@ header {
 }
 
 .articleDescription {
+    z-index: 1;
     pointer: help;
     margin-top: 10px;
     margin-bottom: 10px;
     padding: 5px;
-    border-radius: 3px;
+    border-radius: 2px;
     background-color: #FFFFFF;
     width: 298px;
     border: 1px solid #c9c9c9;
@@ -397,6 +427,7 @@ header {
     border-left: 0;
     border-radius:  0 0 2px 2px;
     color: darkgray;
+    z-index: 1;
 }
 
 #payment_content {
@@ -515,18 +546,10 @@ header {
 }
 
 #payButton {
-    height: 40px;
     width: 100px;
-    color: #FFFFFF;
-    background-color: cornflowerblue;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    vertical-align: middle;
-    border: 0px;
-    border-radius: 6px;
     float: right;
     margin-bottom: 5px;
     margin-right: 5px;
-    cursor: pointer;
 }
+
+/* --- Profile --- */
