@@ -1,32 +1,3 @@
-<html>
-        <head>
-            <title>st@pleware</title>
-            <link type="text/css" rel="stylesheet" href="style_admin.css" />
-            <script type="text/javascript" src="../../js/jquery-1.8.1.min.js" ></script>
-            <script type="text/javascript" src="ajax_admin.js" ></script>
-            <script type="text/javascript" src="article.js" ></script>
-            <script type="text/javascript">
-                $(document).on('click', "input[name='aendern']", 
-                    function() {
-                        var id = this.id.substr(1,this.id.length);
-                        modifyArticle(id);
-                        
-				});
-                $(document).on('click', "input[name='aendereArtikel']", 
-                    function() {
-                        var id = this.id.substr(1,this.id.length);
-                        sendModifiedArticle(id);
-				});
-                $(document).on('click', "input[name='loescheArtikel']", 
-                    function() {
-                        var id = this.id.substr(1,this.id.length);
-                        deleteArticle(id);
-				});
-            </script>
-        </head>
-        <body>
-        
-<br>
 <h1 class="admin">Article management</h1>
 <br>
 <div id="divAddArticle">
@@ -67,6 +38,3 @@
 <button onclick='getAllArticles()'>Show all articles</button>
 <br><br>
 <div id="divArtikelTabelle"></div>
-
-</body>
-</html>

@@ -67,6 +67,7 @@ function getAdminContent(pageName) {
         url: 'templates/admin/' + pageName + ".php",
         success: function (data) {
             jQuery('#left').html(data);
+            getUserManagement();
         }
     });
 }
