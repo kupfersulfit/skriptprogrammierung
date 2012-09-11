@@ -31,7 +31,7 @@ var Customer = {
                 '',
                 jQuery('#surname').val(),
                 jQuery('#givenname').val(),
-                jQuery('#street').val(),
+                jQuery('#street').val() + ' ' + jQuery('#nr').val(),
                 jQuery('#zip').val(),
                 jQuery('#addition').val(),
                 jQuery('#registerEmail').val(),
@@ -74,7 +74,7 @@ var Customer = {
         var pwLength = jQuery('#registerPassword').val().length;
             
         if (pwLength == 0) {
-            jQuery('#registerPassword').css('background-color','white');
+            jQuery('#registerPassword').css('background-color','#E0F1FF');
         } else if (pwLength < 4) {
             jQuery('#registerPassword').css('background-color','orange');
         } else if (pwLength < 6) {
