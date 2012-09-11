@@ -1,11 +1,11 @@
 <?php
-    require_once "objects.php";
-    require_once "model.php";
+    require_once 'objects.php';
+    require_once 'model.php';
+    require_once 'admin.php';
 
     /** Gibt eine Fehlermeldung aus */
     function err($nachricht){
-        $nachricht = utf8_encode($nachricht);
-        echo json_encode(array("error" => "$nachricht"));
+        echo json_encode(array(utf8_encode("error") => utf8_encode("$nachricht")));
     }
 
     /** Zeigt alle Artikel an */
@@ -15,8 +15,6 @@
             err("no existing article");
         }else{
             for($i = 0; $i < count($artikelArray); $i++){ //convert object to assoc array
-                //TODO kategorie ersetzen wie unten
-                //kategorienamen aus der db holen und eintragen
                 $kategorie = $artikelArray[$i]->getKategorieId();
                 $kategorie = $_SESSION["model"]->holeKategorie($kategorie);
                 $artikelArray[$i]->setKategorieId($kategorie->getName());
@@ -206,5 +204,25 @@
         @param artikel der zu l&ouml;schende Artikel
     */
     function loescheArtikel($artikel){
+    }
+
+    /** Gibt die Rolle des aktuell angemeldeten Nutzers aus */
+    function istAdmin(){
+        $angemeldeterNutzer = $_SESSION['kunde']->getEmail();
+        if(in_array($angemeldeterNutzer, $adminEmails)){
+            return true;
+        }else{
+            return false;
+        }
+    }
+    
+    function holeRolle(){
+        global $adminEmails;
+        $angemeldeterNutzer = $_SESSION['kunde']->getEmail();
+        if(in_array($angemeldeterNutzer, $adminEmails)){
+            echo json_encode(array(utf8_encode("rolle") => utf8_encode("admin")));
+        }else{
+            echo json_encode(array(utf8_encode("rolle") => utf8_encode("nutzer")));
+        }
     }
 ?>
