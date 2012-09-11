@@ -43,7 +43,8 @@ function getKunde(id){
 			htmltext += '<tr><td>Email:</td><td><input name="kundeEmail" id="kundenEmailId" type="text" size="50" maxlength="50" value='+json.email+'></td></tr>';
 			htmltext += '<tr><td>Registriert Seit:</td><td><input name="kundeSeit" id="kundenSeitId" type="text" size="50" maxlength="50" value='+json.registriertseit+' readonly></td></tr>';
 			htmltext += '</table>';
-			htmltext += '<input type="button" name="kundenSend" id="kundenChange" value="Change"/>';
+			htmltext += '<input type="button" name="aendereKunde" id="k'+json.id+'" value="Change"/>';
+			htmltext += '<input type="button" name="loescheKunde" id="k'+json.id+'" value="Delete"/>';
 			$("#tabelle").html(htmltext);
 			
 //			console.debug(json);
@@ -66,6 +67,24 @@ function refreshKunde(json){
 		dataType : 'json',
 		success : function(json){
 			Customer.getJSONstring();
+		},
+		error : function (json) {
+        
+		}
+	});
+}
+
+function deleteKunde(json){
+	jQuery.ajax({
+		type : 'GET',
+		url : '../../lib/controller.php',
+		data : {
+			'action' : 'aktualisiereKunde',
+			'kunde' : Customer 
+		},
+		dataType : 'json',
+		success : function(json){
+			//Customer.getJSONstring();
 		},
 		error : function (json) {
         

@@ -5,6 +5,7 @@
 		<link type="text/css" rel="stylesheet" href="style_admin.css"/>
 		<script type="text/javascript" src="../../js/jquery-1.8.1.min.js" ></script>
 		<script type="text/javascript" src="../../js/main.js" ></script>
+		<script type="text/javascript" src="../../js/Customer.js" ></script>
         <script type="text/javascript" src="ajax_admin.js" ></script>
 		<script type="text/javascript">
 			$(document).on('click', "input[name='send']", 
@@ -13,13 +14,18 @@
 					getKunde(id);
 				}
 			);
-			$(document).on('click', "input[name='kundenSend']", 
+			$(document).on('click', "input[name='aendereKunde']", 
 				function() {
-//					alert("Kunde ist geändert worden.");
 					refreshKunde();
 					alert("Kunde ist geändert worden.");
 				}
 			);
+			$(document).on('click', "input[name='loescheKunde']", 
+				function() {
+					deleteKunde();
+					alert("Kunde ist gelöscht worden.");
+				}
+			);			
 		</script>
 	</head>
 	<body>
