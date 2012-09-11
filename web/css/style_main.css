@@ -471,7 +471,7 @@ header {
 #payment {
     position: absolute;
     top: 170px;
-    left: 30px;
+    left: auto;
     /*    height: 600px;*/
     width: 811px;
     display: none;

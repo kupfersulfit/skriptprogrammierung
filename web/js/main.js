@@ -21,7 +21,11 @@ function refreshHandling() {
     var lhref = location.href.split('#');
     if (lhref.length > 1) {
         activeTab(lhref[1] + 'Tab');
-        getCustomerContent(lhref[1]);
+        if (lhref[1] == 'admin') {
+            getAdminContent(lhref[1]);
+        } else {
+            getCustomerContent(lhref[1]);
+        }
     } 
     else {
         activeTab('homeTab');
@@ -93,3 +97,17 @@ function search() {
         jQuery('.article').hide();
     }
 }
+
+jQuery(document).on('click', "input[name='send']", 
+    function() {
+        var id=this.id.substr(1,this.id.length);
+        getKunde(id);
+    }
+);
+jQuery(document).on('click', "input[name='kundenSend']", 
+    function() {
+        //					alert("Kunde ist ge�ndert worden.");
+        refreshKunde();
+        alert("Kunde ist ge�ndert worden.");
+    }
+);

@@ -195,16 +195,13 @@ function modifyShoping_cart() {
 
 
 /* ADMIN */
-function createArticle() {
+function getUserManagement() {
     jQuery.ajax({
-        type : 'POST',
-        url : 'lib/controller.php', 
-        data : {
-            'action' : 'erstelleArtikel'
-        },
-        dataType : 'jsonp',
-        success : function (json) {
-            
+        type : 'GET',
+        url : 'templates/admin/user_management.php', 
+        dataType : 'html',
+        success : function (html) {
+            jQuery('#adminContent').html(html);
         },
         error : function (json) {
         
@@ -212,16 +209,13 @@ function createArticle() {
     });
 }
 
-function deleteArticle() {
+function getArticleManagement() {
     jQuery.ajax({
-        type : 'POST',
-        url : 'lib/controller.php', 
-        data : {
-            'action' : 'loescheArtikel'
-        },
-        dataType : 'jsonp',
-        success : function (json) {
-            
+        type : 'GET',
+        url : 'templates/admin/article_management.html',
+        dataType : 'html',
+        success : function (html) {
+            jQuery('#adminContent').html(html);
         },
         error : function (json) {
         
