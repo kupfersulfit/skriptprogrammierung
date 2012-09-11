@@ -55,8 +55,6 @@
                 err("'email' parameter missing");
             }else if(!isset($_POST['passwort'])){
                 err("'passwort' parameter missing");
-            }else if($_SESSION['kunde']->getEmail() != ""){
-                err("already logged in");
             }else{
                 login($_POST['email'], $_POST['passwort']);
             }

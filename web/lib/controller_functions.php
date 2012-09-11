@@ -109,14 +109,17 @@
     */
     function login($email, $passwort){
         global $salz;
-        if(!preg_match("/^[^@]+@[^@]{3,}\.[^\.@0-9]{2,}$/", $email)){
+        if($_SESSION['kunde']->getEmail() != ""){
+            err("already logged in");
+            return;
+        }else if(!preg_match("/^[^@]+@[^@]{3,}\.[^\.@0-9]{2,}$/", $email)){
             err("invalid email address");
             return;
         }
         $hash = crypt($passwort, $salz);
         if($_SESSION['model']->pruefeLogin($email, $hash) == true){
             $_SESSION['kunde'] = $_SESSION['model']->holeKunde($email);
-            $_SESSION['kunde']->setPassword(" ");
+            $_SESSION['kunde']->setPasswort(" ");
             holeAngemeldetenKunde(); //kundendaten ausgeben
         }else{
             err("login failed");
