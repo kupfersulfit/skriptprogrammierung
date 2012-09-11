@@ -1,3 +1,3 @@
 <?php
-    $adminEmails = array("thorsten.jerosch@rwth-aachen.de", "kirstin.schubert@rwth-aachen.de");
+    $adminEmails = array("thorsten.jerosch@rwth-aachen.de", "postvon@oben.com", "franknord@stapleware.de");
 ?>
