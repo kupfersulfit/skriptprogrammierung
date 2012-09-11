@@ -218,6 +218,23 @@ class DatabaseModel {
     }
 
     /**
+     * @brief Loescht Kunde mit gegebener EMail
+     * 
+     * @param String $email
+     *  Email des zu loeschenden Kundens
+     */
+    public function loescheKunde($email) {
+        $dbConnector = new DatabaseConnector();
+        if ($dbConnector->connect()) {
+            $query = "DELETE FROM kunden WHERE email = :email";
+            $params = array(":email" => $email);
+            $result = $dbConnector->executeQuery($query, $params);
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * @brief Holt alle Kunden.
      * 
      * @retval Kunden[]
@@ -247,7 +264,7 @@ class DatabaseModel {
         if ($dbConnector->connect()) {
             $query = "INSERT INTO artikel VALUES( null, :name, :beschreibung, :veroeffentlicht, :verfuegbar, :katgorieid, :preis, :bildpfad, :seit)";
             $params = array(
-            ":name" => $artikel->getName()."'",
+            ":name" => $artikel->getName(),
             ":beschreibung" => $artikel->getBeschreibung(),
             ":veroeffentlicht" => $artikel->getVeroeffentlicht(),
             ":verfuegbar" => $artikel->getVerfuegbar(),
@@ -255,11 +272,28 @@ class DatabaseModel {
             ":preis" => $artikel->getKategorieId(),
             ":bildpfad" => $artikel->getBildpfad(),
             ":seit" => $artikel->getSeit()
-            );
+            );          
             $dbConnector->executeQuery($query, $params);
             return true;
         } else {
             return false;
+        }
+    }
+
+    /**
+     * @brief Loescht Artikel mit gegebener ID
+     * 
+     * @param String $artikelId
+     *  ID des zu löschenden Artikels
+     */
+    public function loescheArtikel($artikelId) {
+        $dbConnector = new DatabaseConnector();
+        if ($dbConnector->connect()) {
+            $query = "DELETE FROM artikel WHERE id = :id";
+            $params = array(":id" => $artikelId);
+            $dbConnector->executeQuery($query, $params);
+        } else {
+            return null;
         }
     }
 
@@ -531,36 +565,48 @@ class DatabaseModel {
  */
 if ($testing) {
     $testInstance = new DatabaseModel();
-    echo "<br/>Artikel mit ID 1<br/><div style='border: 1px red solid;'>";
-    $dbo = $testInstance->holeArtikel("1");
+    echo "<br/>***Artikel mit ID 1<br/><div style='border: 1px red solid;'>";
+    $dbo = $testInstance->holeArtikel(1);
     print_r($dbo);
-    echo "</div><br/>Alle Artikel<br/><div style='border: 1px green solid;'>";
+    echo "</div><br/>***Alle Artikel<br/><div style='border: 1px green solid;'>";
     $dbo = $testInstance->holeAlleArtikel();
     print_r($dbo);
     echo "</div><br/>Kunden mit emailadresse<br/><div style='border: 1px blue solid;'>";
     $dbo = $testInstance->holeKunde("josef.ackermann@lionsclub.com");
     print_r($dbo);
-    echo "</div><br/>Alle Kunden<br/><div style='border: 1px black solid;'>";
+    echo "</div><br/>***Alle Kunden<br/><div style='border: 1px black solid;'>";
     $dbo = $testInstance->holeAlleKunden();
     print_r($dbo);
-    echo "</div><br/>Gesuchte Artikel fuer Butler<br/><div style='border: 1px yellow solid;'>";
+    echo "</div><br/>***Gesuchte Artikel fuer Butler<br/><div style='border: 1px yellow solid;'>";
     $dbo = $testInstance->sucheArtikel("Butler");
     print_r($dbo);
-    echo "</div><br/>Erstelle Artikel 'Testartikel'<br/><div style='border: 1px grey solid;'>";
+    echo "</div><br/>***Erstelle Artikel 'Testartikel'<br/><div style='border: 1px grey solid;'>";
     
     $artikel = new Artikel(
-    array( 
-    "id" => "", 
-    "name" => "Testartikel", 
-    "beschreibung" => "Dies ist ein Testartikel", 
-    "kategorieId" => "1",
-    "preis" => "299"));
+		array(
+			"id" => "", 
+			"name" => "Testartikel", 
+			"beschreibung" => "Dies ist ein Testartikel", 
+			"veroeffentlicht" => "1",
+			"verfuegbar" => "1",
+			"kategorieid" => "1",
+			"preis" => "299",
+			"bildpfad" => "foobar",
+			"seit" => "2012-09-02 09:50:41"
+		)
+    );
     $dbo = $testInstance->erstelleArtikel($artikel);
+    $dbo = $testInstance->sucheArtikel("Testartikel");
+	$theID = $dbo[0]->getId();
+    print_r($dbo);
+    echo "<br/>***Loesche Artikel, wenn er jetzt nicht mehr erscheint ->Erfolg<br/>";
+    $dbo = $testInstance->loescheArtikel($theID);
     $dbo = $testInstance->sucheArtikel("Testartikel");
     print_r($dbo);
     echo "</div>";
+    echo "</div>";
     
-    echo "</div><br/>Erstelle Kunden 'Testkunde'<br/><div style='border: 1px pink solid;'>";
+    echo "</div><br/>***Erstelle Kunden 'Testkunde'<br/><div style='border: 1px pink solid;'>";
 
     $kunde = new Kunde(
     array( 
@@ -572,8 +618,12 @@ if ($testing) {
     "zusatz" => "",
     "email" => "ernte23@peanuts.de",
     "passwort" => "fooobar",
-    "registriertseit" => "23.04.2002"));
+    "registriertseit" => "2012-09-04 09:42:47"));
     $dbo = $testInstance->erstelleKunde($kunde);
+    $dbo = $testInstance->holeKunde("ernte23@peanuts.de");
+    print_r($dbo);
+    echo "<br/>***Loesche kunde, wenn er jetzt nicht mehr erscheint ->Erfolg<br/>";
+    $dbo = $testInstance->loescheKunde("ernte23@peanuts.de");
     $dbo = $testInstance->holeKunde("ernte23@peanuts.de");
     print_r($dbo);
     echo "</div>";

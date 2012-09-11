@@ -32,7 +32,6 @@ function getKunde(id){
         },
         dataType : 'json',
         success : function(json){
-			
             var htmltext = '<table>';
             htmltext += '<tr><td>Name:</td><td><input name="kundenName" id="kundenNamenId" type="text" size="50" maxlength="50" value='+json.name+'></td></tr>';
             htmltext += '<tr><td>Vorname:</td><td><input name="kundenVorname" id="kundenVornameId" type="text" size="50" maxlength="50" value='+json.vorname+'></td></tr>';
