@@ -5,6 +5,7 @@ body {
     font-weight: normal;
     width: 1024px;
     margin: auto;
+    cursor: default;
 }
 
 input {
@@ -364,13 +365,12 @@ header {
     margin-top: 1px;
     width: 224px;
     float: right;
-    background-color: #efefef;
+    /*    background-color: #efefef;*/
 }
 
 #basket {
     min-height: 400px;
     padding: 5px;
-    border-bottom: 1px solid #c9c9c9;
 }
 
 .articleAtCard {
@@ -444,24 +444,27 @@ header {
     background-color: #FFFFFF;
     border-radius: 2px;
     margin: 5px;
+    border-bottom: 1px solid #c9c9c9;
+    border-top: 1px solid #c9c9c9;
 }
 
 #shoping_cart_price span {
     color: #FF6600;
+    line-height: 30px;
 }
 
 #buyButton {
-    background-image: url('../media/buy.png');
-    height: 50px;
-    width: 222px;
-    text-align: center;
-    color: cornflowerblue;
-    font-size: 16px;
-    border: 1px solid #c9c9c9;
-    background-color: #FFFFFF;
-    margin-left: 1px;
-    margin-bottom: 1px;
-    cursor: pointer;
+    /*    background-image: url('../media/buy.png');
+        height: 50px;*/
+    width: 212px;
+    margin-bottom: 7px;
+    margin-left: 5px;
+    /*    text-align: center;
+        color: cornflowerblue;
+        font-size: 16px;
+        border: 1px solid #c9c9c9;
+        background-color: #FFFFFF;
+        cursor: pointer;*/
 }
 
 /* --- Payment --- */
