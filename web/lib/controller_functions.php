@@ -157,10 +157,10 @@
     
     /** Gibt die Daten eines bestimmten Kunden aus */
     function holeKunde($id){
-        if(!istAdmin()){
+        /*if(!istAdmin()){
             err('only admins can see customer details');
             return;
-        }
+        }*/
         $kunde = $_SESSION['model']->holeKundeMitId($id);
         if($kunde == null){
             err("no customer found");
@@ -181,10 +181,10 @@
 
     /** Gibt ein Array aller Kunden zur&uuml;ck */
     function holeAlleKunden(){
-        if(!istAdmin()){
+        /*if(!istAdmin()){
             err('only admins can see all customers');
             return;
-        }
+        }*/
         $kunden = $_SESSION['model']->holeAlleKunden();
         for($i = 0; $i < count($kunden); $i++){
             $kunden[$i] = $kunden[$i]->assoc();
