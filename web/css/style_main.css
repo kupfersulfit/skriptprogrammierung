@@ -35,7 +35,7 @@ header {
     position: relative;
     width: 1024px;
     height: 100px;
-    background-image: url('../media/logo.png');
+    background-image: url('../media/logo_trans_2.png');
 }
 
 .clear {
@@ -499,9 +499,9 @@ header {
 }
 
 #payment hr {
-    /* Farbe für Opera und Firefox */
+    /* Farbe fï¿½r Opera und Firefox */
     background-color: #EFEFEF;
-    /* Farbe für Internet Explorer (IE) */
+    /* Farbe fï¿½r Internet Explorer (IE) */
     color: #EFEFEF;
     border: 0;
     height: 1px; 
