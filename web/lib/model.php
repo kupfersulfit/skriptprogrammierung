@@ -207,9 +207,10 @@ class DatabaseModel {
             if (sizeof($result) == 1) {
 				return $result[0];
 			}else if (sizeof($result) > 1) {
+				// Should never happen 11!1!
 				throw new Exception("Email {$email} not unique.");
 			}else {
-				throw new Exception("User with email {$email} not found.");
+				return null;
 			}
         } else {
             return null;
