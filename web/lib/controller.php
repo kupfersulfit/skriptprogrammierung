@@ -112,7 +112,7 @@
             if(!isset($_POST['artikel'])){
                 err("'artikel' parameter missing");
             }else{
-                //TODO
+                aktualisiereArtikel($_POST['artikel']);
             }
             exit();
         case 'bestelle':
