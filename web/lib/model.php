@@ -152,14 +152,14 @@ class DatabaseModel {
         if ($dbConnector->connect()) {
             $query = "INSERT INTO kunden VALUES('', :name, :vorname, :strasse, :plz, :zusatz, :email, :passwort, :registriertseit)";
             $params = array(
-            ":name" => "'".$kunde->getName()."'",
-            ":vorname" => "'".$kunde->getVorname()."'",
-            ":strasse" => "'".$kunde->getStrasse()."'",
-            ":plz" => "'".$kunde->getPlz()."'",
-            ":zusatz" => "'".$kunde->getZusatz()."'",
-            ":email" => "'".$kunde->getEmail()."'",
-            ":passwort" => "'".$kunde->getPasswort()."'", 
-            ":registriertseit" => "'".$kunde->getRegistriertseit()."'"
+            ":name" => $kunde->getName(),
+            ":vorname" => $kunde->getVorname(),
+            ":strasse" => $kunde->getStrasse(),
+            ":plz" => $kunde->getPlz(),
+            ":zusatz" => $kunde->getZusatz(),
+            ":email" => $kunde->getEmail(),
+            ":passwort" => $kunde->getPasswort(), 
+            ":registriertseit" => $kunde->getRegistriertseit()
             );
             $dbConnector->executeQuery($query, $params);
             return true;
@@ -246,14 +246,14 @@ class DatabaseModel {
         if ($dbConnector->connect()) {
             $query = "INSERT INTO artikel VALUES( null, :name, :beschreibung, :veroeffentlicht, :verfuegbar, :katgorieid, :preis, :bildpfad, :seit)";
             $params = array(
-            ":name" => "'".$artikel->getName()."'",
-            ":beschreibung" => "'".$artikel->getBeschreibung()."'",
-            ":veroeffentlicht" => "'".$artikel->getVeroeffentlicht()."'",
-            ":verfuegbar" => "'".$artikel->getVerfuegbar()."'",
-            ":katgorieid" => "'".$artikel->getPreis()."'",
-            ":preis" => "'".$artikel->getKategorieId()."'",
-            ":bildpfad" => "'".$artikel->getBildpfad()."'",
-            ":seit" => "'".$artikel->getSeit()."'"
+            ":name" => $artikel->getName()."'",
+            ":beschreibung" => $artikel->getBeschreibung(),
+            ":veroeffentlicht" => $artikel->getVeroeffentlicht(),
+            ":verfuegbar" => $artikel->getVerfuegbar(),
+            ":katgorieid" => $artikel->getPreis(),
+            ":preis" => $artikel->getKategorieId(),
+            ":bildpfad" => $artikel->getBildpfad(),
+            ":seit" => $artikel->getSeit()
             );
             $dbConnector->executeQuery($query, $params);
             return true;
@@ -567,7 +567,7 @@ if ($testing) {
     "name" => "Brot", 
     "vorname" => "Bernd", 
     "strasse" => "Am Illuminaten 3",
-    "plz" => 23423,
+    "plz" => "23423",
     "zusatz" => "",
     "email" => "ernte23@peanuts.de",
     "passwort" => "fooobar",
