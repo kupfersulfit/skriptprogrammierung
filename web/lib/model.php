@@ -152,14 +152,14 @@ class DatabaseModel {
         if ($dbConnector->connect()) {
             $query = "INSERT INTO kunden VALUES('', :name, :vorname, :strasse, :plz, :zusatz, :email, :passwort, :registriertseit)";
             $params = array(
-            ":name" => "'".$kunde->getName()."'",
-            ":vorname" => "'".$kunde->getVorname()."'",
-            ":strasse" => "'".$kunde->getStrasse()."'",
-            ":plz" => "'".$kunde->getPlz()."'",
-            ":zusatz" => "'".$kunde->getZusatz()."'",
-            ":email" => "'".$kunde->getEmail()."'",
-            ":passwort" => "'".$kunde->getPasswort()."'", 
-            ":registriertseit" => "'".$kunde->getRegistriertseit()."'"
+            ":name" => $kunde->getName(),
+            ":vorname" => $kunde->getVorname(),
+            ":strasse" => $kunde->getStrasse(),
+            ":plz" => $kunde->getPlz(),
+            ":zusatz" => $kunde->getZusatz(),
+            ":email" => $kunde->getEmail(),
+            ":passwort" => $kunde->getPasswort(), 
+            ":registriertseit" => $kunde->getRegistriertseit()
             );
             $dbConnector->executeQuery($query, $params);
             return true;
@@ -206,6 +206,10 @@ class DatabaseModel {
             $result = $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunde");
             if (sizeof($result) == 1) {
 				return $result[0];
+			}else if (sizeof($result) > 1) {
+				throw new Exception("Email {$email} not unique.");
+			}else {
+				throw new Exception("User with email {$email} not found.");
 			}
         } else {
             return null;
@@ -242,14 +246,14 @@ class DatabaseModel {
         if ($dbConnector->connect()) {
             $query = "INSERT INTO artikel VALUES( null, :name, :beschreibung, :veroeffentlicht, :verfuegbar, :katgorieid, :preis, :bildpfad, :seit)";
             $params = array(
-            ":name" => "'".$artikel->getName()."'",
-            ":beschreibung" => "'".$artikel->getBeschreibung()."'",
-            ":veroeffentlicht" => "'".$artikel->getVeroeffentlicht()."'",
-            ":verfuegbar" => "'".$artikel->getVerfuegbar()."'",
-            ":katgorieid" => "'".$artikel->getPreis()."'",
-            ":preis" => "'".$artikel->getKategorieId()."'",
-            ":bildpfad" => "'".$artikel->getBildpfad()."'",
-            ":seit" => "'".$artikel->getSeit()."'"
+            ":name" => $artikel->getName()."'",
+            ":beschreibung" => $artikel->getBeschreibung(),
+            ":veroeffentlicht" => $artikel->getVeroeffentlicht(),
+            ":verfuegbar" => $artikel->getVerfuegbar(),
+            ":katgorieid" => $artikel->getPreis(),
+            ":preis" => $artikel->getKategorieId(),
+            ":bildpfad" => $artikel->getBildpfad(),
+            ":seit" => $artikel->getSeit()
             );
             $dbConnector->executeQuery($query, $params);
             return true;
@@ -552,6 +556,24 @@ if ($testing) {
     "preis" => "299"));
     $dbo = $testInstance->erstelleArtikel($artikel);
     $dbo = $testInstance->sucheArtikel("Testartikel");
+    print_r($dbo);
+    echo "</div>";
+    
+    echo "</div><br/>Erstelle Kunden 'Testkunde'<br/><div style='border: 1px pink solid;'>";
+
+    $kunde = new Kunde(
+    array( 
+    "id" => "", 
+    "name" => "Brot", 
+    "vorname" => "Bernd", 
+    "strasse" => "Am Illuminaten 3",
+    "plz" => "23423",
+    "zusatz" => "",
+    "email" => "ernte23@peanuts.de",
+    "passwort" => "fooobar",
+    "registriertseit" => "23.04.2002"));
+    $dbo = $testInstance->erstelleKunde($kunde);
+    $dbo = $testInstance->holeKunde("ernte23@peanuts.de");
     print_r($dbo);
     echo "</div>";
     exit;
