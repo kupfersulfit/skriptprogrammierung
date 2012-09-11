@@ -157,10 +157,10 @@
     
     /** Gibt die Daten eines bestimmten Kunden aus */
     function holeKunde($id){
-        if(!istAdmin()){
+        /*if(!istAdmin()){
             err('only admins can see customer details');
             return;
-        }
+        }*/
         $kunde = $_SESSION['model']->holeKundeMitId($id);
         if($kunde == null){
             err("no customer found");
