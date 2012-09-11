@@ -190,6 +190,36 @@ class DatabaseModel {
         }
     }
 
+	/**
+     * @brief Aktualisiert Kunde mit gegebener EMail
+     * 
+     * @param String $email
+     *  Email des gewünschten Kundens
+     */
+    public function aktualisiereKunde($email, $aktuellerKunde) {
+        $dbConnector = new DatabaseConnector();
+        if ($dbConnector->connect()) {
+            $query = "UPDATE kunden SET 
+            name = :name,
+            vorname = :vorname,
+            strasse = :strasse,
+            plz = :plz,
+            zusatz = :zusatz,
+            passwort = :passwort
+            WHERE email = :email";   
+            $params = array(
+            ":name" => $aktuellerKunde->getName(),
+            ":vorname" => $aktuellerKunde->getVorname(),
+            ":strasse" => $aktuellerKunde->getStrasse(),
+            ":plz" => $aktuellerKunde->getPlz(),
+            ":zusatz" => $aktuellerKunde->getZusatz(),
+            ":email" => $aktuellerKunde->getEmail(),
+            ":passwort" => $aktuellerKunde->getPasswort()
+            );        
+            $dbConnector->executeQuery($query, $params);
+        }
+    }
+
     /**
      * @brief Holt Kunde mit gegebener EMail
      * 
@@ -277,6 +307,40 @@ class DatabaseModel {
             return true;
         } else {
             return false;
+        }
+    }
+
+	/**
+     * @brief Aktualisiert Artikel mit gegebener ID
+     * 
+     * @param String $email
+     *  Email des gewünschten Kundens
+     */
+    public function aktualisiereArtikel($email, $aktuellerArtikel) {
+        $dbConnector = new DatabaseConnector();
+        if ($dbConnector->connect()) {
+            $query = "UPDATE artikel SET 
+            name = :name,
+            beschreibung = :beschreibung,
+            veroeffentlicht = :veroeffentlicht,
+            verfuegbar = :verfuegbar,
+            katgorieid = :katgorieid,
+            preis = :preis,
+            bildpfad = :bildpfad,
+            seit = :seit
+            WHERE id = :id";   
+            $params = array(
+            ":id" => $aktuellerArtikel->getId(),
+            ":name" => $aktuellerArtikel->getName(),
+            ":beschreibung" => $aktuellerArtikel->getBeschreibung(),
+            ":veroeffentlicht" => $aktuellerArtikel->getVeroeffentlicht(),
+            ":verfuegbar" => $aktuellerArtikel->getVerfuegbar(),
+            ":katgorieid" => $aktuellerArtikel->getKatgorieId(),
+            ":preis" => $aktuellerArtikel->getPreis(),
+            ":bildpfad" => $aktuellerArtikel->getBildpfad(),
+            ":seit" => $aktuellerArtikel->getSeit()
+            );        
+            $dbConnector->executeQuery($query, $params);
         }
     }
 
