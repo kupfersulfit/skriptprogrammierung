@@ -94,7 +94,7 @@ function deleteKunde(json){
 function getAllArticles(){
     jQuery.ajax({
         type : 'GET',
-        url : '../../lib/controller.php',
+        url : 'lib/controller.php',
         data : {
             'action' : 'zeigeArtikel'
         },
@@ -118,7 +118,7 @@ function getAllArticles(){
 function modifyArticle(id){
     jQuery.ajax({
         type : 'GET',
-        url : '../../lib/controller.php',
+        url : 'lib/controller.php',
         data : {
             'action' : 'holeArtikel', 
             'id' : id
@@ -156,7 +156,7 @@ function modifyArticle(id){
 function sendModifiedArticle(id){
     jQuery.ajax({
         type : 'POST',
-        url : '../../lib/controller.php',
+        url : 'lib/controller.php',
         data : {
             'action' : 'aktualisiereArtikel',
             "id": id,
@@ -180,8 +180,8 @@ function sendModifiedArticle(id){
 
 function createArticle() {
     jQuery.ajax({
-        type : 'GET',
-        url : '../../lib/controller.php', 
+        type : 'POST',
+        url : 'lib/controller.php', 
         data : {
             'action' : 'erstelleArtikel',
             "name": $('#newName'),
@@ -205,7 +205,7 @@ function createArticle() {
 function deleteArticle(id) {
     jQuery.ajax({
         type : 'POST',
-        url : '../../lib/controller.php', 
+        url : 'lib/controller.php', 
         data : {
             'action' : 'loescheArtikel',
             "id": id

@@ -202,6 +202,7 @@ function getUserManagement() {
         dataType : 'html',
         success : function (html) {
             jQuery('#adminContent').html(html);
+            getAlleKunden();
         },
         error : function (json) {
         

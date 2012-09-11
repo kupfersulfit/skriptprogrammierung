@@ -3,7 +3,7 @@
         <head>
             <meta charset="utf-8" />
             <title>st@pleware</title>
-            <link type="text/css" rel="stylesheet" href="templates/admin/style_admin.css"/>
+            <link type="text/css" rel="stylesheet" href="css/style_admin.css"/>
             <link type="text/css" rel="stylesheet" href="css/style_main.css" />
             <link href="fav.ico" rel="shortcut icon">
             <script type="text/javascript" src="js/jquery-1.8.1.min.js" ></script>
@@ -13,9 +13,9 @@
             <script type="text/javascript" src="js/ShopingCard.js" ></script>
             <script type="text/javascript" src="js/Customer.js" ></script>
             <script type="text/javascript" src="js/Payment.js" ></script>
-            <script type="text/javascript" src="js/ajax.js" ></script>
             <script type="text/javascript" src="js/ready.js" ></script>
-            <script type="text/javascript" src="templates/admin/ajax_admin.js" ></script>
+            <script type="text/javascript" src="js/ajax.js" ></script>
+            <script type="text/javascript" src="js/ajax_admin.js" ></script>
         </head>
         <body>
             <header>
