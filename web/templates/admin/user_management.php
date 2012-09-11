@@ -5,6 +5,7 @@
 		<link type="text/css" rel="stylesheet" href="style_admin.css"/>
 		<script type="text/javascript" src="../../js/jquery-1.8.1.min.js" ></script>
 		<script type="text/javascript" src="../../js/main.js" ></script>
+		<script type="text/javascript" src="../../js/customer.js" ></script>
         <script type="text/javascript" src="ajax_admin.js" ></script>
 		<script type="text/javascript">
 			$(document).on('click', "input[name='send']", 
