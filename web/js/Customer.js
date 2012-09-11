@@ -24,7 +24,7 @@ var Customer = {
                 jQuery(this).css('border-color','#FFFFFF');
             }
         });
-        valid = (this.validMail() && this.validPassword());
+        valid = (this.validMail() & this.validPassword());
         
         if (valid) {
             Customer.create(

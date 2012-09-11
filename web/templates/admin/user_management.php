@@ -15,8 +15,9 @@
 			);
 			$(document).on('click', "input[name='kundenSend']", 
 				function() {
-					alert("Kunde ist geändert worden.");
+//					alert("Kunde ist geändert worden.");
 					refreshKunde();
+					alert("Kunde ist geändert worden.");
 				}
 			);
 		</script>

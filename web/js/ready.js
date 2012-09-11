@@ -37,9 +37,9 @@ jQuery(document).ready(function (){
         } else {
             jQuery('#registerContainer').show();
             jQuery('#loginContainer').hide();
-            jQuery('#container').css('bottom','-578px');
-            jQuery('#register_login').css('background-position','0 -30px');
-            jQuery('#registerLink').html('login');
+            jQuery('#container').css('bottom','-600px');
+            jQuery('#register_login').css('background-position','0 -40px');
+            jQuery('#register_login').html('login');
         }
     });
     
