@@ -1,5 +1,5 @@
 var Customer = {
-    id : '',
+    id : '-1',
     name : 'Guest',
     vorname : '',
     strasse : '',
