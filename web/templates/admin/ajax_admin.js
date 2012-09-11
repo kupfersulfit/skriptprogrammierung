@@ -77,9 +77,9 @@ function refreshKunde(json){
 function deleteKunde(json){
 	jQuery.ajax({
 		type : 'GET',
-		url : '../../lib/controller.php',
+		url : '../../lib/model.php',
 		data : {
-			'action' : 'aktualisiereKunde',
+			'action' : 'loescheKunde',
 			'kunde' : Customer 
 		},
 		dataType : 'json',
