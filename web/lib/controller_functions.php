@@ -141,6 +141,7 @@
             err("Email already registered");
         }else{
             $_SESSION['model']->erstelleKunde($kunde);
+            echo json_encode(array("success" => "success"));
         }
     }
 
