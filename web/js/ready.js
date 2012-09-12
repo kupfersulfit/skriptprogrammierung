@@ -1,6 +1,7 @@
 jQuery(document).ready(function (){
     refreshHandling();
     getCustomerInformation();
+    getCustomerPosition();
     
     jQuery('#loginTab').click(containerDisplay);
     

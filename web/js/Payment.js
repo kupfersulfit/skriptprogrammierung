@@ -1,7 +1,13 @@
 var Payment = {
+    enabled : false,
+    
     openPayment : function() {
-        jQuery('#payment').fadeIn('slow');
-        this.creditCardValidTime();
+        if (this.enabled) {
+            jQuery('#payment').fadeIn('slow');
+            this.creditCardValidTime();
+        } else {
+            alert('You need to login first.')
+        }
     },
     
     creditCardValidTime : function() {
@@ -98,9 +104,13 @@ var Payment = {
         return valid;
     },
     
-    pay : function() {
-        this.paymentCheck();
-        this.validateBLZ();
-        this.validateMonth();
+    pay : function() {    
+        if (this.enabled) {
+            this.paymentCheck();
+            this.validateBLZ();
+            this.validateMonth();
+        } else {
+            alert('You need to login first.')
+        }
     }
 }

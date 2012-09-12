@@ -25,21 +25,25 @@ function getArticleList() {
     });
 }
 
-function login() {
+function login(email, password) {
     var valid = true;
-    if (!jQuery('#email').val()) {
-        jQuery('#email').css('border-color','#FA5858');   
-        valid = false;
-    } else {
-        jQuery('#email').css('border-color','#FFFFFF');
+    if (typeof email != 'undefined') {
+        if (!jQuery('#email').val()) {
+            jQuery('#email').css('border-color','#FA5858');   
+            valid = false;
+        } else {
+            jQuery('#email').css('border-color','#FFFFFF');
+        }
     }
     
-    if (!jQuery('#password').val()) {
-        jQuery('#password').css('border-color','#FA5858');  
-        valid = false;
-    } else {
-        jQuery('#password').css('border-color','#FFFFFF');        
-    } 
+    if (typeof password != 'undefined') {
+        if (!jQuery('#password').val()) {
+            jQuery('#password').css('border-color','#FA5858');  
+            valid = false;
+        } else {
+            jQuery('#password').css('border-color','#FFFFFF');        
+        } 
+    }
     
     if (valid) {
         jQuery.ajax({
@@ -47,8 +51,8 @@ function login() {
             url : 'lib/controller.php', 
             data : {
                 'action' : 'login',
-                'email' : jQuery('#email').val(),
-                'passwort' : jQuery('#password').val()
+                'email' : (typeof email != 'undefined' ? email : jQuery('#email').val()),
+                'passwort' : (typeof password != 'undefined' ? password : jQuery('#password').val())
             },
             dataType : 'json',
             success : function (json) {
@@ -62,8 +66,6 @@ function login() {
                         'succes' : "you're logged in"
                     }); 
                     containerDisplay();
-                    jQuery('#loginTab').unbind('click');
-                    jQuery('#loginTab').click(logout);
                     getCustomerInformation();
                     getCustomerPosition();
                 }
@@ -120,6 +122,7 @@ function registerCustomer() {
                 systemessages({
                     'succes' : 'registration successful'
                 });
+                login(Customer.getEmail(), Customer.getPasswort());
             }   
         },
         error : function () {
@@ -168,6 +171,9 @@ function getCustomerPosition() {
             } else {
                 if (json.rolle == 'admin') {
                     jQuery('#adminTab').show();
+                } else if (json.rolle == 'nutzer') {
+                    jQuery('#loginTab').unbind('click');
+                    jQuery('#loginTab').click(logout);
                 }
             }
         },

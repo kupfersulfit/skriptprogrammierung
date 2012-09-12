@@ -108,5 +108,13 @@ var Customer = {
         JSONstr = JSONstr.substring(0, (JSONstr.length -1));
         JSONstr += '}';
         return JSONstr;
+    },
+    
+    getEmail : function() {
+        return this.email;
+    },
+    
+    getPasswort : function() {
+        return this.passwort;
     }
 }
