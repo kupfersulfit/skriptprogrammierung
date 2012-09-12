@@ -132,6 +132,11 @@
     /** Zerst&ouml;rt das Kundenobjekt in der Session (nicht den Warenkorb) */
     function logout(){
         $_SESSION['kunde'] = new Kunde(array("id" => -1, "name" => "Guest"));
+        if($_SESSION['kunde']->getName() == "Guest"){
+            success();
+        }else{
+            err("logout failed");
+        }
     }
 
     /** Versucht einen neuen Kunden anzulegen 
@@ -324,7 +329,7 @@
     }
 
     /** Gibt eine Bestellung auf */
-    function bestelle(){
+    function bestelle($bestellungsinfos){
         if($_SESSION['kunde']->getId() == -1){
             err("you need to be logged in to order");
             return;
@@ -347,6 +352,7 @@
         }
 
         //bestellung anlegen
+        $bestellungsinfos = json_decode($bestellungsinfos, true); //TODO
         $bestellung = array();
         $bestellung['id'] = "";
         $bestellung['kundenid'] = $_SESSION['kunde']->getId();

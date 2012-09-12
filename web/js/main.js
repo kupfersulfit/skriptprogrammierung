@@ -1,6 +1,7 @@
 var holeRolle = 'homeTab';
 
 function openLoginContainer() {
+
     jQuery('#loginContainer').show();
     jQuery('#registerContainer').hide();
     jQuery('#container').fadeIn('slow');
