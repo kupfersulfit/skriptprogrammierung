@@ -120,8 +120,11 @@
             }
             exit();
         case 'bestelle':
-            //TODO
-            bestelle();
+            if(!isset($_POST['methoden'])){
+                err("'methoden' parameter missing");
+            }else{
+                bestelle($POST['methoden']);
+            }
             exit();
         default:   
             echo json_encode(array('error' => 'unknown action'));     
