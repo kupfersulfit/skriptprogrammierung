@@ -106,43 +106,43 @@ function systemessages(json) {
 }
 
 jQuery(document).on('click', "input[name='send']", 
-function() {
-    var id=this.id.substr(1,this.id.length);
-    getKunde(id);
-}
-);
+    function() {
+        var id=this.id.substr(1,this.id.length);
+        getKunde(id);
+    }
+    );
 jQuery(document).on('click', "input[name='aendereKunde']", 
     function() {
-		var id=this.id.substr(1,this.id.length);
+        var id=this.id.substr(1,this.id.length);
         Customer.create(id, $("#kundenNameId").val(), $("#kundenVornameId").val(), $("#kundenStrasseId").val(), $("#kundenPlzId").val(), $("#kundenZusatzId").val(), $("#kundenEmailId").val(), $("#kundenPwId").val());
         refreshKunde(Customer);
         alert("Kunde ist geändert worden.");
     }
 
-);
+    );
     
 jQuery(document).on('click', "input[name='loescheKunde']", 
-	function() {
-		deleteKunde(Customer);
-		alert("Kunde ist gelöscht worden.");
-	}	
-);
+    function() {
+        deleteKunde(Customer);
+        alert("Kunde ist gelöscht worden.");
+    }	
+    );
     
 jQuery(document).on('click', "input[name='aendereArtikel']", 
-function() {
-    var id = this.id.substr(1,this.id.length);
-    modifyArticle(id);
-}
-);
+    function() {
+        var id = this.id.substr(1,this.id.length);
+        modifyArticle(id);
+    }
+    );
 jQuery(document).on('click', "input[name='aktualisiereArtikel']", 
-function() {
-    var id = this.id.substr(1,this.id.length);
-    updateArticle(id);
-}
-);
+    function() {
+        var id = this.id.substr(1,this.id.length);
+        updateArticle(id);
+    }
+    );
 jQuery(document).on('click', "input[name='loescheArtikel']", 
-function() {
-    var id = this.id.substr(1,this.id.length);
-    deleteArticle(id);
-}
-);  
+    function() {
+        var id = this.id.substr(1,this.id.length);
+        deleteArticle(id);
+    }
+    );  
