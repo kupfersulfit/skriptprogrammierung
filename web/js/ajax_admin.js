@@ -106,6 +106,7 @@ function getAllArticles(){
                 htmltext+= '<tr><td>'+row.id+'</td><td>' + row.name + '</td><td><input type="button" name="aendereArtikel" id="a'+row.id +'" value="change"/></td></tr>';
             };
             htmltext += '</table><br><br>';
+            //Article.create();
             $("#divModifyArticle").html(htmltext);
         },
         error : function (json) {
@@ -160,7 +161,7 @@ function updateArticle(json){
         url : 'lib/controller.php',
         data : {
             'action' : 'aendereArtikel',
-            'kunde' : Article.getJSONstring()
+            'artikel' : Article.getJSONstring()
         },
         dataType : 'json',
         success : function(json){
@@ -178,13 +179,7 @@ function createArticle() {
         url : 'lib/controller.php', 
         data : {
             'action' : 'erstelleArtikel',
-            "name": $('#newName'),
-            "beschreibung":$('#newDescr'),
-            "bildpfad":$('#newImg'),
-            "veroeffentlicht":$("#newPubl").is(":checked"),
-            "kategorieId":$('#newCat'),
-            "preis":$('#newPrice'),
-            "verfuegbar":$('#newNr')
+            'artikel' : Article.getJSONstring()
         },
         dataType : 'json',
         success : function (json) {
@@ -202,7 +197,7 @@ function deleteArticle(id) {
         url : 'lib/controller.php', 
         data : {
             'action' : 'loescheArtikel',
-            'kunde' : Article.getJSONstring()
+            'artikel' : Article.getJSONstring()
         },
         dataType : 'json',
         success : function (json) {
