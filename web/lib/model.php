@@ -587,8 +587,8 @@ class DatabaseModel {
                         ":anzahl" => $artikel->getVerfuegbar()
                     );
                     $dbConnector->executeQuery($query, $params);
-                return true;
             }
+         	return true;
         } else {
             return false;
         }
