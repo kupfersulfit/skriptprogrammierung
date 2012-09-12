@@ -8,6 +8,11 @@
         echo json_encode(array(utf8_encode("error") => utf8_encode("$nachricht")));
     }
 
+    /** Gibt eine Erfolgsmeldung aus */
+    function success(){
+        echo json_encode(array(utf8_encode("success") => utf8_encode("success")));
+    }
+
     /** Zeigt alle Artikel an */
     function zeigeArtikel(){
         $artikelArray = $_SESSION['model']->holeAlleArtikel();
@@ -146,7 +151,7 @@
             date_default_timezone_set('Europe/Berlin');
             $kunde->setRegistriertseit(date("Y-m-d H:i:s", time()));
             $_SESSION['model']->erstelleKunde($kunde);
-            echo json_encode(array("success" => "success"));
+            success();
         }
     }
 
@@ -168,7 +173,7 @@
             err("deletion failed");
             return;
         }
-        echo json_encode(array("success" => "success"));
+        success();
     }
 
     /** Gibt das aktuelle Kundenobjekt zur&uuml;ck 
@@ -215,11 +220,15 @@
         echo json_encode($kunden);
     }
 
-    /** Aktualisiert das Kundenobjekt in Session und Datenbank
+    /** Aktualisiert das Kundenobjekt in der Datenbank und ggf in der Session
         @param kunde aktualisiertes Kundenobjekt
     */
     function aktualisiereKunde($kunde){
         $kunde = json_decode($kunde, true);
+        //hole aktuelles pw aus der db 
+        $alterkunde = $_SESSION['model']->holeKundeMitId($kunde['id']);
+        //vermeide dass das pw geloescht wird
+        $kunde['passwort'] = $alterkunde->getPasswort(); 
         try{
             $kunde = new Kunde($kunde);
         }catch(Exception $e){
@@ -227,6 +236,12 @@
             return;
         }
         $_SESSION['model']->aktualisiereKunde($kunde);
+
+        //falls der angemeldete admin seine daten aktualisiert hat, session updaten
+        if($_SESSION['kunde']->getId() == $kunde->getId()){
+            $_SESSION['kunde'] = $_SESSION['model']->holeKundeMitId($kunde->getId());
+        }
+        success();
     }
 
     /** Tr&auml;gt einen neuen Artikel in der Datenbank ein 
@@ -266,7 +281,7 @@
         if($_SESSION['model']->loescheArtikel($artikel->getId()) == null){
             err("article not deleted");
         }else{
-            echo json_encode(array("success" => "success"));
+            success();
         }
     }
 
