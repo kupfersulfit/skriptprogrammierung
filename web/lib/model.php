@@ -569,11 +569,11 @@ class DatabaseModel {
         if ($dbConnector->connect()) {
             $query = "INSERT INTO bestellung VALUES('', ':kundenid', ':bestelldatum', ':statusid', ':zahlungsmethodeid', ':lieferungsmethodeid')";
             $params = array(
-            ":kundenid" => $bestellung->kundenid,
-            ":bestelldatum" => $bestellung->bestelldatum,
-            ":statusid" => $bestellung->statusid,
-            ":zahlungsmethodeid" => $bestellung->zahlungsmethodeid,
-            ":lieferungsmethodeid" => $bestellung->lieferungsmethodeid
+            ":kundenid" => $bestellung->getKundenId(),
+            ":bestelldatum" => $bestellung->getBestelldatum(),
+            ":statusid" => $bestellung->getStatusId(),
+            ":zahlungsmethodeid" => $bestellung->getZahlunsgmethodeId(),
+            ":lieferungsmethodeid" => $bestellung->getLieferunsgmethodeId()
             );
             $dbConnector->executeQuery($query, $params);
             // Create articles

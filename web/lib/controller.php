@@ -117,6 +117,7 @@
             exit();
         case 'bestelle':
             //TODO
+            bestelle();
             exit();
         default:   
             echo json_encode(array('error' => 'unknown action'));     

@@ -302,7 +302,7 @@
         $_SESSION['model']->aktualisiereArtikel($artikel);
     }
 
-    /** Gibt die Rolle des aktuell angemeldeten Nutzers aus */
+    /** Testet ob der aktuell angemeldete Nutzer ein Admin ist */
     function istAdmin(){
         global $adminEmails;
         $angemeldeterNutzer = $_SESSION['kunde']->getEmail();
@@ -313,13 +313,37 @@
         }
     }
     
+    /** Gibt die Rolle des aktuell angemeldeten Nutzers aus */
     function holeRolle(){
-        global $adminEmails;
-        $angemeldeterNutzer = $_SESSION['kunde']->getEmail();
-        if(in_array($angemeldeterNutzer, $adminEmails)){
+        if(istAdmin()){
             echo json_encode(array(utf8_encode("rolle") => utf8_encode("admin")));
         }else{
             echo json_encode(array(utf8_encode("rolle") => utf8_encode("nutzer")));
         }
+    }
+
+    /** Gibt eine Bestellung auf */
+    function bestelle(){
+        //zu bestellende artikel holen
+        $alleArtikel = $_SESSION['korb']->getArtikelFeld();
+        
+        //bestellung anlegen
+        $bestellung = array();
+        $bestellung['id'] = "";
+        $bestellung['kundenId'] = "";
+        $bestellung['bestelldatum'] = "";
+        $bestellung['statusId'] = "";
+        $bestellung['zahlungsmethodeId'] = "";
+        $bestellung['lieferungsmethodeId'] = "";
+        try{
+            $bestellung = new Bestellung($bestellung);
+        }catch(Exception $e){
+            err($e->getMessage());
+            return;
+        }
+
+        //bestellung in db eintragen
+        $_SESSION['model']->erstelleBestellung($bestellung, $alleArtikel);
+        //TODO artikelanzahl (verfuegbar) anpassen
     }
 ?>
