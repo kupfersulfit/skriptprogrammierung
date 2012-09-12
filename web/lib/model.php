@@ -324,7 +324,7 @@ class DatabaseModel {
             beschreibung = :beschreibung,
             veroeffentlicht = :veroeffentlicht,
             verfuegbar = :verfuegbar,
-            katgorieid = :katgorieid,
+            kategorieid = :kategorieid,
             preis = :preis,
             bildpfad = :bildpfad,
             seit = :seit
@@ -335,7 +335,7 @@ class DatabaseModel {
             ":beschreibung" => $aktuellerArtikel->getBeschreibung(),
             ":veroeffentlicht" => $aktuellerArtikel->getVeroeffentlicht(),
             ":verfuegbar" => $aktuellerArtikel->getVerfuegbar(),
-            ":katgorieid" => $aktuellerArtikel->getKatgorieId(),
+            ":kategorieid" => $aktuellerArtikel->getKategorieId(),
             ":preis" => $aktuellerArtikel->getPreis(),
             ":bildpfad" => $aktuellerArtikel->getBildpfad(),
             ":seit" => $aktuellerArtikel->getSeit()

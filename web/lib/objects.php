@@ -232,7 +232,7 @@ class Artikel {
        return $this->veroeffentlicht;
 	}
 	public function setVerfuegbar($verfuegbar){
-       if(/*is_int($verfuegbar) &&*/ $verfuegbar >= 0){
+       if(is_numeric($verfuegbar) && $verfuegbar >= 0){
            $this->verfuegbar=$verfuegbar;
        }else{
            throw new Exception('Verfuegbar hat ungueltiges Format.');

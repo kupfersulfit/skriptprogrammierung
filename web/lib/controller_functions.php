@@ -356,7 +356,13 @@
         if($_SESSION['model']->erstelleBestellung($bestellung, $alleArtikel) == false){
             err("order could not be completed");
         }
-        //TODO artikelanzahl (verfuegbar) in der DB anpassen
+
+        //artikelanzahl (verfuegbar) in der DB anpassen
+        for($i = 0; $i < count($alleArtikel); $i++){
+            $tempArtikel = $_SESSION['model']->holeArtikel($alleArtikel[$i]->getId()); //aktuellen db eintrag holen
+            $tempArtikel->setVerfuegbar($tempArtikel->getVerfuegbar() - $alleArtikel[$i]->getVerfuegbar()); //anzahl vorhanderner artikel anpassen
+            $_SESSION['model']->aktualisiereArtikel($tempArtikel); //aenderung in db eintragen
+        }
 
         //warenkorb leeren
         $_SESSION['korb'] = new Warenkorb();
