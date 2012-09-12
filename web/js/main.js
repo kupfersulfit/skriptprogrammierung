@@ -122,10 +122,10 @@ jQuery(document).on('click', "input[name='aendereKunde']",
 );
     
 jQuery(document).on('click', "input[name='loescheKunde']", 
-function() {
-    deleteKunde();
-    alert("Kunde ist gelöscht worden.");
-}	
+	function() {
+		deleteKunde(Customer);
+		alert("Kunde ist gelöscht worden.");
+	}	
 );
     
 jQuery(document).on('click', "input[name='aendereArtikel']", 
