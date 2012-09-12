@@ -17,7 +17,7 @@ class Kunde {
 	// Methoden
 	public function __construct($values=array()){
 		if(isset($values["id"])){
-			if($values["id"] != "" && is_int($values["id"])){
+			if($values["id"] != "" && is_numeric($values["id"])){
 				$this->id = $values['id'];
 			}else{
 				$values["id"] = 0;
@@ -232,7 +232,7 @@ class Artikel {
        return $this->veroeffentlicht;
 	}
 	public function setVerfuegbar($verfuegbar){
-       if(/*is_int($verfuegbar) &&*/ $verfuegbar >= 0){
+       if(is_numeric($verfuegbar) && $verfuegbar >= 0){
            $this->verfuegbar=$verfuegbar;
        }else{
            throw new Exception('Verfuegbar hat ungueltiges Format.');
@@ -268,7 +268,7 @@ class Warenkorb {
 	// Member-Variablen
 	private $artikel_feld;
 	// Methoden
-	public function __construct($values = array(array())){
+	public function __construct($values = array()){
 		$this->artikel_feld = array();
         if(count($values) > 0){
 		    foreach($values as $val){
@@ -298,11 +298,11 @@ class Warenkorb {
  */
 class Bestellung{
 	private $id;
-	private $kundenId;
+	private $kundenid;
 	private $bestelldatum;
-	private $statusId;
-	private $zahlungsmethodeId;
-	private $lieferungsmethode;
+	private $statusid;
+	private $zahlungsmethodeid;
+	private $lieferungsmethodeid;
 	
 	public function __construct($values = array()){
 
@@ -313,35 +313,35 @@ class Bestellung{
 				$this->id = 0;
 			}
 		}
-		if(isset($values["kundenId"]))
-			$this->kosten = $values["kundenId"];
+		if(isset($values["kundenid"]))
+			$this->kundenid = $values["kundenid"];
 		if(isset($values["bestelldatum"]))
-			$this->kosten = $values["bestelldatum"];
-		if(isset($values["statusId"]))
-			$this->kosten = $values["statusId"];
-		if(isset($values["zahlungsmethodeId"]))
-			$this->kosten = $values["zahlungsmethodeId"];
-		if(isset($values["lieferungsmethodeId"]))
-			$this->kosten = $values["lieferungsmethodeId"];
+			$this->bestelldatum = $values["bestelldatum"];
+		if(isset($values["statusid"]))
+			$this->statusid = $values["statusid"];
+		if(isset($values["zahlungsmethodeid"]))
+			$this->zahlungsmethodeid = $values["zahlungsmethodeid"];
+		if(isset($values["lieferungsmethodeid"]))
+			$this->lieferungsmethodeid = $values["lieferungsmethodeid"];
 	}
 	
 	function getId(){
 		return $this->id;
 	}
-	function getKundenId(){
-		return $this->kundenId;
+	function getKundenid(){
+		return $this->kundenid;
 	}
-	function getBestelldaum(){
+	function getBestelldatum(){
 		return $this->bestelldatum;
 	}
-	function getStatusId(){
-		return $this->statusId;
+	function getStatusid(){
+		return $this->statusid;
 	}
-	function getZahlunsgmethodeId(){
-		return $this->zahlungsmethodeId;
+	function getZahlunsgmethodeid(){
+		return $this->zahlungsmethodeid;
 	}
-	function getLieferunsgmethodeId(){
-		return $this->lieferunsgmethodeId;
+	function getLieferunsgmethodeid(){
+        return $this->lieferungsmethodeid;
 	}	
 }
 /**

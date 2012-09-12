@@ -8,6 +8,11 @@
         echo json_encode(array(utf8_encode("error") => utf8_encode("$nachricht")));
     }
 
+    /** Gibt eine Erfolgsmeldung aus */
+    function success(){
+        echo json_encode(array(utf8_encode("success") => utf8_encode("success")));
+    }
+
     /** Zeigt alle Artikel an */
     function zeigeArtikel(){
         $artikelArray = $_SESSION['model']->holeAlleArtikel();
@@ -146,7 +151,7 @@
             date_default_timezone_set('Europe/Berlin');
             $kunde->setRegistriertseit(date("Y-m-d H:i:s", time()));
             $_SESSION['model']->erstelleKunde($kunde);
-            echo json_encode(array("success" => "success"));
+            success();
         }
     }
 
@@ -168,7 +173,7 @@
             err("deletion failed");
             return;
         }
-        echo json_encode(array("success" => "success"));
+        success();
     }
 
     /** Gibt das aktuelle Kundenobjekt zur&uuml;ck 
@@ -215,11 +220,15 @@
         echo json_encode($kunden);
     }
 
-    /** Aktualisiert das Kundenobjekt in Session und Datenbank
+    /** Aktualisiert das Kundenobjekt in der Datenbank und ggf in der Session
         @param kunde aktualisiertes Kundenobjekt
     */
     function aktualisiereKunde($kunde){
         $kunde = json_decode($kunde, true);
+        //hole aktuelles pw aus der db 
+        $alterkunde = $_SESSION['model']->holeKundeMitId($kunde['id']);
+        //vermeide dass das pw geloescht wird
+        $kunde['passwort'] = $alterkunde->getPasswort(); 
         try{
             $kunde = new Kunde($kunde);
         }catch(Exception $e){
@@ -227,6 +236,12 @@
             return;
         }
         $_SESSION['model']->aktualisiereKunde($kunde);
+
+        //falls der angemeldete admin seine daten aktualisiert hat, session updaten
+        if($_SESSION['kunde']->getId() == $kunde->getId()){
+            $_SESSION['kunde'] = $_SESSION['model']->holeKundeMitId($kunde->getId());
+        }
+        success();
     }
 
     /** Tr&auml;gt einen neuen Artikel in der Datenbank ein 
@@ -266,7 +281,7 @@
         if($_SESSION['model']->loescheArtikel($artikel->getId()) == null){
             err("article not deleted");
         }else{
-            echo json_encode(array("success" => "success"));
+            success();
         }
     }
 
@@ -287,7 +302,7 @@
         $_SESSION['model']->aktualisiereArtikel($artikel);
     }
 
-    /** Gibt die Rolle des aktuell angemeldeten Nutzers aus */
+    /** Testet ob der aktuell angemeldete Nutzer ein Admin ist */
     function istAdmin(){
         global $adminEmails;
         $angemeldeterNutzer = $_SESSION['kunde']->getEmail();
@@ -298,13 +313,68 @@
         }
     }
     
+    /** Gibt die Rolle des aktuell angemeldeten Nutzers aus */
     function holeRolle(){
-        global $adminEmails;
-        $angemeldeterNutzer = $_SESSION['kunde']->getEmail();
-        if(in_array($angemeldeterNutzer, $adminEmails)){
+        if(istAdmin()){
             echo json_encode(array(utf8_encode("rolle") => utf8_encode("admin")));
         }else{
             echo json_encode(array(utf8_encode("rolle") => utf8_encode("nutzer")));
         }
+    }
+
+    /** Gibt eine Bestellung auf */
+    function bestelle(){
+        if($_SESSION['kunde']->getId() == -1){
+            err("you need to be logged in to order");
+            return;
+        }
+
+        //zu bestellende artikel aus warenkorb holen
+        $alleArtikel = $_SESSION['korb']->getArtikelFeld();
+        if(count($alleArtikel) < 1){
+            err("you need to order at least 1 item");
+            return;
+        }
+
+        //erneut pruefen ob noch genug artikel auf lager
+        foreach($alleArtikel as $artikel){
+            $tempArtikel = $_SESSION['model']->holeArtikel($artikel->getId()); //aktuellen db eintrag holen
+            if($tempArtikel->getVerfuegbar() < $artikel->getVerfuegbar()){
+                err("not enough ".$artikel->getName()." available");
+                return;
+            }
+        }
+
+        //bestellung anlegen
+        $bestellung = array();
+        $bestellung['id'] = "";
+        $bestellung['kundenid'] = $_SESSION['kunde']->getId();
+        date_default_timezone_set('Europe/Berlin');
+        $bestellung['bestelldatum'] = date("Y-m-d H:i:s", time());
+        $bestellung['statusid'] = 1; //1 ^= offen/in bearbeitung
+        $bestellung['zahlungsmethodeid'] = ""; //TODO
+        $bestellung['lieferungsmethodeid'] = ""; //TODO
+        try{
+            $bestellung = new Bestellung($bestellung);
+        }catch(Exception $e){
+            err($e->getMessage());
+            return;
+        }
+
+        //bestellung in db eintragen
+        if($_SESSION['model']->erstelleBestellung($bestellung, $alleArtikel) == false){
+            err("order could not be completed");
+        }
+
+        //artikelanzahl (verfuegbar) in der DB anpassen
+        for($i = 0; $i < count($alleArtikel); $i++){
+            $tempArtikel = $_SESSION['model']->holeArtikel($alleArtikel[$i]->getId()); //aktuellen db eintrag holen
+            $tempArtikel->setVerfuegbar($tempArtikel->getVerfuegbar() - $alleArtikel[$i]->getVerfuegbar()); //anzahl vorhanderner artikel anpassen
+            $_SESSION['model']->aktualisiereArtikel($tempArtikel); //aenderung in db eintragen
+        }
+
+        //warenkorb leeren
+        $_SESSION['korb'] = new Warenkorb();
+        success();
     }
 ?>

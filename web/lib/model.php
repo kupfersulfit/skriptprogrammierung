@@ -324,7 +324,7 @@ class DatabaseModel {
             beschreibung = :beschreibung,
             veroeffentlicht = :veroeffentlicht,
             verfuegbar = :verfuegbar,
-            katgorieid = :katgorieid,
+            kategorieid = :kategorieid,
             preis = :preis,
             bildpfad = :bildpfad,
             seit = :seit
@@ -335,7 +335,7 @@ class DatabaseModel {
             ":beschreibung" => $aktuellerArtikel->getBeschreibung(),
             ":veroeffentlicht" => $aktuellerArtikel->getVeroeffentlicht(),
             ":verfuegbar" => $aktuellerArtikel->getVerfuegbar(),
-            ":katgorieid" => $aktuellerArtikel->getKatgorieId(),
+            ":kategorieid" => $aktuellerArtikel->getKategorieId(),
             ":preis" => $aktuellerArtikel->getPreis(),
             ":bildpfad" => $aktuellerArtikel->getBildpfad(),
             ":seit" => $aktuellerArtikel->getSeit()
@@ -567,28 +567,26 @@ class DatabaseModel {
         // 
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
-            $query = "INSERT INTO bestellung VALUES('', ':kundenid', ':bestelldatum', ':statusid', ':zahlungsmethodeid', ':lieferungsmethodeid')";
+            $query = "INSERT INTO bestellungen VALUES(null, :kundenid, :bestelldatum, :statusid, :zahlungsmethodeid, :lieferungsmethodeid)";
             $params = array(
-            ":kundenid" => $bestellung->kundenid,
-            ":bestelldatum" => $bestellung->bestelldatum,
-            ":statusid" => $bestellung->statusid,
-            ":zahlungsmethodeid" => $bestellung->zahlungsmethodeid,
-            ":lieferungsmethodeid" => $bestellung->lieferungsmethodeid
+            ":kundenid" => $bestellung->getKundenId(),
+            ":bestelldatum" => $bestellung->getBestelldatum(),
+            ":statusid" => $bestellung->getStatusId(),
+            ":zahlungsmethodeid" => $bestellung->getZahlunsgmethodeId(),
+            ":lieferungsmethodeid" => $bestellung->getLieferunsgmethodeId()
             );
             $dbConnector->executeQuery($query, $params);
             // Create articles
             $lastOrderId = $dbConnector->lastInsertId;
             foreach ($alleArtikel as $artikel)
             {
-                if ($dbConnector->connect()) {
-                    $query = "INSERT INTO bestellungen_artikel VALUES( ':bestellungid', ':artikelid', ':anzahl' )";
+                    $query = "INSERT INTO bestellungen_artikel VALUES( :bestellungid, :artikelid, :anzahl)";
                     $params = array(
                         ":bestellungid" => $lastOrderId,
-                        ":artikelid" => $artikel->getBestelldatum(),
-                        ":anzahl" => $artikel->getStatusId()
+                        ":artikelid" => $artikel->getId(),
+                        ":anzahl" => $artikel->getVerfuegbar()
                     );
                     $dbConnector->executeQuery($query, $params);
-                }
                 return true;
             }
         } else {

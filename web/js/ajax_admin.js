@@ -39,14 +39,14 @@ function getKunde(id){
             htmltext += '<tr><td>PLZ:</td><td><input name="kundenPlz" id="kundenPlzId" type="text" size="50" maxlength="50" value='+json.plz+'></td></tr>';
             htmltext += '<tr><td>Zusatz:</td><td><input name="kundenZusatz" id="kundenZusatzId" type="text" size="50" maxlength="50" value='+json.zusatz+'></td></tr>';
             htmltext += '<tr><td>Email:</td><td><input name="kundeEmail" id="kundenEmailId" type="text" size="50" maxlength="50" value='+json.email+'></td></tr>';
+            htmltext += '<tr><td>Passwort:</td><td><input name="kundePw" id="kundenPwId" type="text" size="50" maxlength="50" value='+json.passwort+'></td></tr>';
             htmltext += '<tr><td>Registriert Seit:</td><td><input name="kundeSeit" id="kundenSeitId" type="text" size="50" maxlength="50" value='+json.registriertseit+' readonly></td></tr>';
             htmltext += '</table>';
             htmltext += '<input type="button" name="aendereKunde" id="k'+json.id+'" value="Change"/>';
             htmltext += '<input type="button" name="loescheKunde" id="k'+json.id+'" value="Delete"/>';
             $("#tabelle").html(htmltext);
 			
-            //			console.debug(json);
-            Customer.create(json.id, json.name, json.vorname, json.strasse, json.plz, json.zusatz, json.email, '');
+            Customer.create(json.id, $('#kundenNamenId'), $('#kundenVornameId'), $('#kundenStrasseId'), $('#kundenPlzId'), $('#kundenZusatzId'), $('#kundenEmailId'), $('#kundenPwId'));
         },
         error : function (json) {
 			
@@ -103,10 +103,11 @@ function getAllArticles(){
             var htmltext = "<table id='all' border='0' width='1000' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Name</th><th></th></tr>";
             for(var i = 0; i < json.length; i++){
                 var row=json[i];
-                htmltext+= '<tr><td>'+row.id+'</td><td>' + row.name + '</td><td><input type="button" name="aendern" id="a'+row.id +'" value="change"/></td></tr>';
+                htmltext+= '<tr><td>'+row.id+'</td><td>' + row.name + '</td><td><input type="button" name="aendereArtikel" id="a'+row.id +'" value="change"/></td></tr>';
             };
             htmltext += '</table><br><br>';
-            $("#divArtikelTabelle").html(htmltext);
+            //Article.create();
+            $("#divModifyArticle").html(htmltext);
         },
         error : function (json) {
         
@@ -142,9 +143,10 @@ function modifyArticle(id){
             htmltext += "<tr><td bgcolor='#ECECEC'>Image path: </td><td><input type='text' name='bildpfad' id='modImg' size='40' value='"+artikel.bildpfad+"'></td></tr>";
             htmltext += "<tr><td bgcolor='#ECECEC'>Number(in stock): </td><td><input type='text' name='verfuegbar' id='modNr' size='40' value='"+artikel.verfuegbar+"'></td></tr>";
             htmltext += "</table>";
-            htmltext += "<input type='button' name='aendereArtikel' id='a"+artikel.id+"' value='ok'>";
+            htmltext += "<input type='button' name='aktualisiereArtikel' id='a"+artikel.id+"' value='ok'>";
             htmltext += "<input type='button' name='loescheArtikel' id='a"+artikel.id+"' value='delete article'><br><br>";
-            $("#divArtikelTabelle").html(htmltext);
+            //Article.create();
+            $("#divModifyArticle").html(htmltext);
             $("#divAddArticle").hide();
         },
         error : function (json) {
@@ -153,24 +155,17 @@ function modifyArticle(id){
     });
 }
 
-function sendModifiedArticle(id){
+function updateArticle(json){
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php',
         data : {
-            'action' : 'aktualisiereArtikel',
-            "id": id,
-            "name": $('#modName'),
-            "beschreibung":$('#modDescr'),
-            "bildpfad":$('#modImg'),
-            "veroeffentlicht":$('#modPubl'),
-            "kategorieId":$('#modCat'),
-            "preis":$('#modPrice'),
-            "verfuegbar":$('#modNr')
+            'action' : 'aendereArtikel',
+            'artikel' : Article.getJSONstring()
         },
         dataType : 'json',
         success : function(json){
-
+        
         },
         error : function (json) {
         
@@ -184,13 +179,7 @@ function createArticle() {
         url : 'lib/controller.php', 
         data : {
             'action' : 'erstelleArtikel',
-            "name": $('#newName'),
-            "beschreibung":$('#newDescr'),
-            "bildpfad":$('#newImg'),
-            "veroeffentlicht":$("#newPubl").is(":checked"),
-            "kategorieId":$('#newCat'),
-            "preis":$('#newPrice'),
-            "verfuegbar":$('#newNr')
+            'artikel' : Article.getJSONstring()
         },
         dataType : 'json',
         success : function (json) {
@@ -208,7 +197,7 @@ function deleteArticle(id) {
         url : 'lib/controller.php', 
         data : {
             'action' : 'loescheArtikel',
-            "id": id
+            'artikel' : Article.getJSONstring()
         },
         dataType : 'json',
         success : function (json) {
