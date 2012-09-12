@@ -321,7 +321,9 @@
     
     /** Gibt die Rolle des aktuell angemeldeten Nutzers aus */
     function holeRolle(){
-        if(istAdmin()){
+        if($_SESSION['kunde']->getEmail() == ""){
+            echo json_encode(array(utf8_encode("rolle") => utf8_encode("guest")));
+        }else if(istAdmin()){
             echo json_encode(array(utf8_encode("rolle") => utf8_encode("admin")));
         }else{
             echo json_encode(array(utf8_encode("rolle") => utf8_encode("nutzer")));
