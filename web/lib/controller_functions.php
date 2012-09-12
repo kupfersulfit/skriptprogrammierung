@@ -231,6 +231,11 @@
     */
     function aktualisiereKunde($kunde){
         $kunde = json_decode($kunde, true);
+        if(!istAdmin() && $kunde['id'] != $_SESSION['kunde']->getId()){
+            err("only admins can edit other customers");
+            return;
+        }
+
         //hole aktuelles pw aus der db 
         $alterkunde = $_SESSION['model']->holeKundeMitId($kunde['id']);
         //vermeide dass das pw geloescht wird
@@ -321,7 +326,9 @@
     
     /** Gibt die Rolle des aktuell angemeldeten Nutzers aus */
     function holeRolle(){
-        if(istAdmin()){
+        if($_SESSION['kunde']->getEmail() == ""){
+            echo json_encode(array(utf8_encode("rolle") => utf8_encode("guest")));
+        }else if(istAdmin()){
             echo json_encode(array(utf8_encode("rolle") => utf8_encode("admin")));
         }else{
             echo json_encode(array(utf8_encode("rolle") => utf8_encode("nutzer")));
