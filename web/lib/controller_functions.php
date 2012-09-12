@@ -80,7 +80,7 @@
         try{
             $korb = new Warenkorb($korb); //warenkorbobjekt erzeugen
         }catch(Exception $e){
-            err("some values are invalid");
+            err($e->getMessage());
             return;
         }
         $artikelListe = $korb->getArtikelFeld(); //hole liste aller artikel im neuen korb
@@ -93,6 +93,7 @@
                 return;
             }else if(!$art->getVeroeffentlicht()){
                 err("article not published");
+                return;
             }else if($anzahl > $art->getVerfuegbar()){ //teste ob noch genug artikel auf lager
                 err("not enough ".$art->getName()." available");
                 return;
