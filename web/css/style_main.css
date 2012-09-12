@@ -108,6 +108,19 @@ header {
     z-index: 2;
 }
 
+/* --- system --- */
+
+#system {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#messages {
+    border: 1px dashed #c9c9c9;
+    border-radius: 5px;
+    padding: 5px;
+}
+
 /* --- search --- */
 #search_container {
     height: 60px;

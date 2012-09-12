@@ -54,7 +54,7 @@ function getCustomerContent(pageName) {
     jQuery.ajax({
         url: 'templates/customer/' + pageName + ".php",
         success: function (data) {
-            jQuery('#left').html(data);
+            jQuery('#page').html(data);
             if(pageName == 'home') {
                 getArticleList();
             }
@@ -66,7 +66,7 @@ function getAdminContent(pageName) {
     jQuery.ajax({
         url: 'templates/admin/' + pageName + ".php",
         success: function (data) {
-            jQuery('#left').html(data);
+            jQuery('#page').html(data);
             getUserManagement();
         }
     });
@@ -99,42 +99,48 @@ function search() {
     }
 }
 
-jQuery(document).on('click', "input[name='send']", 
-    function() {
-        var id=this.id.substr(1,this.id.length);
-        getKunde(id);
+function systemessages(json) {
+    for (var attr in json) {
+        jQuery('#messages').html(attr +' : ' + json[attr]);
     }
+}
+
+jQuery(document).on('click', "input[name='send']", 
+function() {
+    var id=this.id.substr(1,this.id.length);
+    getKunde(id);
+}
 );
 jQuery(document).on('click', "input[name='aendereKunde']", 
-    function() {
-//      alert("Kunde ist ge�ndert worden.");
-        refreshKunde();
-        alert("Kunde ist geändert worden.");
-    }
+function() {
+    //      alert("Kunde ist ge�ndert worden.");
+    refreshKunde();
+    alert("Kunde ist geändert worden.");
+}
 );
     
 jQuery(document).on('click', "input[name='loescheKunde']", 
-    function() {
-        deleteKunde();
-        alert("Kunde ist gelöscht worden.");
-    }	
+function() {
+    deleteKunde();
+    alert("Kunde ist gelöscht worden.");
+}	
 );
     
-$(document).on('click', "input[name='aendereArtikel']", 
-    function() {
-        var id = this.id.substr(1,this.id.length);
-        modifyArticle(id);
-    }
+jQuery(document).on('click', "input[name='aendereArtikel']", 
+function() {
+    var id = this.id.substr(1,this.id.length);
+    modifyArticle(id);
+}
 );
-$(document).on('click', "input[name='aktualisiereArtikel']", 
-    function() {
-        var id = this.id.substr(1,this.id.length);
-        updateArticle(id);
-    }
+jQuery(document).on('click', "input[name='aktualisiereArtikel']", 
+function() {
+    var id = this.id.substr(1,this.id.length);
+    updateArticle(id);
+}
 );
-$(document).on('click', "input[name='loescheArtikel']", 
-    function() {
-        var id = this.id.substr(1,this.id.length);
-        deleteArticle(id);
-    }
-);
+jQuery(document).on('click', "input[name='loescheArtikel']", 
+function() {
+    var id = this.id.substr(1,this.id.length);
+    deleteArticle(id);
+}
+);  

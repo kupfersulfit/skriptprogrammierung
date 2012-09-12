@@ -16,8 +16,10 @@ function getAlleKunden(){
             htmltext += '</table>';
             $("#tabelle").html(htmltext);
         },
-        error : function (json) {
-        
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
     });
 }
@@ -48,8 +50,10 @@ function getKunde(id){
 			
             Customer.create(json.id, $('#kundenNamenId'), $('#kundenVornameId'), $('#kundenStrasseId'), $('#kundenPlzId'), $('#kundenZusatzId'), $('#kundenEmailId'), $('#kundenPwId'));
         },
-        error : function (json) {
-			
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });	
         }
     });
 }
@@ -64,10 +68,18 @@ function refreshKunde(json){
         },
         dataType : 'json',
         success : function(json){
-        //Customer.getJSONstring();
+            if (json.error) {
+                systemessages(json);
+            } else {
+                systemessages({
+                    'succes' : "change done"
+                });
+            }  
         },
-        error : function (json) {
-        
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
     });
 }
@@ -84,9 +96,18 @@ function deleteKunde(json){
         },
         dataType : 'json',
         success : function(json){
-        //Customer.getJSONstring();
+            if (json.error) {
+                systemessages(json);
+            } else {
+                systemessages({
+                    'succes' : "Customer deleted"
+                });
+            }  
         },
-        error : function (json) {
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
     });
 }
@@ -109,8 +130,10 @@ function getAllArticles(){
             //Article.create();
             $("#divModifyArticle").html(htmltext);
         },
-        error : function (json) {
-        
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });        
         }
     });
 }
@@ -149,8 +172,10 @@ function modifyArticle(id){
             $("#divModifyArticle").html(htmltext);
             $("#divAddArticle").hide();
         },
-        error : function (json) {
-        
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
     });
 }
@@ -165,10 +190,18 @@ function updateArticle(json){
         },
         dataType : 'json',
         success : function(json){
-        
+            if (json.error) {
+                systemessages(json);
+            } else {
+                systemessages({
+                    'succes' : "update done"
+                });
+            }  
         },
-        error : function (json) {
-        
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
     });
 }
@@ -183,10 +216,18 @@ function createArticle() {
         },
         dataType : 'json',
         success : function (json) {
-            
+            if (json.error) {
+                systemessages(json);
+            } else {
+                systemessages({
+                    'succes' : "article created"
+                });
+            }  
         },
-        error : function (json) {
-        
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
     });
 }
@@ -201,10 +242,18 @@ function deleteArticle(id) {
         },
         dataType : 'json',
         success : function (json) {
-            
+            if (json.error) {
+                systemessages();
+            } else {
+                systemessages({
+                    'succes' : "article deleted"
+                });
+            }  
         },
-        error : function (json) {
-        
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
     });
 }
