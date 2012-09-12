@@ -9,7 +9,6 @@ Article = function() {
     this.seit            = '';
     this.verfuegbar      = '';
     this.veroeffentlicht = '1';
-    this.amount          = '1';
 }
 
 Article.Instances = new Array();
@@ -194,4 +193,28 @@ Article.calculatePrice = function(id, amount) {
     }
     priceSpan.html(price);
     ShopingCard.callbackTotalPrice();
+}
+
+Article.prototype.getJSONstring = function() {
+    var JSONstr = '{';
+    for (var key in this) { 
+        if (typeof this[key] != 'function' && typeof this[key] != 'object') {
+            JSONstr += '"' + key + '":"' + this[key] + '",';
+        }
+    }
+    JSONstr = JSONstr.substring(0, (JSONstr.length -1));
+    JSONstr += '}';
+    return JSONstr;
+}
+
+Article.prototype.createtemporyIntance = function(id, name, kategoryId, beschreibung, preis, seit, verfuegbar, veroeffentlicht, bildpfad) {
+    this.id              = id;
+    this.name            = name;
+    this.kategoryId      = kategoryId;
+    this.beschreibung    = beschreibung;
+    this.preis           = preis;
+    this.seit            = seit;
+    this.verfuegbar      = verfuegbar;
+    this.veroeffentlicht = veroeffentlicht;
+    this.bildpfad        = bildpfad;
 }
