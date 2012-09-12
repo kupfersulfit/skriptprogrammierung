@@ -324,17 +324,27 @@
 
     /** Gibt eine Bestellung auf */
     function bestelle(){
-        //zu bestellende artikel holen
+        if($_SESSION['kunde']->getId() == -1){
+            err("you need to be logged in to order");
+            return;
+        }
+
+        //zu bestellende artikel aus warenkorb holen
         $alleArtikel = $_SESSION['korb']->getArtikelFeld();
-        
+        if(count($alleArtikel) < 1){
+            err("you need to order at least 1 item");
+            return;
+        }
+
         //bestellung anlegen
         $bestellung = array();
         $bestellung['id'] = "";
-        $bestellung['kundenId'] = "";
-        $bestellung['bestelldatum'] = "";
-        $bestellung['statusId'] = "";
-        $bestellung['zahlungsmethodeId'] = "";
-        $bestellung['lieferungsmethodeId'] = "";
+        $bestellung['kundenid'] = $_SESSION['kunde']->getId();
+        date_default_timezone_set('Europe/Berlin');
+        $bestellung['bestelldatum'] = date("Y-m-d H:i:s", time());
+        $bestellung['statusid'] = 1; //1 ^= offen/in bearbeitung
+        $bestellung['zahlungsmethodeid'] = ""; //TODO
+        $bestellung['lieferungsmethodeid'] = ""; //TODO
         try{
             $bestellung = new Bestellung($bestellung);
         }catch(Exception $e){
@@ -343,7 +353,13 @@
         }
 
         //bestellung in db eintragen
-        $_SESSION['model']->erstelleBestellung($bestellung, $alleArtikel);
-        //TODO artikelanzahl (verfuegbar) anpassen
+        if($_SESSION['model']->erstelleBestellung($bestellung, $alleArtikel) == false){
+            err("order could not be completed");
+        }
+        //TODO artikelanzahl (verfuegbar) in der DB anpassen
+
+        //warenkorb leeren
+        $_SESSION['korb'] = new Warenkorb();
+        success();
     }
 ?>

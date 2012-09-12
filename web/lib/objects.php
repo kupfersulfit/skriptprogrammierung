@@ -268,7 +268,7 @@ class Warenkorb {
 	// Member-Variablen
 	private $artikel_feld;
 	// Methoden
-	public function __construct($values = array(array())){
+	public function __construct($values = array()){
 		$this->artikel_feld = array();
         if(count($values) > 0){
 		    foreach($values as $val){
