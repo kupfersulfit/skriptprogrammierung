@@ -112,17 +112,19 @@ function() {
 }
 );
 jQuery(document).on('click', "input[name='aendereKunde']", 
-function() {
-    //      alert("Kunde ist geï¿½ndert worden.");
-    refreshKunde();
-    alert("Kunde ist geÃ¤ndert worden.");
-}
+    function() {
+		var id=this.id.substr(1,this.id.length);
+        Customer.create(id, $("#kundenNameId").val(), $("#kundenVornameId").val(), $("#kundenStrasseId").val(), $("#kundenPlzId").val(), $("#kundenZusatzId").val(), $("#kundenEmailId").val(), $("#kundenPwId").val());
+        refreshKunde(Customer);
+        alert("Kunde ist geändert worden.");
+    }
+
 );
     
 jQuery(document).on('click', "input[name='loescheKunde']", 
 function() {
     deleteKunde();
-    alert("Kunde ist gelÃ¶scht worden.");
+    alert("Kunde ist gelöscht worden.");
 }	
 );
     

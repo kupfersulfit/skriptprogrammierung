@@ -12,6 +12,10 @@
         $_SESSION['kunde'] = new Kunde(array("id" => -1, "name" => "Guest"));
     }
 
+    if(!isset($_SESSION['korb'])){
+        $_SESSION['korb'] = new Warenkorb();
+    }
+
     if(!isset($_REQUEST['action'])){
         err("'action' parameter missing");
         die();

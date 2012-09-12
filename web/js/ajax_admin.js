@@ -35,7 +35,7 @@ function getKunde(id){
         dataType : 'json',
         success : function(json){
             var htmltext = '<table>';
-            htmltext += '<tr><td>Name:</td><td><input name="kundenName" id="kundenNamenId" type="text" size="50" maxlength="50" value='+json.name+'></td></tr>';
+            htmltext += '<tr><td>Name:</td><td><input name="kundenName" id="kundenNameId" type="text" size="50" maxlength="50" value='+json.name+'></td></tr>';
             htmltext += '<tr><td>Vorname:</td><td><input name="kundenVorname" id="kundenVornameId" type="text" size="50" maxlength="50" value='+json.vorname+'></td></tr>';
             htmltext += '<tr><td>Stra&szlig;e:</td><td><input name="kundenStrasse" id="kundenStrasseId" type="text" size="50" maxlength="50" value='+json.strasse+'></td></tr>';			
             htmltext += '<tr><td>PLZ:</td><td><input name="kundenPlz" id="kundenPlzId" type="text" size="50" maxlength="50" value='+json.plz+'></td></tr>';
@@ -47,8 +47,6 @@ function getKunde(id){
             htmltext += '<input type="button" name="aendereKunde" id="k'+json.id+'" value="Change"/>';
             htmltext += '<input type="button" name="loescheKunde" id="k'+json.id+'" value="Delete"/>';
             $("#tabelle").html(htmltext);
-			
-            Customer.create(json.id, $('#kundenNamenId'), $('#kundenVornameId'), $('#kundenStrasseId'), $('#kundenPlzId'), $('#kundenZusatzId'), $('#kundenEmailId'), $('#kundenPwId'));
         },
         error : function () {
             systemessages({
