@@ -14,14 +14,13 @@ function getArticleList() {
                 var article = new Article();
                 article.create(json[i]);
                 jQuery('#articleList').append(article.renderHTML());
-//                if (i%2 != 0) {
-//                    jQuery('#articleList').append('<div class="clear" ></div>');
-//                }
             }
             suggest();
         },
-        error : function (json) {
-            console.debug(json);
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
     });
 }
@@ -53,8 +52,14 @@ function login() {
             },
             dataType : 'json',
             success : function (json) {
-                console.debug(json);
-                if (json['error']) {
+                if (json.error) {
+                    systemessages(json);
+                } else {
+                    systemessages({
+                        'succes' : "you're logged in"
+                    });
+                }  
+                if (json.error) {
                     jQuery('#email, #password').css('border-color','#FA5858');
                 } else {
                     jQuery('#email, #password').css('border-color','#FFFFFF');
@@ -62,7 +67,9 @@ function login() {
                 }
             },
             error : function (json) {
-                console.debug(json);
+                systemessages({
+                    'error' : 'something with the server went wront'
+                });
             }
         });
     }
@@ -78,10 +85,14 @@ function logout() {
         },
         dataType : 'jsonp',
         success : function (json) {
-            
+            if (json.error) {
+                systemessages(json);
+            }      
         },
-        error : function (json) {
-        
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
     });
 }
@@ -96,10 +107,18 @@ function registerCustomer() {
         },
         dataType : 'json',
         success : function (json) {
-            
+            if (json.error) {
+                systemessages(json);
+            } else {
+                systemessages({
+                    'succes' : 'registration successful'
+                });
+            }   
         },
-        error : function (json) {
-        
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
     });
 }
@@ -113,10 +132,14 @@ function getCustomerInformation() {
         },
         dataType : 'json',
         success : function (json) {
-            
+            if (json.error) {
+                systemessages(json);
+            }
         },
-        error : function (json) {
-        
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
     });
 }
@@ -130,10 +153,18 @@ function modifyCustomer() {
         },
         dataType : 'jsonp',
         success : function (json) {
-            
+            if (json.error) {
+                systemessages(json);
+            } else {
+                systemessages({
+                    'succes' : 'changes done'
+                });
+            }
         },
-        error : function (json) {
-        
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
     });
 }
@@ -147,18 +178,24 @@ function getShoping_cart() {
         },
         dataType : 'json',
         success : function (json) {
-            for (var article in json) {
-                var obj = jQuery('#article' + json[article].id + ' .pin')[0];
-                Article.pin(obj, json[article].id, true);
+            if (json.error) {
+                systemessages(json);
+            } else {
+                for (var article in json) {
+                    var obj = jQuery('#article' + json[article].id + ' .pin')[0];
+                    Article.pin(obj, json[article].id, true);
+                }
             }
         },
-        error : function (json) {
-        
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
     });
 }
 
-function modifyShoping_cart() {    
+function modifyShoping_cart() {  
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php', 
@@ -166,11 +203,20 @@ function modifyShoping_cart() {
             'action' : 'aktualisiereWarenkorb',
             'warenkorb' : ShopingCard.getArticlesJSONstring()
         },
+        dataType : 'json',
         success : function (json) {
-            
+            if (json.error) {
+                systemessages(json);
+            } else {
+                systemessages({
+                    'succes' : 'shopingcard updated'
+                });
+            }
         },
-        error : function (json) {
-        
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
     });
 }
@@ -186,9 +232,6 @@ function getUserManagement() {
         success : function (html) {
             jQuery('#adminContent').html(html);
             getAlleKunden();
-        },
-        error : function (json) {
-        
         }
     });
 }
@@ -200,9 +243,6 @@ function getArticleManagement() {
         dataType : 'html',
         success : function (html) {
             jQuery('#adminContent').html(html);
-        },
-        error : function (json) {
-        
         }
     });
 }

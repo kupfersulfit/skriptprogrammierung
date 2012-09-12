@@ -3,6 +3,11 @@ require_once 'templates/header.php';
 ?>
 <div id="content">
     <section id="left">
+        <section id="system">
+            <div id="customer">Welcome Guest</div>
+            <div id="messages"></div>
+        </section>
+        <section id="page"></section>
     </section>
     <section id="shoping_cart">
         <div id="basket">
