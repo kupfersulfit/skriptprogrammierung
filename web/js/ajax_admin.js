@@ -1,3 +1,5 @@
+/* --- Customer ---*/
+
 function getAlleKunden(){
     jQuery.ajax({
         type : 'POST',
@@ -82,8 +84,6 @@ function refreshKunde(json){
     });
 }
 
-
-
 function deleteKunde(json){
     jQuery.ajax({
         type : 'POST',
@@ -110,6 +110,8 @@ function deleteKunde(json){
     });
 }
 
+/* --- Article ---*/
+
 function getAllArticles(){
     jQuery.ajax({
         type : 'GET',
@@ -135,7 +137,6 @@ function getAllArticles(){
         }
     });
 }
-
 
 function modifyArticle(id){
     jQuery.ajax({

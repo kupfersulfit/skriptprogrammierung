@@ -30,15 +30,10 @@
                         <li id="homeTab" class="active">
                             <img id="home" src="media/home.png" height="70" width="100" />
                         </li>
-                        <?php
-                        if (TRUE) {//Admin
-                            ?>
-                            <li id="adminTab">
-                                <img id="admin" src="media/admin.png" height="70" width="100" />
-                            </li>
-                            <?php
-                        }
-                        ?>
+                        <li id="adminTab">
+                            <img id="admin" src="media/admin.png" height="70" width="100" />
+                        </li>
+
                     </ul>
                 </nav>
                 <div class="clear"></div>

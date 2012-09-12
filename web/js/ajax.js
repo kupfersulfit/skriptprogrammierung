@@ -54,19 +54,21 @@ function login() {
             success : function (json) {
                 if (json.error) {
                     systemessages(json);
-                } else {
-                    systemessages({
-                        'succes' : "you're logged in"
-                    });
-                }  
-                if (json.error) {
                     jQuery('#email, #password').css('border-color','#FA5858');
                 } else {
                     jQuery('#email, #password').css('border-color','#FFFFFF');
                     jQuery('#email').val('');
+                    systemessages({
+                        'succes' : "you're logged in"
+                    }); 
+                    containerDisplay();
+                    jQuery('#loginTab').unbind('click');
+                    jQuery('#loginTab').click(logout);
+                    getCustomerInformation();
+                    getCustomerPosition();
                 }
             },
-            error : function (json) {
+            error : function () {
                 systemessages({
                     'error' : 'something with the server went wront'
                 });
@@ -83,11 +85,16 @@ function logout() {
         data : {
             'action' : 'logout'
         },
-        dataType : 'jsonp',
+        dataType : 'json',
         success : function (json) {
             if (json.error) {
                 systemessages(json);
-            }      
+            } else {
+                getCustomerInformation();
+                jQuery('#adminTab').hide();
+                jQuery('#loginTab').unbind('click');
+                jQuery('#loginTab').click(containerDisplay);
+            }     
         },
         error : function () {
             systemessages({
@@ -128,12 +135,40 @@ function getCustomerInformation() {
         type : 'POST',
         url : 'lib/controller.php', 
         data : {
-            'action' : 'holeKunde'
+            'action' : 'holeAngemeldetenKunde'
         },
         dataType : 'json',
         success : function (json) {
             if (json.error) {
                 systemessages(json);
+            } else {
+                Customer.createWithJSON(json);
+                jQuery('#customer span').html(Customer.name);
+            }
+        },
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
+        }
+    });
+}
+
+function getCustomerPosition() {
+    jQuery.ajax({
+        type : 'POST',
+        url : 'lib/controller.php', 
+        data : {
+            'action' : 'holeRolle'
+        },
+        dataType : 'json',
+        success : function (json) {
+            if (json.error) {
+                systemessages(json);
+            } else {
+                if (json.rolle == 'admin') {
+                    jQuery('#adminTab').show();
+                }
             }
         },
         error : function () {

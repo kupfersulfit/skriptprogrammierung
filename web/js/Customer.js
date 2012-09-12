@@ -1,6 +1,6 @@
 var Customer = {
-    id : '-1',
-    name : 'Guest',
+    id : '',
+    name : '',
     vorname : '',
     strasse : '',
     plz : '',
@@ -92,6 +92,11 @@ var Customer = {
         this.zusatz = zusatz;
         this.email = email;
         this.passwort = passwort;
+    },
+    createWithJSON : function(json) {
+        for (var attr in json) {
+            this[attr] = json[attr];
+        }
     },
     getJSONstring : function() {
         var JSONstr = '{';

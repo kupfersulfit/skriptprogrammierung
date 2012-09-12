@@ -1,4 +1,7 @@
-﻿function openLoginContainer() {
+var holeRolle = 'homeTab';
+
+function openLoginContainer() {
+
     jQuery('#loginContainer').show();
     jQuery('#registerContainer').hide();
     jQuery('#container').fadeIn('slow');
@@ -8,10 +11,22 @@
     jQuery('#register_login').html('register');
 }
 
+function containerDisplay() {
+    if (jQuery('#container').css('display') == 'none') {
+        openLoginContainer();
+    } else {
+        jQuery('#container').fadeOut('slow');
+        activeTab(holeRolle);
+    }
+}
+
 function activeTab(tabName) {
     jQuery('#menu ul li').removeClass('active');
     if (typeof tabName != 'undefined') {
         jQuery('#' + tabName).addClass('active');
+        if (tabName != 'loginTab') {
+            holeRolle = tabName;
+        }
     } else {
         jQuery('#homeTab').addClass('active');
     }
