@@ -567,7 +567,7 @@ class DatabaseModel {
         // 
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
-            $query = "INSERT INTO bestellung VALUES('', ':kundenid', ':bestelldatum', ':statusid', ':zahlungsmethodeid', ':lieferungsmethodeid')";
+            $query = "INSERT INTO bestellungen VALUES(null, :kundenid, :bestelldatum, :statusid, :zahlungsmethodeid, :lieferungsmethodeid)";
             $params = array(
             ":kundenid" => $bestellung->getKundenId(),
             ":bestelldatum" => $bestellung->getBestelldatum(),
@@ -581,7 +581,7 @@ class DatabaseModel {
             foreach ($alleArtikel as $artikel)
             {
                 if ($dbConnector->connect()) {
-                    $query = "INSERT INTO bestellungen_artikel VALUES( ':bestellungid', ':artikelid', ':anzahl' )";
+                    $query = "INSERT INTO bestellungen_artikel VALUES( :bestellungid, :artikelid, :anzahl)";
                     $params = array(
                         ":bestellungid" => $lastOrderId,
                         ":artikelid" => $artikel->getBestelldatum(),
