@@ -109,7 +109,7 @@ jQuery(document).on('click', "input[name='aendereKunde']",
     function() {
 		var id=this.id.substr(1,this.id.length);
         Customer.create(id, $("#kundenNameId").val(), $("#kundenVornameId").val(), $("#kundenStrasseId").val(), $("#kundenPlzId").val(), $("#kundenZusatzId").val(), $("#kundenEmailId").val(), $("#kundenPwId").val());
-        refreshKunde();
+        refreshKunde(Customer);
         alert("Kunde ist geändert worden.");
     }
 );
