@@ -580,15 +580,13 @@ class DatabaseModel {
             $lastOrderId = $dbConnector->lastInsertId;
             foreach ($alleArtikel as $artikel)
             {
-                if ($dbConnector->connect()) {
                     $query = "INSERT INTO bestellungen_artikel VALUES( :bestellungid, :artikelid, :anzahl)";
                     $params = array(
                         ":bestellungid" => $lastOrderId,
-                        ":artikelid" => $artikel->getBestelldatum(),
-                        ":anzahl" => $artikel->getStatusId()
+                        ":artikelid" => $artikel->getId(),
+                        ":anzahl" => $artikel->getVerfuegbar()
                     );
                     $dbConnector->executeQuery($query, $params);
-                }
                 return true;
             }
         } else {

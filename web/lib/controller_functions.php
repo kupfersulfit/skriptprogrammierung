@@ -225,6 +225,7 @@
     */
     function aktualisiereKunde($kunde){
         $kunde = json_decode($kunde, true);
+        print_r($kunde);
         //hole aktuelles pw aus der db 
         $alterkunde = $_SESSION['model']->holeKundeMitId($kunde['id']);
         //vermeide dass das pw geloescht wird
