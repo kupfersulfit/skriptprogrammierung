@@ -86,23 +86,6 @@ function logout() {
     });
 }
 
-function searchArticle() {
-    jQuery.ajax({
-        type : 'GET',
-        url : 'lib/controller.php', 
-        data : {
-            'action' : 'sucheArtikel'
-        },
-        dataType : 'jsonp',
-        success : function (json) {
-            
-        },
-        error : function (json) {
-        
-        }
-    });
-}
-
 function registerCustomer() {
     jQuery.ajax({
         type : 'POST',
