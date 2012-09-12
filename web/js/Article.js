@@ -181,6 +181,7 @@ Article.decreseAmount = function(id) {
         jQuery('#articleAtCard' + id + ' input').val(amount);
         ShopingCard.getArticle(id).verfuegbar = amount;
         Article.calculatePrice(id, amount);
+        modifyShoping_cart();
     }  
 }
 

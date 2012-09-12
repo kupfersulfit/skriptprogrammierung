@@ -1,14 +1,8 @@
 jQuery(document).ready(function (){
     refreshHandling();
+    getCustomerInformation();
     
-    jQuery('#loginTab').click(function() {
-        if (jQuery('#container').css('display') == 'none') {
-            openLoginContainer();
-        } else {
-            jQuery('#container').fadeOut('slow');
-            activeTab();
-        }
-    });
+    jQuery('#loginTab').click(containerDisplay);
     
     jQuery('#profileTab').click(function() {
         activeTab('profileTab');
