@@ -336,6 +336,15 @@
             return;
         }
 
+        //erneut pruefen ob noch genug artikel auf lager
+        foreach($alleArtikel as $artikel){
+            $tempArtikel = $_SESSION['model']->holeArtikel($alleArtikel[$i]->getId()); //aktuellen db eintrag holen
+            if($tempArtikel->getVerfuegbar() < $artikel->getVerfuegbar){
+                err("not enough ".$artikel->getName()." available");
+                return;
+            }
+        }
+
         //bestellung anlegen
         $bestellung = array();
         $bestellung['id'] = "";
