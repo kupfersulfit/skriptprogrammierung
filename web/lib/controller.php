@@ -44,10 +44,10 @@
             holeWarenkorb();
             exit();
         case 'aktualisiereWarenkorb':
-            if(!isset($_GET['warenkorb'])){
+            if(!isset($_POST['warenkorb'])){
                 err("'warenkorb' parameter missing");
             }else{
-               aktualisiereWarenkorb($_GET['warenkorb']);
+               aktualisiereWarenkorb($_POST['warenkorb']);
             } 
             exit();
         case 'login':

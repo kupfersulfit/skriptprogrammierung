@@ -86,23 +86,6 @@ function logout() {
     });
 }
 
-function searchArticle() {
-    jQuery.ajax({
-        type : 'GET',
-        url : 'lib/controller.php', 
-        data : {
-            'action' : 'sucheArtikel'
-        },
-        dataType : 'jsonp',
-        success : function (json) {
-            
-        },
-        error : function (json) {
-        
-        }
-    });
-}
-
 function registerCustomer() {
     jQuery.ajax({
         type : 'POST',
@@ -157,7 +140,7 @@ function modifyCustomer() {
 
 function getShoping_cart() {
     jQuery.ajax({
-        type : 'GET',
+        type : 'POST',
         url : 'lib/controller.php', 
         data : {
             'action' : 'holeWarenkorb'
@@ -177,7 +160,7 @@ function getShoping_cart() {
 
 function modifyShoping_cart() {    
     jQuery.ajax({
-        type : 'GET',
+        type : 'POST',
         url : 'lib/controller.php', 
         data : {
             'action' : 'aktualisiereWarenkorb',

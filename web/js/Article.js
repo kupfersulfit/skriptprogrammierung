@@ -193,4 +193,5 @@ Article.calculatePrice = function(id, amount) {
     }
     priceSpan.html(price);
     ShopingCard.callbackTotalPrice();
+    modifyShoping_cart();
 }

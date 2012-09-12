@@ -336,6 +336,15 @@
             return;
         }
 
+        //erneut pruefen ob noch genug artikel auf lager
+        foreach($alleArtikel as $artikel){
+            $tempArtikel = $_SESSION['model']->holeArtikel($artikel->getId()); //aktuellen db eintrag holen
+            if($tempArtikel->getVerfuegbar() < $artikel->getVerfuegbar()){
+                err("not enough ".$artikel->getName()." available");
+                return;
+            }
+        }
+
         //bestellung anlegen
         $bestellung = array();
         $bestellung['id'] = "";
@@ -356,7 +365,13 @@
         if($_SESSION['model']->erstelleBestellung($bestellung, $alleArtikel) == false){
             err("order could not be completed");
         }
-        //TODO artikelanzahl (verfuegbar) in der DB anpassen
+
+        //artikelanzahl (verfuegbar) in der DB anpassen
+        for($i = 0; $i < count($alleArtikel); $i++){
+            $tempArtikel = $_SESSION['model']->holeArtikel($alleArtikel[$i]->getId()); //aktuellen db eintrag holen
+            $tempArtikel->setVerfuegbar($tempArtikel->getVerfuegbar() - $alleArtikel[$i]->getVerfuegbar()); //anzahl vorhanderner artikel anpassen
+            $_SESSION['model']->aktualisiereArtikel($tempArtikel); //aenderung in db eintragen
+        }
 
         //warenkorb leeren
         $_SESSION['korb'] = new Warenkorb();

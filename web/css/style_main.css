@@ -29,6 +29,10 @@ input[type=button] {
     cursor: pointer;
 }
 
+textarea {
+    resize: none;
+}
+
 
 header {
     border-bottom: 1px solid #c9c9c9;

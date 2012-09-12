@@ -121,16 +121,16 @@ jQuery(document).on('click', "input[name='loescheKunde']",
     }	
 );
     
-$(document).on('click', "input[name='aendern']", 
+$(document).on('click', "input[name='aendereArtikel']", 
     function() {
         var id = this.id.substr(1,this.id.length);
         modifyArticle(id);
     }
 );
-$(document).on('click', "input[name='aendereArtikel']", 
+$(document).on('click', "input[name='aktualisiereArtikel']", 
     function() {
         var id = this.id.substr(1,this.id.length);
-        sendModifiedArticle(id);
+        updateArticle(id);
     }
 );
 $(document).on('click', "input[name='loescheArtikel']", 

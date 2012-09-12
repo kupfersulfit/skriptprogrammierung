@@ -101,10 +101,11 @@ function getAllArticles(){
             var htmltext = "<table id='all' border='0' width='1000' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Name</th><th></th></tr>";
             for(var i = 0; i < json.length; i++){
                 var row=json[i];
-                htmltext+= '<tr><td>'+row.id+'</td><td>' + row.name + '</td><td><input type="button" name="aendern" id="a'+row.id +'" value="change"/></td></tr>';
+                htmltext+= '<tr><td>'+row.id+'</td><td>' + row.name + '</td><td><input type="button" name="aendereArtikel" id="a'+row.id +'" value="change"/></td></tr>';
             };
             htmltext += '</table><br><br>';
-            $("#divArtikelTabelle").html(htmltext);
+            //Article.create();
+            $("#divModifyArticle").html(htmltext);
         },
         error : function (json) {
         
@@ -140,9 +141,10 @@ function modifyArticle(id){
             htmltext += "<tr><td bgcolor='#ECECEC'>Image path: </td><td><input type='text' name='bildpfad' id='modImg' size='40' value='"+artikel.bildpfad+"'></td></tr>";
             htmltext += "<tr><td bgcolor='#ECECEC'>Number(in stock): </td><td><input type='text' name='verfuegbar' id='modNr' size='40' value='"+artikel.verfuegbar+"'></td></tr>";
             htmltext += "</table>";
-            htmltext += "<input type='button' name='aendereArtikel' id='a"+artikel.id+"' value='ok'>";
+            htmltext += "<input type='button' name='aktualisiereArtikel' id='a"+artikel.id+"' value='ok'>";
             htmltext += "<input type='button' name='loescheArtikel' id='a"+artikel.id+"' value='delete article'><br><br>";
-            $("#divArtikelTabelle").html(htmltext);
+            //Article.create();
+            $("#divModifyArticle").html(htmltext);
             $("#divAddArticle").hide();
         },
         error : function (json) {
@@ -151,24 +153,17 @@ function modifyArticle(id){
     });
 }
 
-function sendModifiedArticle(id){
+function updateArticle(json){
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php',
         data : {
-            'action' : 'aktualisiereArtikel',
-            "id": id,
-            "name": $('#modName'),
-            "beschreibung":$('#modDescr'),
-            "bildpfad":$('#modImg'),
-            "veroeffentlicht":$('#modPubl'),
-            "kategorieId":$('#modCat'),
-            "preis":$('#modPrice'),
-            "verfuegbar":$('#modNr')
+            'action' : 'aendereArtikel',
+            'artikel' : Article.getJSONstring()
         },
         dataType : 'json',
         success : function(json){
-
+        
         },
         error : function (json) {
         
@@ -182,13 +177,7 @@ function createArticle() {
         url : 'lib/controller.php', 
         data : {
             'action' : 'erstelleArtikel',
-            "name": $('#newName'),
-            "beschreibung":$('#newDescr'),
-            "bildpfad":$('#newImg'),
-            "veroeffentlicht":$("#newPubl").is(":checked"),
-            "kategorieId":$('#newCat'),
-            "preis":$('#newPrice'),
-            "verfuegbar":$('#newNr')
+            'artikel' : Article.getJSONstring()
         },
         dataType : 'json',
         success : function (json) {
@@ -206,7 +195,7 @@ function deleteArticle(id) {
         url : 'lib/controller.php', 
         data : {
             'action' : 'loescheArtikel',
-            "id": id
+            'artikel' : Article.getJSONstring()
         },
         dataType : 'json',
         success : function (json) {
