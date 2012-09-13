@@ -168,7 +168,6 @@ jQuery(document).on('click', "input[name='aendereKunde']",
         var id=this.id.substr(1,this.id.length);
         Customer.create(id, $("#kundenNameId").val(), $("#kundenVornameId").val(), $("#kundenStrasseId").val(), $("#kundenPlzId").val(), $("#kundenZusatzId").val(), $("#kundenEmailId").val(), $("#kundenPwId").val());
         refreshKunde(Customer);
-        alert("Kunde ist ge�ndert worden.");
     }
 
     );
@@ -178,7 +177,6 @@ jQuery(document).on('click', "input[name='loescheKunde']",
         var id=this.id.substr(1,this.id.length);
         Customer.create(id, $("#kundenNameId").val(), $("#kundenVornameId").val(), $("#kundenStrasseId").val(), $("#kundenPlzId").val(), $("#kundenZusatzId").val(), $("#kundenEmailId").val(), $("#kundenPwId").val());
         deleteKunde(Customer);
-        alert("Kunde ist gel�scht worden.");
     }	
     );
     
