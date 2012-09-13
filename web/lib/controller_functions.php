@@ -15,6 +15,10 @@
 
     /** Zeigt alle Artikel an */
     function zeigeArtikel(){
+        if(!istAdmin()){
+            err('only admins can view all articles');
+            return;
+        }
         $artikelArray = $_SESSION['model']->holeAlleArtikel();
         if(count($artikelArray) == 0){
             err("no existing article");
@@ -192,7 +196,7 @@
     /** Gibt die Daten eines bestimmten Kunden aus */
     function holeKunde($id){
         if(!istAdmin()){
-            err('only admins can see customer details');
+            err('only admins can view customer details');
             return;
         }
         $kunde = $_SESSION['model']->holeKundeMitId($id);
@@ -204,10 +208,13 @@
         }
     }
 
+    /** Gibt die Daten eines bestimmten Artikels aus */
     function holeArtikel($id){
         $art = $_SESSION['model']->holeArtikel($id);
         if($art == null){
             err("article not found");
+        }else if($art->getVeroeffentlicht() == "0" && !istAdmin()){
+            err('only admins can view unpublished articles');
         }else{
             echo json_encode($art->assoc());
         }
@@ -216,7 +223,7 @@
     /** Gibt ein Array aller Kunden zur&uuml;ck */
     function holeAlleKunden(){
         if(!istAdmin()){
-            err('only admins can see all customers');
+            err('only admins can view all customers');
             return;
         }
         $kunden = $_SESSION['model']->holeAlleKunden();
