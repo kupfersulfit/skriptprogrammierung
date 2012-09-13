@@ -454,7 +454,7 @@ header {
 }
 
 .articleAtCardPrice {
-    width: 140px;
+    width: 136px;
     float: left;
 }
 
@@ -696,7 +696,7 @@ header {
 }
 
 #profileData .save,
-#profileData .abort {
+#profileData .reset {
     float: right;
     margin-right: 20px;
 }

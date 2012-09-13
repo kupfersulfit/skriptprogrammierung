@@ -249,9 +249,10 @@ function modifyCustomer() {
         type : 'POST',
         url : 'lib/controller.php', 
         data : {
-            'action' : 'aktualisiereKunde'
+            'action' : 'aktualisiereKunde',
+            'kunde' : Customer.getJSONstring()
         },
-        dataType : 'jsonp',
+        dataType : 'json',
         success : function (json) {
             if (json.error) {
                 systemessages(json);

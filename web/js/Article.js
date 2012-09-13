@@ -176,7 +176,7 @@ Article.removeFromCard = function(id) {
 
 Article.increseAmount = function(id, session) {
     var amount = jQuery('#articleAtCard' + id + ' input').val();
-    if (Article.findArticleById(id).verfuegbar > amount) {
+    if (parseInt(Article.findArticleById(id).verfuegbar) > amount) {
         ++amount;
         jQuery('#articleAtCard' + id + ' input').val(amount);
         ShopingCard.getArticle(id).verfuegbar = amount;
