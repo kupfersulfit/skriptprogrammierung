@@ -97,6 +97,7 @@ function logout() {
                 systemessages(json);
             } else {
                 getCustomerInformation();
+                Customer.position = 'gast';
                 jQuery('#adminTab').hide();
                 jQuery('#profileTab').hide();
                 jQuery('#menu #orderTab').hide();
