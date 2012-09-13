@@ -3,7 +3,7 @@
 		<head>
 			<meta charset="utf-8">
             <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-            <title>st@pleware</title>
+			<title>st@pleware</title>
             <link type="text/css" rel="stylesheet" href="css/style_admin.css"/>
             <link type="text/css" rel="stylesheet" href="css/style_main.css" />
             <link href="fav.ico" rel="shortcut icon">
