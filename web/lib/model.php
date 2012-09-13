@@ -150,7 +150,6 @@ class DatabaseModel {
     public function erstelleKunde($kunde) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
-        	print_r($kunde);
             $query = "INSERT INTO kunden VALUES('', :name, :vorname, :strasse, :plz, :zusatz, :email, :passwort, :registriertseit)";
             $params = array(
             ":name" => $kunde->getName(),
@@ -294,7 +293,6 @@ class DatabaseModel {
     public function erstelleArtikel($artikel) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
-        	echo $artikel->getKategorieId();
             $query = "INSERT INTO artikel VALUES( null, :name, :beschreibung, :veroeffentlicht, :verfuegbar, :katgorieid, :preis, :bildpfad, :seit)";
             $params = array(
             ":name" => $artikel->getName(),
