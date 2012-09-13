@@ -21,11 +21,14 @@ var Customer = {
                     firstfocus = false;
                 }
                 valid = false;
+                systemessages({
+                    'error' : 'an input is empty'
+                });
             } else {
                 jQuery(this).css('border-color','#FFFFFF');
             }
         });
-        valid = (this.validMail() & this.validPassword());
+        valid = valid && (this.validMail() & this.validPassword());
         
         if (valid) {
             Customer.create(
@@ -48,6 +51,9 @@ var Customer = {
         if (email == '' || vEmail == '' || email != vEmail) {
             jQuery('#registerEmail').css('border-color','#FA5858');
             jQuery('#validEmail').css('border-color','#FA5858');
+            systemessages({
+                'error' : "emails doesn't match or is empty"
+            });
             return false;
         } else {
             this.email = email;
@@ -63,6 +69,9 @@ var Customer = {
         if (password == '' || vpassword == '' || password != vpassword) {
             jQuery('#registerPassword').css('border-color','#FA5858');
             jQuery('#validPassword').css('border-color','#FA5858');
+            systemessages({
+                'error' : "passwords doesn't match or is empty"
+            });
             return false;
         } else {
             this.passwort = password;

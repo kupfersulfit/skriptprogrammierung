@@ -40,27 +40,30 @@
                 <div id="container">
                     <div id="register_login">register</div>
                     <div id="loginContainer" >
-                        <p><label for="email" >email</label><input type="text" id="email" name="email" autocomplete="off"/></p>
-                        <p><label for="password" >password</label><input type="password" id="password" name="password" autocomplete="off"/></p>
+                        <p><label for="email" >email</label><input type="text" id="email" name="email" autocomplete="off" onkeydown="submitOnEnter(event, login);"/></p>
+                        <p><label for="password" >password</label><input type="password" id="password" name="password" onkeydown="submitOnEnter(event, login);" autocomplete="off"/></p>
                         <p><input type="button" id="loginButton" value="login"/></p>
                     </div>
                     <div id="registerContainer">
                         <p><label for="surname" >surname</label></p>
-                        <p><input type="text" id="surname" name="surname"/></p>
+                        <p><input type="text" id="surname" name="surname" /></p>
                         <p><label for="givenname" >givenname</label></p>
-                        <p><input type="text" id="givenname" name="givenname"/></p>
+                        <p><input type="text" id="givenname" name="givenname" /></p>
                         <p><label for="street" >street</label></p>
-                        <p><input type="text" id="street" name="street"/><input type="text" id="nr" name="nr" maxlength="4" size="4" /></p>
+                        <p>
+                            <input type="text" id="street" name="street" />
+                            <input type="text" id="nr" name="nr" maxlength="4" size="4" />
+                        </p>
                         <p><label for="zip" >zip</label></p>
                         <p><input type="text" id="zip" name="zip" maxlength="5" size="5" /></p>
                         <p><label for="registerEmail" >email</label></p>
-                        <p><input type="text" id="registerEmail" name="registerEmail"/></p>
+                        <p><input type="text" id="registerEmail" name="registerEmail" /></p>
                         <p><label for="validEmail" >email validation</label></p>
-                        <p><input type="text" id="validEmail" name="validEmail"/></p>
+                        <p><input type="text" id="validEmail" name="validEmail" /></p>
                         <p><label for="registerPassword" >password</label></p>
                         <p><input type="password" id="registerPassword" name="registerPassword" onkeyup="Customer.passwordStrength();" /></p>
                         <p><label for="validPassword" >password validation</label></p>
-                        <p><input type="password" id="validPassword" name="validPassword"/></p>
+                        <p><input type="password" id="validPassword" name="validPassword" /></p>
                         <p><label for="addition" >addition</label></p>
                         <p><textarea id="addition"></textarea></p>
                         <p><input id="registerButton" type="button" value="register" onclick="Customer.register();" /></p>

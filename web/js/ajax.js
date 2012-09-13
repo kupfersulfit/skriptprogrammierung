@@ -76,6 +76,10 @@ function login(email, password) {
                 });
             }
         });
+    } else {
+        systemessages({
+            'error' : 'an input is empty'
+        });
     }
     jQuery('#password').val('');
 }
