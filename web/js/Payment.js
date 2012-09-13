@@ -46,7 +46,7 @@ var Payment = {
         var enabled  = '#bank_transfer input';
         var disabled = '#credit_card input';
         
-        if (jQuery("input[name='paymentType']:checked").val() == 1) {
+        if (jQuery("input[name='paymentType']:checked").val() == 2) {
             enabled  = '#credit_card input, #credit_card select';
             disabled = '#bank_transfer input';
         }
@@ -72,7 +72,7 @@ var Payment = {
     
         valid = this.checkInputs('personality', valid);
         
-        if (jQuery("input[name='paymentType']:checked").val() == 0) {
+        if (jQuery("input[name='paymentType']:checked").val() == 1) {
             valid = this.checkInputs('bank_transfer', valid); 
         } else {    
             valid = this.checkInputs('credit_card', valid);
@@ -84,7 +84,7 @@ var Payment = {
     },
     
     validateBLZ : function() {
-        if (jQuery("input[name='paymentType']:checked").val() == 0) {
+        if (jQuery("input[name='paymentType']:checked").val() == 1) {
             var blz = jQuery('#bank_code').val();
             blz = blz.replace(/-/g,'');
             blz = jQuery.trim(blz);
@@ -100,7 +100,7 @@ var Payment = {
     },
     
     validateMonth : function() {
-        if (jQuery("input[name='paymentType']:checked").val() == 1) {
+        if (jQuery("input[name='paymentType']:checked").val() == 2) {
             var valid = true;
             var month = jQuery('#valid_month').val();
             var year = jQuery('#valid_year').val();

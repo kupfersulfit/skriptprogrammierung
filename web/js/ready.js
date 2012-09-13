@@ -28,6 +28,14 @@ jQuery(document).ready(function (){
         setAnker('admin');
     });
     
+    jQuery('#orderTab').click(function() {
+        activeTab('orderTab');
+        jQuery('#container').fadeOut('slow');
+        getAdminContent('order_management');
+        setAnker('order_management');
+        jQuery('#shoping_cart').hide();
+    });
+    
     jQuery('#register_login').click(function(){
         if (jQuery('#loginContainer').css('display') == 'none') {
             openLoginContainer()

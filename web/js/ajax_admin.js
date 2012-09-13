@@ -1,3 +1,27 @@
+/* --- Admin ---  */
+function getUserManagement() {
+    jQuery.ajax({
+        type : 'GET',
+        url : 'templates/admin/user_management.php', 
+        dataType : 'html',
+        success : function (html) {
+            jQuery('#adminContent').html(html);
+            getAlleKunden();
+        }
+    });
+}
+
+function getArticleManagement() {
+    jQuery.ajax({
+        type : 'GET',
+        url : 'templates/admin/article_management.php',
+        dataType : 'html',
+        success : function (html) {
+            jQuery('#adminContent').html(html);
+        }
+    });
+}
+
 /* --- Customer ---*/
 
 function getAlleKunden(){
