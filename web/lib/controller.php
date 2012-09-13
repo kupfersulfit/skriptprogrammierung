@@ -130,7 +130,7 @@
             if(!isset($_POST['methoden'])){
                 err("'methoden' parameter missing");
             }else{
-                bestelle($POST['methoden']);
+                bestelle($_POST['methoden']);
             }
             exit();
         case 'holeBestellungen':
@@ -140,11 +140,12 @@
             holeAlleBestellungen();
             exit();
         case 'holeArtikelVonBestellung':
-            if(!isset($_POST['bestellung'])){
+            if(!isset($_GET['bestellung'])){
                 err("'bestellung' parameter missing");
             }else{
-                holeArtikelVonBestellung($_POST['bestellung']);
+                holeArtikelVonBestellung($_GET['bestellung']);
             }
+            exit();
         default:   
             echo json_encode(array('error' => 'unknown action'));     
     }

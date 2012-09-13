@@ -467,6 +467,15 @@
 
     /** Gibt alle Artikel einer bestimmten Bestellung aus */
     function holeArtikelVonBestellung($bestellung){
-        //TODO
+        $bestellung = json_decode($bestellung, true);
+        try{
+            $bestellung = new Bestellung($bestellung);
+        }catch(Exception $e){
+            err($e->getMessage());
+            return;
+        }
+        $artikel = $_SESSION['model']->holeArtikelVonBestellung($bestellung->getId());
+        print_r($artikel);
+        //TODO getArtikelVonBestellung
     }
 ?>
