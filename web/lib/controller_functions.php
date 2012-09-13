@@ -175,7 +175,7 @@
             err($e->getMessage());
             return;
         }
-        if($_SESSION['model']->loescheKunde($kunde->getEmail()) == null){
+        if($_SESSION['model']->loescheKunde($kunde['email']) == null){
             err("deletion failed");
             return;
         }
