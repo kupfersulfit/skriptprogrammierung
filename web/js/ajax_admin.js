@@ -121,13 +121,12 @@ function getAllArticles(){
         },
         dataType : 'json',
         success : function(json){
-            var htmltext = "<table id='all' border='0' width='1000' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Name</th><th></th></tr>";
+            var htmltext = "<table border='0' width='1000' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Name</th><th></th></tr>";
             for(var i = 0; i < json.length; i++){
                 var row=json[i];
                 htmltext+= '<tr><td>'+row.id+'</td><td>' + row.name + '</td><td><input type="button" name="aendereArtikel" id="a'+row.id +'" value="change"/></td></tr>';
             };
             htmltext += '</table><br><br>';
-            //Article.create();
             $("#divModifyArticle").html(htmltext);
         },
         error : function () {
@@ -151,7 +150,7 @@ function modifyArticle(id){
             var htmltext = '';
             var artikel= new Article();
             artikel.create(json);
-            htmltext += "<table id='modify' border='0' cellspacing='0' cellpadding='4'>";
+            htmltext += "<table border='0' cellspacing='0' cellpadding='4'>";
             htmltext += "<tr><td bgcolor='#ECECEC'>ID: </td><td>"+artikel.id+"</td></tr>";
             htmltext += "<tr><td bgcolor='#ECECEC'>Name: </td><td><input type='text' name='name' id='modName' size='70' value='"+artikel.name+"'></td></tr>";
             htmltext += "<tr><td bgcolor='#ECECEC'>Description: </td><td><textarea name='beschreibung' id='modDescr' cols='40' rows='12'>"+artikel.beschreibung+"</textarea></td></tr>";
@@ -258,6 +257,33 @@ function deleteArticle(id) {
             systemessages({
                 'error' : 'something with the server went wront'
             });
+        }
+    });
+}
+
+/* --- Order ---*/
+
+function getAllOrders(){
+    jQuery.ajax({
+        type : 'GET',
+        url : 'lib/controller.php',
+        data : {
+            'action' : 'zeigeBestellungen'
+        },
+        dataType : 'json',
+        success : function(json){
+            var htmltext = "<table border='0' width='1000' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Customer ID</th><th>Date ordered</th><th>Delivery</th><th>Date ordered</th><th>Status</th><th></th></tr>";
+            for(var i = 0; i < json.length; i++){
+                var row=json[i];
+                htmltext+= '<tr><td>'+row.id+'</td><td>' + row.kundenid + '</td><td>' + row.bestelldatum + '</td><td>' + row.lieferungsmethodeid + '</td><td>' + row.statusid + '</td><td><input type="button" name="aendereBestellung" id="a'+row.id +'" value="change status"/></td></tr>';
+            };
+            htmltext += '</table><br><br>';
+            $("#orderOverview").html(htmltext);
+        },
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });        
         }
     });
 }
