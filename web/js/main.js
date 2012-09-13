@@ -44,7 +44,7 @@ function refreshHandling() {
     var lhref = location.href.split('#');
     if (lhref.length > 1) {
         activeTab(lhref[1] + 'Tab');
-        if (lhref[1] == 'admin') {
+        if (lhref[1] == 'admin' || lhref[1] == 'order_management') {
             getAdminContent(lhref[1]);
         } else {
             getCustomerContent(lhref[1]);
@@ -72,8 +72,8 @@ function getCustomerContent(pageName) {
         url: 'templates/customer/' + pageName + ".php",
         success: function (data) {
             jQuery('#page').html(data);
+            getArticleList();
             if(pageName == 'home') {
-                getArticleList();
                 interval = window.setInterval(function () {
                     if (typeof Article != 'undefined' && Article.Instances.length > 0) {
                         window.clearInterval(interval);
@@ -85,12 +85,17 @@ function getCustomerContent(pageName) {
                 }, 200);
             } else if (pageName == 'profile') {
                 jQuery('#shoping_cart').hide();
+                getOrders();
                 fillProfile();
             } else if(pageName == 'admin') {
                 jQuery('#shoping_cart').hide();
             }
         }
     });
+}
+
+function renderOrders() {
+    
 }
 
 function fillProfile() {
@@ -259,8 +264,12 @@ function getAdminContent(pageName) {
         url: 'templates/admin/' + pageName + ".php",
         success: function (data) {
             jQuery('#page').html(data);
-            getUserManagement();
-            setAdminTabActive('usermanagement');
+            if (pageName == 'admin') {
+                getUserManagement();
+                setAdminTabActive('usermanagement');
+            } else if (pageName == 'order_management') {
+                getAllOrders();
+            }
         }
     });
 }

@@ -99,6 +99,7 @@ function logout() {
                 getCustomerInformation();
                 jQuery('#adminTab').hide();
                 jQuery('#profileTab').hide();
+                jQuery('#menu #orderTab').hide();
                 jQuery('#homeTab').show();
                 jQuery('#loginTab').unbind('click');
                 jQuery('#loginTab').click(containerDisplay);
@@ -199,7 +200,8 @@ function getCustomerPosition() {
                     jQuery('#loginTab').click(logout);
                     Payment.enabled = true;
                 } else if (json.rolle == 'lieferant') {
-                    jQuery('#menu #profileTab').show();
+                    jQuery('#menu #profileTab').hide();
+                    jQuery('#menu #orderTab').show();
                     jQuery('#menu #homeTab').hide();
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);
@@ -239,13 +241,13 @@ function getCustomerPositionAtLogin() {
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);
                     Payment.enabled = true;
-                } else {
-                    jQuery('#menu #profileTab').show();
+                } else if (json.rolle == 'lieferant') {
+                    jQuery('#menu #orderTab').show();
                     jQuery('#menu #homeTab').hide();
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);
-                    jQuery('#profileTab').click();
-                }
+                    jQuery('#orderTab').click();
+                } 
                 Customer.position = json.rolle;
             }
         },
@@ -347,19 +349,22 @@ function buy() {
         url : 'lib/controller.php', 
         data : {
             'action' : 'bestelle',
-            'methoden' : '{zahlungsmethodeid: 1, lieferungsmethodeid:1}'
+            'methoden' : '{zahlungsmethodeid: ' + jQuery("input[name='paymentType']:checked").val() + ', lieferungsmethodeid:' + jQuery('#deliver_method').val() + '}'
         },
         dataType : 'json',
         success : function (json) {
             if (json.error) {
                 systemessages(json);
             } else {
-                systemessages({
-                    'success' : 'payment done'
-                });
-                jQuery('.ccnr, .cvc_cvv').val('');
                 jQuery('.articleAtCard .articleAtCardClose').click();
+                jQuery('.ccnr, #cvc_cvv').val('');
                 Payment.closePayment();
+                window.setTimeout(
+                    function() {
+                        systemessages({
+                            'success' : 'payment done'
+                        });
+                    }, 5000);
             }
         },
         error : function () {
@@ -370,39 +375,25 @@ function buy() {
     });  
 }
 
-
-/* ADMIN */
-function getUserManagement() {
+function getOrders() {
     jQuery.ajax({
-        type : 'GET',
-        url : 'templates/admin/user_management.php', 
-        dataType : 'html',
-        success : function (html) {
-            jQuery('#adminContent').html(html);
-            getAlleKunden();
+        type : 'POST',
+        url : 'lib/controller.php', 
+        data : {
+            'action' : 'holeBestellungen'
+        },
+        dataType : 'json',
+        success : function (json) {
+            if (json.error) {
+                systemessages(json);
+            } else {
+                console.debug(json);
+            }
+        },
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
-    });
-}
-
-function getArticleManagement() {
-    jQuery.ajax({
-        type : 'GET',
-        url : 'templates/admin/article_management.html',
-        dataType : 'html',
-        success : function (html) {
-            jQuery('#adminContent').html(html);
-        }
-    });
-}
-
-function getOrderManagement() {
-    jQuery.ajax({
-        type : 'GET',
-        url : 'templates/admin/order_management.html',
-        dataType : 'html',
-        success : function (html) {
-            jQuery('#adminContent').html(html);
-            getAllOrders();
-        }
-    });
+    });  
 }

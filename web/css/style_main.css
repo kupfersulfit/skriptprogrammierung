@@ -122,6 +122,10 @@ header {
     display: none;
 }
 
+#menu #orderTab {
+    display: none;
+}
+
 /* --- system --- */
 
 #system {

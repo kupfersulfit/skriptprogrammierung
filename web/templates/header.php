@@ -1,7 +1,7 @@
-<doctype html>
+<!doctype html>
     <html>
         <head>
-            <meta charset="utf-8" />
+            <meta http-equiv=&quot;Content-Type&quot; content="text/html; charset=utf-8" />
             <title>st@pleware</title>
             <link type="text/css" rel="stylesheet" href="css/style_admin.css"/>
             <link type="text/css" rel="stylesheet" href="css/style_main.css" />
@@ -33,7 +33,9 @@
                         <li id="adminTab">
                             <img id="admin" src="media/admin.png" height="70" width="100" />
                         </li>
-
+                        <li id="orderTab">
+                            <img id="orderTab" src="" height="70" width="100" />
+                        </li>
                     </ul>
                 </nav>
                 <div class="clear"></div>

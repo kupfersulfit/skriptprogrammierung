@@ -21,7 +21,7 @@
     <section id="bank_transfer">
         <p>
             <label>bank transfer</label>
-            <input id="bank" type="radio" name="paymentType" value="0" checked="checked" onclick="Payment.changePaymentMethod();" />
+            <input id="bank" type="radio" name="paymentType" value="1" checked="checked" onclick="Payment.changePaymentMethod();" />
         </p>
         <hr />
         <p>
@@ -38,7 +38,7 @@
         </p>
     </section>
     <section id="credit_card">
-        <p><label>creditcard</label><input id="card" type="radio" name="paymentType" value="1" onclick="Payment.changePaymentMethod();" /></p>
+        <p><label>creditcard</label><input id="card" type="radio" name="paymentType" value="2" onclick="Payment.changePaymentMethod();" /></p>
         <hr />
         <p><label>creditcard type</label>
             <label><img src="media/visa.gif" class="card_img" width="20" height="22" title="Visa" /></label>
@@ -57,7 +57,7 @@
         <p>
             <label for="valid">valid until</label>
             <select id="valid_month" disabled="disabled">
-            
+
             </select>
             <select id="valid_year" disabled="disabled">
             </select>
@@ -77,6 +77,13 @@
             <p>
                 <label for="deliver_zip">zip</label>
                 <input id="deliver_zip" class="payment_text" type="text" value="" maxlength="5" size="5" />
+                <br />
+                <label for="deliver_method">method of delivery</label>
+                <select id="deliver_method">
+                    <option value="1">standard shipping 15&euro;</option>
+                    <option value="2">express shipping 15&euro;</option>
+                    <option value="3">overnight shipping 15&euro;</option>
+                </select>
             </p>
         </div>
         <div id="delivery_column_2">
