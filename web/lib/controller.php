@@ -140,10 +140,10 @@
             holeAlleBestellungen();
             exit();
         case 'holeArtikelVonBestellung':
-            if(!isset($_GET['bestellung'])){
+            if(!isset($_POST['bestellung'])){
                 err("'bestellung' parameter missing");
             }else{
-                holeArtikelVonBestellung($_GET['bestellung']);
+                holeArtikelVonBestellung($_POST['bestellung']);
             }
             exit();
         default:   

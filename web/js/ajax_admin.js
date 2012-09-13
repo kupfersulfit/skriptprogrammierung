@@ -221,6 +221,7 @@ function updateArticle(id){
             if (json.error) {
                 systemessages(json);
             } else {
+				getAllArticles();
                 systemessages({
                     'success' : "update done"
                 });
@@ -283,7 +284,8 @@ function deleteArticle(id) {
             if (json.error) {
                 systemessages();
             } else {
-                systemessages({
+				getAllArticles();
+				systemessages({
                     'success' : "article deleted"
                 });
             }  
