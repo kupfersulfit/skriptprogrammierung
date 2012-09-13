@@ -27,7 +27,7 @@ function getArticleList() {
 
 function login(email, password) {
     var valid = true;
-    if (typeof email != 'undefined') {
+    if (typeof email == 'undefined') {
         if (!jQuery('#email').val()) {
             jQuery('#email').css('border-color','#FA5858');   
             valid = false;
@@ -36,7 +36,7 @@ function login(email, password) {
         }
     }
     
-    if (typeof password != 'undefined') {
+    if (typeof password == 'undefined') {
         if (!jQuery('#password').val()) {
             jQuery('#password').css('border-color','#FA5858');  
             valid = false;
@@ -63,7 +63,7 @@ function login(email, password) {
                     jQuery('#email, #password').css('border-color','#FFFFFF');
                     jQuery('#email').val('');
                     systemessages({
-                        'succes' : "you're logged in"
+                        'success' : "you're logged in"
                     }); 
                     containerDisplay();
                     getCustomerInformation();
@@ -96,6 +96,11 @@ function logout() {
                 jQuery('#adminTab').hide();
                 jQuery('#loginTab').unbind('click');
                 jQuery('#loginTab').click(containerDisplay);
+                Payment.enabled = false;
+                systemessages({
+                    'success' : "you're logged out"
+                });
+                jQuery('#homeTab').click();
             }     
         },
         error : function () {
@@ -120,8 +125,9 @@ function registerCustomer() {
                 systemessages(json);
             } else {
                 systemessages({
-                    'succes' : 'registration successful'
+                    'success' : 'registration successful'
                 });
+                
                 login(Customer.getEmail(), Customer.getPasswort());
             }   
         },
@@ -146,7 +152,11 @@ function getCustomerInformation() {
                 systemessages(json);
             } else {
                 Customer.createWithJSON(json);
-                jQuery('#customer span').html(Customer.name);
+                if (Customer.vorname) {
+                    jQuery('#customer span').html(Customer.vorname + ', ' + Customer.name);
+                } else {
+                    jQuery('#customer span').html(Customer.name);
+                }
             }
         },
         error : function () {
@@ -171,9 +181,13 @@ function getCustomerPosition() {
             } else {
                 if (json.rolle == 'admin') {
                     jQuery('#adminTab').show();
+                    jQuery('#loginTab').unbind('click');
+                    jQuery('#loginTab').click(logout);
+                    Payment.enabled = true;
                 } else if (json.rolle == 'nutzer') {
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);
+                    Payment.enabled = true;
                 }
             }
         },
@@ -198,7 +212,7 @@ function modifyCustomer() {
                 systemessages(json);
             } else {
                 systemessages({
-                    'succes' : 'changes done'
+                    'success' : 'changes done'
                 });
             }
         },
@@ -246,11 +260,12 @@ function modifyShoping_cart() {
         },
         dataType : 'json',
         success : function (json) {
+
             if (json.error) {
                 systemessages(json);
             } else {
                 systemessages({
-                    'succes' : 'shopingcard updated'
+                    'success' : 'shopingcard updated'
                 });
             }
         },

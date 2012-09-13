@@ -117,12 +117,33 @@ header {
 #system {
     margin-left: 50px;
     margin-right: 50px;
+    padding-top: 5px;
+    font-size: 20px;
+    text-align: center;
+}
+
+#system span {
+    color: cornflowerblue;
 }
 
 #messages {
     border: 1px dashed #c9c9c9;
     border-radius: 5px;
     padding: 5px;
+    margin-top: 10px;
+    display: none;
+}
+
+#system .error_message {
+    border-color: #FA5858;
+    background-color: #F7C5C7;
+    color: #FA5858;
+}
+
+#system .success_message {
+    border-color: #50D849;
+    background-color: #ACFFA8;
+    color: #50D849;
 }
 
 /* --- search --- */

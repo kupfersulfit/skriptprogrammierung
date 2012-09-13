@@ -1,4 +1,5 @@
 var holeRolle = 'homeTab';
+var messageTimeout;
 
 function openLoginContainer() {
 
@@ -114,9 +115,46 @@ function search() {
     }
 }
 
+var messageDisplayTime = 0;  
+var messageDisplayInterval;
+
+function timerHelper() {
+    messageDisplayTime = 0;
+    messageDisplayInterval = window.setInterval(
+        function () {
+            if (messageDisplayTime == 5) {
+                jQuery('#messages').slideUp("slow");
+                window.clearInterval(messageDisplayInterval);
+            } else {
+                ++messageDisplayTime;
+                console.debug(count); 
+            }
+        }, 1000);
+}
+
 function systemessages(json) {
     for (var attr in json) {
-        jQuery('#messages').html(attr +' : ' + json[attr]);
+        jQuery('#messages').html(json[attr]);
+        if (json.error) {
+            jQuery('#messages').attr('class', 'error_message');
+            jQuery('#messages').slideDown("slow");
+            if (messageDisplayTime == 0) {
+                timerHelper();
+            } else {
+                messageDisplayTime = 0;
+            }
+        } else if(json.success) {
+            jQuery('#messages').attr('class', 'success_message');
+            jQuery('#messages').slideDown("slow");
+            if (messageDisplayTime == 0) {
+                timerHelper();
+            } else {
+                messageDisplayTime = 0;
+            }
+        } else {
+            jQuery('#messages').removeAttr('class');
+            jQuery('#messages').slideUp("slow");
+        }
     }
 }
 
@@ -131,7 +169,7 @@ jQuery(document).on('click', "input[name='aendereKunde']",
         var id=this.id.substr(1,this.id.length);
         Customer.create(id, $("#kundenNameId").val(), $("#kundenVornameId").val(), $("#kundenStrasseId").val(), $("#kundenPlzId").val(), $("#kundenZusatzId").val(), $("#kundenEmailId").val(), $("#kundenPwId").val());
         refreshKunde(Customer);
-        alert("Kunde ist geändert worden.");
+        alert("Kunde ist geï¿½ndert worden.");
     }
 
     );
@@ -139,7 +177,7 @@ jQuery(document).on('click', "input[name='aendereKunde']",
 jQuery(document).on('click', "input[name='loescheKunde']", 
     function() {
         deleteKunde(Customer);
-        alert("Kunde ist gelöscht worden.");
+        alert("Kunde ist gelï¿½scht worden.");
     }	
     );
     

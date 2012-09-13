@@ -48,6 +48,15 @@ Article.findArticleById = function(id) {
     return false;
 }
 
+Article.findArticleByName = function(name) {
+    for (var i = 0; i < Article.Instances.length; ++i) {
+        if (Article.Instances[i].name == name) {
+            return Article.Instances[i];
+        }
+    }
+    return false;
+}
+
 Article.findForSearch = function(search) {
     var matches = new Array();
     var checkedOptions = jQuery('#search_container input:checkbox');
@@ -167,11 +176,17 @@ Article.removeFromCard = function(id) {
 
 Article.increseAmount = function(id) {
     var amount = jQuery('#articleAtCard' + id + ' input').val();
-    ++amount;
-    jQuery('#articleAtCard' + id + ' input').val(amount);
-    ShopingCard.getArticle(id).verfuegbar = amount;
-    Article.calculatePrice(id, amount);
-    modifyShoping_cart();
+    if (Article.findArticleById(id).verfuegbar > amount) {
+        ++amount;
+        jQuery('#articleAtCard' + id + ' input').val(amount);
+        ShopingCard.getArticle(id).verfuegbar = amount;
+        Article.calculatePrice(id, amount);
+        modifyShoping_cart();
+    } else {
+        systemessages({
+            "error":"sorry not enought " + Article.cutTitle(Article.findArticleById(id).name) + " in stock"
+            });
+    }
 }
 
 Article.decreseAmount = function(id) {
