@@ -23,8 +23,12 @@ th {
     background-color: #FF6600;
 }
 
-#tabelle input[type=button] {
+.button {
     margin-top: 20px;
     margin-right: 20px;
     float: left;
+}
+
+#tableid {
+    width: 457px;
 }

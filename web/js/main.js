@@ -72,9 +72,7 @@ function getCustomerContent(pageName) {
         url: 'templates/customer/' + pageName + ".php",
         success: function (data) {
             jQuery('#page').html(data);
-            if (typeof Article != 'undefined' && Article.Instances.length == 0) {
-                getArticleList();
-            }
+            getArticleList();
             if(pageName == 'home') {
                 interval = window.setInterval(function () {
                     if (typeof Article != 'undefined' && Article.Instances.length > 0) {
