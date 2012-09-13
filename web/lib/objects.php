@@ -244,7 +244,7 @@ class Artikel {
         $this->kategorieid = $kategorieid;
 	}
 	public function setPreis($preis){
-       if(/*is_float($preis) &&*/ $preis >0.0){
+       if(is_numeric($preis) && $preis >= 0.0){
            $this->preis = $preis;
        }else{
            throw new Exception('Preis hat ungueltiges Format.');

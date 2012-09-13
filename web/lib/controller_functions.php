@@ -474,8 +474,6 @@
             err($e->getMessage());
             return;
         }
-        $artikel = $_SESSION['model']->holeArtikelVonBestellung($bestellung->getId());
-        print_r($artikel);
-        //TODO getArtikelVonBestellung
+        //TODO $artikel = $_SESSION['model']->holeArtikelVonBestellung($bestellung->getId());
     }
 ?>
