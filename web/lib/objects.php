@@ -59,33 +59,33 @@ class Kunde {
 	}
 	public function setName($name){
 		if($name != "" && is_string($name) && strlen($name) < 256){
-			$this->name = $name;
+			$this->name = utf8_decode($name);
 		}else{
 			throw new Exception("Name ungueltig.");
 		}
 	}
 	public function getName(){
-		return $this->name;
+		return utf8_encode($this->name);
 	}
 	public function setVorname($vorname){
 		if($vorname != "" && is_string($vorname) && strlen($vorname) < 256){
-			$this->vorname = $vorname;
+			$this->vorname = utf8_decode($vorname);
 		}else{
 			throw new Exception("Vorname ungueltig.");
 		}
 	}
 	public function getVorname(){
-		return $this->vorname;
+		return utf8_encode($this->vorname);
 	}
 	public function setStrasse($strasse){
 		if($strasse != "" && is_string($strasse) && strlen($strasse) < 256){
-			$this->strasse = $strasse;
+			$this->strasse = utf8_decode($strasse);
 		}else{
 			throw new Exception("Strasse ungueltig.");
 		}
 	}
 	public function getStrasse(){
-		return $this->strasse;
+		return utf8_encode($this->strasse);
 	}
 	public function setPlz($plz){
 		if (preg_match("/^[0-9]{5}$/" , $plz)) {
@@ -99,23 +99,23 @@ class Kunde {
 	}
 	public function setZusatz($zusatz){
 		if(is_string($zusatz) && strlen($zusatz) < 256){
-			$this->zusatz = $zusatz;
+			$this->zusatz = utf8_decode($zusatz);
 		}else{
 			throw new Exception("Zusatz ungueltig, vermutlich zu lang.");
 		}
 	}
 	public function getZusatz(){
-		return $this->zusatz;
+		return utf8_encode($this->zusatz);
 	}
 	public function setEmail($email){
 		if(preg_match("/^[^@]+@[^@]{3,}\.[^\.@0-9]{2,}$/", $email)) {
-			$this->email = $email;
+			$this->email = utf8_decode($email);
 		}else{
 			throw new Exception("emailadresse ungueltig.");
 		}
 	}
 	public function getEmail(){
-		return $this->email;
+		return utf8_encode($this->email);
 	}
 	public function setPasswort($pw){
 		$this->passwort = $pw;
@@ -189,23 +189,23 @@ class Artikel {
 	}
 	public function setName($name){
        if(is_string($name) && strlen($name)<256 && $name!=""){
-           $this->name = $name;
+           $this->name = utf8_decode($name);
        }else{
            throw new Exception('Name hat ungueltiges Format.');
        }
 	}
 	public function getName(){
-        return $this->name;
+        return utf8_encode($this->name);
 	}
 	public function setBeschreibung($beschreibung) {
        if(is_string($beschreibung) && strlen($beschreibung)<1023){
-           $this->beschreibung = $beschreibung;
+           $this->beschreibung = utf8_decode($beschreibung);
        }else{
            throw new Exception('Beschreibung hat ungueltiges Format.');
        }
 	}
 	public function getBeschreibung(){
-       return $this->beschreibung;
+       return utf8_encode($this->beschreibung);
 	}
 	public function setBildpfad($bildpfad){
        if(is_string($bildpfad) && strlen($bildpfad)<255){
@@ -387,13 +387,13 @@ class Status{
 	}
 	public function setBeschreibung($beschreibung) {
        if(is_string($beschreibung) && strlen($beschreibung)<512){
-           $this->beschreibung = $beschreibung;
+           $this->beschreibung = utf8_decode($beschreibung);
        }else{
            throw new Exception('Beschreibung hat ungueltiges Format.');
        }
 	}
 	function getBeschreibung(){
-		return $this->beschreibung;
+		return utf8_encode($this->beschreibung);
 	}
 }
 /**
@@ -430,23 +430,23 @@ class Zahlungsmethoden{
 	}
 	public function setName($name){
        if(is_string($name) && strlen($name)<128 && $name!=""){
-           $this->name = $name;
+           $this->name = utf8_decode($name);
        }else{
            throw new Exception('Name hat ungueltiges Format.');
        }
 	}
 	function getName(){
-		return $this->name;
+		return utf8_encode($this->name);
 	}
 	public function setBeschreibung($beschreibung) {
        if(is_string($beschreibung) && strlen($beschreibung)<256){
-           $this->beschreibung = $beschreibung;
+           $this->beschreibung = utf8_decode($beschreibung);
        }else{
            throw new Exception('Beschreibung hat ungueltiges Format.');
        }
 	}
 	function getBeschreibung(){
-		return $this->beschreibung;
+		return utf8_encode($this->beschreibung);
 	}
 	function getSkript(){
 		return $this->skript;
@@ -486,23 +486,23 @@ class Lieferungsmethode{
 	}
 	public function setName($name){
        if(is_string($name) && strlen($name)<128 && $name!=""){
-           $this->name = $name;
+           $this->name = utf8_decode($name);
        }else{
            throw new Exception('Name hat ungueltiges Format.');
        }
 	}
 	function getName(){
-		return $this->name;
+		return utf8_encode($this->name);
 	}
 	public function setBeschreibung($beschreibung) {
        if(is_string($beschreibung) && strlen($beschreibung)<512){
-           $this->beschreibung = $beschreibung;
+           $this->beschreibung = utf8_decode($beschreibung);
        }else{
            throw new Exception('Beschreibung hat ungueltiges Format.');
        }
 	}
 	function getBeschreibung(){
-		return $this->beschreibung;
+		return utf8_encode($this->beschreibung);
 	}
 	function getKosten(){
 		return $this->kosten;
@@ -541,23 +541,23 @@ class Kategorie{
 	}
 	public function setName($name){
        if(is_string($name) && strlen($name)<128 && $name!=""){
-           $this->name = $name;
+           $this->name = utf8_decode($name);
        }else{
            throw new Exception('Name hat ungueltiges Format.');
        }
 	}
 	function getName(){
-		return $this->name;
+		return utf8_encode($this->name);
 	}
 	public function setBeschreibung($beschreibung) {
        if(is_string($beschreibung) && strlen($beschreibung)<512){
-           $this->beschreibung = $beschreibung;
+           $this->beschreibung = utf8_decode($beschreibung);
        }else{
            throw new Exception('Beschreibung hat ungueltiges Format.');
        }
 	}
 	function getBeschreibung(){
-		return $this->beschreibung;
+		return utf8_encode($this->beschreibung);
 	}
 	public function setSuperkategorie($superkategorie) {
        if(is_numeric($superkategorie)){
