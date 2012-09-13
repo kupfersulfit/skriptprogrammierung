@@ -530,8 +530,8 @@ class DatabaseModel {
     public function holeBestellungenVonKunden($kundenId) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
-            $query = "SELECT * FROM bestellung WHERE kundenid = :kundenid";
-            $params = array(":kundenid" => $KundenId);
+            $query = "SELECT * FROM bestellungen WHERE kundenid = :kundenid";
+            $params = array(":kundenid" => $kundenId);
             return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Bestellung");
         } else {
             return null;

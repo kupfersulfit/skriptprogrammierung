@@ -433,7 +433,8 @@
             err('you need to be logged in to view your orders');
             return;
         }
-        $bestellungen = holeBestellungenVonKunden($_SESSION['kunde']->getId());
+        $bestellungen = $_SESSION['model']->holeBestellungenVonKunden($_SESSION['kunde']->getId());
+        print_r($bestellungen);
     }
 
     /** Gibt alle Bestellungen einen bestimmten Kunden aus */
