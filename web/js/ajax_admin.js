@@ -71,6 +71,7 @@ function refreshKunde(json){
             if (json.error) {
                 systemessages(json);
             } else {
+				getAlleKunden();
                 systemessages({
                     'success' : "change done"
                 });
@@ -97,6 +98,7 @@ function deleteKunde(json){
             if (json.error) {
                 systemessages(json);
             } else {
+				getAlleKunden();
                 systemessages({
                     'success' : "Customer deleted"
                 });
