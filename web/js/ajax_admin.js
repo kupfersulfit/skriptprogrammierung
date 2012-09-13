@@ -167,7 +167,6 @@ function modifyArticle(id){
             htmltext += "</table>";
             htmltext += "<input type='button' name='aktualisiereArtikel' id='a"+artikel.id+"' value='ok'>";
             htmltext += "<input type='button' name='loescheArtikel' id='a"+artikel.id+"' value='delete article'><br><br>";
-            //Article.create();
             $("#divModifyArticle").html(htmltext);
             $("#divAddArticle").hide();
         },
@@ -179,13 +178,15 @@ function modifyArticle(id){
     });
 }
 
-function updateArticle(json){
+function updateArticle(id){
+    var modArticle = new Article();
+    modArticle.createtemporyIntance(id,$('#modName').val(),$('#modCat').val(),$('#modDescr').val(),$('#modPrice').val(),0,$('#modNr').val(),$('#modPubl').val(),$('#modImg').val());
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php',
         data : {
-            'action' : 'aendereArtikel',
-            'artikel' : Article.getJSONstring()
+            'action' : 'aktualisiereArtikel',
+            'artikel' : modArticle.getJSONstring()
         },
         dataType : 'json',
         success : function(json){
@@ -206,12 +207,14 @@ function updateArticle(json){
 }
 
 function createArticle() {
+    var newArticle = new Article();
+    newArticle.createtemporyIntance(0,$('#newName').val(),$('#newCat').val(),$('#newDescr').val(),$('#newPrice').val(),0,$('#newNr').val(),$('#newPubl').val(),$('#newImg').val());
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php', 
         data : {
             'action' : 'erstelleArtikel',
-            'artikel' : Article.getJSONstring()
+            'artikel' : newArticle.getJSONstring()
         },
         dataType : 'json',
         success : function (json) {
@@ -232,12 +235,14 @@ function createArticle() {
 }
 
 function deleteArticle(id) {
+    var delArticle = new Article();
+    delArticle.createtemporyIntance(id,$('#modName').val(),$('#modCat').val(),$('#modDescr').val(),$('#modPrice').val(),0,$('#modNr').val(),$('#modPubl').val(),$('#modImg').val());
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php', 
         data : {
             'action' : 'loescheArtikel',
-            'artikel' : Article.getJSONstring()
+            'artikel' : delArticle.getJSONstring()
         },
         dataType : 'json',
         success : function (json) {
