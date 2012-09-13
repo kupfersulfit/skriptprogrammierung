@@ -1,7 +1,7 @@
 
 <div id="payment_top"><div id="paymentClose" onclick="Payment.closePayment();" >close</div></div>
 <div id="payment_content">
-    <section class="payment_head">
+    <section class="topic">
         Personality
     </section>
     <section id="personality">
@@ -15,7 +15,7 @@
         </div>
         <div class="clear"></div>
     </section>
-    <section class="payment_head">
+    <section class="topic">
         Payment
     </section>
     <section id="bank_transfer">
@@ -68,7 +68,7 @@
         </p>
     </section>
     <div class="clear"></div>
-    <section class="payment_head">
+    <section class="topic">
         Delivery
     </section>
     <section id="delivery">
@@ -76,7 +76,7 @@
         <div id="delivery_column_1">
             <p>
                 <label for="deliver_zip">zip</label>
-                <input id="deliver_zip" class="payment_text" type="text" value="" />
+                <input id="deliver_zip" class="payment_text" type="text" value="" maxlength="5" size="5" />
             </p>
         </div>
         <div id="delivery_column_2">

@@ -55,12 +55,6 @@ function refreshHandling() {
         getCustomerContent('home');
         setAnker('home');
     }
-    interval = window.setInterval(function () {
-        if (typeof Article != 'undefined' && Article.Instances.length > 0) {
-            window.clearInterval(interval);
-            getShoping_cart();
-        }
-    }, 200);
 }
 
 function setAnker(anker) {
@@ -80,142 +74,172 @@ function getCustomerContent(pageName) {
             jQuery('#page').html(data);
             if(pageName == 'home') {
                 getArticleList();
+                interval = window.setInterval(function () {
+                    if (typeof Article != 'undefined' && Article.Instances.length > 0) {
+                        window.clearInterval(interval);
+                        if (ShopingCard.articles.length == 0) {
+                            getShoping_cart();
+                        }
+                        jQuery('#shoping_cart').show();
+                    }
+                }, 200);
+            } else if (pageName == 'profile') {
+                jQuery('#shoping_cart').hide();
+                fillProfile();
+            } else if(pageName == 'admin') {
+                jQuery('#shoping_cart').hide();
             }
         }
     });
 }
 
-function suggest() {
-    var availableTags = new Array();
-    for (var i = 0; i < Article.Instances.length; ++i) {
-        availableTags.push(Article.Instances[i].name);
+function fillProfile() {
+    for (var key in Customer) { 
+        if (typeof Customer[key] != 'function'
+            && key != 'position') 
+        {
+            var value = Customer[key];
+            if (key == 'registriertseit') {
+                value = Customer[key].split(' ')[0];
+                value     = value.split('-');
+                value     = value[2] + '.' + value[1] + '.' + value[0];
+            }
+            jQuery('#profile_'+key).val(value);
+        }
     }
+}
+
+function suggest() {
+var availableTags = new Array();
+for (var i = 0; i < Article.Instances.length; ++i) {
+    availableTags.push(Article.Instances[i].name);
+}
         
-    jQuery( "#search" ).autocomplete({
-        source: availableTags
-    });
+jQuery( "#search" ).autocomplete({
+    source: availableTags
+});
 }
 
 function search() {
-    var search = jQuery('#search').val();
-    var article = Article.findForSearch(search);    
+var search = jQuery('#search').val();
+var article = Article.findForSearch(search);    
     
-    if (search == '') {
-        jQuery('.article').show(); 
-    } else if (article) {
-        jQuery('.article').hide();
-        for (var i = 0; i < article.length; ++i) {
-            jQuery('#article' + article[i].id).show();
-        }
-    } else {
-        jQuery('.article').hide();
+if (search == '') {
+    jQuery('.article').show(); 
+} else if (article) {
+    jQuery('.article').hide();
+    for (var i = 0; i < article.length; ++i) {
+        jQuery('#article' + article[i].id).show();
     }
+} else {
+    jQuery('.article').hide();
+}
 }
 
 var messageDisplayTime = 0;  
 var messageDisplayInterval;
 
 function timerHelper() {
-    messageDisplayTime = 0;
-    messageDisplayInterval = window.setInterval(
-        function () {
-            if (messageDisplayTime == 5) {
-                jQuery('#messages').slideUp("slow");
-                window.clearInterval(messageDisplayInterval);
-            } else {
-                ++messageDisplayTime;
-            }
-        }, 1000);
+messageDisplayTime = 0;
+messageDisplayInterval = window.setInterval(
+function () {
+    if (messageDisplayTime == 5) {
+        jQuery('#messages').slideUp("slow");
+        window.clearInterval(messageDisplayInterval);
+    } else {
+        ++messageDisplayTime;
+    }
+}, 1000);
 }
 
 function systemessages(json) {
-    for (var attr in json) {
-        jQuery('#messages').html(json[attr]);
-        if (json.error) {
-            jQuery('#messages').attr('class', 'error_message');
-            jQuery('#messages').slideDown("slow");
-            if (messageDisplayTime == 0) {
-                timerHelper();
-            } else {
-                messageDisplayTime = 0;
-            }
-        } else if(json.success) {
-            jQuery('#messages').attr('class', 'success_message');
-            jQuery('#messages').slideDown("slow");
-            if (messageDisplayTime == 0) {
-                timerHelper();
-            } else {
-                messageDisplayTime = 0;
-            }
+for (var attr in json) {
+    jQuery('#messages').html(json[attr]);
+    if (json.error) {
+        jQuery('#messages').attr('class', 'error_message');
+        jQuery('#messages').slideDown("slow");
+        if (messageDisplayTime == 0) {
+            timerHelper();
         } else {
-            jQuery('#messages').removeAttr('class');
-            jQuery('#messages').slideUp("slow");
+            messageDisplayTime = 0;
         }
+    } else if(json.success) {
+        jQuery('#messages').attr('class', 'success_message');
+        jQuery('#messages').slideDown("slow");
+        if (messageDisplayTime == 0) {
+            timerHelper();
+        } else {
+            messageDisplayTime = 0;
+        }
+    } else {
+        jQuery('#messages').removeAttr('class');
+        jQuery('#messages').slideUp("slow");
     }
+}
 }
 
 /* --- admin --- */
 
 function getAdminContent(pageName) {
-    jQuery.ajax({
-        url: 'templates/admin/' + pageName + ".php",
-        success: function (data) {
-            jQuery('#page').html(data);
-            getUserManagement();
-            setAdminTabActive('usermanagement');
-        }
-    });
+jQuery.ajax({
+    url: 'templates/admin/' + pageName + ".php",
+    success: function (data) {
+        jQuery('#page').html(data);
+        getUserManagement();
+        setAdminTabActive('usermanagement');
+    }
+});
 }
 
 function setAdminTabActive(id) {
-    jQuery('.admin_tab').removeClass('active');
-    jQuery('#' + id).addClass('active');
+jQuery('.admin_tab').removeClass('active');
+jQuery('#' + id).addClass('active');
 }
 
 jQuery(document).on('click', "input[name='send']", 
-    function() {
-        var id=this.id.substr(1,this.id.length);
-        getKunde(id);
-    }
-    );
+function() {
+var id=this.id.substr(1,this.id.length);
+getKunde(id);
+}
+);
 jQuery(document).on('click', "input[name='aendereKunde']", 
-    function() {
-        var id=this.id.substr(1,this.id.length);
-        Customer.create(id, $("#kundenNameId").val(), $("#kundenVornameId").val(), $("#kundenStrasseId").val(), $("#kundenPlzId").val(), $("#kundenZusatzId").val(), $("#kundenEmailId").val(), $("#kundenPwId").val());
-        refreshKunde(Customer);
-        systemessages({
-            "success":"customer got updated"
-        });
-    }
+function() {
+var id=this.id.substr(1,this.id.length);
+Customer.create(id, $("#kundenNameId").val(), $("#kundenVornameId").val(), $("#kundenStrasseId").val(), $("#kundenPlzId").val(), $("#kundenZusatzId").val(), $("#kundenEmailId").val(), $("#kundenPwId").val());
+refreshKunde(Customer);
+systemessages({
+    "success":"customer got updated"
+});
+}
 
-    );
+);
     
 jQuery(document).on('click', "input[name='loescheKunde']", 
-    function() {
-        var id=this.id.substr(1,this.id.length);
-        Customer.create(id, $("#kundenNameId").val(), $("#kundenVornameId").val(), $("#kundenStrasseId").val(), $("#kundenPlzId").val(), $("#kundenZusatzId").val(), $("#kundenEmailId").val(), $("#kundenPwId").val());
-        deleteKunde(Customer);
-        systemessages({
-            "success":"customer got deleted"
-        });
-    }	
-    );
+function() {
+var id=this.id.substr(1,this.id.length);
+Customer.create(id, $("#kundenNameId").val(), $("#kundenVornameId").val(), $("#kundenStrasseId").val(), $("#kundenPlzId").val(), $("#kundenZusatzId").val(), $("#kundenEmailId").val(), $("#kundenPwId").val());
+deleteKunde(Customer);
+systemessages({
+    "success":"customer got deleted"
+});
+}	
+);
     
 jQuery(document).on('click', "input[name='aendereArtikel']", 
-    function() {
-        var id = this.id.substr(1,this.id.length);
-        modifyArticle(id);
-    }
-    );
+function() {
+var id = this.id.substr(1,this.id.length);
+modifyArticle(id);
+}
+);
 jQuery(document).on('click', "input[name='aktualisiereArtikel']", 
-    function() {
-        var id = this.id.substr(1,this.id.length);
-        updateArticle(id);
-    }
-    );
+function() {
+var id = this.id.substr(1,this.id.length);
+updateArticle(id);
+}
+);
 jQuery(document).on('click', "input[name='loescheArtikel']", 
-    function() {
-        var id = this.id.substr(1,this.id.length);
-        deleteArticle(id);
-    }
-    );  
+function() {
+var id = this.id.substr(1,this.id.length);
+deleteArticle(id);
+}
+);  

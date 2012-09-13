@@ -12,6 +12,8 @@ input {
     border-radius: 2px;
     border-style: solid;
     border-width: 1px;
+    padding-left: 2px;
+    padding-right: 2px;
     background-color: #E0F1FF;
 }
 
@@ -558,7 +560,7 @@ header {
     height: 1px; 
 }
 
-.payment_head {
+.topic {
     color: cornflowerblue;
     background-color: #EFEFEF;
     border-radius: 2px;
@@ -663,3 +665,38 @@ header {
 }
 
 /* --- Profile --- */
+#profileContainer {
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+#profileData {
+    padding: 10px;
+    width: 676px;
+    color: darkgray;
+}
+
+#profileData p {
+    height: 21px;
+}
+
+.profile_column {
+    float: left;
+    margin-right: 20px;
+}
+
+.column_withBorder {
+    border-right: 1px solid #EFEFEF;
+    padding-right: 12px;
+    margin-right: 13px;
+}
+
+.column_withoutMargin {
+    margin: 0;
+}
+
+#profileData .save,
+#profileData .abort {
+    float: right;
+    margin-right: 20px;
+}

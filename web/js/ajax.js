@@ -105,6 +105,7 @@ function logout() {
                 systemessages({
                     'success' : "you're logged out"
                 });
+                Payment.closePayment();
                 jQuery('#homeTab').click();
             }     
         },

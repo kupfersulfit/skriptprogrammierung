@@ -77,26 +77,37 @@ var Payment = {
     },
     
     validateBLZ : function() {
-        var blz = jQuery('#bank_code').val();
-        blz = blz.replace(/-/g,'');
-        blz = jQuery.trim(blz);
-        if (!(blz.match(/[0-9]{3} ?[0-9]{3} ?[0-9]{2}/) || blz.match(/^\d{8}$/))) {
-            jQuery('#bank_code').css('border-color', '#FA5858');
-            return false;
+        if (jQuery("input[name='paymentType']:checked").val() == 0) {
+            var blz = jQuery('#bank_code').val();
+            blz = blz.replace(/-/g,'');
+            blz = jQuery.trim(blz);
+            if (!(blz.match(/[0-9]{3} ?[0-9]{3} ?[0-9]{2}/) || blz.match(/^\d{8}$/))) {
+                jQuery('#bank_code').css('border-color', '#FA5858');
+                systemessages({
+                    "error":"bank code is invalid"
+                });
+                return false;
+            }
         }
         return true;
     },
     
     validateMonth : function() {
-        var valid = true;
-        var month = jQuery('#valid_month').val();
-        var date = new Date();
-        if ( month < date.getMonth() + 1) {
-            jQuery('#valid_month').css('background-color','#FA5858');
-            return false;
+        if (jQuery("input[name='paymentType']:checked").val() == 1) {
+            var valid = true;
+            var month = jQuery('#valid_month').val();
+            var year = jQuery('#valid_year').val();
+            var date = new Date();
+            if (year == date.getFullYear() && month < date.getMonth() + 1 ) {
+                jQuery('#valid_month').css('background-color','#FA5858');
+                systemessages({
+                    "error":"creditcart is no longer valid"
+                });
+                return false;
+            }
+            jQuery('#valid_month').css('background-color','#FFFFFF');
         }
-        jQuery('#valid_month').css('background-color','#FFFFFF');
-        return true;;
+        return true;
     },
 
     checkInputs : function(id, valid) {
@@ -109,19 +120,22 @@ var Payment = {
             } else {
                 jQuery(this).css('border-color','#F0F0F0');
             }
-        })
+        });
+        if (!valid) {
+            systemessages({
+                "error":"an input is empty or"
+            });
+        }
         return valid;
     },
     
     pay : function() {    
-        if (this.enabled) {
-            this.paymentCheck();
-            this.validateBLZ();
-            this.validateMonth();
-        } else {
-            systemessages({
-                "error":"you need to login first"
-            });
-        }
+        if (this.enabled 
+            && this.paymentCheck() 
+            && this.validateBLZ() 
+            && this.validateMonth()) 
+            {
+    //TODO
+    }
     }
 }
