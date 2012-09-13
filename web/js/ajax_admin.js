@@ -89,7 +89,7 @@ function deleteKunde(json){
         type : 'POST',
         url : 'lib/controller.php',
         data : {
-            'action' : 'aktualisiereKunde',
+            'action' : 'loescheKunde',
             'kunde' : Customer.getJSONstring()
         },
         dataType : 'json',
