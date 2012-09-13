@@ -277,7 +277,7 @@ function getAllOrders(){
         type : 'GET',
         url : 'lib/controller.php',
         data : {
-            'action' : 'zeigeBestellungen'
+            'action' : 'holeAlleBestellungen'
         },
         dataType : 'json',
         success : function(json){
