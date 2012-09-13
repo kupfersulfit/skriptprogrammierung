@@ -92,6 +92,7 @@ function refreshKunde(json){
         },
         dataType : 'json',
         success : function(json){
+			getCustomerInformation();
             if (json.error) {
                 systemessages(json);
             } else {
@@ -119,6 +120,7 @@ function deleteKunde(json){
         },
         dataType : 'json',
         success : function(json){
+			getCustomerInformation();
             if (json.error) {
                 systemessages(json);
             } else {

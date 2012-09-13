@@ -211,6 +211,7 @@
         if($kunde == null){
             err("no customer found");
         }else{
+            $kunde->setPasswort("");
             echo json_encode($kunde->assoc());
         }
     }
@@ -234,10 +235,15 @@
             return;
         }
         $kunden = $_SESSION['model']->holeAlleKunden();
-        for($i = 0; $i < count($kunden); $i++){
-            $kunden[$i] = $kunden[$i]->assoc();
+        if($kunden == null){
+            err("no customers found");
+        }else{
+            for($i = 0; $i < count($kunden); $i++){
+                $kunden[$i] = $kunden[$i]->assoc();
+                $kunden[$i]['passwort'] = "";
+            }
+            echo json_encode($kunden);
         }
-        echo json_encode($kunden);
     }
 
     /** Aktualisiert das Kundenobjekt in der Datenbank und ggf in der Session

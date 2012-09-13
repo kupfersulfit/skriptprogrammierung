@@ -1,0 +1,14 @@
+[Lukas]
+- Preis fix shopping cart
+- fehlendes Bild Lieferungsmanagement
+- Suchebug mit klammern etc. -> Autovervollständigung geht nicht
+- Home <-> keine Artikel
+[Alex]
+- Passwort hash libary
+[Thorsten + Laura]
+- Bestellübersicht mit Statusänderung
+[Laura]
+- 
+[ Alle ]
+- Passwordfix beim Login ***FIXED***
+- 12 Artikel (Moleskin) ändern publish funktioniert nicht
