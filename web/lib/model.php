@@ -527,12 +527,12 @@ class DatabaseModel {
      * @retval Artikel[]
      *  Objektarray der geholten Artikel.
      */
-    public function holeArtikelVonBestellung($bestellungId) {
+    public function holeArtikelVonBestellung($bestellung) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
             $query = "SELECT * FROM bestellungen_artikel LEFT JOIN artikel ON artikel.id = bestellungen_artikel.artikelid
 WHERE bestellungen_artikel.bestellungid = :bestellungid";
-            $params = array(":bestellungid" => $bestellungId);
+            $params = array(":bestellungid" => $bestellung->getId());
             return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Artikel");
         } else {
             return null;
@@ -713,8 +713,13 @@ if ($testing) {
     echo "</div>";
     
     echo "</div><br/>***Teste das Holen von Artikeln der Bestellung mit ID 1<br/><div style='border: 1px brown solid;'>";
-
-    $dbo = $testInstance->holeArtikelVonBestellung(1);
+	
+	$bestellung = new Bestellung(
+		array(
+			"id" => 1
+		)
+	);
+    $dbo = $testInstance->holeArtikelVonBestellung($bestellung);
     print_r($dbo);
     echo "</div>";
     exit;
