@@ -256,6 +256,13 @@ class Artikel {
 	public function getSeit(){
        return $this->seit;
 	}
+    public function setSeit($seit){
+        if(strtotime($seit) != false){
+            $this->seit = $seit;
+        }else{
+            throw new Exception('Seit hat ungueltiges Format.');
+        }
+    }
 }
 /**
  * @brief Objektklasse fuer 'Warenkorb'
