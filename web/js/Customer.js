@@ -7,7 +7,7 @@ var Customer = {
     zusatz : '',  
     email : '',
     passwort : '',
-    regiestriertseit : '',
+    registriertseit : '',
     position : '',
     register : function() {
         var firstfocus = true;
@@ -20,14 +20,15 @@ var Customer = {
                     jQuery(this).focus();
                     firstfocus = false;
                 }
-                valid = false;
-                systemessages({
-                    'error' : 'an input is empty'
-                });
             } else {
                 jQuery(this).css('border-color','#FFFFFF');
             }
         });
+        if (!valid) {
+            systemessages({
+                "error":"an input is empty or"
+            });
+        }
         valid = valid && (this.validMail() & this.validPassword());
         
         if (valid) {

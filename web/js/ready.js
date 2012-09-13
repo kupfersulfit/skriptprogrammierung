@@ -8,6 +8,7 @@ jQuery(document).ready(function (){
     jQuery('#profileTab').click(function() {
         activeTab('profileTab');
         jQuery('#container').fadeOut('slow');
+        Payment.closePayment();
         getCustomerContent('profile');
         setAnker('profile')
     });
@@ -23,6 +24,7 @@ jQuery(document).ready(function (){
         activeTab('adminTab');
         jQuery('#container').fadeOut('slow');
         getAdminContent('admin');
+        Payment.closePayment();
         setAnker('admin');
     });
     
