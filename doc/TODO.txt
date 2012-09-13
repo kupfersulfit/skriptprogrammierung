@@ -2,13 +2,17 @@
 - Preis fix shopping cart
 - fehlendes Bild Lieferungsmanagement
 - Suchebug mit klammern etc. -> Autovervollständigung geht nicht
-- Home <-> keine Artikel
+- Home <-> keine Artikel ***#FIXED#***
 [Alex]
 - Passwort hash libary
-[Thorsten + Laura]
-- Bestellübersicht mit Statusänderung
+[Thorsten]
+- Bestellübersicht mit Statusänderung (+ Laura)
+- Depublish + Republish => Timestamp auf null (00000)
+- Bestellungen mit Artikel mitschicken bei Bestellung
 [Laura]
 - 
+[Kirstin]
+- 
 [ Alle ]
-- Passwordfix beim Login ***FIXED***
+- Passwordfix beim Login ***#FIXED#***
 - 12 Artikel (Moleskin) ändern publish funktioniert nicht
