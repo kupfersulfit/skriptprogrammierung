@@ -133,6 +133,9 @@
                 bestelle($POST['methoden']);
             }
             exit();
+        case 'holeBestellungen':
+            holeBestellungen();
+            exit();
         default:   
             echo json_encode(array('error' => 'unknown action'));     
     }

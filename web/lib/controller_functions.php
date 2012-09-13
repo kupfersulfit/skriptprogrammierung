@@ -251,10 +251,14 @@
             return;
         }
 
-        //hole aktuelles pw aus der db 
-        $alterkunde = $_SESSION['model']->holeKundeMitId($kunde['id']);
-        //vermeide dass das pw geloescht wird
-        $kunde['passwort'] = $alterkunde->getPasswort(); 
+        if($kunde['passwort'] == ""){ //falls kein neues pw gesetzt
+            //hole aktuelles pw aus der db
+            $alterkunde = $_SESSION['model']->holeKundeMitId($kunde['id']);
+            //vermeide dass das pw geloescht wird
+            $kunde['passwort'] = $alterkunde->getPasswort();
+        }else{
+            $kunde['passwort'] = crypt($kunde['passwort'], $kunde['email']); //neues pw verschluesseln
+        }
         try{
             $kunde = new Kunde($kunde);
         }catch(Exception $e){
@@ -407,5 +411,15 @@
         //warenkorb leeren
         $_SESSION['korb'] = new Warenkorb();
         success();
+    }
+
+    /** Gibt alle Bestellungen des aktuell angemeldeten Kunden aus */
+    function holeBestellungen(){
+        //TODO
+    }
+
+    /** Gibt alle Bestellungen von allen Kunden aus */
+    function holeAlleBestellungen(){
+        //TODO admin only
     }
 ?>
