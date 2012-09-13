@@ -14,3 +14,11 @@ th {
     background-color:#ECECEC;
     color: cornflowerblue;
 }
+
+.admin_tab {
+    margin-bottom: 10px;
+}
+
+#subnav .active {
+    background-color: #FF6600;
+}

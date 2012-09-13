@@ -67,7 +67,7 @@ function login(email, password) {
                     }); 
                     containerDisplay();
                     getCustomerInformation();
-                    getCustomerPosition();
+                    getCustomerPositionAtLogin()
                 }
             },
             error : function () {
@@ -183,13 +183,47 @@ function getCustomerPosition() {
                     jQuery('#adminTab').show();
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);
-                    jQuery('#adminTab').click();
                     Payment.enabled = true;
                 } else if (json.rolle == 'nutzer') {
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);
                     Payment.enabled = true;
                 }
+                Customer.position = json.rolle;
+            }
+        },
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
+        }
+    });
+}
+
+function getCustomerPositionAtLogin() {
+    jQuery.ajax({
+        type : 'POST',
+        url : 'lib/controller.php', 
+        data : {
+            'action' : 'holeRolle'
+        },
+        dataType : 'json',
+        success : function (json) {
+            if (json.error) {
+                systemessages(json);
+            } else {
+                if (json.rolle == 'admin') {
+                    jQuery('#adminTab').show();
+                    jQuery('#loginTab').unbind('click');
+                    jQuery('#loginTab').click(logout);
+                    Payment.enabled = true;
+                    jQuery('#adminTab').click();
+                } else if (json.rolle == 'nutzer') {
+                    jQuery('#loginTab').unbind('click');
+                    jQuery('#loginTab').click(logout);
+                    Payment.enabled = true;
+                }
+                Customer.position = json.rolle;
             }
         },
         error : function () {

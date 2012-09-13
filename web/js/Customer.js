@@ -8,6 +8,7 @@ var Customer = {
     email : '',
     passwort : '',
     regiestriertseit : '',
+    position : '',
     register : function() {
         var firstfocus = true;
         var valid = true;
@@ -116,5 +117,16 @@ var Customer = {
     
     getPasswort : function() {
         return this.passwort;
+    },
+    
+    reset : function() {
+        this.id = '';
+        this.name = '';
+        this.vorname = '';
+        this.strasse = '';
+        this.plz = '';
+        this.zusatz = '';
+        this.email = '';
+        this.passwort = '';
     }
 }

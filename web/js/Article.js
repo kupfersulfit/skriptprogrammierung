@@ -3,7 +3,7 @@ Article = function() {
     this.beschreibung    = 'Eine Beschreibung liegt leider nicht vor. bla bla';
     this.bildpfad        = 'default.png';
     this.id              = '';
-    this.kategoryId      = '';
+    this.kategorieid      = '';
     this.name            = '';
     this.preis           = '';
     this.seit            = '';
@@ -29,7 +29,7 @@ Article.prototype.create = function(json) {
     }
     
     this.id              = json['id'];
-    this.kategoryId      = json['kategorieid'];
+    this.kategorieid      = json['kategorieid'];
     this.name            = json['name'];
     this.preis           = json['preis'];
     this.seit            = json['seit'];
@@ -63,7 +63,7 @@ Article.findForSearch = function(search) {
         
     for (var i = 0; i < Article.Instances.length; ++i) {
         if ((checkedOptions[0].checked && Article.Instances[i].name.toLowerCase().match(search.toLowerCase()))
-            || (checkedOptions[1].checked && Article.Instances[i].kategoryId.toLowerCase().match(search.toLowerCase()))
+            || (checkedOptions[1].checked && Article.Instances[i].kategorieid.toLowerCase().match(search.toLowerCase()))
             || (checkedOptions[2].checked && Article.Instances[i].beschreibung.toLowerCase().match(search.toLowerCase()))
             ) {
             matches.push(Article.Instances[i]);
@@ -89,7 +89,7 @@ Article.prototype.renderHTML = function() {
     strHTML +=          '<p class="articleTags">details</p>';
     strHTML +=          '<div class="articleDetails"><ul>'; 
     strHTML +=              '<li>price <span class="articleValues">' + this.preis + ' &euro;</span></li>';
-    strHTML +=              '<li>category <span class="articleValues">' + this.kategoryId + '</span></li>';
+    strHTML +=              '<li>category <span class="articleValues">' + this.kategorieid + '</span></li>';
     strHTML +=              '<li>published since <span class="articleValues">' + date + '</span></li>';
     strHTML +=              '<li>in stock <div class="' + (this.verfuegbar > 0 ? 'in' : 'out') + '" title="' + (this.verfuegbar > 0 ? 'available' : 'sold') + '">&nbsp;</div></li>';
     strHTML +=          '</ul></div>';
@@ -223,10 +223,10 @@ Article.prototype.getJSONstring = function() {
     return JSONstr;
 }
 
-Article.prototype.createtemporyIntance = function(id, name, kategoryId, beschreibung, preis, seit, verfuegbar, veroeffentlicht, bildpfad) {
+Article.prototype.createtemporyIntance = function(id, name, kategorieid, beschreibung, preis, seit, verfuegbar, veroeffentlicht, bildpfad) {
     this.id              = id;
     this.name            = name;
-    this.kategoryId      = kategoryId;
+    this.kategorieid      = kategorieid;
     this.beschreibung    = beschreibung;
     this.preis           = preis;
     this.seit            = seit;

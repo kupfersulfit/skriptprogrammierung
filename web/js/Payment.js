@@ -3,10 +3,18 @@ var Payment = {
     
     openPayment : function() {
         if (this.enabled) {
-            jQuery('#payment').fadeIn('slow');
-            this.creditCardValidTime();
+            if (ShopingCard.price > 0) {
+                this.creditCardValidTime();
+                jQuery('#payment').fadeIn('slow');
+            } else {
+                systemessages({
+                    "error":"nothing to buy"
+                });
+            }
         } else {
-            alert('You need to login first.')
+            systemessages({
+                "error":"you need to login first"
+            });
         }
     },
     
@@ -46,7 +54,7 @@ var Payment = {
             jQuery(this).attr('disabled', disabled);
         });
         
-        //unschön kann man vllt oben rausnehmen und garnicht erst disablen
+        //unschï¿½n kann man vllt oben rausnehmen und garnicht erst disablen
         jQuery('#bank').removeAttr('disabled');
         jQuery('#card').removeAttr('disabled');
     },
@@ -84,9 +92,10 @@ var Payment = {
         var month = jQuery('#valid_month').val();
         var date = new Date();
         if ( month < date.getMonth() + 1) {
-            jQuery('#valid_month').css('border-color','#FA5858');
+            jQuery('#valid_month').css('background-color','#FA5858');
             return false;
         }
+        jQuery('#valid_month').css('background-color','#FFFFFF');
         return true;;
     },
 

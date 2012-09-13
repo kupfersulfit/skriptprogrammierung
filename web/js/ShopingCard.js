@@ -1,4 +1,5 @@
 var ShopingCard = {
+    price : 0,
     articles : new Array(),    
     addArticle : function(article) {
         this.articles.push({
@@ -52,11 +53,7 @@ var ShopingCard = {
             price += ShopingCard.articles[i].verfuegbar * ShopingCard.articles[i].price;
         }
         
-        if (price == 0) {
-            jQuery('#buyButton').attr('disabled', 'diabled');
-        } else {
-            jQuery('#buyButton').removeAttr('disabled');
-        }
+        ShopingCard.price = price;
         
         price += '';
         if (!price.match(/[0-9]{1,}\.[0-9]{2}/)) {
