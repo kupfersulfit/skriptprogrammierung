@@ -1,7 +1,7 @@
 <!doctype html>
     <html>
         <head>
-            <meta http-equiv=&quot;Content-Type&quot; content="text/html; charset=utf-8" />
+            <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
             <title>st@pleware</title>
             <link type="text/css" rel="stylesheet" href="css/style_admin.css"/>
             <link type="text/css" rel="stylesheet" href="css/style_main.css" />
