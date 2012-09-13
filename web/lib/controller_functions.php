@@ -280,6 +280,7 @@
         if($_SESSION['model']->erstelleArtikel($artikel) == false){
             err('article not created');
         }
+        success();
     }
 
     /** L&ouml;scht einen Artikel aus der Datenbank
