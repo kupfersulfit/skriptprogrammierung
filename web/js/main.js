@@ -138,7 +138,9 @@ jQuery(document).on('click', "input[name='aendereKunde']",
     
 jQuery(document).on('click', "input[name='loescheKunde']", 
     function() {
-        deleteKunde(Customer);
+        var id=this.id.substr(1,this.id.length);
+        Customer.create(id, $("#kundenNameId").val(), $("#kundenVornameId").val(), $("#kundenStrasseId").val(), $("#kundenPlzId").val(), $("#kundenZusatzId").val(), $("#kundenEmailId").val(), $("#kundenPwId").val());
+		deleteKunde(Customer);
         alert("Kunde ist gelöscht worden.");
     }	
     );
