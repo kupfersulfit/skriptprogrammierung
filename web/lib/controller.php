@@ -139,6 +139,12 @@
         case 'holeAlleBestellungen':
             holeAlleBestellungen();
             exit();
+        case 'holeArtikelVonBestellung':
+            if(!isset($_POST['bestellung'])){
+                err("'bestellung' parameter missing");
+            }else{
+                holeArtikelVonBestellung($_POST['bestellung']);
+            }
         default:   
             echo json_encode(array('error' => 'unknown action'));     
     }

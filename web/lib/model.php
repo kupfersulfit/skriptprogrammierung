@@ -150,6 +150,7 @@ class DatabaseModel {
     public function erstelleKunde($kunde) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
+        	print_r($kunde);
             $query = "INSERT INTO kunden VALUES('', :name, :vorname, :strasse, :plz, :zusatz, :email, :passwort, :registriertseit)";
             $params = array(
             ":name" => $kunde->getName(),

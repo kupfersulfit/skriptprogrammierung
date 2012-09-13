@@ -211,7 +211,6 @@
         if($kunde == null){
             err("no customer found");
         }else{
-            $kunde->setPasswort(" ");
             echo json_encode($kunde->assoc());
         }
     }
@@ -441,12 +440,20 @@
 
     /** Gibt alle Bestellungen einen bestimmten Kunden aus */
     function holeBestellungenVonKunde($kunde){
-        //TODO admin only
+        if(!istAdmin() && !istLieferant()){
+            err("only admins and suppliers can view orders of other customers");
+            return;
+        }
+        $kunde = json_decode($kunde, true);
+        $alleBestellungen = $_SESSION['model']->holeBestellungenVonKunden($kunde['id']);
+        for($i = 0; $i < count($alleBestellungen); $i++){
+            $alleBestellungen[$i] = $alleBestellungen[$i]->assoc();
+        }
+        echo json_encode($alleBestellungen);
     }
 
     /** Gibt alle Bestellungen von allen Kunden aus */
     function holeAlleBestellungen(){
-        //TODO admin only
         if(!istAdmin() && !istLieferant()){
             err("only the admins and suppliers can view all orders");
             return;
@@ -456,5 +463,10 @@
             $alleBestellungen[$i] = $alleBestellungen[$i]->assoc();
         }
         echo json_encode($alleBestellungen);
+    }
+
+    /** Gibt alle Artikel einer bestimmten Bestellung aus */
+    function holeArtikelVonBestellung($bestellung){
+        //TODO
     }
 ?>

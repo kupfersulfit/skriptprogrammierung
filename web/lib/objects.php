@@ -118,11 +118,7 @@ class Kunde {
 		return $this->email;
 	}
 	public function setPasswort($pw){
-		if($pw != "" && is_string($pw) && strlen($pw) < 128){
-			$this->passwort = $pw;
-		}else{
-			throw new Exception("Passwort ungueltig.");
-		}
+		$this->passwort = $pw;
 	}
 	public function getPasswort(){
 		return $this->passwort;
