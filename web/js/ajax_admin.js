@@ -33,7 +33,7 @@ function getAlleKunden(){
         },
         dataType : 'json',
         success : function(json){
-            var htmltext = '<table cellspacing="0" cellpadding="4"><tr><th>ID</th><th>Name</th><th>Vorame</th><th>Email</th><th>&nbsp;</th></tr>';
+            var htmltext = '<table cellspacing="0" cellpadding="4"><tr><th>ID</th><th>Name</th><th>Vorname</th><th>Email</th><th>&nbsp;</th></tr>';
             for(var i = 0; i < json.length; i++){
                 var row=json[i];
                 htmltext += '<tr><td>'+ row.id+'</td><td>' + row.name + '</td><td>' + row.vorname + '</td><td>' + row.email + '</td><td><input type="button" name="send" id="a'+row.id +'" value="Change"/></td></tr>';
@@ -60,7 +60,7 @@ function getKunde(id){
         },
         dataType : 'json',
         success : function(json){
-            var htmltext = '<table>';
+            var htmltext = '<table width="456" id=tableid>';
             htmltext += '<tr><td>Name:</td><td><input name="kundenName" id="kundenNameId" type="text" size="50" maxlength="50" value='+json.name+'></td></tr>';
             htmltext += '<tr><td>Vorname:</td><td><input name="kundenVorname" id="kundenVornameId" type="text" size="50" maxlength="50" value='+json.vorname+'></td></tr>';
             htmltext += '<tr><td>Stra&szlig;e:</td><td><input name="kundenStrasse" id="kundenStrasseId" type="text" size="50" maxlength="50" value='+json.strasse+'></td></tr>';			
@@ -70,8 +70,8 @@ function getKunde(id){
             htmltext += '<tr><td>Passwort:</td><td><input name="kundePw" id="kundenPwId" type="text" size="50" maxlength="50" value='+json.passwort+'></td></tr>';
             htmltext += '<tr><td>Registriert Seit:</td><td><input name="kundeSeit" id="kundenSeitId" type="text" size="50" maxlength="50" value='+json.registriertseit+' readonly></td></tr>';
             htmltext += '</table>';
-            htmltext += '<input type="button" name="aendereKunde" id="k'+json.id+'" value="Change"/>';
-            htmltext += '<input type="button" name="loescheKunde" id="k'+json.id+'" value="Delete"/>';
+            htmltext += '<input type="button" class="button" name="aendereKunde" id="k'+json.id+'" value="Change"/>';
+            htmltext += '<input type="button" class="button" name="loescheKunde" id="k'+json.id+'" value="Delete"/>';
             $("#tabelle").html(htmltext);
         },
         error : function () {
@@ -147,7 +147,7 @@ function getAllArticles(){
         },
         dataType : 'json',
         success : function(json){
-            var htmltext = "<table border='0' width='1000' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Name</th><th></th></tr>";
+            var htmltext = "<table border='0' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Name</th><th></th></tr>";
             for(var i = 0; i < json.length; i++){
                 var row=json[i];
                 htmltext+= '<tr><td>'+row.id+'</td><td>' + row.name + '</td><td><input type="button" name="aendereArtikel" id="a'+row.id +'" value="change"/></td></tr>';
@@ -309,7 +309,7 @@ function getAllOrders(){
         },
         dataType : 'json',
         success : function(json){
-            var htmltext = "<br><table border='0' width='1000' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Customer ID</th><th>Date ordered</th><th>Delivery</th><th>Status</th><th></th></tr>";
+            var htmltext = "<br><table border='0' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Customer ID</th><th>Date ordered</th><th>Delivery</th><th>Status</th><th></th></tr>";
             for(var i = 0; i < json.length; i++){
                 var row=json[i];
                 htmltext+= '<tr><td>'+row.id+'</td><td>' + row.kundenid + '</td><td>' + row.bestelldatum + '</td><td>' + row.lieferungsmethodeid + '</td><td>' + row.statusid + '</td><td><input type="button" name="aendereBestellung" id="a'+row.id +'" value="change status"/></td></tr>';
