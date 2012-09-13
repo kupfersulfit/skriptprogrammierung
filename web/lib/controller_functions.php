@@ -1,7 +1,7 @@
 <?php
     require_once 'objects.php';
     require_once 'model.php';
-    require_once 'admin.php';
+    require_once 'roles.php';
 
     /** Gibt eine Fehlermeldung aus */
     function err($nachricht){
@@ -344,6 +344,17 @@
             return false;
         }
     }
+
+    /** Testet ob der aktuell angemeldete Nutzer ein Lieferant ist */
+    function istLieferant(){
+        global $lieferantenEmails;
+        $angemeldeterNutzer = $_SESSION['kunde']->getEmail();
+        if(in_array($angemeldeterNutzer, $lieferantenEmails)){
+            return true;
+        }else{
+            return false;
+        }
+    }
     
     /** Gibt die Rolle des aktuell angemeldeten Nutzers aus */
     function holeRolle(){
@@ -351,6 +362,8 @@
             echo json_encode(array(utf8_encode("rolle") => utf8_encode("guest")));
         }else if(istAdmin()){
             echo json_encode(array(utf8_encode("rolle") => utf8_encode("admin")));
+        }else if(istLieferant()){
+            echo json_encode(array(utf8_encode("rolle") => utf8_encode("lieferant")));
         }else{
             echo json_encode(array(utf8_encode("rolle") => utf8_encode("nutzer")));
         }
@@ -416,6 +429,16 @@
     /** Gibt alle Bestellungen des aktuell angemeldeten Kunden aus */
     function holeBestellungen(){
         //TODO
+        if($_SESSION['kunde']->getId() == -1){
+            err('you need to be logged in to view your orders');
+            return;
+        }
+        $bestellungen = holeBestellungenVonKunden($_SESSION['kunde']->getId());
+    }
+
+    /** Gibt alle Bestellungen einen bestimmten Kunden aus */
+    function holeBestellungenVonKunde($kunde){
+        //TODO admin only
     }
 
     /** Gibt alle Bestellungen von allen Kunden aus */
