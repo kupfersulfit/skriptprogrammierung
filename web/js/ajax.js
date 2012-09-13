@@ -98,6 +98,7 @@ function logout() {
             } else {
                 getCustomerInformation();
                 jQuery('#adminTab').hide();
+                jQuery('#profileTab').hide();
                 jQuery('#loginTab').unbind('click');
                 jQuery('#loginTab').click(containerDisplay);
                 Payment.enabled = false;
@@ -184,11 +185,13 @@ function getCustomerPosition() {
                 systemessages(json);
             } else {
                 if (json.rolle == 'admin') {
+                    jQuery('#menu #profileTab').show();
                     jQuery('#adminTab').show();
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);
                     Payment.enabled = true;
                 } else if (json.rolle == 'nutzer') {
+                    jQuery('#menu #profileTab').show();
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);
                     Payment.enabled = true;
@@ -218,11 +221,13 @@ function getCustomerPositionAtLogin() {
             } else {
                 if (json.rolle == 'admin') {
                     jQuery('#adminTab').show();
+                    jQuery('#menu #profileTab').show();
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);
                     Payment.enabled = true;
                     jQuery('#adminTab').click();
                 } else if (json.rolle == 'nutzer') {
+                    jQuery('#menu #profileTab').show();
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);
                     Payment.enabled = true;
@@ -278,6 +283,9 @@ function getShoping_cart() {
                 for (var article in json) {
                     var obj = jQuery('#article' + json[article].id + ' .pin')[0];
                     Article.pin(obj, json[article].id, true);
+                    for (var i = 1; i < json[article].verfuegbar; ++i) {
+                        Article.increseAmount(json[article].id, true);
+                    }
                 }
             }
         },

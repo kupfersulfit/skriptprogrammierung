@@ -178,8 +178,11 @@ function modifyArticle(id){
 }
 
 function updateArticle(id){
+    var pbl =0;
+    if($('#modPubl').is(':checked'))
+        pbl=1;
     var modArticle = new Article();
-    modArticle.createtemporyIntance(id,$('#modName').val(),$('#modCat').val(),$('#modDescr').val(),$('#modPrice').val(),0,$('#modNr').val(),$('#modPubl').is(':checked'),$('#modImg').val());
+    modArticle.createtemporyIntance(id,$('#modName').val(),$('#modCat').val(),$('#modDescr').val(),$('#modPrice').val(),0,$('#modNr').val(),pbl,$('#modImg').val());
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php',
@@ -206,8 +209,11 @@ function updateArticle(id){
 }
 
 function createArticle() {
+    var pbl =0;
+    if($('#newPubl').is(':checked'))
+        pbl=1;
     var newArticle = new Article();
-    newArticle.createtemporyIntance(0,$('#newName').val(),$('#newCat').val(),$('#newDescr').val(),$('#newPrice').val(),0,$('#newNr').val(),$('#newPubl').is(':checked'),$('#newImg').val());
+    newArticle.createtemporyIntance(0,$('#newName').val(),$('#newCat').val(),$('#newDescr').val(),$('#newPrice').val(),0,$('#newNr').val(),pbl,$('#newImg').val());
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php', 
@@ -234,8 +240,11 @@ function createArticle() {
 }
 
 function deleteArticle(id) {
+    var pbl =0;
+    if($('#modPubl').is(':checked'))
+        pbl=1;
     var delArticle = new Article();
-    delArticle.createtemporyIntance(id,$('#modName').val(),$('#modCat').val(),$('#modDescr').val(),$('#modPrice').val(),0,$('#modNr').val(),$('#modPubl').is(':checked'),$('#modImg').val());
+    delArticle.createtemporyIntance(id,$('#modName').val(),$('#modCat').val(),$('#modDescr').val(),$('#modPrice').val(),0,$('#modNr').val(),pbl,$('#modImg').val());
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php', 
@@ -268,7 +277,7 @@ function getAllOrders(){
         type : 'GET',
         url : 'lib/controller.php',
         data : {
-            'action' : 'zeigeBestellungen'
+            'action' : 'holeAlleBestellungen'
         },
         dataType : 'json',
         success : function(json){

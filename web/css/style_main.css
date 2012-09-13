@@ -112,6 +112,10 @@ header {
     z-index: 2;
 }
 
+#menu #profileTab {
+    display: none;
+}
+
 #menu #adminTab {
     display: none;
 }
