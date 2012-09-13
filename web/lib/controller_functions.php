@@ -447,5 +447,14 @@
     /** Gibt alle Bestellungen von allen Kunden aus */
     function holeAlleBestellungen(){
         //TODO admin only
+        if(!istAdmin() && !istLieferant()){
+            err("only the admins and suppliers can view all orders");
+            return;
+        }
+        $alleBestellungen = $_SESSION['model']->holeAlleBestellungen();
+        for($i = 0; $i < count($alleBestellungen); $i++){
+            $alleBestellungen[$i] = $alleBestellungen[$i]->assoc();
+        }
+        echo json_encode($alleBestellungen);
     }
 ?>

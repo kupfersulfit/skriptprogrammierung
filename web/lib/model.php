@@ -547,7 +547,7 @@ class DatabaseModel {
     public function holeAlleBestellungen() {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
-            $query = "SELECT * FROM bestellung";
+            $query = "SELECT * FROM bestellungen";
             $params = array();
             return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Bestellung");
         } else {
