@@ -180,7 +180,7 @@ function modifyArticle(id){
 
 function updateArticle(id){
     var modArticle = new Article();
-    modArticle.createtemporyIntance(id,$('#modName').val(),$('#modCat').val(),$('#modDescr').val(),$('#modPrice').val(),0,$('#modNr').val(),$('#modPubl').val(),$('#modImg').val());
+    modArticle.createtemporyIntance(id,$('#modName').val(),$('#modCat').val(),$('#modDescr').val(),$('#modPrice').val(),0,$('#modNr').val(),$('#modPubl').is(':checked'),$('#modImg').val());
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php',
@@ -208,7 +208,7 @@ function updateArticle(id){
 
 function createArticle() {
     var newArticle = new Article();
-    newArticle.createtemporyIntance(0,$('#newName').val(),$('#newCat').val(),$('#newDescr').val(),$('#newPrice').val(),0,$('#newNr').val(),$('#newPubl').val(),$('#newImg').val());
+    newArticle.createtemporyIntance(0,$('#newName').val(),$('#newCat').val(),$('#newDescr').val(),$('#newPrice').val(),0,$('#newNr').val(),$('#newPubl').is(':checked'),$('#newImg').val());
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php', 
@@ -236,7 +236,7 @@ function createArticle() {
 
 function deleteArticle(id) {
     var delArticle = new Article();
-    delArticle.createtemporyIntance(id,$('#modName').val(),$('#modCat').val(),$('#modDescr').val(),$('#modPrice').val(),0,$('#modNr').val(),$('#modPubl').val(),$('#modImg').val());
+    delArticle.createtemporyIntance(id,$('#modName').val(),$('#modCat').val(),$('#modDescr').val(),$('#modPrice').val(),0,$('#modNr').val(),$('#modPubl').is(':checked'),$('#modImg').val());
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php', 
