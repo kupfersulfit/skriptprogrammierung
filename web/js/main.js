@@ -68,6 +68,7 @@ function setAnker(anker) {
 }
 
 function getCustomerContent(pageName) {
+    console.debug(pageName);
     jQuery.ajax({
         url: 'templates/customer/' + pageName + ".php",
         success: function (data) {
@@ -198,10 +199,9 @@ function changeUserInformation() {
     var changes = false;
     
     var newEMail = jQuery('#profile_newEmail').val();
-    var newEmailValid = jQuery('#profile_newEmailValid').val();
+    var newEmailValid = jQuery('#profile_ne wEmailValid').val();
     var newPasswort = jQuery('#profile_newPasswort').val();
     var newPasswortValid = jQuery('#profile_newPasswortValid').val();
-    console.debug(newPasswort);
     
     if (newEMail != '') { 
         if(newEMail == newEmailValid) {
@@ -229,7 +229,7 @@ function changeUserInformation() {
     var surname = jQuery('#profile_name').val();
     var givenname = jQuery('#profile_vorname').val();
     var street = jQuery('#profile_strasse').val() + ' ' + jQuery('#profile_nr').val();
-    var zip = jQuery('#profile_zip').val();
+    var zip = jQuery('#profile_plz').val();
     
     if (surname != '' && surname != Customer.name) {
         Customer.name    = surname;

@@ -28,8 +28,8 @@
             <p><input type="text" value="" id="profile_email" /></p>
             <p><input type="text" value="" id="profile_newEmail" /></p>
             <p><input type="text" value="" id="profile_newEmailValid" /></p>
-            <p><input type="text" value="" id="profile_newPasswort" /></p>
-            <p><input type="text" value="" id="profile_newPasswortValid" /></p>
+            <p><input type="password" value="" id="profile_newPasswort" /></p>
+            <p><input type="password" value="" id="profile_newPasswortValid" /></p>
         </div>
         <div class="clear"></div>
         <input type="button" value="reset" class="reset" onclick="resetUserchange();" /><input type="button" value="save" class="save" onclick="changeUserInformation();" />

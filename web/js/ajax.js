@@ -99,6 +99,7 @@ function logout() {
                 getCustomerInformation();
                 jQuery('#adminTab').hide();
                 jQuery('#profileTab').hide();
+                jQuery('#homeTab').show();
                 jQuery('#loginTab').unbind('click');
                 jQuery('#loginTab').click(containerDisplay);
                 Payment.enabled = false;
@@ -106,6 +107,8 @@ function logout() {
                     'success' : "you're logged out"
                 });
                 Payment.closePayment();
+//                ShopingCard.articles = new Array();
+//                modifyShoping_cart();
                 jQuery('#homeTab').click();
             }     
         },
@@ -196,6 +199,11 @@ function getCustomerPosition() {
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);
                     Payment.enabled = true;
+                } else if (json.rolle == 'lieferant') {
+                    jQuery('#menu #profileTab').show();
+                    jQuery('#menu #homeTab').hide();
+                    jQuery('#loginTab').unbind('click');
+                    jQuery('#loginTab').click(logout);
                 }
                 Customer.position = json.rolle;
             }
@@ -232,6 +240,12 @@ function getCustomerPositionAtLogin() {
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);
                     Payment.enabled = true;
+                } else {
+                    jQuery('#menu #profileTab').show();
+                    jQuery('#menu #homeTab').hide();
+                    jQuery('#loginTab').unbind('click');
+                    jQuery('#loginTab').click(logout);
+                    jQuery('#profileTab').click();
                 }
                 Customer.position = json.rolle;
             }
@@ -260,6 +274,8 @@ function modifyCustomer() {
                 systemessages({
                     'success' : 'changes done'
                 });
+                jQuery('#profile_newPasswort').val('');
+                jQuery('#profile_newPasswortValid').val('');
             }
         },
         error : function () {
