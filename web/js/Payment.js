@@ -5,6 +5,11 @@ var Payment = {
         if (this.enabled) {
             if (ShopingCard.price > 0) {
                 this.creditCardValidTime();
+                jQuery('#payment_surname').val(Customer.name);
+                jQuery('#payment_givenname').val(Customer.vorname);
+                jQuery('#deliver_zip').val(Customer.plz);
+                jQuery('#delivery_street').val(Customer.strasse.split(' ')[0]);
+                jQuery('#delivery_nr').val(Customer.strasse.split(' ')[1]);
                 jQuery('#payment').fadeIn('slow');
             } else {
                 systemessages({
@@ -19,15 +24,17 @@ var Payment = {
     },
     
     creditCardValidTime : function() {
-        for (var i = 1; i <= 12; ++i) {
-            jQuery('#valid_month').append('<option value="' + i + '" >' + i + '</option>');
-        }
+        if (jQuery('#valid_month option').length == 0) {
+            for (var i = 1; i <= 12; ++i) {
+                jQuery('#valid_month').append('<option value="' + i + '" >' + i + '</option>');
+            }
         
-        var date = new Date();
-        date = date.getFullYear();
+            var date = new Date();
+            date = date.getFullYear();
         
-        for (var i = date; i <= date + 20; ++i) {
-            jQuery('#valid_year').append('<option value="' + i + '" >' + i + '</option>');
+            for (var i = date; i <= date + 20; ++i) {
+                jQuery('#valid_year').append('<option value="' + i + '" >' + i + '</option>');
+            }
         }
     },
 
@@ -40,7 +47,7 @@ var Payment = {
         var disabled = '#credit_card input';
         
         if (jQuery("input[name='paymentType']:checked").val() == 1) {
-            enabled  = '#credit_card input';
+            enabled  = '#credit_card input, #credit_card select';
             disabled = '#bank_transfer input';
         }
 
@@ -134,8 +141,8 @@ var Payment = {
             && this.paymentCheck() 
             && this.validateBLZ() 
             && this.validateMonth()) 
-            {
-    //TODO
-    }
+        {
+            buy();
+        }
     }
 }

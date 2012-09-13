@@ -14,7 +14,7 @@
             <p><input type="text" value="" id="profile_vorname" /></p>
             <p><input type="text" value="" id="profile_strasse" /></p>
             <p><input type="text" value="" id="profile_nr" /></p>
-            <p><input type="text" value="" id="profile_plz" /></p>
+            <p><input type="text" value="" id="profile_plz" size="5" maxlength="5" /></p>
             <p><input type="text" value="" id="profile_registriertseit" readonly/></p>
         </div>
         <div class="profile_column">

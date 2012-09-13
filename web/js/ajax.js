@@ -107,8 +107,7 @@ function logout() {
                     'success' : "you're logged out"
                 });
                 Payment.closePayment();
-//                ShopingCard.articles = new Array();
-//                modifyShoping_cart();
+                jQuery('.articleAtCard .articleAtCardClose').click();
                 jQuery('#homeTab').click();
             }     
         },
@@ -340,6 +339,35 @@ function modifyShoping_cart() {
             });
         }
     });
+}
+
+function buy() {
+    jQuery.ajax({
+        type : 'POST',
+        url : 'lib/controller.php', 
+        data : {
+            'action' : 'bestelle',
+            'methoden' : '{zahlungsmethodeid: 1, lieferungsmethodeid:1}'
+        },
+        dataType : 'json',
+        success : function (json) {
+            if (json.error) {
+                systemessages(json);
+            } else {
+                systemessages({
+                    'success' : 'payment done'
+                });
+                jQuery('.ccnr, .cvc_cvv').val('');
+                jQuery('.articleAtCard .articleAtCardClose').click();
+                Payment.closePayment();
+            }
+        },
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
+        }
+    });  
 }
 
 

@@ -56,10 +56,10 @@
         </p>
         <p>
             <label for="valid">valid until</label>
-            <select id="valid_month">
+            <select id="valid_month" disabled="disabled">
             
             </select>
-            <select id="valid_year">
+            <select id="valid_year" disabled="disabled">
             </select>
         </p>
         <p>

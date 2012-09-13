@@ -68,7 +68,6 @@ function setAnker(anker) {
 }
 
 function getCustomerContent(pageName) {
-    console.debug(pageName);
     jQuery.ajax({
         url: 'templates/customer/' + pageName + ".php",
         success: function (data) {

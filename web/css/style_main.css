@@ -285,7 +285,7 @@ header {
 }
 
 #registerContainer p #zip {
-    width: 40px;
+    width: 44px;
 }
 
 #addition {
@@ -649,7 +649,7 @@ header {
 }
 
 #payment #deliver_zip {
-    width: 40px;
+    width: 44px;
     float: none;
     margin-left: 30px;
 }
