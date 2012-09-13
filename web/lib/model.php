@@ -519,6 +519,25 @@ class DatabaseModel {
         }
     }
 
+	/**
+     * @brief Gibt alle Artikel einer Bestellung zurueck
+     * 
+     * @param Integer $bestellungId
+     *  ID der Bestellung, deren Artikel geholt werden sollen
+     * @retval Artikel[]
+     *  Objektarray der geholten Artikel.
+     */
+    public function holeArtikelVonBestellung($bestellung) {
+        $dbConnector = new DatabaseConnector();
+        if ($dbConnector->connect()) {
+            $query = "SELECT * FROM bestellungen_artikel LEFT JOIN artikel ON artikel.id = bestellungen_artikel.artikelid
+WHERE bestellungen_artikel.bestellungid = :bestellungid";
+            $params = array(":bestellungid" => $bestellung->getId());
+            return $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Artikel");
+        } else {
+            return null;
+        }
+    }
 
     /**
      * @brief Gibt alle Bestellungen von Kunden mit übergebener ID zurück
@@ -690,6 +709,17 @@ if ($testing) {
     echo "<br/>***Loesche kunde, wenn er jetzt nicht mehr erscheint ->Erfolg<br/>";
     $dbo = $testInstance->loescheKunde("ernte23@peanuts.de");
     $dbo = $testInstance->holeKunde("ernte23@peanuts.de");
+    print_r($dbo);
+    echo "</div>";
+    
+    echo "</div><br/>***Teste das Holen von Artikeln der Bestellung mit ID 1<br/><div style='border: 1px brown solid;'>";
+	
+	$bestellung = new Bestellung(
+		array(
+			"id" => 1
+		)
+	);
+    $dbo = $testInstance->holeArtikelVonBestellung($bestellung);
     print_r($dbo);
     echo "</div>";
     exit;
