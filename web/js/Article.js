@@ -163,7 +163,7 @@ Article.prototype.addToCard = function() {
     strHTML    +=     '<div class="articleAtCardTitle" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div><div class="articleAtCardClose" onclick="Article.pin(jQuery(\'#article' +  this.id + ' .pin\'), ' + this.id + ', false);">x</div>';
     strHTML    +=     '<div class="clear"></div>'
     strHTML    +=     '<div class="articleAtCardPrice">price <span>' + this.preis.replace('.', '.') + '</span> &euro;</div>';
-    strHTML    +=     '<div class="articleAtCardAmount"><div class="amountElements"><div class="amountSelect" onclick="Article.increseAmount(' + this.id + ');" >+</div><div class="amountSelect" onclick="Article.decreseAmount(' + this.id + ');">-</div></div><input type="number" value="1" size="4" disabled="disbled" /></div>'; 
+    strHTML    +=     '<div class="articleAtCardAmount"><div class="amountElements"><div class="amountSelect" onclick="Article.increseAmount(' + this.id + ', false);" >+</div><div class="amountSelect" onclick="Article.decreseAmount(' + this.id + ');">-</div></div><input type="number" value="1" size="4" disabled="disbled" /></div>'; 
     strHTML    +=     '<div class="clear"></div>';
     strHTML    += '</section>'
     jQuery('#basket').append(strHTML);
@@ -174,18 +174,20 @@ Article.removeFromCard = function(id) {
     jQuery('#articleAtCard' + id).detach();
 }
 
-Article.increseAmount = function(id) {
+Article.increseAmount = function(id, session) {
     var amount = jQuery('#articleAtCard' + id + ' input').val();
     if (Article.findArticleById(id).verfuegbar > amount) {
         ++amount;
         jQuery('#articleAtCard' + id + ' input').val(amount);
         ShopingCard.getArticle(id).verfuegbar = amount;
         Article.calculatePrice(id, amount);
-        modifyShoping_cart();
+        if (!session) {
+            modifyShoping_cart();
+        }
     } else {
         systemessages({
             "error":"sorry not enought " + Article.cutTitle(Article.findArticleById(id).name) + " in stock"
-            });
+        });
     }
 }
 
