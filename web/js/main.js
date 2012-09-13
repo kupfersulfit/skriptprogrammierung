@@ -1,6 +1,13 @@
 var holeRolle = 'homeTab';
 var messageTimeout;
 
+function submitOnEnter(event, fn) {
+    if (event.keyCode == 13) {
+        fn();
+    }
+    
+}
+
 function openLoginContainer() {
 
     jQuery('#loginContainer').show();
