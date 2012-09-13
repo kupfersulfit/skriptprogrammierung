@@ -5,12 +5,12 @@
 
     /** Gibt eine Fehlermeldung aus */
     function err($nachricht){
-        echo json_encode(array(utf8_encode("error") => utf8_encode("$nachricht")));
+        echo json_encode(array("error" => "$nachricht"));
     }
 
     /** Gibt eine Erfolgsmeldung aus */
     function success(){
-        echo json_encode(array(utf8_encode("success") => utf8_encode("success")));
+        echo json_encode(array("success" => "success"));
     }
 
     /** Zeigt alle Artikel an */
@@ -360,13 +360,13 @@
     /** Gibt die Rolle des aktuell angemeldeten Nutzers aus */
     function holeRolle(){
         if($_SESSION['kunde']->getEmail() == ""){
-            echo json_encode(array(utf8_encode("rolle") => utf8_encode("guest")));
+            echo json_encode(array("rolle" => "guest"));
         }else if(istAdmin()){
-            echo json_encode(array(utf8_encode("rolle") => utf8_encode("admin")));
+            echo json_encode(array("rolle" => "admin"));
         }else if(istLieferant()){
-            echo json_encode(array(utf8_encode("rolle") => utf8_encode("lieferant")));
+            echo json_encode(array("rolle" => "lieferant"));
         }else{
-            echo json_encode(array(utf8_encode("rolle") => utf8_encode("nutzer")));
+            echo json_encode(array("rolle" => "nutzer"));
         }
     }
 
@@ -476,6 +476,10 @@
             err($e->getMessage());
             return;
         }
-        //TODO $artikel = $_SESSION['model']->holeArtikelVonBestellung($bestellung->getId());
+        $artikel = $_SESSION['model']->holeArtikelVonBestellung($bestellung);
+        for($i = 0; $i < count($artikel); $i++){
+            $artikel[$i] = $artikel[$i]->assoc();
+        }
+        echo json_encode($artikel);
     }
 ?>
