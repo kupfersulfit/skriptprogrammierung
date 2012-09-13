@@ -72,7 +72,7 @@ function refreshKunde(json){
                 systemessages(json);
             } else {
                 systemessages({
-                    'succes' : "change done"
+                    'success' : "change done"
                 });
             }  
         },
@@ -98,7 +98,7 @@ function deleteKunde(json){
                 systemessages(json);
             } else {
                 systemessages({
-                    'succes' : "Customer deleted"
+                    'success' : "Customer deleted"
                 });
             }  
         },
@@ -194,7 +194,7 @@ function updateArticle(id){
                 systemessages(json);
             } else {
                 systemessages({
-                    'succes' : "update done"
+                    'success' : "update done"
                 });
             }  
         },
@@ -222,7 +222,7 @@ function createArticle() {
                 systemessages(json);
             } else {
                 systemessages({
-                    'succes' : "article created"
+                    'success' : "article created"
                 });
             }  
         },
@@ -250,7 +250,7 @@ function deleteArticle(id) {
                 systemessages();
             } else {
                 systemessages({
-                    'succes' : "article deleted"
+                    'success' : "article deleted"
                 });
             }  
         },
