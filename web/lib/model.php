@@ -294,14 +294,15 @@ class DatabaseModel {
     public function erstelleArtikel($artikel) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
+        	echo $artikel->getKategorieId();
             $query = "INSERT INTO artikel VALUES( null, :name, :beschreibung, :veroeffentlicht, :verfuegbar, :katgorieid, :preis, :bildpfad, :seit)";
             $params = array(
             ":name" => $artikel->getName(),
             ":beschreibung" => $artikel->getBeschreibung(),
             ":veroeffentlicht" => $artikel->getVeroeffentlicht(),
             ":verfuegbar" => $artikel->getVerfuegbar(),
-            ":katgorieid" => $artikel->getPreis(),
-            ":preis" => $artikel->getKategorieId(),
+            ":katgorieid" => $artikel->getKategorieId(),
+            ":preis" => $artikel->getPreis(),
             ":bildpfad" => $artikel->getBildpfad(),
             ":seit" => $artikel->getSeit()
             );          

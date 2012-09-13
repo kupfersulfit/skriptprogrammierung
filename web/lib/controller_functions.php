@@ -288,6 +288,8 @@
             err($e->getMessage());
             return;
         }
+        date_default_timezone_set('Europe/Berlin');
+        $artikel->setSeit(date("Y-m-d H:i:s", time()));
         if($_SESSION['model']->erstelleArtikel($artikel) == false){
             err('article not created');
         }
