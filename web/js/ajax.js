@@ -310,6 +310,7 @@ function getOrderManagement() {
         dataType : 'html',
         success : function (html) {
             jQuery('#adminContent').html(html);
+            getAllOrders();
         }
     });
 }
