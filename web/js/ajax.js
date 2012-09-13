@@ -183,6 +183,7 @@ function getCustomerPosition() {
                     jQuery('#adminTab').show();
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);
+                    jQuery('#adminTab').click();
                     Payment.enabled = true;
                 } else if (json.rolle == 'nutzer') {
                     jQuery('#loginTab').unbind('click');
@@ -278,7 +279,6 @@ function modifyShoping_cart() {
 }
 
 
-
 /* ADMIN */
 function getUserManagement() {
     jQuery.ajax({
@@ -296,6 +296,17 @@ function getArticleManagement() {
     jQuery.ajax({
         type : 'GET',
         url : 'templates/admin/article_management.html',
+        dataType : 'html',
+        success : function (html) {
+            jQuery('#adminContent').html(html);
+        }
+    });
+}
+
+function getOrderManagement() {
+    jQuery.ajax({
+        type : 'GET',
+        url : 'templates/admin/order_management.html',
         dataType : 'html',
         success : function (html) {
             jQuery('#adminContent').html(html);

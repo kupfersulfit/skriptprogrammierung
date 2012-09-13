@@ -127,7 +127,6 @@ function timerHelper() {
                 window.clearInterval(messageDisplayInterval);
             } else {
                 ++messageDisplayTime;
-                console.debug(count); 
             }
         }, 1000);
 }
