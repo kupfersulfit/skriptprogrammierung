@@ -22,3 +22,9 @@ th {
 #subnav .active {
     background-color: #FF6600;
 }
+
+#tabelle input[type=button] {
+    margin-top: 20px;
+    margin-right: 20px;
+    float: left;
+}

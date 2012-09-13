@@ -279,11 +279,11 @@ header {
 }
 
 #registerContainer p #street {
-    width: 170px;
+    width: 216px;
 }
 
 #registerContainer p #nr {
-    width: 90px;
+    width: 32px;
     margin-left: 2px;
     margin-right: 0;
 }
