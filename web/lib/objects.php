@@ -38,7 +38,7 @@ class Kunde {
 		if(isset($values["passwort"]))
 			$this->setPasswort($values['passwort']);
 		if(isset($values["registriertseit"]))
-			$this->registriertseit = $values['registriertseit'];
+			$this->setRegistriertSeit($values['registriertseit']);
 	}
 	
 	public function assoc(){ //gibt ein assoziatives array zurueck welches das aktuelle objekt repraesentiert
