@@ -272,7 +272,7 @@ function getAllOrders(){
         },
         dataType : 'json',
         success : function(json){
-            var htmltext = "<table border='0' width='1000' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Customer ID</th><th>Date ordered</th><th>Delivery</th><th>Date ordered</th><th>Status</th><th></th></tr>";
+            var htmltext = "<br><table border='0' width='1000' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Customer ID</th><th>Date ordered</th><th>Delivery</th><th>Status</th><th></th></tr>";
             for(var i = 0; i < json.length; i++){
                 var row=json[i];
                 htmltext+= '<tr><td>'+row.id+'</td><td>' + row.kundenid + '</td><td>' + row.bestelldatum + '</td><td>' + row.lieferungsmethodeid + '</td><td>' + row.statusid + '</td><td><input type="button" name="aendereBestellung" id="a'+row.id +'" value="change status"/></td></tr>';

@@ -26,7 +26,11 @@
             for($i = 0; $i < count($artikelArray); $i++){ 
                 $kategorie = $artikelArray[$i]->getKategorieId();
                 $kategorie = $_SESSION["model"]->holeKategorie($kategorie); //kategorienamen aus der db holen
-                $artikelArray[$i]->setKategorieId($kategorie->getName()); //wird ggf auf null/leerstring gesetzt
+                if($kategorie == null){
+                    $artikelArray[$i]->setKategorieId("unknown category");
+                }else{
+                    $artikelArray[$i]->setKategorieId($kategorie->getName()); //wird ggf auf null/leerstring gesetzt
+                }
                 $artikelArray[$i] = $artikelArray[$i]->assoc(); //objekt in assoz. array umwandeln
             }
             echo json_encode($artikelArray);
@@ -41,8 +45,12 @@
         }else{
             for($i = 0; $i < count($artikelArray); $i++){
                 $kategorie = $artikelArray[$i]->getKategorieId();
-                $kategorie = $_SESSION["model"]->holeKategorie($kategorie); 
-                $artikelArray[$i]->setKategorieId($kategorie->getName());
+                $kategorie = $_SESSION["model"]->holeKategorie($kategorie);
+                if($kategorie == null){
+                    $artikelArray[$i]->setKategorieId("unknown category");
+                }else{
+                    $artikelArray[$i]->setKategorieId($kategorie->getName());
+                }
                 $artikelArray[$i] = $artikelArray[$i]->assoc();
             }
             echo json_encode($artikelArray);
