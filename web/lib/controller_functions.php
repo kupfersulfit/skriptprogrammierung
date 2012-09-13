@@ -305,7 +305,7 @@
         }catch(Exception $e){
             err($e->getMessage());
         }
-        if($_SESSION['model']->loescheArtikel($artikel->getId()) == null){
+        if($_SESSION['model']->loescheArtikel($artikel->getId()) == false){
             err("article not deleted");
         }else{
             success();

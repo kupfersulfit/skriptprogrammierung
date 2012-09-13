@@ -357,8 +357,9 @@ class DatabaseModel {
             $query = "DELETE FROM artikel WHERE id = :id";
             $params = array(":id" => $artikelId);
             $dbConnector->executeQuery($query, $params);
+            return true;
         } else {
-            return null;
+            return false;
         }
     }
 
