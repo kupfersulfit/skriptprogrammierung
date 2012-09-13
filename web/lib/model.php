@@ -29,7 +29,13 @@ class DatabaseConnector {
         try {
             if ($this->databaseConnectionInstance == null) {
                 # MySQL with PDO_MYSQL  
-                $this->databaseConnectionInstance = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->database, $this->user, $this->password);
+                $this->databaseConnectionInstance = 
+                new PDO(
+					"mysql:host=" . $this->host . ";dbname=" . $this->database, 
+					$this->user, 
+					$this->password,
+					array(PDO::MYSQL_ATTR_INIT_COMMAND => "SET NAMES utf8") 
+                );
                 return true;
             } else {
                 return false;
