@@ -136,6 +136,9 @@
         case 'holeBestellungen':
             holeBestellungen();
             exit();
+        case 'holeAlleBestellungen':
+            holeAlleBestellungen();
+            exit();
         default:   
             echo json_encode(array('error' => 'unknown action'));     
     }
