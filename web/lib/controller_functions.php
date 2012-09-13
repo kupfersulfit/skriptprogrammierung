@@ -248,7 +248,7 @@
         }
         $_SESSION['model']->aktualisiereKunde($kunde);
 
-        //falls der angemeldete admin seine daten aktualisiert hat, session updaten
+        //falls der angemeldete user seine eigenen daten aktualisiert hat, session updaten
         if($_SESSION['kunde']->getId() == $kunde->getId()){
             $_SESSION['kunde'] = $_SESSION['model']->holeKundeMitId($kunde->getId());
         }
@@ -311,6 +311,7 @@
             err($e->getMessage());
         }
         $_SESSION['model']->aktualisiereArtikel($artikel);
+        success();
     }
 
     /** Testet ob der aktuell angemeldete Nutzer ein Admin ist */
