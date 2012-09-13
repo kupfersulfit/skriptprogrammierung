@@ -259,8 +259,9 @@ class DatabaseModel {
             $query = "DELETE FROM kunden WHERE email = :email";
             $params = array(":email" => $email);
             $result = $dbConnector->executeQuery($query, $params);
+            return true;
         } else {
-            return null;
+            return false;
         }
     }
 

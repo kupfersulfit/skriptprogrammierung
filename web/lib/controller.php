@@ -119,6 +119,13 @@
                 aktualisiereArtikel($_POST['artikel']);
             }
             exit();
+        case 'loescheArtikel':
+            if(!isset($_POST['artikel'])){
+                err("'artikel' parameter missing");
+            }else{
+                loescheArtikel($_POST['artikel']);
+            }
+            exit();
         case 'bestelle':
             if(!isset($_POST['methoden'])){
                 err("'methoden' parameter missing");
