@@ -176,7 +176,9 @@ jQuery(document).on('click', "input[name='aendereKunde']",
         var id=this.id.substr(1,this.id.length);
         Customer.create(id, $("#kundenNameId").val(), $("#kundenVornameId").val(), $("#kundenStrasseId").val(), $("#kundenPlzId").val(), $("#kundenZusatzId").val(), $("#kundenEmailId").val(), $("#kundenPwId").val());
         refreshKunde(Customer);
-        alert("Kunde ist geändert worden.");
+        systemessages({
+            "success":"customer got updated"
+        });
     }
 
     );
@@ -186,7 +188,9 @@ jQuery(document).on('click', "input[name='loescheKunde']",
         var id=this.id.substr(1,this.id.length);
         Customer.create(id, $("#kundenNameId").val(), $("#kundenVornameId").val(), $("#kundenStrasseId").val(), $("#kundenPlzId").val(), $("#kundenZusatzId").val(), $("#kundenEmailId").val(), $("#kundenPwId").val());
         deleteKunde(Customer);
-        alert("Kunde ist gelöscht worden.");
+        systemessages({
+            "success":"customer got deleted"
+        });
     }	
     );
     

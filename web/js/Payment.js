@@ -119,7 +119,9 @@ var Payment = {
             this.validateBLZ();
             this.validateMonth();
         } else {
-            alert('You need to login first.')
+            systemessages({
+                "error":"you need to login first"
+            });
         }
     }
 }
