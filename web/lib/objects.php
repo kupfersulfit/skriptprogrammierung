@@ -324,7 +324,16 @@ class Bestellung{
 		if(isset($values["lieferungsmethodeid"]))
 			$this->lieferungsmethodeid = $values["lieferungsmethodeid"];
 	}
-	
+    function assoc(){
+        $ret = array();
+        $ret['id'] = utf8_encode($this->id);
+        $ret['kundenid'] = utf8_encode($this->kundenid);
+        $ret['bestelldatum'] = utf8_encode($this->bestelldatum);
+        $ret['statusid'] = utf8_encode($this->statusid);
+        $ret['zahlungsmethodeid'] = utf8_encode($this->zahlungsmethodeid);
+        $ret['lieferungsmethodeid'] = utf8_encode($this->lieferungsmethodeid);
+        return $ret;
+    }	
 	function getId(){
 		return $this->id;
 	}

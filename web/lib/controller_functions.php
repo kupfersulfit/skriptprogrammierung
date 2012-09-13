@@ -428,13 +428,15 @@
 
     /** Gibt alle Bestellungen des aktuell angemeldeten Kunden aus */
     function holeBestellungen(){
-        //TODO
         if($_SESSION['kunde']->getId() == -1){
             err('you need to be logged in to view your orders');
             return;
         }
         $bestellungen = $_SESSION['model']->holeBestellungenVonKunden($_SESSION['kunde']->getId());
-        print_r($bestellungen);
+        for($i = 0; $i < count($bestellungen); $i++){
+            $bestellungen[$i] = $bestellungen[$i]->assoc();
+        }
+        echo json_encode($bestellungen);
     }
 
     /** Gibt alle Bestellungen einen bestimmten Kunden aus */
