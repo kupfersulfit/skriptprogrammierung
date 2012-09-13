@@ -74,6 +74,13 @@ function getCustomerContent(pageName) {
             jQuery('#page').html(data);
             if (typeof Article != 'undefined' && Article.Instances.length == 0) {
                 getArticleList();
+            } else if (pageName == 'home') {
+                for (var i = 0; i < Article.Instances.length; ++i) {
+                    jQuery('#articleList').append(Article.Instances[i].renderHTML());
+                    if (ShopingCard.findArticle(Article.Instances[i].id) != -1) {
+                        jQuery('#article' + Article.Instances[i].id + ' .pin').css('background-position','0px 40px');
+                    }
+                }
             }
             if(pageName == 'home') {
                 interval = window.setInterval(function () {
