@@ -152,7 +152,7 @@ class Artikel {
 	// Methoden
 	public function __construct($values=array()){
 		if(isset($values["id"])){
-			if($values["id"] != "" && is_int($values["id"])){
+			if($values["id"] != "" && is_numeric($values["id"])){
 				$this->id = $values["id"];
 			}else{
 				$this->id = 0;
