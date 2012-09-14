@@ -78,9 +78,7 @@ Article.findForSearch = function(search) {
 }
 
 Article.prototype.renderHTML = function() {
-    var date = this.seit.split(' ')[0];
-    date     = date.split('-');
-    date     = date[2] + '.' + date[1] + '.' + date[0];
+    var date = formatDate(this.seit);
     
     var strHTML = '<section id="article'+ this.id +'" class="article" >';
     strHTML +=      '<div class="articleTitel" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div><div class="' + (this.verfuegbar > 0 ? "pin" : 'nopin') + '" ' + (this.verfuegbar > 0 ? 'onclick="Article.pin(this, '+  this.id+', false);"' : '') + ' ></div>';
