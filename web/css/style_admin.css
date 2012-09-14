@@ -58,3 +58,7 @@ th {
     float: right;
     margin-right: 10px;
 }
+
+.customer_button_td {
+    text-align: center;
+}

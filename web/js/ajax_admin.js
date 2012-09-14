@@ -36,7 +36,13 @@ function getAlleKunden(){
             var htmltext = '<table cellspacing="0" cellpadding="4"><tr><th>ID</th><th>Name</th><th>Vorname</th><th>Email</th><th>&nbsp;</th></tr>';
             for(var i = 0; i < json.length; i++){
                 var row=json[i];
-                htmltext += '<tr><td>'+ row.id+'</td><td>' + row.name + '</td><td>' + row.vorname + '</td><td>' + row.email + '</td><td><input type="button" name="send" id="a'+row.id +'" value="Change"/></td></tr>';
+                htmltext += '<tr>';
+                    htmltext += '<td>'+ row.id+'</td>';
+                    htmltext += '<td>' + row.name + '</td>';
+                    htmltext += '<td>' + row.vorname + '</td>';
+                    htmltext += '<td>' + row.email + '</td>';
+                    htmltext += '<td class="customer_button_td"><input type="button" name="send" id="a'+row.id +'" value="Change"/></td>';
+                htmltext += '</tr>';
 				
             };
             htmltext += '</table>';
@@ -92,11 +98,11 @@ function refreshKunde(json){
         },
         dataType : 'json',
         success : function(json){
-			getCustomerInformation();
+            getCustomerInformation();
             if (json.error) {
                 systemessages(json);
             } else {
-				getAlleKunden();
+                getAlleKunden();
                 systemessages({
                     'success' : "change done"
                 });
@@ -120,11 +126,11 @@ function deleteKunde(json){
         },
         dataType : 'json',
         success : function(json){
-			getCustomerInformation();
+            getCustomerInformation();
             if (json.error) {
                 systemessages(json);
             } else {
-				getAlleKunden();
+                getAlleKunden();
                 systemessages({
                     'success' : "Customer deleted"
                 });
@@ -225,7 +231,7 @@ function updateArticle(id){
             if (json.error) {
                 systemessages(json);
             } else {
-				getAllArticles();
+                getAllArticles();
                 systemessages({
                     'success' : "update done"
                 });
@@ -293,8 +299,8 @@ function deleteArticle(id) {
             if (json.error) {
                 systemessages();
             } else {
-				getAllArticles();
-				systemessages({
+                getAllArticles();
+                systemessages({
                     'success' : "article deleted"
                 });
             }  
@@ -332,11 +338,11 @@ function getAllOrders(){
                 }
                 var status;
                 if(row.statusid==1){
-                        status = "Offen";
+                    status = "Offen";
                 }else if(row.statusid==2){
-                        status = "In Bearbeitung";
+                    status = "In Bearbeitung";
                 }else if(row.statusid==3){
-                        status = "Versandt";
+                    status = "Versandt";
                 }
                 htmltext+= '<tr><td>'+row.id+'</td><td>' + row.bestelldatum + '</td><td>' + delivery + '</td><td>' + status + '</td><td><input type="button" onclick="modifyOrder('+row.id+')" name="aendereBestellung" value="change status"/></td></tr>';
             };
@@ -400,7 +406,7 @@ function modifyOrder(id){
 }
 
 function getOrdersCustomer(id){
-        jQuery.ajax({
+    jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php',
         data : {
@@ -417,7 +423,7 @@ function getOrdersCustomer(id){
                 'error' : 'something with the server went wront'
             });	
         }
-        });
+    });
 }
 
 function updateOrder(id, kundenid, bestelldatum, lieferungsmethodeid, zahlungsmethodeid){
