@@ -33,7 +33,7 @@ Order.prototype.getJSONstring = function() {
     return JSONstr;
 }
 
-Article.prototype.createtemporyIntance = function(id, kundenid, bestelldatum, statusid, zahlungsmethodeid, lieferungsmethodeid) {
+Order.prototype.createTemporaryInstance = function(id, kundenid, bestelldatum, statusid, zahlungsmethodeid, lieferungsmethodeid) {
     this.id                  = id;
     this.kundenid            = kundenid;
     this.bestelldatum        = bestelldatum;
