@@ -14,6 +14,11 @@ th {
     color: cornflowerblue;
 }
 
+td input[type=button] {
+    margin: 0 !important;
+    float: none !important;
+}
+
 .admin_tab {
     margin-bottom: 10px;
 }
@@ -47,10 +52,7 @@ th {
 
 #newDescr {
     width: 353px;
-    height: 125px;
-}
-#newPublTd {
-    text-align: center;
+    height: 139px;
 }
 
 #orderOverview input[type=button] {
@@ -59,6 +61,15 @@ th {
     margin-right: 10px;
 }
 
-.customer_button_td {
+.button_td {
     text-align: center;
+}
+
+#tableid input[type=text],
+#tableid input[type=password] {
+    width: 329px;
+}
+
+.change_article_button {
+    margin: 0 !important;
 }

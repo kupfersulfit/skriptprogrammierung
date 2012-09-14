@@ -41,7 +41,7 @@ function getAlleKunden(){
                     htmltext += '<td>' + row.name + '</td>';
                     htmltext += '<td>' + row.vorname + '</td>';
                     htmltext += '<td>' + row.email + '</td>';
-                    htmltext += '<td class="customer_button_td"><input type="button" name="send" id="a'+row.id +'" value="Change"/></td>';
+                    htmltext += '<td class="button_td"><input type="button" name="send" id="a'+row.id +'" value="Change"/></td>';
                 htmltext += '</tr>';
 				
             };
@@ -67,7 +67,7 @@ function getKunde(id){
         dataType : 'json',
         success : function(json){
             var htmltext = '<table id=tableid>';
-            htmltext += '<tr><td>Name:</td><td><input name="kundenName" id="kundenNameId" type="text" size="50" maxlength="50" value="'+json.name+'"></td></tr>';
+            htmltext += '<tr><td>Name:</td><td width="336" ><input name="kundenName" id="kundenNameId" type="text" size="50" maxlength="50" value="'+json.name+'"></td></tr>';
             htmltext += '<tr><td>Vorname:</td><td><input name="kundenVorname" id="kundenVornameId" type="text" size="50" maxlength="50" value="'+json.vorname+'"></td></tr>';
             htmltext += '<tr><td>Stra&szlig;e:</td><td><input name="kundenStrasse" id="kundenStrasseId" type="text" size="50" maxlength="50" value="'+json.strasse+'"></td></tr>';			
             htmltext += '<tr><td>PLZ:</td><td><input name="kundenPlz" id="kundenPlzId" type="text" size="50" maxlength="50" value="'+json.plz+'"></td></tr>';
@@ -158,7 +158,7 @@ function getAllArticles(){
             var htmltext = "<table border='0' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Name</th><th></th></tr>";
             for(var i = 0; i < json.length; i++){
                 var row=json[i];
-                htmltext+= '<tr><td>'+row.id+'</td><td>' + row.name + '</td><td><input type="button" onclick="modifyArticle('+row.id+')" name="aendereArtikel" value="change"/></td></tr>';
+                htmltext+= '<tr><td>'+row.id+'</td><td>' + row.name + '</td><td class="class="button_td""><input type="button" onclick="modifyArticle('+row.id+')" name="aendereArtikel" value="change"/></td></tr>';
             };
             htmltext += '</table><br><br>';
             jQuery("#divModifyArticle").html(htmltext);
@@ -344,7 +344,7 @@ function getAllOrders(){
                 }else if(row.statusid==3){
                     status = "Versandt";
                 }
-                htmltext+= '<tr><td>'+row.id+'</td><td>' + row.bestelldatum + '</td><td>' + delivery + '</td><td>' + status + '</td><td><input type="button" onclick="modifyOrder('+row.id+')" name="aendereBestellung" value="change status"/></td></tr>';
+                htmltext+= '<tr><td>'+row.id+'</td><td>' + row.bestelldatum + '</td><td>' + delivery + '</td><td>' + status + '</td><td class="button_td"><input type="button" onclick="modifyOrder('+row.id+')" name="aendereBestellung" value="change status"/></td></tr>';
             };
             htmltext += '</table><br><br>';
             $("#orderOverview").html(htmltext);
