@@ -178,7 +178,7 @@ function renderOrders(json) {
             strHTML +=         '</div>';
             strHTML +=         '<div class="article_delivermethod">';
             strHTML +=              '<p>deliver method</p>';
-            strHTML +=              '<div class="cells" >' + (bestellungMetaData.zahlungsmethodeid == 1 ? 'bank transfer' : 'creditdard') + ' </div>';
+            strHTML +=              '<div class="cells" >' + (bestellungMetaData.zahlungsmethodeid == 1 ? 'bank transfer' : 'creditcard') + ' </div>';
             strHTML +=         '</div>';
             strHTML +=         '<div class="article_amount">';
             strHTML +=             '<p>amount</p>';
