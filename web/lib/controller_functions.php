@@ -515,4 +515,14 @@
         }
         echo json_encode($artikel);
     }
+
+    /** Gibt die Details zu einer bestimmten Bestellung aus */
+    function holeBestellungMitId($id){
+        $bestellung = $_SESSION['model']->holeBestellung($id);
+        if($bestellung == null){
+            err("order not found");
+        }else{
+            echo json_encode($bestellung->assoc());
+        }
+    }
 ?>
