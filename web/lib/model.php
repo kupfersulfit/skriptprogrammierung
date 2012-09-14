@@ -629,6 +629,29 @@ WHERE bestellungen_artikel.bestellungid = :bestellungid";
             return false;
         }
     }
+    
+    public function aktualisiereBestellung($bestellung) {
+        $dbConnector = new DatabaseConnector();
+        if ($dbConnector->connect()) {
+            $query = "UPDATE bestellungen SET 
+            kundenid = :kundenid,
+            bestelldatum = :bestelldatum,
+            statusid = :statusid,
+            zahlungsmethodeid = :zahlungsmethodeid,
+            lieferungsmethodeid = :lieferungsmethodeid
+            WHERE id = :id";   
+            $params = array(
+            ":id" => $bestellung->getId(),
+            ":kundenid" => $bestellung->getKundenid(),
+            ":bestelldatum" => $bestellung->getBestelldatum(),
+            ":statusid" => $bestellung->getStatusid(),
+            ":zahlungsmethodeid" => $bestellung->getZahlunsgmethodeid(),
+            ":lieferungsmethodeid" => $bestellung->getLieferunsgmethodeid(),
+            );        
+            $dbConnector->executeQuery($query, $params);
+        }
+    }
+
 
     /**
      * @brief Prüft auf gültige Logindaten
