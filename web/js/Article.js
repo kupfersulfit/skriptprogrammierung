@@ -113,8 +113,8 @@ Article.cutTitle = function(title, length) {
 
 Article.cutDescription = function(description, id) {
     if (description != null) {
-        if ( description.length > 170) {
-            return 'description="' + description + '" onmouseover="Article.longdescription(this, ' + id + ');" onmouseout="Article.longdescription(this, ' + id + ');" >' + description.substring(0,167) + '...';     
+        if ( description.length > 200) {
+            return 'description="' + description.replace(/\"/g, '&quot;') + '" onmouseover="Article.longdescription(this, ' + id + ');" onmouseout="Article.longdescription(this, ' + id + ');" >' + description.substring(0,197) + '...';     
             
         } else {
             return '>' + description;
