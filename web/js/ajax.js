@@ -350,7 +350,7 @@ function buy() {
         url : 'lib/controller.php', 
         data : {
             'action' : 'bestelle',
-            'methoden' : '{zahlungsmethodeid: ' + jQuery("input[name='paymentType']:checked").val() + ', lieferungsmethodeid:' + jQuery('#deliver_method').val() + '}'
+            'methoden' : '{"zahlungsmethodeid":"' + jQuery("input[name='paymentType']:checked").val() + '", "lieferungsmethodeid":"' + jQuery('#deliver_method').val() + '"}'
         },
         dataType : 'json',
         success : function (json) {
@@ -360,6 +360,7 @@ function buy() {
                 jQuery('.articleAtCard .articleAtCardClose').click();
                 jQuery('.ccnr, #cvc_cvv').val('');
                 Payment.closePayment();
+                getArticleList();
                 window.setTimeout(
                     function() {
                         systemessages({

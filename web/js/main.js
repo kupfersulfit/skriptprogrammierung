@@ -72,17 +72,17 @@ function getCustomerContent(pageName) {
         url: 'templates/customer/' + pageName + ".php",
         success: function (data) {
             jQuery('#page').html(data);
-//            if (typeof Article != 'undefined' && Article.Instances.length == 0) {
-                Article.Instances = new Array();    
-                getArticleList();
-//            } else if (pageName == 'home') {
-//                for (var i = 0; i < Article.Instances.length; ++i) {
-//                    jQuery('#articleList').append(Article.Instances[i].renderHTML());
-//                    if (ShopingCard.findArticle(Article.Instances[i].id) != -1) {
-//                        jQuery('#article' + Article.Instances[i].id + ' .pin').css('background-position','0px 40px');
-//                    }
-//                }
-//            }
+            //            if (typeof Article != 'undefined' && Article.Instances.length == 0) {
+            Article.Instances = new Array();    
+            getArticleList();
+            //            } else if (pageName == 'home') {
+            //                for (var i = 0; i < Article.Instances.length; ++i) {
+            //                    jQuery('#articleList').append(Article.Instances[i].renderHTML());
+            //                    if (ShopingCard.findArticle(Article.Instances[i].id) != -1) {
+            //                        jQuery('#article' + Article.Instances[i].id + ' .pin').css('background-position','0px 40px');
+            //                    }
+            //                }
+            //            }
             if(pageName == 'home') {
                 interval = window.setInterval(function () {
                     if (typeof Article != 'undefined' && Article.Instances.length > 0) {
@@ -108,8 +108,7 @@ function renderOrders(json) {
     
     for (var i = 0; i < json.length; ++i) {
         var bestellungMetaData = json[i][0];
-        var article = json[i][1];
-        console.debug(json[i][1]);
+        var article = json[i];
         var date = bestellungMetaData.bestelldatum.split(' ')[0];
         date     = date.split('-');
         date     = date[2] + '.' + date[1] + '.' + date[0];
@@ -121,9 +120,10 @@ function renderOrders(json) {
         strHTML    +=       '<div class="order_date"> ' + date + ' </div>';
         strHTML    +=   '</div>';
         strHTML    +=   '<div class="order_articles">';
-        for (var j = 0; j < article.length; ++j) {
+        for (var j = 1; j < article.length; ++j) {
+            console.debug(article[j]);
             strHTML +=      '<div class="order_article">';
-            strHTML  +=         '<p>' + article[i].name + '</p>';
+            strHTML  +=         '<p>' + article[j].name + '</p>';
             strHTML  +=     '</div>';
         }
         strHTML    +=   '</div>';
