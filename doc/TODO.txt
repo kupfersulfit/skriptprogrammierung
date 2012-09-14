@@ -4,8 +4,8 @@ Passworthashes. Die Passwörter sind zu erstmal immer "foo" oder "foobar".
 ##################
 
 [Lukas]
-- Preis fix shopping cart
-- fehlendes Bild Lieferungsmanagement
+- Preis fix shopping cart                                               ***#DONE#***
+- fehlendes Bild Lieferungsmanagement                                   ***#DONE#***
 - Suchebug mit klammern etc. -> Autovervollständigung geht nicht
 - Home <-> keine Artikel 						***#DONE#***
 [Alex]
