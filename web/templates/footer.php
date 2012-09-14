@@ -1,5 +1,5 @@
         <footer>
-            Lukas Bonzelett, Thorsten Jerosch, Kirstin Schubert, Laura Spycher
+            Lukas Bonzelett, Alex Cremer, Thorsten Jerosch, Kirstin Schubert, Laura Spycher
         </footer>
     </body>
 </html>

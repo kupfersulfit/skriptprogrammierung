@@ -32,3 +32,12 @@ th {
 #tableid {
     width: 457px;
 }
+
+#divModifyArticle input[type=button] {
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+#newArticleSubmit {
+    margin-top: 10px;
+}
