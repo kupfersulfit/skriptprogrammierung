@@ -153,6 +153,13 @@
                 holeArtikelVonBestellung($_POST['bestellung']);
             }
             exit();
+        case 'aktualisiereBestellung':
+            if(!isset($_POST['bestellung']){
+                err("'bestellung' parameter not set");
+            }else{
+                aktualisiereBestellung($_POST['bestellung']);
+            }
+            exit();
         default:   
             echo json_encode(array('error' => 'unknown action'));     
     }

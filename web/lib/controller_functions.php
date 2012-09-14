@@ -525,4 +525,17 @@
             echo json_encode($bestellung->assoc());
         }
     }
+
+    /** Aktualisiert die angegebene Bestellung */
+    function aktualisiereBestellung($bestellung){
+        $bestellung = json_decode($bestellung, true);
+        try{
+            $bestellung = new Bestellung($bestellung);
+        }catch(Exception $e){
+            err($e->getMessage());
+            return;
+        }
+        $_SESSION['model']->aktualisiereBestellung($bestellung);
+        success();
+    }
 ?>
