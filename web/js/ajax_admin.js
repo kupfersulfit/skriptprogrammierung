@@ -61,14 +61,14 @@ function getKunde(id){
         dataType : 'json',
         success : function(json){
             var htmltext = '<table width="456" id=tableid>';
-            htmltext += '<tr><td>Name:</td><td><input name="kundenName" id="kundenNameId" type="text" size="50" maxlength="50" value='+json.name+'></td></tr>';
-            htmltext += '<tr><td>Vorname:</td><td><input name="kundenVorname" id="kundenVornameId" type="text" size="50" maxlength="50" value='+json.vorname+'></td></tr>';
-            htmltext += '<tr><td>Stra&szlig;e:</td><td><input name="kundenStrasse" id="kundenStrasseId" type="text" size="50" maxlength="50" value='+json.strasse+'></td></tr>';			
-            htmltext += '<tr><td>PLZ:</td><td><input name="kundenPlz" id="kundenPlzId" type="text" size="50" maxlength="50" value='+json.plz+'></td></tr>';
-            htmltext += '<tr><td>Zusatz:</td><td><input name="kundenZusatz" id="kundenZusatzId" type="text" size="50" maxlength="50" value='+json.zusatz+'></td></tr>';
-            htmltext += '<tr><td>Email:</td><td><input name="kundeEmail" id="kundenEmailId" type="text" size="50" maxlength="50" value='+json.email+'></td></tr>';
-            htmltext += '<tr><td>Passwort:</td><td><input name="kundePw" id="kundenPwId" type="text" size="50" maxlength="50" value='+json.passwort+'></td></tr>';
-            htmltext += '<tr><td>Registriert Seit:</td><td><input name="kundeSeit" id="kundenSeitId" type="text" size="50" maxlength="50" value='+json.registriertseit+' readonly></td></tr>';
+            htmltext += '<tr><td>Name:</td><td><input name="kundenName" id="kundenNameId" type="text" size="50" maxlength="50" value="'+json.name+'"></td></tr>';
+            htmltext += '<tr><td>Vorname:</td><td><input name="kundenVorname" id="kundenVornameId" type="text" size="50" maxlength="50" value="'+json.vorname+'"></td></tr>';
+            htmltext += '<tr><td>Stra&szlig;e:</td><td><input name="kundenStrasse" id="kundenStrasseId" type="text" size="50" maxlength="50" value="'+json.strasse+'"></td></tr>';			
+            htmltext += '<tr><td>PLZ:</td><td><input name="kundenPlz" id="kundenPlzId" type="text" size="50" maxlength="50" value="'+json.plz+'"></td></tr>';
+            htmltext += '<tr><td>Zusatz:</td><td><input name="kundenZusatz" id="kundenZusatzId" type="text" size="50" maxlength="50" value="'+json.zusatz+'"></td></tr>';
+            htmltext += '<tr><td>Email:</td><td><input name="kundeEmail" id="kundenEmailId" type="text" size="50" maxlength="50" value="'+json.email+'"></td></tr>';
+            htmltext += '<tr><td>Passwort:</td><td><input name="kundePw" id="kundenPwId" type="password" size="50" maxlength="50" value="'+json.passwort+'"></td></tr>';
+            htmltext += '<tr><td>Registriert Seit:</td><td><input name="kundeSeit" id="kundenSeitId" type="text" size="50" maxlength="50" value="'+json.registriertseit+'" readonly></td></tr>';
             htmltext += '</table>';
             htmltext += '<input type="button" class="button" name="aendereKunde" id="k'+json.id+'" value="Change"/>';
             htmltext += '<input type="button" class="button" name="loescheKunde" id="k'+json.id+'" value="Delete"/>';
@@ -209,8 +209,10 @@ function updateArticle(id){
     var pbl =0;
     if(jQuery('#modPubl').is(':checked'))
         pbl=1;
+    var descript = jQuery('#modDescr').val();
+    descript = descript.replace("/\n/g"," ");
     var modArticle = new Article();
-    modArticle.createtemporyIntance(id,jQuery('#modName').val(),jQuery('#modCat').val(),jQuery('#modDescr').val(),jQuery('#modPrice').val(),0,jQuery('#modNr').val(),pbl,jQuery('#modImg').val());
+    modArticle.createtemporyIntance(id,jQuery('#modName').val(),jQuery('#modCat').val(),descript,jQuery('#modPrice').val(),0,jQuery('#modNr').val(),pbl,jQuery('#modImg').val());
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php',
@@ -241,6 +243,8 @@ function createArticle() {
     var pbl =0;
     if(jQuery('#newPubl').is(':checked'))
         pbl=1;
+    var descript = jQuery('#newDescr').val();
+    descript = descript.replace(/\r?\n/g, " ");
     var newArticle = new Article();
     newArticle.createtemporyIntance(0,jQuery('#newName').val(),jQuery('#newCat').val(),jQuery('#newDescr').val(),jQuery('#newPrice').val(),0,jQuery('#newNr').val(),pbl,jQuery('#newImg').val());
     jQuery.ajax({
@@ -347,7 +351,7 @@ function modifyOrder(id){
         type : 'GET',
         url : 'lib/controller.php',
         data : {
-            'action' : 'holeBestellung', 
+            'action' : 'holeBestellungMitId', 
             'id' : id
         },
         dataType : 'json',
@@ -355,7 +359,7 @@ function modifyOrder(id){
             var htmltext = '';
             var bestellung= new Order();
             bestellung.create(json);
-            var jsonKunde = getOrdersCustomer(bestellung.kundenid);
+            
             var delivery;
             if(bestellung.lieferungsmethodeid == 1){
                 delivery = "Paketversand";
@@ -366,16 +370,19 @@ function modifyOrder(id){
             }
             htmltext += "<table border='0' cellspacing='0' cellpadding='4'>";
             htmltext += "<tr><td bgcolor='#ECECEC'>ID: </td><td>"+bestellung.id+"</td></tr>";
-            htmltext += "<tr><td bgcolor='#ECECEC'>Kunde: </td><td>"+jsonKunde.vornamename+jsonKunde.name+"<br>"
-                                                                    +jsonKunde.strasse+"<br>"
-                                                                    +jsonKunde.plz+"<br>"+jsonKunde.zusatz+"<br>"+"</td></tr>";
+            htmltext += "<tr><td bgcolor='#ECECEC'>Kunde: </td><td><div id='divKunde'></div></td></tr>";
             htmltext += "<tr><td bgcolor='#ECECEC'>Bestelldatum: </td><td>"+bestellung.bestelldatum+"</td></tr>";
             //TODO: Select-Feld anpassen
-            htmltext += "<tr><td bgcolor='#ECECEC'>Status: </td><td><select id='status'></select></td></tr>";
+            htmltext += "<tr><td bgcolor='#ECECEC'>Status: </td><td><select id='status'><option value='1'";
+            if(bestellung.statusid==1) htmltext+=" selected ";
+            htmltext+=">Offen</option><option value='2'";
+            if(bestellung.statusid==2) htmltext+=" selected ";
+            htmltext+=">Versandt</option></select></td></tr>";
             htmltext += "<tr><td bgcolor='#ECECEC'>Lieferungsmethode: </td><td>"+delivery+"</td></tr>";
             htmltext += "</table>";
-            htmltext += "<input type='button' onclick='updateOrder(bestellung)' name='aktualisiereBestellung' value='ok'>";
+            htmltext += "<input type='button' onclick='updateOrder("+bestellung.id+","+bestellung.kundenid+",0,"+bestellung.lieferungsmethodeid+","+bestellung.zahlungsmethodeid+")' name='aktualisiereBestellung' value='ok'>";
             $("#orderOverview").html(htmltext);
+            getOrdersCustomer(bestellung.kundenid);
         },
         error : function () {
             systemessages({
@@ -386,7 +393,7 @@ function modifyOrder(id){
 }
 
 function getOrdersCustomer(id){
-    jQuery.ajax({
+        jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php',
         data : {
@@ -395,33 +402,35 @@ function getOrdersCustomer(id){
         },
         dataType : 'json',
         success : function(json){
-            return json;
+            var adresse = json.vorname+" "+json.name+"<br>"+json.strasse+"<br>"+json.plz+"<br>"+json.zusatz+"<br>";
+            jQuery('#divKunde').html(adresse);
         },
         error : function () {
             systemessages({
                 'error' : 'something with the server went wront'
             });	
         }
-    });
+        });
 }
 
-function updateOrder(bestellung){
-    var statusid;
+function updateOrder(id, kundenid, bestelldatum, lieferungsmethodeid, zahlungsmethodeid){
+    var statusid = jQuery('#status').val();
     //TODO: Wert des Select-Feldes ermitteln
-    bestellung.statusid=statusid;
+    var modOrder = new Order();
+    modOrder.createTemporaryInstance(id, kundenid, bestelldatum, statusid, zahlungsmethodeid, lieferungsmethodeid);
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php',
         data : {
-            'action' : 'aktualisiereArtikel',
-            'artikel' : modArticle.getJSONstring()
+            'action' : 'aktualisiereBestellung',
+            'bestellung' : modOrder.getJSONstring()
         },
         dataType : 'json',
         success : function(json){
             if (json.error) {
                 systemessages(json);
             } else {
-				getAllArticles();
+                
                 systemessages({
                     'success' : "update done"
                 });

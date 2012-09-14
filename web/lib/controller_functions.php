@@ -212,8 +212,8 @@
     
     /** Gibt die Daten eines bestimmten Kunden aus */
     function holeKunde($id){
-        if(!istAdmin()){
-            err('only admins can view customer details');
+        if(!istAdmin() && !istLieferant()){
+            err('only admins and suppliers can view customer details');
             return;
         }
         $kunde = $_SESSION['model']->holeKundeMitId($id);
@@ -466,6 +466,12 @@
             $artikel = $_SESSION['model']->holeArtikelVonBestellung($bestellung);
             for($i = 0; $i < count($artikel); $i++){
                 $artikel[$i]->setVerfuegbar($artikel[$i]->anzahl); //bestellte artikalzahl uebernehmen
+                $kategorie = $_SESSION["model"]->holeKategorie($artikel[$i]->getKategorieId());
+                if($kategorie == null){
+                    $artikel[$i]->setKategorieId("unknown");
+                }else{
+                    $artikel[$i]->setKategorieId($kategorie->getName());
+                }
                 $temp[] = $artikel[$i]->assoc();
             }
             $ret[] = $temp;
