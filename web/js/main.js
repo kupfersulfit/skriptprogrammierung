@@ -72,17 +72,10 @@ function getCustomerContent(pageName) {
         url: 'templates/customer/' + pageName + ".php",
         success: function (data) {
             jQuery('#page').html(data);
-            //            if (typeof Article != 'undefined' && Article.Instances.length == 0) {
+
             Article.Instances = new Array();    
             getArticleList();
-            //            } else if (pageName == 'home') {
-            //                for (var i = 0; i < Article.Instances.length; ++i) {
-            //                    jQuery('#articleList').append(Article.Instances[i].renderHTML());
-            //                    if (ShopingCard.findArticle(Article.Instances[i].id) != -1) {
-            //                        jQuery('#article' + Article.Instances[i].id + ' .pin').css('background-position','0px 40px');
-            //                    }
-            //                }
-            //            }
+
             if(pageName == 'home') {
                 interval = window.setInterval(function () {
                     if (typeof Article != 'undefined' && Article.Instances.length > 0) {
@@ -96,7 +89,12 @@ function getCustomerContent(pageName) {
             } else if (pageName == 'profile') {
                 jQuery('#shoping_cart').hide();
                 getOrders();
-                fillProfile();
+                if (Customer.position != 'guest' 
+                    && Customer.position != '' 
+                    && jQuery('#profile_name').val() == '')
+                {
+                    fillProfile();
+                }
             } else if(pageName == 'admin') {
                 jQuery('#shoping_cart').hide();
             }
@@ -218,20 +216,22 @@ function orderDisplay(obj) {
 
 function fillProfile() {
     for (var key in Customer) { 
-        if (typeof Customer[key] != 'function'
-            && key != 'position') 
-            {
-            var value = Customer[key];
-            if (key == 'registriertseit') {
-                value = formatDate(Customer[key]);
-            } else if (key == 'strasse') {
-                value = value.split(' ');
-                if (typeof value[1] != undefined && value != '') {
-                    jQuery('#profile_nr').val(value[1]);
+        if (Customer.hasOwnProperty(key)) {
+            if (typeof Customer[key] != 'function'
+                && key != 'position') 
+                {
+                var value = Customer[key];
+                if (key == 'registriertseit') {
+                    value = formatDate(Customer[key]);
+                } else if (key == 'strasse') {
+                    value = value.split(' ');
+                    if (typeof value[1] != undefined && value != '') {
+                        jQuery('#profile_nr').val(value[1]);
+                    }
+                    value = value[0];
                 }
-                value = value[0];
+                jQuery('#profile_'+key).val(value);
             }
-            jQuery('#profile_'+key).val(value);
         }
     }
 }
@@ -381,6 +381,7 @@ function getAdminContent(pageName) {
         success: function (data) {
             jQuery('#page').html(data);
             if (pageName == 'admin') {
+                jQuery('#shoping_cart').hide();
                 getUserManagement();
                 setAdminTabActive('usermanagement');
             } else if (pageName == 'order_management') {

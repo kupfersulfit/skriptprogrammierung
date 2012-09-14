@@ -6,7 +6,6 @@ table {
 
 td{
     border: 1px dashed lightblue;
-    text-align: center;
 }
 
 th {
@@ -30,7 +29,7 @@ th {
 }
 
 #tableid {
-    width: 457px;
+    width: 474px;
 }
 
 #divModifyArticle input[type=button] {
@@ -40,4 +39,22 @@ th {
 
 #newArticleSubmit {
     margin-top: 10px;
+}
+
+#add input[type=text] {
+    width: 236px;
+}
+
+#newDescr {
+    width: 353px;
+    height: 125px;
+}
+#newPublTd {
+    text-align: center;
+}
+
+#orderOverview input[type=button] {
+    margin-top: 10px;
+    float: right;
+    margin-right: 10px;
 }

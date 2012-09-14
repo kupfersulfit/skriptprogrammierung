@@ -167,6 +167,7 @@ function getCustomerInformation() {
                 } else {
                     jQuery('#customer span').html(Customer.name);
                 }
+                fillProfile();
             }
         },
         error : function () {

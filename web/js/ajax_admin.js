@@ -60,7 +60,7 @@ function getKunde(id){
         },
         dataType : 'json',
         success : function(json){
-            var htmltext = '<table width="456" id=tableid>';
+            var htmltext = '<table id=tableid>';
             htmltext += '<tr><td>Name:</td><td><input name="kundenName" id="kundenNameId" type="text" size="50" maxlength="50" value="'+json.name+'"></td></tr>';
             htmltext += '<tr><td>Vorname:</td><td><input name="kundenVorname" id="kundenVornameId" type="text" size="50" maxlength="50" value="'+json.vorname+'"></td></tr>';
             htmltext += '<tr><td>Stra&szlig;e:</td><td><input name="kundenStrasse" id="kundenStrasseId" type="text" size="50" maxlength="50" value="'+json.strasse+'"></td></tr>';			

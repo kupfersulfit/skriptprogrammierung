@@ -161,8 +161,14 @@ Article.prototype.addToCard = function() {
     var strHTML = '<section class="articleAtCard" id="articleAtCard' + this.id + '">';
     strHTML    +=     '<div class="articleAtCardTitle" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div><div class="articleAtCardClose" onclick="Article.pin(jQuery(\'#article' +  this.id + ' .pin\'), ' + this.id + ', false);">x</div>';
     strHTML    +=     '<div class="clear"></div>'
-    strHTML    +=     '<div class="articleAtCardPrice">price <span>' + this.preis.replace('.', '.') + '</span> &euro;</div>';
-    strHTML    +=     '<div class="articleAtCardAmount"><div class="amountElements"><div class="amountSelect" onclick="Article.increseAmount(' + this.id + ', false);" >+</div><div class="amountSelect" onclick="Article.decreseAmount(' + this.id + ');">-</div></div><input type="number" value="1" size="4" disabled="disbled" /></div>'; 
+    strHTML    +=     '<div class="articleAtCardPrice"><div>price </div><div class="euro"> &euro;</div><span>' + this.preis.replace('.', '.') + '</span></div>';
+    strHTML    +=     '<div class="articleAtCardAmount">';
+    strHTML    +=         '<div class="amountElements">';
+    strHTML    +=              '<div class="amountSelect" onclick="Article.increseAmount(' + this.id + ', false);" >+</div>';
+    strHTML    +=              '<div class="amountSelect" onclick="Article.decreseAmount(' + this.id + ');">-</div>';
+    strHTML    +=         '</div>';
+    strHTML    +=         '<input type="text" value="1" size="4" disabled="disbled" />';
+    strHTML    +=     '</div>'; 
     strHTML    +=     '<div class="clear"></div>';
     strHTML    += '</section>'
     jQuery('#basket').append(strHTML);
