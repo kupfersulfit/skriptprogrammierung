@@ -217,6 +217,7 @@ function updateArticle(id){
         pbl=1;
     var descript = jQuery('#modDescr').val();
     descript = descript.replace(/\n+/g," ");
+    descript = descript.replace(/"/g, "'");
     var modArticle = new Article();
     modArticle.createtemporyIntance(id,jQuery('#modName').val(),jQuery('#modCat').val(),descript,jQuery('#modPrice').val(),0,jQuery('#modNr').val(),pbl,jQuery('#modImg').val());
     jQuery.ajax({
@@ -251,6 +252,7 @@ function createArticle() {
         pbl=1;
     var descript = jQuery('#newDescr').val();
     descript = descript.replace(/\n+/g," ");
+    descript = descript.replace(/"/g, "'");
     var newArticle = new Article();
     newArticle.createtemporyIntance(0,jQuery('#newName').val(),jQuery('#newCat').val(),descript,jQuery('#newPrice').val(),0,jQuery('#newNr').val(),pbl,jQuery('#newImg').val());
     jQuery.ajax({
