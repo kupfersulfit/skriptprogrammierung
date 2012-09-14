@@ -139,6 +139,13 @@
         case 'holeAlleBestellungen':
             holeAlleBestellungen();
             exit();
+        case 'holeBestellungMitId':
+            if(!isset($_GET['id'])){
+                err("'id' parameter missing");
+            }else{
+                holeBestellungMitId($_GET['id']);
+            }
+            exit();
         case 'holeArtikelVonBestellung':
             if(!isset($_POST['bestellung'])){
                 err("'bestellung' parameter missing");
