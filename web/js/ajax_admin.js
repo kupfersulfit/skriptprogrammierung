@@ -152,7 +152,7 @@ function getAllArticles(){
             var htmltext = "<table border='0' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Name</th><th></th></tr>";
             for(var i = 0; i < json.length; i++){
                 var row=json[i];
-                htmltext+= '<tr><td>'+row.id+'</td><td>' + row.name + '</td><td><input type="button" name="aendereArtikel" id="a'+row.id +'" value="change"/></td></tr>';
+                htmltext+= '<tr><td>'+row.id+'</td><td>' + row.name + '</td><td><input type="button" onclick="modifyArticle('+row.id+')" name="aendereArtikel" value="change"/></td></tr>';
             };
             htmltext += '</table><br><br>';
             jQuery("#divModifyArticle").html(htmltext);
@@ -192,8 +192,8 @@ function modifyArticle(id){
             htmltext += "<tr><td bgcolor='#ECECEC'>Image path: </td><td><input type='text' name='bildpfad' id='modImg' size='40' value='"+artikel.bildpfad+"'></td></tr>";
             htmltext += "<tr><td bgcolor='#ECECEC'>Number(in stock): </td><td><input type='text' name='verfuegbar' id='modNr' size='40' value='"+artikel.verfuegbar+"'></td></tr>";
             htmltext += "</table>";
-            htmltext += "<input type='button' name='aktualisiereArtikel' id='a"+artikel.id+"' value='ok'>";
-            htmltext += "<input type='button' name='loescheArtikel' id='a"+artikel.id+"' value='delete article'><br><br>";
+            htmltext += "<input type='button' onclick='updateArticle("+artikel.id+")' name='aktualisiereArtikel' value='ok'>";
+            htmltext += "<input type='button' onclick='deleteArticle("+artikel.id+")' name='loescheArtikel' value='delete article'><br><br>";
             jQuery("#divModifyArticle").html(htmltext);
             jQuery("#divAddArticle").hide();
         },
@@ -434,6 +434,7 @@ function updateOrder(id, kundenid, bestelldatum, lieferungsmethodeid, zahlungsme
                 systemessages({
                     'success' : "update done"
                 });
+                getAllOrders();
             }  
         },
         error : function () {
