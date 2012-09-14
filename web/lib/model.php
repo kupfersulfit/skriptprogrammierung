@@ -3,7 +3,16 @@
 // Set to true for testing
 $testing = false;
 
+// Objects defined to map from database
 require_once "objects.php";
+
+/* 
+ * Libary des PHPass Projekts
+ * 
+ * Bietet im Gegensatz zu PHP crypt die Generierung von portablen und 
+ * sicheren Hashes an und ist eine Art Wrapperklasse der crypt Methode
+ */
+require_once 'PasswordHash.php';
 
 /**
  * @brief Wrapperklasse für PDO Datenbankverbindung
@@ -626,22 +635,24 @@ WHERE bestellungen_artikel.bestellungid = :bestellungid";
      * 
      * @param string $email
      *  Emailadresse
-     * * @param string $passwortHash
-     *  Hash des Passworts
+     * * @param string $passwort
+     *  Passworts im Klartext
      * @retval boolean
      *  True on success.
      */
-    public function pruefeLogin($email, $passwortHash) {
+    public function pruefeLogin($email, $passwort) {
         $dbConnector = new DatabaseConnector();
         if ($dbConnector->connect()) {
-            $query = "SELECT * FROM kunden WHERE passwort = :passwort AND email = :email";
-            $params = array(":passwort" => $passwortHash, ":email" => $email);
-            $result = $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Bestellung");
-            if (sizeof($result) == 1) {
-                return true;
-            } else {
-                return false;
-            }
+            $query = "SELECT * FROM kunden WHERE email = :email";
+            $params = array(":email" => $email);
+            $result = $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Kunde");
+            if(is_object($result[0])) {
+				$t_hasher = new PasswordHash(8, TRUE);
+				return $t_hasher->CheckPassword($passwort, $result[0]->getPasswort());
+			}else{
+				return false;
+			}
+
         } else {
             return false;
         }

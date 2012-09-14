@@ -1,4 +1,9 @@
 <?php
+/**
+ * @brief Third party libary 'PHPass' for secure AND portable use of crypt
+ *        function in PHP. More information on: http://www.openwall.com/phpass/
+ */
+
 #
 # Portable PHP password hashing framework.
 #

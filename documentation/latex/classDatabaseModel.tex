@@ -11,12 +11,22 @@
 \item 
 \hyperlink{classDatabaseModel_a94c3702cc35d4de706cd5ef39bfdfae1}{erstelle\-Kunde} (\$kunde)
 \begin{DoxyCompactList}\small\item\em \-Erstellt einen neuen \-Kunden in der \-Datenbank auf \-Grundlage des übergebenen \-Kundenobjekts. \end{DoxyCompactList}\item 
-\hyperlink{classDatabaseModel_ae9cad447a2bcbd83b96de81321010b0f}{hole\-Kunde} (\$email)
+\hyperlink{classDatabaseModel_aab75e7fe6ae942cd5f6096aab27ee33f}{hole\-Kunde\-Mit\-Id} (\$kunden\-Id)
 \begin{DoxyCompactList}\small\item\em \-Holt \hyperlink{classKunde}{\-Kunde} mit gegebener \-I\-D. \end{DoxyCompactList}\item 
+\hyperlink{classDatabaseModel_a55f3f56975923de791883e16936e891e}{aktualisiere\-Kunde} (\$aktueller\-Kunde)
+\begin{DoxyCompactList}\small\item\em \-Aktualisiert \hyperlink{classKunde}{\-Kunde} mit gegebener \-E\-Mail. \end{DoxyCompactList}\item 
+\hyperlink{classDatabaseModel_ae9cad447a2bcbd83b96de81321010b0f}{hole\-Kunde} (\$email)
+\begin{DoxyCompactList}\small\item\em \-Holt \hyperlink{classKunde}{\-Kunde} mit gegebener \-E\-Mail. \end{DoxyCompactList}\item 
+\hyperlink{classDatabaseModel_a65d29f2f888d41df4524da748e51e0dd}{loesche\-Kunde} (\$email)
+\begin{DoxyCompactList}\small\item\em \-Loescht \hyperlink{classKunde}{\-Kunde} mit gegebener \-E\-Mail. \end{DoxyCompactList}\item 
 \hyperlink{classDatabaseModel_ac53cfe4dc2114e8ef29a70ddc11ffefb}{hole\-Alle\-Kunden} ()
 \begin{DoxyCompactList}\small\item\em \-Holt alle \-Kunden. \end{DoxyCompactList}\item 
 \hyperlink{classDatabaseModel_a1663ad3dbe1ee04ced956ce44ff2923b}{erstelle\-Artikel} (\$artikel)
 \begin{DoxyCompactList}\small\item\em \-Erstellt einen neuen \hyperlink{classArtikel}{\-Artikel} in der \-Datenbank auf \-Grundlage des übergebenen \-Artikeobjekts. \end{DoxyCompactList}\item 
+\hyperlink{classDatabaseModel_a01cbad70bc79bb9f72bb92ff26682092}{aktualisiere\-Artikel} (\$aktueller\-Artikel)
+\begin{DoxyCompactList}\small\item\em \-Aktualisiert \hyperlink{classArtikel}{\-Artikel} mit gegebener \-I\-D. \end{DoxyCompactList}\item 
+\hyperlink{classDatabaseModel_aab7854135087ea5d88e6bef29de1043f}{loesche\-Artikel} (\$artikel\-Id)
+\begin{DoxyCompactList}\small\item\em \-Loescht \hyperlink{classArtikel}{\-Artikel} mit gegebener \-I\-D. \end{DoxyCompactList}\item 
 \hyperlink{classDatabaseModel_adab376d3339580306adab2d56641f61c}{hole\-Artikel} (\$artikel\-Id)
 \begin{DoxyCompactList}\small\item\em \-Holt \hyperlink{classArtikel}{\-Artikel} mit gegebener \-I\-D. \end{DoxyCompactList}\item 
 \hyperlink{classDatabaseModel_ada4e7c182aa3b00d684965e8392d02ee}{hole\-Alle\-Artikel} ()
@@ -33,13 +43,15 @@
 \begin{DoxyCompactList}\small\item\em \-Holt eine \-Zahlungsmethode mit gegebener \-Suchpattern. \end{DoxyCompactList}\item 
 \hyperlink{classDatabaseModel_acbbf506e57f6001432bcca18cf2c39f7}{hole\-Status} (\$status\-Pattern)
 \begin{DoxyCompactList}\small\item\em \-Holt einen \hyperlink{classStatus}{\-Status} mit gegebener \-Suchpattern. \end{DoxyCompactList}\item 
+\hyperlink{classDatabaseModel_ab8fb5d8b2930d8056ae3c556563e9f0f}{hole\-Artikel\-Von\-Bestellung} (\$bestellung)
+\begin{DoxyCompactList}\small\item\em \-Gibt alle \hyperlink{classArtikel}{\-Artikel} einer \hyperlink{classBestellung}{\-Bestellung} zurueck. \end{DoxyCompactList}\item 
 \hyperlink{classDatabaseModel_a5cf2e044bcb65f00b33eb238edc80931}{hole\-Bestellungen\-Von\-Kunden} (\$kunden\-Id)
 \begin{DoxyCompactList}\small\item\em \-Gibt alle \-Bestellungen von \-Kunden mit übergebener \-I\-D zurück. \end{DoxyCompactList}\item 
 \hyperlink{classDatabaseModel_af781283b147034023d2a79d67b4253d9}{hole\-Alle\-Bestellungen} ()
 \begin{DoxyCompactList}\small\item\em \-Gibt alle vorhanden \-Bestellungen zurück. \end{DoxyCompactList}\item 
 \hyperlink{classDatabaseModel_a4b7fd8a392317f47800a9eaad7997357}{erstelle\-Bestellung} (\$bestellung, \$alle\-Artikel)
 \begin{DoxyCompactList}\small\item\em \-Erstellt eine \hyperlink{classBestellung}{\-Bestellung} auf \-Grundlage der \-Paramter, welche aus mehreren \-Artikelnzuordnungen bestehen kann. \end{DoxyCompactList}\item 
-\hyperlink{classDatabaseModel_ad22520c2c00af4dbde29fb65f02dcae4}{pruefe\-Login} (\$email, \$passwort\-Hash)
+\hyperlink{classDatabaseModel_a57437dd3173a38bee6ee1853458ced29}{pruefe\-Login} (\$email, \$passwort)
 \begin{DoxyCompactList}\small\item\em \-Prüft auf gültige \-Logindaten. \end{DoxyCompactList}\end{DoxyCompactItemize}
 
 
@@ -47,6 +59,38 @@
 \-Modell für \-Datenhaltung / -\/beschaffung und \-Objektmapping. 
 
 \subsection{\-Dokumentation der \-Elementfunktionen}
+\hypertarget{classDatabaseModel_a01cbad70bc79bb9f72bb92ff26682092}{\index{\-Database\-Model@{\-Database\-Model}!aktualisiere\-Artikel@{aktualisiere\-Artikel}}
+\index{aktualisiere\-Artikel@{aktualisiere\-Artikel}!DatabaseModel@{\-Database\-Model}}
+\subsubsection[{aktualisiere\-Artikel}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Model\-::aktualisiere\-Artikel} (
+\begin{DoxyParamCaption}
+\item[{\$}]{aktueller\-Artikel}
+\end{DoxyParamCaption}
+)}}\label{classDatabaseModel_a01cbad70bc79bb9f72bb92ff26682092}
+
+
+\-Aktualisiert \hyperlink{classArtikel}{\-Artikel} mit gegebener \-I\-D. 
+
+
+\begin{DoxyParams}[1]{\-Parameter}
+\-String & {\em \$email} & \-Email des gewünschten \-Kundens \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDatabaseModel_a55f3f56975923de791883e16936e891e}{\index{\-Database\-Model@{\-Database\-Model}!aktualisiere\-Kunde@{aktualisiere\-Kunde}}
+\index{aktualisiere\-Kunde@{aktualisiere\-Kunde}!DatabaseModel@{\-Database\-Model}}
+\subsubsection[{aktualisiere\-Kunde}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Model\-::aktualisiere\-Kunde} (
+\begin{DoxyParamCaption}
+\item[{\$}]{aktueller\-Kunde}
+\end{DoxyParamCaption}
+)}}\label{classDatabaseModel_a55f3f56975923de791883e16936e891e}
+
+
+\-Aktualisiert \hyperlink{classKunde}{\-Kunde} mit gegebener \-E\-Mail. 
+
+
+\begin{DoxyParams}[1]{\-Parameter}
+\-String & {\em \$email} & \-Email des gewünschten \-Kundens \\
+\hline
+\end{DoxyParams}
 \hypertarget{classDatabaseModel_a1663ad3dbe1ee04ced956ce44ff2923b}{\index{\-Database\-Model@{\-Database\-Model}!erstelle\-Artikel@{erstelle\-Artikel}}
 \index{erstelle\-Artikel@{erstelle\-Artikel}!DatabaseModel@{\-Database\-Model}}
 \subsubsection[{erstelle\-Artikel}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Model\-::erstelle\-Artikel} (
@@ -198,6 +242,27 @@
 {\em \hyperlink{classArtikel}{\-Artikel}} & \-Objekt des gewünschten \-Artikels \\
 \hline
 \end{DoxyRetVals}
+\hypertarget{classDatabaseModel_ab8fb5d8b2930d8056ae3c556563e9f0f}{\index{\-Database\-Model@{\-Database\-Model}!hole\-Artikel\-Von\-Bestellung@{hole\-Artikel\-Von\-Bestellung}}
+\index{hole\-Artikel\-Von\-Bestellung@{hole\-Artikel\-Von\-Bestellung}!DatabaseModel@{\-Database\-Model}}
+\subsubsection[{hole\-Artikel\-Von\-Bestellung}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Model\-::hole\-Artikel\-Von\-Bestellung} (
+\begin{DoxyParamCaption}
+\item[{\$}]{bestellung}
+\end{DoxyParamCaption}
+)}}\label{classDatabaseModel_ab8fb5d8b2930d8056ae3c556563e9f0f}
+
+
+\-Gibt alle \hyperlink{classArtikel}{\-Artikel} einer \hyperlink{classBestellung}{\-Bestellung} zurueck. 
+
+
+\begin{DoxyParams}[1]{\-Parameter}
+\-Integer & {\em \$bestellung\-Id} & \-I\-D der \hyperlink{classBestellung}{\-Bestellung}, deren \hyperlink{classArtikel}{\-Artikel} geholt werden sollen \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{\-Rückgabewerte}
+{\em \-Artikel\mbox{[}$\,$\mbox{]}} & \-Objektarray der geholten \hyperlink{classArtikel}{\-Artikel}. \\
+\hline
+\end{DoxyRetVals}
 \hypertarget{classDatabaseModel_a5cf2e044bcb65f00b33eb238edc80931}{\index{\-Database\-Model@{\-Database\-Model}!hole\-Bestellungen\-Von\-Kunden@{hole\-Bestellungen\-Von\-Kunden}}
 \index{hole\-Bestellungen\-Von\-Kunden@{hole\-Bestellungen\-Von\-Kunden}!DatabaseModel@{\-Database\-Model}}
 \subsubsection[{hole\-Bestellungen\-Von\-Kunden}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Model\-::hole\-Bestellungen\-Von\-Kunden} (
@@ -249,11 +314,32 @@
 )}}\label{classDatabaseModel_ae9cad447a2bcbd83b96de81321010b0f}
 
 
-\-Holt \hyperlink{classKunde}{\-Kunde} mit gegebener \-I\-D. 
+\-Holt \hyperlink{classKunde}{\-Kunde} mit gegebener \-E\-Mail. 
 
 
 \begin{DoxyParams}[1]{\-Parameter}
 \-String & {\em \$email} & \-Email des gewünschten \-Kundens \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{\-Rückgabewerte}
+{\em \hyperlink{classKunde}{\-Kunde}} & \-Objekt des gewünschten \-Kunden \\
+\hline
+\end{DoxyRetVals}
+\hypertarget{classDatabaseModel_aab75e7fe6ae942cd5f6096aab27ee33f}{\index{\-Database\-Model@{\-Database\-Model}!hole\-Kunde\-Mit\-Id@{hole\-Kunde\-Mit\-Id}}
+\index{hole\-Kunde\-Mit\-Id@{hole\-Kunde\-Mit\-Id}!DatabaseModel@{\-Database\-Model}}
+\subsubsection[{hole\-Kunde\-Mit\-Id}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Model\-::hole\-Kunde\-Mit\-Id} (
+\begin{DoxyParamCaption}
+\item[{\$}]{kunden\-Id}
+\end{DoxyParamCaption}
+)}}\label{classDatabaseModel_aab75e7fe6ae942cd5f6096aab27ee33f}
+
+
+\-Holt \hyperlink{classKunde}{\-Kunde} mit gegebener \-I\-D. 
+
+
+\begin{DoxyParams}[1]{\-Parameter}
+\-String & {\em \$kunden\-Id} & \-I\-D des gewünschten \-Kundens \\
 \hline
 \end{DoxyParams}
 
@@ -324,14 +410,46 @@
 {\em \-Zahlungsmethode} & \-Objekt der gesuchten \-Zahlungsmethode \\
 \hline
 \end{DoxyRetVals}
-\hypertarget{classDatabaseModel_ad22520c2c00af4dbde29fb65f02dcae4}{\index{\-Database\-Model@{\-Database\-Model}!pruefe\-Login@{pruefe\-Login}}
+\hypertarget{classDatabaseModel_aab7854135087ea5d88e6bef29de1043f}{\index{\-Database\-Model@{\-Database\-Model}!loesche\-Artikel@{loesche\-Artikel}}
+\index{loesche\-Artikel@{loesche\-Artikel}!DatabaseModel@{\-Database\-Model}}
+\subsubsection[{loesche\-Artikel}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Model\-::loesche\-Artikel} (
+\begin{DoxyParamCaption}
+\item[{\$}]{artikel\-Id}
+\end{DoxyParamCaption}
+)}}\label{classDatabaseModel_aab7854135087ea5d88e6bef29de1043f}
+
+
+\-Loescht \hyperlink{classArtikel}{\-Artikel} mit gegebener \-I\-D. 
+
+
+\begin{DoxyParams}[1]{\-Parameter}
+\-String & {\em \$artikel\-Id} & \-I\-D des zu löschenden \-Artikels \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDatabaseModel_a65d29f2f888d41df4524da748e51e0dd}{\index{\-Database\-Model@{\-Database\-Model}!loesche\-Kunde@{loesche\-Kunde}}
+\index{loesche\-Kunde@{loesche\-Kunde}!DatabaseModel@{\-Database\-Model}}
+\subsubsection[{loesche\-Kunde}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Model\-::loesche\-Kunde} (
+\begin{DoxyParamCaption}
+\item[{\$}]{email}
+\end{DoxyParamCaption}
+)}}\label{classDatabaseModel_a65d29f2f888d41df4524da748e51e0dd}
+
+
+\-Loescht \hyperlink{classKunde}{\-Kunde} mit gegebener \-E\-Mail. 
+
+
+\begin{DoxyParams}[1]{\-Parameter}
+\-String & {\em \$email} & \-Email des zu loeschenden \-Kundens \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDatabaseModel_a57437dd3173a38bee6ee1853458ced29}{\index{\-Database\-Model@{\-Database\-Model}!pruefe\-Login@{pruefe\-Login}}
 \index{pruefe\-Login@{pruefe\-Login}!DatabaseModel@{\-Database\-Model}}
 \subsubsection[{pruefe\-Login}]{\setlength{\rightskip}{0pt plus 5cm}{\bf \-Database\-Model\-::pruefe\-Login} (
 \begin{DoxyParamCaption}
 \item[{\$}]{email, }
-\item[{\$}]{passwort\-Hash}
+\item[{\$}]{passwort}
 \end{DoxyParamCaption}
-)}}\label{classDatabaseModel_ad22520c2c00af4dbde29fb65f02dcae4}
+)}}\label{classDatabaseModel_a57437dd3173a38bee6ee1853458ced29}
 
 
 \-Prüft auf gültige \-Logindaten. 
@@ -340,7 +458,7 @@
 \begin{DoxyParams}[1]{\-Parameter}
 string & {\em \$email} & \-Emailadresse $\ast$ \\
 \hline
-string & {\em \$passwort\-Hash} & \-Hash des \-Passworts \\
+string & {\em \$passwort} & \-Passworts im \-Klartext \\
 \hline
 \end{DoxyParams}
 
