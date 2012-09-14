@@ -212,8 +212,8 @@
     
     /** Gibt die Daten eines bestimmten Kunden aus */
     function holeKunde($id){
-        if(!istAdmin()){
-            err('only admins can view customer details');
+        if(!istAdmin() && !istLieferant()){
+            err('only admins and suppliers can view customer details');
             return;
         }
         $kunde = $_SESSION['model']->holeKundeMitId($id);

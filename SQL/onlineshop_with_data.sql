@@ -44,10 +44,10 @@ CREATE TABLE IF NOT EXISTS `artikel` (
 --
 
 INSERT INTO `artikel` (`id`, `name`, `beschreibung`, `veroeffentlicht`, `verfuegbar`, `kategorieid`, `preis`, `bildpfad`, `seit`) VALUES
-(1, 'Rapid Elektroheftgerät Classic 106E TwinRig', 'Für Broschüren- und Ringösenheftung, sowie normales Heften Set bestehend aus zwei Heftgeräten 106e, sowie Zubehör für deren Verbindung, um gleichzeitig mehrfach zu heften Heftleistung: 50 Blatt (80 g/qm Papier) Einstellbare Heftkraft Einstellbare Hefttiefe bis zu 100 mm Montierte Zwinge für Tischbefestigung Schutzblende vor dem Heftmechanismus, Stromversorgung wird unterbrochen, sobald diese angehoben wird Austauschbarer Hefteinsatz gewährleistet einen langjährigen Gebrauch Lieferung inklusive Arbeitstisch für Broschürenheftung und normale Heftung, sowie Fußpedal und Fiberoptikkabel für die Verbindung der beiden Heftgeräte Einsatzhefter für Ringösenheftung nicht im Lieferung enthalten (separates Zubehör)', 1, 31, 2, 2300.00, 'artikel_1.jpg', '0000-00-00 00:00:00'),
+(1, 'Rapid Elektroheftgerät Classic 106E TwinRig', 'Für Broschüren- und Ringösenheftung, sowie normales Heften Set bestehend aus zwei Heftgeräten 106e, sowie Zubehör für deren Verbindung, um gleichzeitig mehrfach zu heften Heftleistung: 50 Blatt (80 g/qm Papier) Einstellbare Heftkraft Einstellbare Hefttiefe bis zu 100 mm Montierte Zwinge für Tischbefestigung Schutzblende vor dem Heftmechanismus, Stromversorgung wird unterbrochen, sobald diese angehoben wird Austauschbarer Hefteinsatz gewährleistet einen langjährigen Gebrauch Lieferung inklusive Arbeitstisch für Broschürenheftung und normale Heftung, sowie Fußpedal und Fiberoptikkabel für die Verbindung der beiden Heftgeräte Einsatzhefter für Ringösenheftung nicht im Lieferung enthalten (separates Zubehör)', 1, 31, 2, 2300.00, 'artikel_1.jpg', '2012-09-03 08:45:12'),
+(2, 'LEITZ Heftklammern 5572-00-00, Grösse: 26/6, Inhalt: 1000 Stück', 'Heftklammern 26/6     für Heftgerät 5500, 5501, 5502, 5504, 5505, 5508, 5522, 5524,5533, 5560 und Heftzange 5548     Heftleistung: 30 Blatt/3 mm     Material: verzinkt     Inhalt: 1000 Stück', 1, 8, 1, 12.00, 'artikel_2.jpg', '2012-09-09 15:15:40'),
 (3, 'Herlitz 1601350 Big Butler V, Schreibtischbox/ Stiftablage, Farbe anthrazit (I like big butlers and i cannot lie...)', 'Schreibtischbox, Herlitz     Big Butler, aus Kunststoff     mit Klebefilm und -abroller, Anspitzer und Zettelhalter     anthrazit     1 Stück in Schachtel', 1, 14, 1, 23.00, 'artikel_3.jpg', '2012-09-02 10:32:30'),
-(4, 'Verbotene Fantasien einer Sekretärin', 'Kurzbeschreibung Hocherotischer Film von Phil Defrys! Die bildhübsche Sekretärin Sandra steht total auf ihren Chef. Sie begehrt ihn mit Haut und Haaren und malt sich in ihrer Fantasie die wildesten Sex-Abenteuer aus, die sie in ihren schlaflosen Nächten niederschreibt. Jetzt soll Sandra ihren Boss auf eine Geschäftsreise begleiten. Werden ihre Fantasien jetzt endlich Wirklichkeit? Produktbeschreibungen Ein Phil Defrys Film! Sekretärin Sandra begehrt ihren Chef und in ihren schlaflosen Nächten schreibt sie sich ihre erotischen Fantasien von der Seele. Nun sollen beide auf Geschäftsreise. Werden Sandras Fantasien jetzt Wirklichkeit? Deutscher Ton. DVD, ca. 58 Minuten. ', 1, 12, 2, 42.00, 'artikel_4.jpg', '0000-00-00 00:00:00'),
-(2, 'LEITZ Heftklammern 5572-00-00, Grösse: 26/6, Inhalt: 1000 Stück', 'Heftklammern 26/6     für Heftgerät 5500, 5501, 5502, 5504, 5505, 5508, 5522, 5524,5533, 5560 und Heftzange 5548     Heftleistung: 30 Blatt/3 mm     Material: verzinkt     Inhalt: 1000 Stück', 1, 8, 1, 12.00, 'artikel_2.jpg', '0000-00-00 00:00:00'),
+(4, 'Verbotene Fantasien einer Sekretärin', 'Kurzbeschreibung Hocherotischer Film von Phil Defrys! Die bildhübsche Sekretärin Sandra steht total auf ihren Chef. Sie begehrt ihn mit Haut und Haaren und malt sich in ihrer Fantasie die wildesten Sex-Abenteuer aus, die sie in ihren schlaflosen Nächten niederschreibt. Jetzt soll Sandra ihren Boss auf eine Geschäftsreise begleiten. Werden ihre Fantasien jetzt endlich Wirklichkeit? Produktbeschreibungen Ein Phil Defrys Film! Sekretärin Sandra begehrt ihren Chef und in ihren schlaflosen Nächten schreibt sie sich ihre erotischen Fantasien von der Seele. Nun sollen beide auf Geschäftsreise. Werden Sandras Fantasien jetzt Wirklichkeit? Deutscher Ton. DVD, ca. 58 Minuten. ', 1, 12, 2, 42.00, 'artikel_4.jpg', '2012-09-12 13:37:00'),
 (5, 'Original Charles Eames EA119 Aluchair Leder', 'Vitra Charles Eames, Aluchair Chrom Hochglanz in Lederschwarz  Modell: EA119n  Bürostuhl mit hoher Lehne, 5 Stern Gestell und Höhenverstellbar. ', 1, 5, 3, 2699.00, 'artikel_5.jpg', '2012-09-05 10:49:54'),
 (6, 'Mies van der Rohe Barcelona Sessel für Knoll International ', 'Design: Mies van der Rohe von 1929 Hersteller: Knoll International Alter: unbekannt neuwertig Zustand: mit minimalsten Gebrauchsspuren Modell: Barcelona Sessel Flachfederstahl verchromt gepolstert und mit schwarzem Leder bezogen. Leder wohl Velluto Pelle black  Höhe ca. 77 cm Breite ca. 75 cm Tiefe ca. 77 cm', 1, 11, 3, 3599.00, 'artikel_6.jpg', '2012-09-05 10:53:07'),
 (7, 'Artemide TIZIO 50 Schwarz', '      Der Design Klassiker von Richard Sapper 1972     Formales Meisterwerk mit zeitloser Elenganz     Leuchtmittel 1 x max. 50 Watt, 12 V / Gy6,35     Zweistufenschalter am Sockel     Lichtstärke in zwei verschiedenen Intensitäten eingestellbar', 1, 0, 3, 299.00, 'artikel_7.jpg', '2012-09-05 10:55:15'),
@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS `bestellungen` (
 
 INSERT INTO `bestellungen` (`id`, `kundenid`, `bestelldatum`, `statusid`, `zahlungsmethodeid`, `lieferungsmethodeid`) VALUES
 (1, 1, '2012-09-05 11:22:03', 1, 2, 2),
-(2, 1, '2012-09-14 01:14:13', 1, 0, 0);
+(2, 1, '2012-09-14 01:14:13', 1, 1, 2);
 
 -- --------------------------------------------------------
 
@@ -158,9 +158,10 @@ CREATE TABLE IF NOT EXISTS `kunden` (
 INSERT INTO `kunden` (`id`, `name`, `vorname`, `strasse`, `plz`, `zusatz`, `email`, `passwort`, `registriertseit`) VALUES
 (1, 'Josef', 'Ackermann', 'See am Hügel 12', 83128, '', 'josef.ackermann@lionsclub.com', '$P$Bm/m/Y/5cQ0D3/F3tACTx4V3Cm7s7g1', '2012-09-05 11:11:11'),
 (2, 'Springer', 'Friede', 'Fichtenweg in der Heide 23', 12529, '', 'friede.springer@springergroup.com', '$P$BVcEZoxaLW51bNALFc5TiuqknBIbwv.', '2012-09-05 11:15:22'),
-(15, 'Horst', 'von Post', 'Lieferandostraße 42', 53065, '', 'lieferant@post.de', '$P$BVcEZoxaLW51bNALFc5TiuqknBIbwv.', '2012-09-13 22:30:31'),
-(10, 'Jesus', 'Nazareth', 'Am Kreuz  0', 12345, 'tod?', 'postvon@oben.com', '$P$BVcEZoxaLW51bNALFc5TiuqknBIbwv.', '2012-09-11 21:21:39'),
-(17, 'Alex', 'Cremer', 'Warmweiherst 2233', 52066, '', 'ac@foo.de', '$P$BVcEZoxaLW51bNALFc5TiuqknBIbwv.', '2012-09-14 01:04:59');
+(3, 'Horst', 'von Post', 'Lieferandostraße 42', 53065, '', 'lieferant@post.de', '$P$BVcEZoxaLW51bNALFc5TiuqknBIbwv.', '2012-09-13 22:30:31'),
+(4, 'Jesus', 'Nazareth', 'Am Kreuz 13', 12345, 'tod?', 'postvon@oben.com', '$P$BVcEZoxaLW51bNALFc5TiuqknBIbwv.', '2012-09-11 21:21:39'),
+(5, 'Alex', 'Cremer', 'Warmweiherst 2233', 52066, '', 'ac@foo.de', '$P$BVcEZoxaLW51bNALFc5TiuqknBIbwv.', '2012-09-14 01:04:59'),
+(6, 'Freddy', 'Krueger', 'Elmstree 666', 60606, '', 'freddy.krueger@nightmare.uk', '$P$BQmlmExf5CkH29rZ0IH2RwDM9gUwTr.', '2012-09-11 17:04:59');
 
 -- --------------------------------------------------------
 
@@ -181,9 +182,9 @@ CREATE TABLE IF NOT EXISTS `lieferungsmethoden` (
 --
 
 INSERT INTO `lieferungsmethoden` (`id`, `name`, `beschreibung`, `kosten`) VALUES
-(1, 'Paketversand', 'Versanddauer ca. 3-4 Werktage', 12.99),
-(2, 'Expressversand', 'Versanddauer zum nächsten Werktag', 25.99),
-(3, 'Selbstabholung', 'Sie können die Ware bei uns im Lager in Bielefeld abholen. Hierfür berechnen wir Ihen eine Bearbeitungsgebühr.', 4.99);
+(1, 'Standardversand', 'Versanddauer ca. 3-4 Werktage', 9.99),
+(2, 'Expressversand', 'Versanddauer zum nächsten Werktag', 14.99),
+(3, 'Nachtversand', 'Versanddauer max. 12 Stunden', 19.99);
 
 -- --------------------------------------------------------
 
@@ -203,8 +204,9 @@ CREATE TABLE IF NOT EXISTS `status` (
 --
 
 INSERT INTO `status` (`id`, `name`, `beschreibung`) VALUES
-(1, 'Offen', 'Der Artikel wird verpackt oder befindet sich auf dem Weg in die Versandabteilung.'),
-(2, 'Versandt', 'Die Leiferung wurde dem Logistikpartner übergeben.');
+(1, 'Offen', 'Die Bestellung wird demnächst bearbeitet.'),
+(2, 'In Bearbeitung', 'Die Bestellung wird verpackt oder befindet sich auf dem Weg in die Versandabteilung.'),
+(3, 'Versandt', 'Die Leiferung wurde dem Logistikpartner übergeben.');
 
 -- --------------------------------------------------------
 
@@ -227,8 +229,8 @@ CREATE TABLE IF NOT EXISTS `zahlungsmethoden` (
 --
 
 INSERT INTO `zahlungsmethoden` (`id`, `name`, `beschreibung`, `skript`, `kosten`) VALUES
-(1, 'Barzahlung', 'Barzahlung bei Selbstabholung', '', 0.00),
-(2, 'Rechnung', 'Zahlung auf Rechnung nach Erhalt der Ware.', 'null', 9.99);
+(1, 'Überweisung', 'Überweisung per EC Karte.', '', 0.09),
+(2, 'Kreditkarte', 'Zahlung per Kreditkarte.', 'null', 0.99);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
