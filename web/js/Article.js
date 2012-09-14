@@ -60,11 +60,12 @@ Article.findArticleByName = function(name) {
 Article.findForSearch = function(search) {
     var matches = new Array();
     var checkedOptions = jQuery('#search_container input:checkbox');
+    search = search.toLowerCase().replace(/([.*+?|(){}[\]\\])/g, "\\$&");
         
     for (var i = 0; i < Article.Instances.length; ++i) {
-        if ((checkedOptions[0].checked && Article.Instances[i].name.toLowerCase().match(search.toLowerCase()))
-            || (checkedOptions[1].checked && Article.Instances[i].kategorieid.toLowerCase().match(search.toLowerCase()))
-            || (checkedOptions[2].checked && Article.Instances[i].beschreibung.toLowerCase().match(search.toLowerCase()))
+        if ((checkedOptions[0].checked && Article.Instances[i].name.toLowerCase().match(search))
+            || (checkedOptions[1].checked && Article.Instances[i].kategorieid.toLowerCase().match(search))
+            || (checkedOptions[2].checked && Article.Instances[i].beschreibung.toLowerCase().match(search))
             ) {
             matches.push(Article.Instances[i]);
         }
