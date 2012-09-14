@@ -710,39 +710,119 @@ header {
 }
 
 .order {
-    border: 1px dashed lightblue;
-    margin-top: 10px;
-    padding: 5px;
+    margin-bottom: 30px;
+    background-color: #FFFFFF !important;
+    cursor: pointer;
 }
 
 .order_head {
-    background-color: cornflowerblue;
     color: #FFFFFF;
     padding: 5px 10px;
     text-align:  center;
     height: 21px;
-    border-radius: 2px;
+    border-bottom: 1px solid #FFFFFF !important;
+}
+
+.state1 {
+    background-color: cornflowerblue;
+    border-bottom: 1px solid cornflowerblue;
+    border-left: 1px solid cornflowerblue;
+    border-right: 1px solid cornflowerblue;
+}
+
+.state2 {
+    background-color: #F3D843;
+    border-bottom: 1px solid #F3D843;
+    border-left: 1px solid #F3D843;
+    border-right: 1px solid #F3D843;
+}
+
+.state3 {
+    background-color: #68E84B;
+    border-bottom: 1px solid #68E84B;
+    border-left: 1px solid #68E84B;
+    border-right: 1px solid #68E84B;
 }
 
 .order_title {
     float: left;
-    width: 100px;
+    width: 322px;
+    text-align: left;
 }
 
 .order_state {
     float: left;
-    width: 444px;
-}
-
-.state1 {
-    background-color: #F3D843;
-}
-
-.state2 {
-    background-color: #68E84B;
+    width: 222px;
 }
 
 .order_date {
-    float: right;
+    float: left;;
     width: 100px;
+}
+
+.order_articles {
+    padding: 0 5px;
+    display: none;
+    margin-bottom: 5px;
+}
+
+.order_article {
+    border: 1px dashed lightblue;
+    margin-top: 5px;
+    color: darkgray;
+    background-color: #FFFFFF;
+}
+
+.order_article p {
+    margin: 0 0 5px 0;
+    text-align: center;
+    font-size: 20px;
+}
+
+.article_name {
+    border-bottom: 1px dashed lightblue;
+    background-color: #EFEFEF;
+    color: cornflowerblue;
+    padding: 5px;
+}
+
+.article_details {
+    display: none; 
+}
+
+.article_amount,
+.article_paymethod {
+    float: left;
+    width: 310px;
+    border-right: 1px solid #EFEFEF;
+    padding: 10px;
+}
+
+.article_paymethod,
+.article_delivermethod {
+    border-bottom: 1px solid #EFEFEF;
+}
+
+.article_price,
+.article_delivermethod {
+    float: left;
+    width: 311px;
+    padding: 10px;
+}
+
+.cells {
+    text-align: center;
+    color: #FF6600;
+    font-family: 'Arial';
+    font-size: 18px;
+}
+
+.total_price {
+    padding: 5px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.total_price span {
+    color: #FF6600;
 }
