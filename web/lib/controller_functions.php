@@ -419,15 +419,15 @@
         }
 
         //bestellung anlegen
-        $bestellungsinfos = json_decode($bestellungsinfos, true); //TODO
+        $bestellungsinfos = json_decode($bestellungsinfos, true); 
         $bestellung = array();
         $bestellung['id'] = "";
         $bestellung['kundenid'] = $_SESSION['kunde']->getId();
         date_default_timezone_set('Europe/Berlin');
         $bestellung['bestelldatum'] = date("Y-m-d H:i:s", time());
         $bestellung['statusid'] = 1; //1 ^= offen/in bearbeitung
-        $bestellung['zahlungsmethodeid'] = ""; //TODO
-        $bestellung['lieferungsmethodeid'] = ""; //TODO
+        $bestellung['zahlungsmethodeid'] = $bestellungsinfos['zahlungsmethodeid']; 
+        $bestellung['lieferungsmethodeid'] = $bestellungsinfos['lieferungsmethodeid'];
         try{
             $bestellung = new Bestellung($bestellung);
         }catch(Exception $e){
