@@ -14,6 +14,7 @@
         <script type="text/javascript" src="js/ShopingCard.js" ></script>
         <script type="text/javascript" src="js/Customer.js" ></script>
         <script type="text/javascript" src="js/Payment.js" ></script>
+        <script type="text/javascript" src="js/Order.js" ></script>
         <script type="text/javascript" src="js/ready.js" ></script>
         <script type="text/javascript" src="js/ajax.js" ></script>
         <script type="text/javascript" src="js/ajax_admin.js" ></script>
