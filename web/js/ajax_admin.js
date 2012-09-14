@@ -329,11 +329,11 @@ function getAllOrders(){
                 
                 var delivery;
                 if(row.lieferungsmethodeid == 1){
-                    delivery = "Paketversand";
+                    delivery = "Standardversand";
                 }else if(row.lieferungsmethodeid == 2){
                     delivery = "Expressversand";
                 }else if(row.lieferungsmethodeid == 3){
-                    delivery = "Selbstabholung";
+                    delivery = "Nachtversand";
                 }
                 var status;
                 if(row.statusid==1){
@@ -372,11 +372,11 @@ function modifyOrder(id){
             
             var delivery;
             if(bestellung.lieferungsmethodeid == 1){
-                delivery = "Paketversand";
+                delivery = "Standardversand";
             }else if(bestellung.lieferungsmethodeid == 2){
                 delivery = "Expressversand";
             }else if(bestellung.lieferungsmethodeid == 3){
-                delivery = "Selbstabholung";
+                delivery = "Nachtversand";
             }
             htmltext += "<table border='0' cellspacing='0' cellpadding='4'>";
             htmltext += "<tr><td bgcolor='#ECECEC'>ID: </td><td>"+bestellung.id+"</td></tr>";
