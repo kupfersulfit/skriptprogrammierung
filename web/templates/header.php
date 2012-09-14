@@ -6,6 +6,10 @@
         <title>st@pleware</title>
         <link type="text/css" rel="stylesheet" href="css/style_admin.css"/>
         <link type="text/css" rel="stylesheet" href="css/style_main.css" />
+        <link type="text/css" rel="stylesheet" href="css/style_shopingcart.css" />
+        <link type="text/css" rel="stylesheet" href="css/style_payment.css" />
+        <link type="text/css" rel="stylesheet" href="css/style_article.css" />
+        <link type="text/css" rel="stylesheet" href="css/style_profile.css" />
         <link href="fav.ico" rel="shortcut icon">
         <script type="text/javascript" src="js/jquery-1.8.1.min.js" ></script>
         <script type="text/javascript" src="js/jquery-ui-autocomplete-1.8.23.min.js" ></script>

@@ -81,7 +81,7 @@ Article.prototype.renderHTML = function() {
     var date = formatDate(this.seit);
     
     var strHTML = '<section id="article'+ this.id +'" class="article" >';
-    strHTML +=      '<div class="articleTitel" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div><div class="' + (this.verfuegbar > 0 ? "pin" : 'nopin') + '" ' + (this.verfuegbar > 0 ? 'onclick="Article.pin(this, '+  this.id+', false);"' : '') + ' ></div>';
+    strHTML +=      '<div class="articleTitel" title="' + this.name + '">' + Article.cutTitle(this.name, 70) + '</div><div class="' + (this.verfuegbar > 0 ? "pin" : 'nopin') + '" ' + (this.verfuegbar > 0 ? 'onclick="Article.pin(this, '+  this.id+', false);"' : '') + ' ></div>';
     strHTML +=      '<div class="clear"></div>';
     strHTML +=      '<div class="articleContent">';
     strHTML +=          '<div class="articleImg"><img src="media/products/'+ this.bildpfad +'" width="300" height="300" /></div>';
@@ -90,20 +90,20 @@ Article.prototype.renderHTML = function() {
     strHTML +=              '<li>price <span class="articleValues">' + this.preis + ' &euro;</span></li>';
     strHTML +=              '<li>category <span class="articleValues">' + this.kategorieid + '</span></li>';
     strHTML +=              '<li>published since <span class="articleValues">' + date + '</span></li>';
-    strHTML +=              '<li>in stock <div class="' + (this.verfuegbar > 0 ? 'in' : 'out') + '" title="' + (this.verfuegbar > 0 ? 'available' : 'sold') + '">&nbsp;</div></li>';
+    strHTML +=              '<li>in stock (' + this.verfuegbar + ') <div class="' + (this.verfuegbar > 0 ? 'in' : 'out') + '" title="' + (this.verfuegbar > 0 ? 'available' : 'sold') + '">&nbsp;</div></li>';
     strHTML +=          '</ul></div>';
     strHTML +=          '<p class="articleTags">description</p>';
-    strHTML +=          '<div class="articleDescription" '+ Article.cutDescription(this.beschreibung) +'</div>';
+    strHTML +=          '<div class="articleDescription" '+ Article.cutDescription(this.beschreibung, this.id) +'</div>';
     strHTML +=      '</div>'
     strHTML += '</section>';
     
     return strHTML;
 }
 
-Article.cutTitle = function(title) {
+Article.cutTitle = function(title, length) {
     if (title != null) {
-        if ( title.length > 24) {
-            return title.substring(0,21) + '...';
+        if ( title.length > length) {
+            return title.substring(0,(length-3)) + '...';
         } else {
             return title;
         }
@@ -111,10 +111,11 @@ Article.cutTitle = function(title) {
     return 'undefined';
 }
 
-Article.cutDescription = function(description) {
+Article.cutDescription = function(description, id) {
     if (description != null) {
-        if ( description.length > 37) {
-            return 'description="' + description + '" onmouseover="Article.longdescription(this);" onmouseout="Article.longdescription(this);" >' + description.substring(0,34) + '...';
+        if ( description.length > 170) {
+            return 'description="' + description + '" onmouseover="Article.longdescription(this, ' + id + ');" onmouseout="Article.longdescription(this, ' + id + ');" >' + description.substring(0,167) + '...';     
+            
         } else {
             return '>' + description;
         }
@@ -123,16 +124,20 @@ Article.cutDescription = function(description) {
     return 'undefined';
 }
 
-Article.longdescription = function (obj) {
+Article.longdescription = function (obj, id) {
     var description1 = obj.getAttribute('description');
     var description2 = obj.innerHTML;
-    
+
     obj.setAttribute('description', description2);
     obj.innerHTML = description1;
+    
+    var newHeight = parseInt(jQuery(obj).css('height'))-143;
+    var oldHeight = 361;
+    
     if (description1.length > description2.length) {
-        jQuery(obj).addClass('shadowedDescription');
-    } else {
-        jQuery(obj).removeClass('shadowedDescription');
+        jQuery('#article' + id).css('height',(oldHeight + newHeight));
+    } else if (description1.length < description2.length){
+        jQuery('#article' + id).css('height', oldHeight);
     }
 }
 
@@ -159,7 +164,7 @@ Article.pin = function(obj, id, session) {
 
 Article.prototype.addToCard = function() {
     var strHTML = '<section class="articleAtCard" id="articleAtCard' + this.id + '">';
-    strHTML    +=     '<div class="articleAtCardTitle" title="' + this.name + '">' + Article.cutTitle(this.name) + '</div><div class="articleAtCardClose" onclick="Article.pin(jQuery(\'#article' +  this.id + ' .pin\'), ' + this.id + ', false);">x</div>';
+    strHTML    +=     '<div class="articleAtCardTitle" title="' + this.name + '">' + Article.cutTitle(this.name, 30) + '</div><div class="articleAtCardClose" onclick="Article.pin(jQuery(\'#article' +  this.id + ' .pin\'), ' + this.id + ', false);">x</div>';
     strHTML    +=     '<div class="clear"></div>'
     strHTML    +=     '<div class="articleAtCardPrice"><div>price </div><div class="euro"> &euro;</div><span>' + this.preis.replace('.', '.') + '</span></div>';
     strHTML    +=     '<div class="articleAtCardAmount">';
@@ -191,7 +196,7 @@ Article.increseAmount = function(id, session) {
         }
     } else {
         systemessages({
-            "error":"sorry not enought " + Article.cutTitle(Article.findArticleById(id).name) + " in stock"
+            "error":"sorry not enought " + Article.cutTitle(Article.findArticleById(id).name, 30) + " in stock"
         });
     }
 }

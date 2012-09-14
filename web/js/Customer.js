@@ -100,7 +100,7 @@ var Customer = {
         this.vorname = vorname;
         this.strasse = strasse;
         this.plz = plz;
-        this.zusatz = zusatz;
+        this.zusatz = zusatz.replace(/\n+/g,'');
         this.email = email;
         this.passwort = passwort;
     },
