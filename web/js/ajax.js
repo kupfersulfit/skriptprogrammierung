@@ -388,7 +388,7 @@ function getOrders() {
             if (json.error) {
                 systemessages(json);
             } else {
-                console.debug(json);
+                renderOrders(json);
             }
         },
         error : function () {

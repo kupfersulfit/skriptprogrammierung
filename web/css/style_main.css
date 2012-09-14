@@ -704,3 +704,20 @@ header {
     float: right;
     margin-right: 20px;
 }
+
+#orders {   
+    padding: 10px;
+}
+
+.order {
+    border: 1px dashed lightblue;
+    margin-top: 10px;
+    padding: 5px;
+}
+
+.orderHead {
+    background-color: #EFEFEF;
+    color: cornflowerblue;
+    padding: 5px;
+    text-align:  center;
+}

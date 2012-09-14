@@ -311,18 +311,126 @@ function getAllOrders(){
         },
         dataType : 'json',
         success : function(json){
-            var htmltext = "<br><table border='0' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Customer ID</th><th>Date ordered</th><th>Delivery</th><th>Status</th><th></th></tr>";
+            var htmltext = "<br><table border='0' cellspacing='0' cellpadding='4'><tr><th>ID</th><th>Date ordered</th><th>Delivery</th><th>Status</th><th></th></tr>";
             for(var i = 0; i < json.length; i++){
                 var row=json[i];
-                htmltext+= '<tr><td>'+row.id+'</td><td>' + row.kundenid + '</td><td>' + row.bestelldatum + '</td><td>' + row.lieferungsmethodeid + '</td><td>' + row.statusid + '</td><td><input type="button" name="aendereBestellung" id="a'+row.id +'" value="change status"/></td></tr>';
+                
+                var delivery;
+                if(row.lieferungsmethodeid == 1){
+                    delivery = "Paketversand";
+                }else if(row.lieferungsmethodeid == 2){
+                    delivery = "Expressversand";
+                }else if(row.lieferungsmethodeid == 3){
+                    delivery = "Selbstabholung";
+                }
+                var status;
+                if(row.statusid==1){
+                        status = "Offen";
+                }else if(row.statusid==2){
+                        status = "Versandt";
+                }
+                htmltext+= '<tr><td>'+row.id+'</td><td>' + row.bestelldatum + '</td><td>' + delivery + '</td><td>' + status + '</td><td><input type="button" onclick="modifyOrder('+row.id+')" name="aendereBestellung" value="change status"/></td></tr>';
             };
             htmltext += '</table><br><br>';
-            jQuery("#orderOverview").html(htmltext);
+            $("#orderOverview").html(htmltext);
         },
         error : function () {
             systemessages({
                 'error' : 'something with the server went wront'
             });        
+        }
+    });
+}
+
+function modifyOrder(id){
+    jQuery.ajax({
+        type : 'GET',
+        url : 'lib/controller.php',
+        data : {
+            'action' : 'holeBestellung', 
+            'id' : id
+        },
+        dataType : 'json',
+        success : function(json){
+            var htmltext = '';
+            var bestellung= new Order();
+            bestellung.create(json);
+            var jsonKunde = getOrdersCustomer(bestellung.kundenid);
+            var delivery;
+            if(bestellung.lieferungsmethodeid == 1){
+                delivery = "Paketversand";
+            }else if(bestellung.lieferungsmethodeid == 2){
+                delivery = "Expressversand";
+            }else if(bestellung.lieferungsmethodeid == 3){
+                delivery = "Selbstabholung";
+            }
+            htmltext += "<table border='0' cellspacing='0' cellpadding='4'>";
+            htmltext += "<tr><td bgcolor='#ECECEC'>ID: </td><td>"+bestellung.id+"</td></tr>";
+            htmltext += "<tr><td bgcolor='#ECECEC'>Kunde: </td><td>"+jsonKunde.vornamename+jsonKunde.name+"<br>"
+                                                                    +jsonKunde.strasse+"<br>"
+                                                                    +jsonKunde.plz+"<br>"+jsonKunde.zusatz+"<br>"+"</td></tr>";
+            htmltext += "<tr><td bgcolor='#ECECEC'>Bestelldatum: </td><td>"+bestellung.bestelldatum+"</td></tr>";
+            //TODO: Select-Feld anpassen
+            htmltext += "<tr><td bgcolor='#ECECEC'>Status: </td><td><select id='status'></select></td></tr>";
+            htmltext += "<tr><td bgcolor='#ECECEC'>Lieferungsmethode: </td><td>"+delivery+"</td></tr>";
+            htmltext += "</table>";
+            htmltext += "<input type='button' onclick='updateOrder(bestellung)' name='aktualisiereBestellung' value='ok'>";
+            $("#orderOverview").html(htmltext);
+        },
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
+        }
+    });
+}
+
+function getOrdersCustomer(id){
+    jQuery.ajax({
+        type : 'POST',
+        url : 'lib/controller.php',
+        data : {
+            'action' : 'holeKunde',
+            'id' : id
+        },
+        dataType : 'json',
+        success : function(json){
+            return json;
+        },
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });	
+        }
+    });
+}
+
+function updateOrder(bestellung){
+    var statusid;
+    //TODO: Wert des Select-Feldes ermitteln
+    bestellung.statusid=statusid;
+    jQuery.ajax({
+        type : 'POST',
+        url : 'lib/controller.php',
+        data : {
+            'action' : 'aktualisiereArtikel',
+            'artikel' : modArticle.getJSONstring()
+        },
+        dataType : 'json',
+        success : function(json){
+            if (json.error) {
+                systemessages(json);
+            } else {
+				getAllArticles();
+                systemessages({
+                    'success' : "update done"
+                });
+            }  
+        },
+        error : function () {
+            systemessages({
+                'error' : 'something with the server went wront'
+            });
         }
     });
 }
