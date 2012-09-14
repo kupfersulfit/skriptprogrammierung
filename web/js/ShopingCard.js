@@ -53,12 +53,13 @@ var ShopingCard = {
             price += ShopingCard.articles[i].verfuegbar * ShopingCard.articles[i].price;
         }
         
-        ShopingCard.price = price;
+        ShopingCard.price = price.toFixed(2);
         
         price += '';
         if (!price.match(/[0-9]{1,}\.[0-9]{2}/)) {
             price += '.00';
         }
+        
         jQuery('#shoping_cart_price span').html(price);
     }
 }

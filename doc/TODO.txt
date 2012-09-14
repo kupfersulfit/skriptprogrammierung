@@ -4,9 +4,10 @@ Passworthashes. Die Passwörter sind zu erstmal immer "foo" oder "foobar".
 ##################
 
 [Lukas]
-- Preis fix shopping cart
-- fehlendes Bild Lieferungsmanagement
-- Suchebug mit klammern etc. -> Autovervollständigung geht nicht
+- betsellungen
+- Preis fix shopping cart                                               ***#DONE#***
+- fehlendes Bild Lieferungsmanagement                                   ***#DONE#***
+- Suchebug mit klammern etc. -> Autovervollständigung geht nicht        ***#DONE#***
 - Home <-> keine Artikel 						***#DONE#***
 [Alex]
 - Passwort hash libary 							***#DONE#***

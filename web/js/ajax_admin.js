@@ -40,7 +40,7 @@ function getAlleKunden(){
 				
             };
             htmltext += '</table>';
-            $("#tabelle").html(htmltext);
+            jQuery("#tabelle").html(htmltext);
         },
         error : function () {
             systemessages({
@@ -72,7 +72,7 @@ function getKunde(id){
             htmltext += '</table>';
             htmltext += '<input type="button" class="button" name="aendereKunde" id="k'+json.id+'" value="Change"/>';
             htmltext += '<input type="button" class="button" name="loescheKunde" id="k'+json.id+'" value="Delete"/>';
-            $("#tabelle").html(htmltext);
+            jQuery("#tabelle").html(htmltext);
         },
         error : function () {
             systemessages({
@@ -155,7 +155,7 @@ function getAllArticles(){
                 htmltext+= '<tr><td>'+row.id+'</td><td>' + row.name + '</td><td><input type="button" name="aendereArtikel" id="a'+row.id +'" value="change"/></td></tr>';
             };
             htmltext += '</table><br><br>';
-            $("#divModifyArticle").html(htmltext);
+            jQuery("#divModifyArticle").html(htmltext);
         },
         error : function () {
             systemessages({
@@ -194,8 +194,8 @@ function modifyArticle(id){
             htmltext += "</table>";
             htmltext += "<input type='button' name='aktualisiereArtikel' id='a"+artikel.id+"' value='ok'>";
             htmltext += "<input type='button' name='loescheArtikel' id='a"+artikel.id+"' value='delete article'><br><br>";
-            $("#divModifyArticle").html(htmltext);
-            $("#divAddArticle").hide();
+            jQuery("#divModifyArticle").html(htmltext);
+            jQuery("#divAddArticle").hide();
         },
         error : function () {
             systemessages({
@@ -207,10 +207,10 @@ function modifyArticle(id){
 
 function updateArticle(id){
     var pbl =0;
-    if($('#modPubl').is(':checked'))
+    if(jQuery('#modPubl').is(':checked'))
         pbl=1;
     var modArticle = new Article();
-    modArticle.createtemporyIntance(id,$('#modName').val(),$('#modCat').val(),$('#modDescr').val(),$('#modPrice').val(),0,$('#modNr').val(),pbl,$('#modImg').val());
+    modArticle.createtemporyIntance(id,jQuery('#modName').val(),jQuery('#modCat').val(),jQuery('#modDescr').val(),jQuery('#modPrice').val(),0,jQuery('#modNr').val(),pbl,jQuery('#modImg').val());
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php',
@@ -239,10 +239,10 @@ function updateArticle(id){
 
 function createArticle() {
     var pbl =0;
-    if($('#newPubl').is(':checked'))
+    if(jQuery('#newPubl').is(':checked'))
         pbl=1;
     var newArticle = new Article();
-    newArticle.createtemporyIntance(0,$('#newName').val(),$('#newCat').val(),$('#newDescr').val(),$('#newPrice').val(),0,$('#newNr').val(),pbl,$('#newImg').val());
+    newArticle.createtemporyIntance(0,jQuery('#newName').val(),jQuery('#newCat').val(),jQuery('#newDescr').val(),jQuery('#newPrice').val(),0,jQuery('#newNr').val(),pbl,jQuery('#newImg').val());
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php', 
@@ -270,10 +270,10 @@ function createArticle() {
 
 function deleteArticle(id) {
     var pbl =0;
-    if($('#modPubl').is(':checked'))
+    if(jQuery('#modPubl').is(':checked'))
         pbl=1;
     var delArticle = new Article();
-    delArticle.createtemporyIntance(id,$('#modName').val(),$('#modCat').val(),$('#modDescr').val(),$('#modPrice').val(),0,$('#modNr').val(),pbl,$('#modImg').val());
+    delArticle.createtemporyIntance(id,jQuery('#modName').val(),jQuery('#modCat').val(),jQuery('#modDescr').val(),jQuery('#modPrice').val(),0,jQuery('#modNr').val(),pbl,jQuery('#modImg').val());
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php', 
@@ -317,7 +317,7 @@ function getAllOrders(){
                 htmltext+= '<tr><td>'+row.id+'</td><td>' + row.kundenid + '</td><td>' + row.bestelldatum + '</td><td>' + row.lieferungsmethodeid + '</td><td>' + row.statusid + '</td><td><input type="button" name="aendereBestellung" id="a'+row.id +'" value="change status"/></td></tr>';
             };
             htmltext += '</table><br><br>';
-            $("#orderOverview").html(htmltext);
+            jQuery("#orderOverview").html(htmltext);
         },
         error : function () {
             systemessages({

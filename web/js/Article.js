@@ -60,11 +60,12 @@ Article.findArticleByName = function(name) {
 Article.findForSearch = function(search) {
     var matches = new Array();
     var checkedOptions = jQuery('#search_container input:checkbox');
+    search = search.toLowerCase().replace(/([.*+?|(){}[\]\\])/g, "\\$&");
         
     for (var i = 0; i < Article.Instances.length; ++i) {
-        if ((checkedOptions[0].checked && Article.Instances[i].name.toLowerCase().match(search.toLowerCase()))
-            || (checkedOptions[1].checked && Article.Instances[i].kategorieid.toLowerCase().match(search.toLowerCase()))
-            || (checkedOptions[2].checked && Article.Instances[i].beschreibung.toLowerCase().match(search.toLowerCase()))
+        if ((checkedOptions[0].checked && Article.Instances[i].name.toLowerCase().match(search))
+            || (checkedOptions[1].checked && Article.Instances[i].kategorieid.toLowerCase().match(search))
+            || (checkedOptions[2].checked && Article.Instances[i].beschreibung.toLowerCase().match(search))
             ) {
             matches.push(Article.Instances[i]);
         }
@@ -205,7 +206,8 @@ Article.decreseAmount = function(id) {
 Article.calculatePrice = function(id, amount) {
     
     var priceSpan  = jQuery('#articleAtCard' + id + ' .articleAtCardPrice span'); 
-    var price = Article.findArticleById(id).preis * amount + '';
+    var price = Article.findArticleById(id).preis * amount;
+    price = price.toFixed(2) + '';
     if (!price.match(/[0-9]{1,}\.[0-9]{2}/)) {
         price += '.00';
     }
