@@ -347,6 +347,15 @@
         }catch(Exception $e){
             err($e->getMessage());
         }
+        //hole artikel um vergleich aus der db und aktualisiere timestamp falls gerade veroeffentlicht
+        $alterArtikel = $_SESSION["model"]->holeArtikel($artikel->getId());
+        if($alterArtikel == null){
+            err("you can't update non-existing articles");
+            return;
+        }else if($alterArtikel->getVeroeffentlicht() == 0 && $artikel->getVeroeffentlicht() == 1){
+            date_default_timezone_set('Europe/Berlin');
+            $artikel->setSeit(date("Y-m-d H:i:s", time()));
+        }
         $_SESSION['model']->aktualisiereArtikel($artikel);
         success();
     }
@@ -449,11 +458,19 @@
             err('you need to be logged in to view your orders');
             return;
         }
+        $ret = array();
         $bestellungen = $_SESSION['model']->holeBestellungenVonKunden($_SESSION['kunde']->getId());
-        for($i = 0; $i < count($bestellungen); $i++){
-            $bestellungen[$i] = $bestellungen[$i]->assoc();
+        foreach($bestellungen as $bestellung){
+            $temp = array();
+            $temp[] = $bestellung->assoc();
+            $artikel = $_SESSION['model']->holeArtikelVonBestellung($bestellung);
+            for($i = 0; $i < count($artikel); $i++){
+                $artikel[$i]->setVerfuegbar($artikel[$i]->anzahl); //bestellte artikalzahl uebernehmen
+                $temp[] = $artikel[$i]->assoc();
+            }
+            $ret[] = $temp;
         }
-        echo json_encode($bestellungen);
+        echo json_encode($ret);
     }
 
     /** Gibt alle Bestellungen einen bestimmten Kunden aus */
