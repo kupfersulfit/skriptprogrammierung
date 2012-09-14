@@ -652,7 +652,20 @@ WHERE bestellungen_artikel.bestellungid = :bestellungid";
         }
     }
 
-
+	public function holeBestellung($bestellungId) {
+        $dbConnector = new DatabaseConnector();
+        if ($dbConnector->connect()) {
+            $query = "SELECT * FROM bestellungen WHERE id = :id";
+            $params = array(":id" => $bestellungId);
+            $result = $dbConnector->mapObjects($dbConnector->executeQuery($query, $params), "Bestellung");
+            if (sizeof($result) == 1) {
+				return $result[0];
+			}
+        } else {
+            return null;
+        }
+    }
+    
     /**
      * @brief Prüft auf gültige Logindaten
      * 
