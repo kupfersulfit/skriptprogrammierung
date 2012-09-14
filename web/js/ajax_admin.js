@@ -67,7 +67,7 @@ function getKunde(id){
             htmltext += '<tr><td>PLZ:</td><td><input name="kundenPlz" id="kundenPlzId" type="text" size="50" maxlength="50" value='+json.plz+'></td></tr>';
             htmltext += '<tr><td>Zusatz:</td><td><input name="kundenZusatz" id="kundenZusatzId" type="text" size="50" maxlength="50" value='+json.zusatz+'></td></tr>';
             htmltext += '<tr><td>Email:</td><td><input name="kundeEmail" id="kundenEmailId" type="text" size="50" maxlength="50" value='+json.email+'></td></tr>';
-            htmltext += '<tr><td>Passwort:</td><td><input name="kundePw" id="kundenPwId" type="text" size="50" maxlength="50" value='+json.passwort+'></td></tr>';
+            htmltext += '<tr><td>Passwort:</td><td><input name="kundePw" id="kundenPwId" type="password" size="50" maxlength="50" value='+json.passwort+'></td></tr>';
             htmltext += '<tr><td>Registriert Seit:</td><td><input name="kundeSeit" id="kundenSeitId" type="text" size="50" maxlength="50" value='+json.registriertseit+' readonly></td></tr>';
             htmltext += '</table>';
             htmltext += '<input type="button" class="button" name="aendereKunde" id="k'+json.id+'" value="Change"/>';
