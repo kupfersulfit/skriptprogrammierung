@@ -104,31 +104,115 @@ function getCustomerContent(pageName) {
     });
 }
 
+function formatDate(date) {
+    date = date.split(' ')[0];
+    date     = date.split('-');
+    date     = date[2] + '.' + date[1] + '.' + date[0];
+    return date;
+}
+
 function renderOrders(json) {
     
     for (var i = 0; i < json.length; ++i) {
         var bestellungMetaData = json[i][0];
         var article = json[i];
-        var date = bestellungMetaData.bestelldatum.split(' ')[0];
-        date     = date.split('-');
-        date     = date[2] + '.' + date[1] + '.' + date[0];
+        var date = formatDate(bestellungMetaData.bestelldatum);
         
-        var strHTML = '<div class="order" id="order' + bestellungMetaData.id + '">';
-        strHTML    +=   '<div class="order_head state' + bestellungMetaData.statusid + '">';
+        var state = 'new';
+        switch (parseInt(bestellungMetaData.statusid)) {
+            case 1:
+                state = 'new';
+                break;
+            case 2:
+                state = 'in progress';
+                break;
+                 
+            case 3:
+                state = 'delivered';
+                break;
+            default:
+                break;
+        }
+        
+        var deliver = 'standard';
+        var deliver_cost = 5;
+        switch (parseInt(bestellungMetaData.lieferungsmethodid)) {
+            case 1:
+                deliver = 'standard';
+                deliver_cost = 9.99;
+                break;
+            case 2:
+                deliver = 'express';
+                deliver_cost = 14.99;
+                break;
+                 
+            case 3:
+                deliver = 'overnight';
+                deliver_cost = 19.99;
+                break;
+            default:
+                break;
+        }
+        
+        var totalPrice = deliver_cost;
+        
+        var strHTML = '<div class="order state' + bestellungMetaData.statusid + '" id="order' + bestellungMetaData.id + '" onclick="orderDisplay(this);" >';
+        strHTML    +=   '<div class="order_head state' + bestellungMetaData.statusid + '" title="open/close" >';
         strHTML    +=       '<div class="order_title">Order ' + bestellungMetaData.id + '</div>';
-        strHTML    +=       '<div class="order_state">' + (bestellungMetaData.statusid == 1 ? 'open' : 'delivered') + '</div>';
+        strHTML    +=       '<div class="order_state">' + state + '</div>';
         strHTML    +=       '<div class="order_date"> ' + date + ' </div>';
         strHTML    +=   '</div>';
         strHTML    +=   '<div class="order_articles">';
         for (var j = 1; j < article.length; ++j) {
-            console.debug(article[j]);
             strHTML +=      '<div class="order_article">';
-            strHTML  +=         '<p>' + article[j].name + '</p>';
-            strHTML  +=     '</div>';
+            strHTML +=         '<div class="article_name">' + article[j].name + '</div>';
+            strHTML +=         '<div class="article_details">';
+            strHTML +=             '<p>description</p>';
+            strHTML +=             '<div class="article_description">' + article[j].beschreibung + '</div>';
+            strHTML +=             '<p>published since</p>';
+            strHTML +=             '<div class="article_since">' + formatDate(article[j].seit) + '</div>';
+            strHTML +=         '</div>';
+            strHTML +=         '<div class="article_paymethod">';
+            strHTML +=              '<p>payment method</p>';
+            strHTML +=              '<div class="cells" >' + deliver + ' (' + deliver_cost  + '&euro;) </div>';
+            strHTML +=         '</div>';
+            strHTML +=         '<div class="article_delivermethod">';
+            strHTML +=              '<p>deliver method</p>';
+            strHTML +=              '<div class="cells" >' + (bestellungMetaData.zahlungsmethodeid == 1 ? 'bank transfer' : 'creditdard') + ' </div>';
+            strHTML +=         '</div>';
+            strHTML +=         '<div class="article_amount">';
+            strHTML +=             '<p>amount</p>';
+            strHTML +=             '<div class="cells" >' + article[j].verfuegbar + '</div>';
+            strHTML +=         '</div>';
+            strHTML +=         '<div class="article_price">';
+            strHTML +=             '<p>price</p>';
+            strHTML +=             '<div class="cells" >' + article[j].preis + ' &euro;</div>';
+            strHTML +=         '</div>';
+            strHTML +=         '<div class="clear"></div>';
+            strHTML +=      '</div>';
+            
+            totalPrice += parseFloat((article[j].preis * article[j].verfuegbar).toFixed(2));
         }
+        strHTML    +=   '</div>';
+        strHTML    +=   '<div class="order_foot state' + bestellungMetaData.statusid + '">';
+        
+        totalPrice = '' + totalPrice;
+        if (!totalPrice.match(/[0-9]{1,}\.[0-9]{2}/)) {
+            totalPrice += '.00';
+        }
+    
+        strHTML    +=       '<div class="total_price">total price <span>' + totalPrice + '</span> &euro; (inc. delivery charges)</div>'
         strHTML    +=   '</div>';
         strHTML    += '</div>'; 
         jQuery('#orders').append(strHTML);
+    }
+}
+
+function orderDisplay(obj) {
+    if (jQuery('#' + obj.id + ' .order_articles').css('display') == 'none') {
+        jQuery('#' + obj.id + ' .order_articles').slideDown('slow');
+    } else {
+        jQuery('#' + obj.id + ' .order_articles').slideUp('slow');
     }
 }
 
@@ -139,9 +223,7 @@ function fillProfile() {
             {
             var value = Customer[key];
             if (key == 'registriertseit') {
-                value = Customer[key].split(' ')[0];
-                value = value.split('-');
-                value = value[2] + '.' + value[1] + '.' + value[0];
+                value = formatDate(Customer[key]);
             } else if (key == 'strasse') {
                 value = value.split(' ');
                 if (typeof value[1] != undefined && value != '') {

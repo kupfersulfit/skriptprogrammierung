@@ -4,7 +4,7 @@ Passworthashes. Die Passwörter sind zu erstmal immer "foo" oder "foobar".
 ##################
 
 [Lukas]
-- betsellungen
+- betsellungen                                                          ***#DONE#***
 - Preis fix shopping cart                                               ***#DONE#***
 - fehlendes Bild Lieferungsmanagement                                   ***#DONE#***
 - Suchebug mit klammern etc. -> Autovervollständigung geht nicht        ***#DONE#***
