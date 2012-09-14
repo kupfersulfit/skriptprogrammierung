@@ -244,7 +244,10 @@ function createArticle() {
     if(jQuery('#newPubl').is(':checked'))
         pbl=1;
     var descript = jQuery('#newDescr').val();
-    descript = descript.replace(/\r?\n/g, " ");
+    descript = descript.replace(/\n/g, " ");
+    descript = descript.replace(/\r/g, " ");
+    descript = descript.replace(/\n/g, " ");
+    descript = descript.replace(/\r\n/g, " ");
     var newArticle = new Article();
     newArticle.createtemporyIntance(0,jQuery('#newName').val(),jQuery('#newCat').val(),jQuery('#newDescr').val(),jQuery('#newPrice').val(),0,jQuery('#newNr').val(),pbl,jQuery('#newImg').val());
     jQuery.ajax({
@@ -331,6 +334,8 @@ function getAllOrders(){
                 if(row.statusid==1){
                         status = "Offen";
                 }else if(row.statusid==2){
+                        status = "In Bearbeitung";
+                }else if(row.statusid==3){
                         status = "Versandt";
                 }
                 htmltext+= '<tr><td>'+row.id+'</td><td>' + row.bestelldatum + '</td><td>' + delivery + '</td><td>' + status + '</td><td><input type="button" onclick="modifyOrder('+row.id+')" name="aendereBestellung" value="change status"/></td></tr>';
@@ -377,6 +382,8 @@ function modifyOrder(id){
             if(bestellung.statusid==1) htmltext+=" selected ";
             htmltext+=">Offen</option><option value='2'";
             if(bestellung.statusid==2) htmltext+=" selected ";
+            htmltext+=">in Bearbeitung</option><option value='3'";
+            if(bestellung.statusid==3) htmltext+=" selected ";
             htmltext+=">Versandt</option></select></td></tr>";
             htmltext += "<tr><td bgcolor='#ECECEC'>Lieferungsmethode: </td><td>"+delivery+"</td></tr>";
             htmltext += "</table>";

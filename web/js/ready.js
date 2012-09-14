@@ -90,22 +90,4 @@ jQuery(document).on('click', "input[name='loescheKunde']",
         });
     }	
 );
-    
-jQuery(document).on('click', "input[name='aendereArtikel']", 
-    function() {
-        var id = this.id.substr(1,this.id.length);
-        modifyArticle(id);
-    }
-);
-jQuery(document).on('click', "input[name='aktualisiereArtikel']", 
-    function() {
-        var id = this.id.substr(1,this.id.length);
-        updateArticle(id);
-    }
-);
-jQuery(document).on('click', "input[name='loescheArtikel']", 
-    function() {
-        var id = this.id.substr(1,this.id.length);
-        deleteArticle(id);
-    }
-); 
+
