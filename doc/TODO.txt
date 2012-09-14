@@ -12,9 +12,9 @@ Passworthashes. Die Passwörter sind zu erstmal immer "foo" oder "foobar".
 [Alex]
 - Passwort hash libary 							***#DONE#***
 [Thorsten]
-- Bestellübersicht mit Statusänderung (+ Laura)
+- Bestellübersicht mit Statusänderung (+ Laura)                    ***#DONE#***
 - Depublish + Republish => Timestamp auf null (00000)          ***#DONE#***
-- Bestellungen mit Artikel mitschicken bei Bestellung            ***#DONE#*** (evtl noch format ändern)
+- Bestellungen mit Artikel mitschicken bei Bestellung            ***#DONE#***
 [Laura]
 - 
 [Kirstin]
@@ -25,6 +25,6 @@ Passworthashes. Die Passwörter sind zu erstmal immer "foo" oder "foobar".
 - Straße mit Leerzeichen geht weiterhin nicht (abgeschnitten)			***#DONE#***
 - Bestellung wird nicht auf Profilseite angezeigt (siehe Ackermann) 	**** !!! ***
 - Zahlungsmethoden, Lieferungsmethode <-!=-> Datenbankeinträge
-- aktualisieren von Artikeln schlägt fehl, wenn Zeilenumbrüche in der Description sind			***mit <br> kann man einen Zeilenumbruch erzwingen andere möglichkeit noch nicht gefunden***
-- Beschreibung der Zahlungs-/Versandmethoden in der DB an Lukas Formular anpassen
+- aktualisieren von Artikeln schlägt fehl, wenn Zeilenumbrüche in der Description sind			***mit <br/> kann man einen Zeilenumbruch erzwingen andere möglichkeit noch nicht gefunden***
+- Beschreibung der Zahlungs-/Versandmethoden in der DB an Lukas Formular anpassen ***#DONE#***
 
