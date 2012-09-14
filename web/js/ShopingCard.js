@@ -51,10 +51,9 @@ var ShopingCard = {
         var price = 0;
         for (var i = 0; i < ShopingCard.articles.length; ++i) {
             price += ShopingCard.articles[i].verfuegbar * ShopingCard.articles[i].price;
-            price = price.toFixed(2);
         }
         
-        ShopingCard.price = price;
+        ShopingCard.price = price.toFixed(2);
         
         price += '';
         if (!price.match(/[0-9]{1,}\.[0-9]{2}/)) {
