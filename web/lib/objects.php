@@ -310,7 +310,7 @@ class Bestellung{
 	public function __construct($values = array()){
 
 		if(isset($values["id"])){
-			if($values["id"] != "" && is_int($values["id"])){
+			if($values["id"] != "" && is_numeric($values["id"])){
 				$this->id = $values["id"];
 			}else{
 				$this->id = 0;
@@ -346,6 +346,9 @@ class Bestellung{
 	function getBestelldatum(){
 		return $this->bestelldatum;
 	}
+    function setBestelldatum($datum){
+        $this->bestelldatum = $datum;
+    }
 	function getStatusid(){
 		return $this->statusid;
 	}

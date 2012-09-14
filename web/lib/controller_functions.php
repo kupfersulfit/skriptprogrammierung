@@ -541,6 +541,14 @@
             err($e->getMessage());
             return;
         }
+        //falls bestelldatum leer uebernehme das alte
+        $alteBestellung = $_SESSION["model"]->holeBestellung($bestellung->getId());
+        if($alteBestellung == null){
+            err("you can't update non-existing orders");
+            return;           
+        }else if($bestellung->getBestelldatum() == 0){
+            $bestellung->setBestelldatum($alteBestellung->getBestelldatum());
+        }
         $_SESSION['model']->aktualisiereBestellung($bestellung);
         success();
     }
