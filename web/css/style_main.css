@@ -826,3 +826,13 @@ header {
 .total_price span {
     color: #FF6600;
 }
+
+footer {
+    position: fixed;
+    bottom: 0;
+    height: 30px;
+    border-top: 1px solid #c9c9c9;
+    min-width: 1024px;
+    background-color: #FFFFFF;
+    margin-top: 5px;
+}

@@ -81,17 +81,17 @@ var Customer = {
             return true;
         }
     },
-    passwordStrength : function() {
-        var pwLength = jQuery('#registerPassword').val().length;
+    passwordStrength : function(obj) {
+        var pwLength = jQuery(obj).val().length;
             
         if (pwLength == 0) {
-            jQuery('#registerPassword').css('background-color','#E0F1FF');
+            jQuery(obj).css('background-color','#E0F1FF');
         } else if (pwLength < 4) {
-            jQuery('#registerPassword').css('background-color','orange');
+            jQuery(obj).css('background-color','orange');
         } else if (pwLength < 6) {
-            jQuery('#registerPassword').css('background-color','yellow');
+            jQuery(obj).css('background-color','yellow');
         } else if (pwLength >= 6) {
-            jQuery('#registerPassword').css('background-color','lawngreen');
+            jQuery(obj).css('background-color','lawngreen');
         }
     },
     create : function(id, name, vorname, strasse, plz, zusatz, email, passwort) {

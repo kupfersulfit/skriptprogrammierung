@@ -65,9 +65,9 @@
                     <p><label for="validEmail" >email validation</label></p>
                     <p><input type="text" id="validEmail" name="validEmail" /></p>
                     <p><label for="registerPassword" >password</label></p>
-                    <p><input type="password" id="registerPassword" name="registerPassword" onkeyup="Customer.passwordStrength();" /></p>
+                    <p><input type="password" id="registerPassword" name="registerPassword" onkeyup="Customer.passwordStrength(this);" /></p>
                     <p><label for="validPassword" >password validation</label></p>
-                    <p><input type="password" id="validPassword" name="validPassword" onkeyup="Customer.passwordStrength();" /></p>
+                    <p><input type="password" id="validPassword" name="validPassword" onkeyup="Customer.passwordStrength(this);" /></p>
                     <p><label for="addition" >addition</label></p>
                     <p><textarea id="addition"></textarea></p>
                     <p><input id="registerButton" type="button" value="register" onclick="Customer.register();" /></p>
