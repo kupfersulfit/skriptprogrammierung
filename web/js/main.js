@@ -72,16 +72,17 @@ function getCustomerContent(pageName) {
         url: 'templates/customer/' + pageName + ".php",
         success: function (data) {
             jQuery('#page').html(data);
-            if (typeof Article != 'undefined' && Article.Instances.length == 0) {
+//            if (typeof Article != 'undefined' && Article.Instances.length == 0) {
+                Article.Instances = new Array();    
                 getArticleList();
-            } else if (pageName == 'home') {
-                for (var i = 0; i < Article.Instances.length; ++i) {
-                    jQuery('#articleList').append(Article.Instances[i].renderHTML());
-                    if (ShopingCard.findArticle(Article.Instances[i].id) != -1) {
-                        jQuery('#article' + Article.Instances[i].id + ' .pin').css('background-position','0px 40px');
-                    }
-                }
-            }
+//            } else if (pageName == 'home') {
+//                for (var i = 0; i < Article.Instances.length; ++i) {
+//                    jQuery('#articleList').append(Article.Instances[i].renderHTML());
+//                    if (ShopingCard.findArticle(Article.Instances[i].id) != -1) {
+//                        jQuery('#article' + Article.Instances[i].id + ' .pin').css('background-position','0px 40px');
+//                    }
+//                }
+//            }
             if(pageName == 'home') {
                 interval = window.setInterval(function () {
                     if (typeof Article != 'undefined' && Article.Instances.length > 0) {
@@ -103,8 +104,22 @@ function getCustomerContent(pageName) {
     });
 }
 
-function renderOrders() {
-    
+function renderOrders(json) {
+    for (var i = 0; i < json.length; ++i) {
+        var bestellungMetaData = json[i][0];
+        var article = json[i][1];
+        var date = bestellungMetaData.bestelldatum.split(' ')[0];
+        date     = date.split('-');
+        date     = date[2] + '.' + date[1] + '.' + date[0];
+        
+        var strHTML = '<div class="order">';
+        strHTML    += '<div class="orderHead"><div class="orderTitle">Order ' + bestellungMetaData.id + '</div><div class="orderDate"> ' + date + ' </div></div>'
+        for (var j = 0; j < article.length; ++j) {
+            
+        }
+        strHTML += '</div>'; 
+        jQuery('#orders').append(strHTML);
+    }
 }
 
 function fillProfile() {

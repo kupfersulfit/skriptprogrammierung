@@ -1,6 +1,7 @@
 var ShopingCard = {
     price : 0,
-    articles : new Array(),    
+    articles : new Array(),
+    
     addArticle : function(article) {
         this.articles.push({
             'id' : article.id, 
@@ -8,6 +9,7 @@ var ShopingCard = {
             'price' : article.preis 
         });
     },
+    
     removeArticle : function(id) {
         var index = this.findArticle(id);
         var tmp = new Array();
@@ -19,6 +21,7 @@ var ShopingCard = {
         }
         this.articles = tmp;
     },
+
     findArticle : function(id) {
         for (var i = 0; i < this.articles.length; ++i) {
             if (typeof this.articles[i] != 'undefined') {
@@ -29,9 +32,11 @@ var ShopingCard = {
         }
         return -1;
     },
+    
     getArticle : function (id) {
         return this.articles[this.findArticle(id)];
     },
+    
     getArticlesJSONstring : function () {
         var jsonStr = '[';
         
@@ -47,6 +52,7 @@ var ShopingCard = {
         jsonStr += ']';
         return jsonStr;
     },
+    
     callbackTotalPrice : function() {
         var price = 0;
         for (var i = 0; i < ShopingCard.articles.length; ++i) {
