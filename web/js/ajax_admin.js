@@ -61,14 +61,14 @@ function getKunde(id){
         dataType : 'json',
         success : function(json){
             var htmltext = '<table width="456" id=tableid>';
-            htmltext += '<tr><td>Name:</td><td><input name="kundenName" id="kundenNameId" type="text" size="50" maxlength="50" value='+json.name+'></td></tr>';
-            htmltext += '<tr><td>Vorname:</td><td><input name="kundenVorname" id="kundenVornameId" type="text" size="50" maxlength="50" value='+json.vorname+'></td></tr>';
-            htmltext += '<tr><td>Stra&szlig;e:</td><td><input name="kundenStrasse" id="kundenStrasseId" type="text" size="50" maxlength="50" value='+json.strasse+'></td></tr>';			
-            htmltext += '<tr><td>PLZ:</td><td><input name="kundenPlz" id="kundenPlzId" type="text" size="50" maxlength="50" value='+json.plz+'></td></tr>';
-            htmltext += '<tr><td>Zusatz:</td><td><input name="kundenZusatz" id="kundenZusatzId" type="text" size="50" maxlength="50" value='+json.zusatz+'></td></tr>';
-            htmltext += '<tr><td>Email:</td><td><input name="kundeEmail" id="kundenEmailId" type="text" size="50" maxlength="50" value='+json.email+'></td></tr>';
-            htmltext += '<tr><td>Passwort:</td><td><input name="kundePw" id="kundenPwId" type="password" size="50" maxlength="50" value='+json.passwort+'></td></tr>';
-            htmltext += '<tr><td>Registriert Seit:</td><td><input name="kundeSeit" id="kundenSeitId" type="text" size="50" maxlength="50" value='+json.registriertseit+' readonly></td></tr>';
+            htmltext += '<tr><td>Name:</td><td><input name="kundenName" id="kundenNameId" type="text" size="50" maxlength="50" value="'+json.name+'"></td></tr>';
+            htmltext += '<tr><td>Vorname:</td><td><input name="kundenVorname" id="kundenVornameId" type="text" size="50" maxlength="50" value="'+json.vorname+'"></td></tr>';
+            htmltext += '<tr><td>Stra&szlig;e:</td><td><input name="kundenStrasse" id="kundenStrasseId" type="text" size="50" maxlength="50" value="'+json.strasse+'"></td></tr>';			
+            htmltext += '<tr><td>PLZ:</td><td><input name="kundenPlz" id="kundenPlzId" type="text" size="50" maxlength="50" value="'+json.plz+'"></td></tr>';
+            htmltext += '<tr><td>Zusatz:</td><td><input name="kundenZusatz" id="kundenZusatzId" type="text" size="50" maxlength="50" value="'+json.zusatz+'"></td></tr>';
+            htmltext += '<tr><td>Email:</td><td><input name="kundeEmail" id="kundenEmailId" type="text" size="50" maxlength="50" value="'+json.email+'"></td></tr>';
+            htmltext += '<tr><td>Passwort:</td><td><input name="kundePw" id="kundenPwId" type="password" size="50" maxlength="50" value="'+json.passwort+'"></td></tr>';
+            htmltext += '<tr><td>Registriert Seit:</td><td><input name="kundeSeit" id="kundenSeitId" type="text" size="50" maxlength="50" value="'+json.registriertseit+'" readonly></td></tr>';
             htmltext += '</table>';
             htmltext += '<input type="button" class="button" name="aendereKunde" id="k'+json.id+'" value="Change"/>';
             htmltext += '<input type="button" class="button" name="loescheKunde" id="k'+json.id+'" value="Delete"/>';
