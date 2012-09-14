@@ -28,7 +28,7 @@ jQuery(document).ready(function (){
         setAnker('admin');
     });
     
-    jQuery('#orderTab').click(function() {
+    jQuery('#order_managementTab').click(function() {
         activeTab('order_managementTab');
         jQuery('#container').fadeOut('slow');
         getAdminContent('order_management');

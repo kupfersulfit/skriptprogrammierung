@@ -715,9 +715,34 @@ header {
     padding: 5px;
 }
 
-.orderHead {
-    background-color: #EFEFEF;
-    color: cornflowerblue;
-    padding: 5px;
+.order_head {
+    background-color: cornflowerblue;
+    color: #FFFFFF;
+    padding: 5px 10px;
     text-align:  center;
+    height: 21px;
+    border-radius: 2px;
+}
+
+.order_title {
+    float: left;
+    width: 100px;
+}
+
+.order_state {
+    float: left;
+    width: 444px;
+}
+
+.state1 {
+    background-color: #F3D843;
+}
+
+.state2 {
+    background-color: #68E84B;
+}
+
+.order_date {
+    float: right;
+    width: 100px;
 }

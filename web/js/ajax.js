@@ -247,7 +247,7 @@ function getCustomerPositionAtLogin() {
                     jQuery('#menu #homeTab').hide();
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);
-                    jQuery('#orderTab').click();
+                    jQuery('#order_managementTab').click();
                 } 
                 Customer.position = json.rolle;
             }

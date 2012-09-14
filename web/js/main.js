@@ -105,19 +105,29 @@ function getCustomerContent(pageName) {
 }
 
 function renderOrders(json) {
+    
     for (var i = 0; i < json.length; ++i) {
         var bestellungMetaData = json[i][0];
         var article = json[i][1];
+        console.debug(json[i][1]);
         var date = bestellungMetaData.bestelldatum.split(' ')[0];
         date     = date.split('-');
         date     = date[2] + '.' + date[1] + '.' + date[0];
         
-        var strHTML = '<div class="order">';
-        strHTML    += '<div class="orderHead"><div class="orderTitle">Order ' + bestellungMetaData.id + '</div><div class="orderDate"> ' + date + ' </div></div>'
+        var strHTML = '<div class="order" id="order' + bestellungMetaData.id + '">';
+        strHTML    +=   '<div class="order_head state' + bestellungMetaData.statusid + '">';
+        strHTML    +=       '<div class="order_title">Order ' + bestellungMetaData.id + '</div>';
+        strHTML    +=       '<div class="order_state">' + (bestellungMetaData.statusid == 1 ? 'open' : 'delivered') + '</div>';
+        strHTML    +=       '<div class="order_date"> ' + date + ' </div>';
+        strHTML    +=   '</div>';
+        strHTML    +=   '<div class="order_articles">';
         for (var j = 0; j < article.length; ++j) {
-            
+            strHTML +=      '<div class="order_article">';
+            strHTML  +=         '<p>' + article[i].name + '</p>';
+            strHTML  +=     '</div>';
         }
-        strHTML += '</div>'; 
+        strHTML    +=   '</div>';
+        strHTML    += '</div>'; 
         jQuery('#orders').append(strHTML);
     }
 }
