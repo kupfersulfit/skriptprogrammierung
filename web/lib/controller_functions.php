@@ -2,6 +2,14 @@
     require_once 'objects.php';
     require_once 'model.php';
     require_once 'roles.php';
+    
+    /* 
+     * Libary des PHPass Projekts
+     * 
+     * Bietet im Gegensatz zu PHP crypt die Generierung von portablen und 
+     * sicheren Hashes an und ist eine Art Wrapperklasse der crypt Methode
+     */
+    require_once 'PasswordHash.php';
 
     /** Gibt eine Fehlermeldung aus */
     function err($nachricht){
@@ -131,8 +139,8 @@
             err("invalid email address");
             return;
         }
-        $hash = crypt($passwort, $email);
-        if($_SESSION['model']->pruefeLogin($email, $hash) == true){
+        
+        if($_SESSION['model']->pruefeLogin($email, $passwort) == true){
             $_SESSION['kunde'] = $_SESSION['model']->holeKunde($email);
             $_SESSION['kunde']->setPasswort(" ");
             holeAngemeldetenKunde(); //kundendaten ausgeben
@@ -165,7 +173,8 @@
         if($_SESSION['model']->holeKunde($kunde->getEmail()) != null){
             err("Email already registered");
         }else{
-            $kunde->setPasswort(crypt($kunde->getPasswort(), $kunde->getEmail())); //passwort verschluesseln
+			$t_hasher = new PasswordHash(8, TRUE);
+			$kunde->setPasswort($t_hasher->HashPassword($kunde->getPasswort())); //passwort verschluesseln
             date_default_timezone_set('Europe/Berlin');
             $kunde->setRegistriertseit(date("Y-m-d H:i:s", time()));
             $_SESSION['model']->erstelleKunde($kunde);
@@ -182,7 +191,7 @@
             return;
         }
         try{
-            $kunde = json_decode($kunde, true); //nicht direkt auf das array element zugreiffen, um die fehlerpruefung mitzunehmen
+            $kunde = json_decode($kunde, true); //nicht direkt auf das array element zugreifen, um die fehlerpruefung mitzunehmen
         }catch(Exception $e){
             err($e->getMessage());
             return;
@@ -262,7 +271,8 @@
             //vermeide dass das pw geloescht wird
             $kunde['passwort'] = $alterkunde->getPasswort();
         }else{
-            $kunde['passwort'] = crypt($kunde['passwort'], $kunde['email']); //neues pw verschluesseln
+			$t_hasher = new PasswordHash(8, TRUE);
+            $kunde['passwort'] = $t_hasher->HashPassword($kunde['passwort']); //neues pw verschluesseln
         }
         try{
             $kunde = new Kunde($kunde);
