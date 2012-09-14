@@ -92,7 +92,7 @@ function getCustomerContent(pageName) {
                 if (Customer.position != 'guest' 
                     && Customer.position != '' 
                     && jQuery('#profile_name').val() == '')
-                {
+                    {
                     fillProfile();
                 }
             } else if(pageName == 'admin') {
@@ -103,10 +103,12 @@ function getCustomerContent(pageName) {
 }
 
 function formatDate(date) {
-    date = date.split(' ')[0];
-    date     = date.split('-');
-    date     = date[2] + '.' + date[1] + '.' + date[0];
-    return date;
+    if (typeof date != 'object') {
+        date = date.split(' ')[0];
+        date     = date.split('-');
+        date     = date[2] + '.' + date[1] + '.' + date[0];
+        return date;
+    }
 }
 
 function renderOrders(json) {
@@ -223,7 +225,8 @@ function fillProfile() {
                 var value = Customer[key];
                 if (key == 'registriertseit') {
                     value = formatDate(Customer[key]);
-                } else if (key == 'strasse') {
+                } else if (key == 'strasse' && typeof value != 'object') {
+                    console.debug(typeof value);
                     value = value.split(' ');
                     if (typeof value[1] != undefined && value != '') {
                         jQuery('#profile_nr').val(value[1]);

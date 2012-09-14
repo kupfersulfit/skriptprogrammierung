@@ -27,6 +27,7 @@ input[type=password] {
     padding-left: 2px;
     padding-right: 2px;
     background-color: #E0F1FF;
+    color: darkgray;
 }
 
 input[type=button] {
@@ -250,7 +251,7 @@ header {
 
 #loginContainer p input {
     float: right;
-    color: dark;
+    width: 149px;
 }
 
 #registerContainer {
