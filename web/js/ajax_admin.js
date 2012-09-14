@@ -216,7 +216,7 @@ function updateArticle(id){
     if(jQuery('#modPubl').is(':checked'))
         pbl=1;
     var descript = jQuery('#modDescr').val();
-    descript = descript.replace("/\n/g"," ");
+    descript = descript.replace(/\n+/g," ");
     var modArticle = new Article();
     modArticle.createtemporyIntance(id,jQuery('#modName').val(),jQuery('#modCat').val(),descript,jQuery('#modPrice').val(),0,jQuery('#modNr').val(),pbl,jQuery('#modImg').val());
     jQuery.ajax({
@@ -250,12 +250,9 @@ function createArticle() {
     if(jQuery('#newPubl').is(':checked'))
         pbl=1;
     var descript = jQuery('#newDescr').val();
-    descript = descript.replace(/\n/g, " ");
-    descript = descript.replace(/\r/g, " ");
-    descript = descript.replace(/\n/g, " ");
-    descript = descript.replace(/\r\n/g, " ");
+    descript = descript.replace(/\n+/g," ");
     var newArticle = new Article();
-    newArticle.createtemporyIntance(0,jQuery('#newName').val(),jQuery('#newCat').val(),jQuery('#newDescr').val(),jQuery('#newPrice').val(),0,jQuery('#newNr').val(),pbl,jQuery('#newImg').val());
+    newArticle.createtemporyIntance(0,jQuery('#newName').val(),jQuery('#newCat').val(),descript,jQuery('#newPrice').val(),0,jQuery('#newNr').val(),pbl,jQuery('#newImg').val());
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php', 
