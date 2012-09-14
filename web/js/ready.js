@@ -29,7 +29,7 @@ jQuery(document).ready(function (){
     });
     
     jQuery('#orderTab').click(function() {
-        activeTab('orderTab');
+        activeTab('order_managementTab');
         jQuery('#container').fadeOut('slow');
         getAdminContent('order_management');
         setAnker('order_management');
@@ -52,3 +52,60 @@ jQuery(document).ready(function (){
         login();
     });
 });
+
+jQuery(document).on('click', "input[name='send']", 
+    function() {
+        var id=this.id.substr(1,this.id.length);
+        getKunde(id);
+    }
+);
+    
+jQuery(document).on('click', "input[name='aendereKunde']", 
+    function() {
+        var id=this.id.substr(1,this.id.length);
+        Customer.create(
+            id,
+            jQuery("#kundenNameId").val(),
+            jQuery("#kundenVornameId").val(),
+            jQuery("#kundenStrasseId").val(),
+            jQuery("#kundenPlzId").val(),
+            jQuery("#kundenZusatzId").val(),
+            jQuery("#kundenEmailId").val(),
+            jQuery("#kundenPwId").val()
+            );
+        refreshKunde(Customer);
+        systemessages({
+            "success":"customer got updated"
+        });
+    }
+);
+    
+jQuery(document).on('click', "input[name='loescheKunde']", 
+    function() {
+        var id=this.id.substr(1,this.id.length);
+        Customer.create(id, jQuery("#kundenNameId").val(), jQuery("#kundenVornameId").val(), jQuery("#kundenStrasseId").val(), jQuery("#kundenPlzId").val(), jQuery("#kundenZusatzId").val(), jQuery("#kundenEmailId").val(), jQuery("#kundenPwId").val());
+        deleteKunde(Customer);
+        systemessages({
+            "success":"customer got deleted"
+        });
+    }	
+);
+    
+jQuery(document).on('click', "input[name='aendereArtikel']", 
+    function() {
+        var id = this.id.substr(1,this.id.length);
+        modifyArticle(id);
+    }
+);
+jQuery(document).on('click', "input[name='aktualisiereArtikel']", 
+    function() {
+        var id = this.id.substr(1,this.id.length);
+        updateArticle(id);
+    }
+);
+jQuery(document).on('click', "input[name='loescheArtikel']", 
+    function() {
+        var id = this.id.substr(1,this.id.length);
+        deleteArticle(id);
+    }
+); 

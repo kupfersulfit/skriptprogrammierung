@@ -100,7 +100,7 @@ function logout() {
                 Customer.position = 'gast';
                 jQuery('#adminTab').hide();
                 jQuery('#profileTab').hide();
-                jQuery('#menu #orderTab').hide();
+                jQuery('#order_managementTab').hide();
                 jQuery('#homeTab').show();
                 jQuery('#loginTab').unbind('click');
                 jQuery('#loginTab').click(containerDisplay);
@@ -202,7 +202,7 @@ function getCustomerPosition() {
                     Payment.enabled = true;
                 } else if (json.rolle == 'lieferant') {
                     jQuery('#menu #profileTab').hide();
-                    jQuery('#menu #orderTab').show();
+                    jQuery('#menu #order_managementTab').show();
                     jQuery('#menu #homeTab').hide();
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);
@@ -243,7 +243,7 @@ function getCustomerPositionAtLogin() {
                     jQuery('#loginTab').click(logout);
                     Payment.enabled = true;
                 } else if (json.rolle == 'lieferant') {
-                    jQuery('#menu #orderTab').show();
+                    jQuery('#menu #order_managementTab').show();
                     jQuery('#menu #homeTab').hide();
                     jQuery('#loginTab').unbind('click');
                     jQuery('#loginTab').click(logout);

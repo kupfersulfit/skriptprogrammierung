@@ -51,6 +51,7 @@ var ShopingCard = {
         var price = 0;
         for (var i = 0; i < ShopingCard.articles.length; ++i) {
             price += ShopingCard.articles[i].verfuegbar * ShopingCard.articles[i].price;
+            price = price.toFixed(2);
         }
         
         ShopingCard.price = price;
@@ -59,6 +60,7 @@ var ShopingCard = {
         if (!price.match(/[0-9]{1,}\.[0-9]{2}/)) {
             price += '.00';
         }
+        
         jQuery('#shoping_cart_price span').html(price);
     }
 }

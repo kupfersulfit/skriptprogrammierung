@@ -278,6 +278,7 @@ function getAdminContent(pageName) {
                 setAdminTabActive('usermanagement');
             } else if (pageName == 'order_management') {
                 getAllOrders();
+                jQuery('#shoping_cart').hide();
             }
         }
     });
@@ -286,52 +287,4 @@ function getAdminContent(pageName) {
 function setAdminTabActive(id) {
     jQuery('.admin_tab').removeClass('active');
     jQuery('#' + id).addClass('active');
-}
-
-jQuery(document).on('click', "input[name='send']", 
-    function() {
-        var id=this.id.substr(1,this.id.length);
-        getKunde(id);
-    }
-    );
-jQuery(document).on('click', "input[name='aendereKunde']", 
-    function() {
-        var id=this.id.substr(1,this.id.length);
-        Customer.create(id, $("#kundenNameId").val(), $("#kundenVornameId").val(), $("#kundenStrasseId").val(), $("#kundenPlzId").val(), $("#kundenZusatzId").val(), $("#kundenEmailId").val(), $("#kundenPwId").val());
-        refreshKunde(Customer);
-        systemessages({
-            "success":"customer got updated"
-        });
-    }
-
-    );
-    
-jQuery(document).on('click', "input[name='loescheKunde']", 
-    function() {
-        var id=this.id.substr(1,this.id.length);
-        Customer.create(id, $("#kundenNameId").val(), $("#kundenVornameId").val(), $("#kundenStrasseId").val(), $("#kundenPlzId").val(), $("#kundenZusatzId").val(), $("#kundenEmailId").val(), $("#kundenPwId").val());
-        deleteKunde(Customer);
-        systemessages({
-            "success":"customer got deleted"
-        });
-    }	
-    );
-    
-jQuery(document).on('click', "input[name='aendereArtikel']", 
-    function() {
-        var id = this.id.substr(1,this.id.length);
-        modifyArticle(id);
-    }
-    );
-jQuery(document).on('click', "input[name='aktualisiereArtikel']", 
-    function() {
-        var id = this.id.substr(1,this.id.length);
-        updateArticle(id);
-    }
-    );
-jQuery(document).on('click', "input[name='loescheArtikel']", 
-    function() {
-        var id = this.id.substr(1,this.id.length);
-        deleteArticle(id);
-    }
-    );  
+} 

@@ -205,7 +205,8 @@ Article.decreseAmount = function(id) {
 Article.calculatePrice = function(id, amount) {
     
     var priceSpan  = jQuery('#articleAtCard' + id + ' .articleAtCardPrice span'); 
-    var price = Article.findArticleById(id).preis * amount + '';
+    var price = Article.findArticleById(id).preis * amount;
+    price = price.toFixed(2) + '';
     if (!price.match(/[0-9]{1,}\.[0-9]{2}/)) {
         price += '.00';
     }
