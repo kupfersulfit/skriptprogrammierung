@@ -216,7 +216,8 @@ function updateArticle(id){
     if(jQuery('#modPubl').is(':checked'))
         pbl=1;
     var descript = jQuery('#modDescr').val();
-    descript = descript.replace("/\n/g"," ");
+    descript = descript.replace(/\n+/g," ");
+    descript = descript.replace(/"/g, "'");
     var modArticle = new Article();
     modArticle.createtemporyIntance(id,jQuery('#modName').val(),jQuery('#modCat').val(),descript,jQuery('#modPrice').val(),0,jQuery('#modNr').val(),pbl,jQuery('#modImg').val());
     jQuery.ajax({
@@ -250,12 +251,10 @@ function createArticle() {
     if(jQuery('#newPubl').is(':checked'))
         pbl=1;
     var descript = jQuery('#newDescr').val();
-    descript = descript.replace(/\n/g, " ");
-    descript = descript.replace(/\r/g, " ");
-    descript = descript.replace(/\n/g, " ");
-    descript = descript.replace(/\r\n/g, " ");
+    descript = descript.replace(/\n+/g," ");
+    descript = descript.replace(/"/g, "'");
     var newArticle = new Article();
-    newArticle.createtemporyIntance(0,jQuery('#newName').val(),jQuery('#newCat').val(),jQuery('#newDescr').val(),jQuery('#newPrice').val(),0,jQuery('#newNr').val(),pbl,jQuery('#newImg').val());
+    newArticle.createtemporyIntance(0,jQuery('#newName').val(),jQuery('#newCat').val(),descript,jQuery('#newPrice').val(),0,jQuery('#newNr').val(),pbl,jQuery('#newImg').val());
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php', 
@@ -330,11 +329,11 @@ function getAllOrders(){
                 
                 var delivery;
                 if(row.lieferungsmethodeid == 1){
-                    delivery = "Paketversand";
+                    delivery = "Standardversand";
                 }else if(row.lieferungsmethodeid == 2){
                     delivery = "Expressversand";
                 }else if(row.lieferungsmethodeid == 3){
-                    delivery = "Selbstabholung";
+                    delivery = "Nachtversand";
                 }
                 var status;
                 if(row.statusid==1){
@@ -373,11 +372,11 @@ function modifyOrder(id){
             
             var delivery;
             if(bestellung.lieferungsmethodeid == 1){
-                delivery = "Paketversand";
+                delivery = "Standardversand";
             }else if(bestellung.lieferungsmethodeid == 2){
                 delivery = "Expressversand";
             }else if(bestellung.lieferungsmethodeid == 3){
-                delivery = "Selbstabholung";
+                delivery = "Nachtversand";
             }
             htmltext += "<table border='0' cellspacing='0' cellpadding='4'>";
             htmltext += "<tr><td bgcolor='#ECECEC'>ID: </td><td>"+bestellung.id+"</td></tr>";

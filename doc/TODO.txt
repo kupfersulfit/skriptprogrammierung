@@ -1,4 +1,4 @@
-###MITTEILUNGEN###
+﻿###MITTEILUNGEN###
 Datenbank enthält nun verschiedene Anzahl an verfügbaren Artikeln und aktualisierte
 Passworthashes. Die Passwörter sind zu erstmal immer "foo" oder "foobar".
 ##################
@@ -21,10 +21,11 @@ Passworthashes. Die Passwörter sind zu erstmal immer "foo" oder "foobar".
 - 
 [ Alle ]
 - Passwordfix beim Login 						***#DONE#***
-- 12 Artikel (Moleskin) ändern publish funktioniert nicht
+- 12 Artikel (Moleskin) ändern publish funktioniert nicht		***#DONE#***
 - Straße mit Leerzeichen geht weiterhin nicht (abgeschnitten)			***#DONE#***
 - Bestellung wird nicht auf Profilseite angezeigt (siehe Ackermann) 	**** !!! ***
-- Zahlungsmethoden, Lieferungsmethode <-!=-> Datenbankeinträge
-- aktualisieren von Artikeln schlägt fehl, wenn Zeilenumbrüche in der Description sind			***mit <br/> kann man einen Zeilenumbruch erzwingen andere möglichkeit noch nicht gefunden***
+- Zahlungsmethoden, Lieferungsmethode <-!=-> Datenbankeinträge		***#DONE#***
+- aktualisieren von Artikeln schlägt fehl, wenn Zeilenumbrüche in der Description sind		***#DONE#***	
+  ***mit <br/> kann man einen Zeilenumbruch erzwingen andere möglichkeit noch nicht gefunden***
 - Beschreibung der Zahlungs-/Versandmethoden in der DB an Lukas Formular anpassen ***#DONE#***
 
