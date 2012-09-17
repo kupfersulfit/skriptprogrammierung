@@ -109,7 +109,7 @@ function logout() {
                     'success' : "you're logged out"
                 });
                 Payment.closePayment();
-                jQuery('.articleAtCard .articleAtCardClose').click();
+                jQuery('.articleAtCart .articleAtCartClose').click();
                 jQuery('#homeTab').click();
             }     
         },
@@ -289,7 +289,7 @@ function modifyCustomer() {
     });
 }
 
-function getShoping_cart() {
+function getShopping_cart() {
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php', 
@@ -318,13 +318,13 @@ function getShoping_cart() {
     });
 }
 
-function modifyShoping_cart() {  
+function modifyShopping_cart() {  
     jQuery.ajax({
         type : 'POST',
         url : 'lib/controller.php', 
         data : {
             'action' : 'aktualisiereWarenkorb',
-            'warenkorb' : ShopingCard.getArticlesJSONstring()
+            'warenkorb' : ShoppingCart.getArticlesJSONstring()
         },
         dataType : 'json',
         success : function (json) {
@@ -333,7 +333,7 @@ function modifyShoping_cart() {
                 systemessages(json);
             } else {
                 systemessages({
-                    'success' : 'shopingcard updated'
+                    'success' : 'shoppingcart updated'
                 });
             }
         },
@@ -358,7 +358,7 @@ function buy() {
             if (json.error) {
                 systemessages(json);
             } else {
-                jQuery('.articleAtCard .articleAtCardClose').click();
+                jQuery('.articleAtCart .articleAtCartClose').click();
                 jQuery('.ccnr, #cvc_cvv').val('');
                 Payment.closePayment();
                 getArticleList();

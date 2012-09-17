@@ -33,7 +33,7 @@ jQuery(document).ready(function (){
         jQuery('#container').fadeOut('slow');
         getAdminContent('order_management');
         setAnker('order_management');
-        jQuery('#shoping_cart').hide();
+        jQuery('#shopping_cart').hide();
     });
     
     jQuery('#register_login').click(function(){

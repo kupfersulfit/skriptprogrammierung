@@ -3,8 +3,8 @@ var Payment = {
     
     openPayment : function() {
         if (this.enabled) {
-            if (ShopingCard.price > 0) {
-                this.creditCardValidTime();
+            if (ShoppingCart.price > 0) {
+                this.creditCartValidTime();
                 jQuery('#payment_surname').val(Customer.name);
                 jQuery('#payment_givenname').val(Customer.vorname);
                 jQuery('#deliver_zip').val(Customer.plz);
@@ -23,7 +23,7 @@ var Payment = {
         }
     },
     
-    creditCardValidTime : function() {
+    creditCartValidTime : function() {
         if (jQuery('#valid_month option').length == 0) {
             for (var i = 1; i <= 12; ++i) {
                 jQuery('#valid_month').append('<option value="' + i + '" >' + i + '</option>');
@@ -44,10 +44,10 @@ var Payment = {
     
     changePaymentMethod : function() {
         var enabled  = '#bank_transfer input';
-        var disabled = '#credit_card input';
+        var disabled = '#credit_cart input';
         
         if (jQuery("input[name='paymentType']:checked").val() == 2) {
-            enabled  = '#credit_card input, #credit_card select';
+            enabled  = '#credit_cart input, #credit_cart select';
             disabled = '#bank_transfer input';
         }
 
@@ -63,7 +63,7 @@ var Payment = {
         
         //unsch�n kann man vllt oben rausnehmen und garnicht erst disablen
         jQuery('#bank').removeAttr('disabled');
-        jQuery('#card').removeAttr('disabled');
+        jQuery('#cart').removeAttr('disabled');
     },
     
     paymentCheck : function() {
@@ -75,7 +75,7 @@ var Payment = {
         if (jQuery("input[name='paymentType']:checked").val() == 1) {
             valid = this.checkInputs('bank_transfer', valid); 
         } else {    
-            valid = this.checkInputs('credit_card', valid);
+            valid = this.checkInputs('credit_cart', valid);
         }
     
         valid = this.checkInputs('delivery', valid);

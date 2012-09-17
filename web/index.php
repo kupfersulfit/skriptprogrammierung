@@ -9,10 +9,10 @@ require_once 'templates/header.php';
         </section>
         <section id="page"></section>
     </section>
-    <section id="shoping_cart">
+    <section id="shopping_cart">
         <div id="basket">
         </div>
-        <div id="shoping_cart_price"> <span>0.00</span>&nbsp;&euro;</div>
+        <div id="shopping_cart_price"> <span>0.00</span>&nbsp;&euro;</div>
         <input id="buyButton" type="button" value="buy" onclick="Payment.openPayment();"/>
     </section>
     <div id="payment">

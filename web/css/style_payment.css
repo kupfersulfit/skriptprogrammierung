@@ -16,7 +16,7 @@
 }
 
 #payment_content {
-    height: 578px;
+    height: 591px;
     background-color: #FFFFFF;
     border-left: 1px solid #c9c9c9;
     border-radius:  0 0 0 2px;
@@ -87,11 +87,11 @@
     margin-bottom: 10px;
 }
 
-#card {
+#cart {
     margin-left: 5px;
 }
 
-#credit_card {
+#credit_cart {
     width: 385px;
     height: 226px;
     padding-right: 5px;

@@ -6,7 +6,7 @@
         <title>st@pleware</title>
         <link type="text/css" rel="stylesheet" href="css/style_admin.css"/>
         <link type="text/css" rel="stylesheet" href="css/style_main.css" />
-        <link type="text/css" rel="stylesheet" href="css/style_shopingcart.css" />
+        <link type="text/css" rel="stylesheet" href="css/style_shoppingcart.css" />
         <link type="text/css" rel="stylesheet" href="css/style_payment.css" />
         <link type="text/css" rel="stylesheet" href="css/style_article.css" />
         <link type="text/css" rel="stylesheet" href="css/style_profile.css" />
@@ -15,7 +15,7 @@
         <script type="text/javascript" src="js/jquery-ui-autocomplete-1.8.23.min.js" ></script>
         <script type="text/javascript" src="js/main.js" ></script>
         <script type="text/javascript" src="js/Article.js" ></script>
-        <script type="text/javascript" src="js/ShopingCard.js" ></script>
+        <script type="text/javascript" src="js/Shoppingcart.js" ></script>
         <script type="text/javascript" src="js/Customer.js" ></script>
         <script type="text/javascript" src="js/Payment.js" ></script>
         <script type="text/javascript" src="js/Order.js" ></script>

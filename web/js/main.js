@@ -80,14 +80,14 @@ function getCustomerContent(pageName) {
                 interval = window.setInterval(function () {
                     if (typeof Article != 'undefined' && Article.Instances.length > 0) {
                         window.clearInterval(interval);
-                        if (ShopingCard.articles.length == 0) {
-                            getShoping_cart();
+                        if (ShoppingCart.articles.length == 0) {
+                            getShopping_cart();
                         }
-                        jQuery('#shoping_cart').show();
+                        jQuery('#shopping_cart').show();
                     }
                 }, 200);
             } else if (pageName == 'profile') {
-                jQuery('#shoping_cart').hide();
+                jQuery('#shopping_cart').hide();
                 getOrders();
                 if (Customer.position != 'guest' 
                     && Customer.position != '' 
@@ -96,7 +96,7 @@ function getCustomerContent(pageName) {
                     fillProfile();
                 }
             } else if(pageName == 'admin') {
-                jQuery('#shoping_cart').hide();
+                jQuery('#shopping_cart').hide();
             }
         }
     });
@@ -178,7 +178,7 @@ function renderOrders(json) {
             strHTML +=         '</div>';
             strHTML +=         '<div class="article_delivermethod">';
             strHTML +=              '<p>deliver method</p>';
-            strHTML +=              '<div class="cells" >' + (bestellungMetaData.zahlungsmethodeid == 1 ? 'bank transfer' : 'creditcard') + ' </div>';
+            strHTML +=              '<div class="cells" >' + (bestellungMetaData.zahlungsmethodeid == 1 ? 'bank transfer' : 'creditcart') + ' </div>';
             strHTML +=         '</div>';
             strHTML +=         '<div class="article_amount">';
             strHTML +=             '<p>amount</p>';
@@ -383,12 +383,12 @@ function getAdminContent(pageName) {
         success: function (data) {
             jQuery('#page').html(data);
             if (pageName == 'admin') {
-                jQuery('#shoping_cart').hide();
+                jQuery('#shopping_cart').hide();
                 getUserManagement();
                 setAdminTabActive('usermanagement');
             } else if (pageName == 'order_management') {
                 getAllOrders();
-                jQuery('#shoping_cart').hide();
+                jQuery('#shopping_cart').hide();
             }
         }
     });

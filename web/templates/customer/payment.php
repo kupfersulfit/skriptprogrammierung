@@ -37,16 +37,16 @@
             <input id="bank_code" class="payment_text" type="text" value="" autocomplete="off"/>
         </p>
     </section>
-    <section id="credit_card">
-        <p><label>creditcard</label><input id="card" type="radio" name="paymentType" value="2" onclick="Payment.changePaymentMethod();" /></p>
+    <section id="credit_cart">
+        <p><label>creditcart</label><input id="cart" type="radio" name="paymentType" value="2" onclick="Payment.changePaymentMethod();" /></p>
         <hr />
-        <p><label>creditcard type</label>
-            <label><img src="media/visa.gif" class="card_img" width="20" height="22" title="Visa" /></label>
-            <input type="radio" value="visa" name="card" class="card" checked="checked" disabled="disabled" />
-            <label><img src="media/master_card.gif" class="card_img" width="20" height="22" title="MasterCard" /></label>
-            <input type="radio" value="mas" name="card" class="card" disabled="disabled" />
-            <label><img src="media/american_express.gif" class="card_img" width="20" height="22" title="AmericanExpress" /></label>
-            <input type="radio" value="ame" name="card" class="card" disabled="disabled"/>
+        <p><label>creditcart type</label>
+            <label><img src="media/visa.gif" class="cart_img" width="20" height="22" title="Visa" /></label>
+            <input type="radio" value="visa" name="cart" class="cart" checked="checked" disabled="disabled" />
+            <label><img src="media/master_cart.gif" class="cart_img" width="20" height="22" title="Mastercart" /></label>
+            <input type="radio" value="mas" name="cart" class="cart" disabled="disabled" />
+            <label><img src="media/american_express.gif" class="cart_img" width="20" height="22" title="AmericanExpress" /></label>
+            <input type="radio" value="ame" name="cart" class="cart" disabled="disabled"/>
         </p>
         <p><label for="ccnr_1">creditdard nr.</label>
             <input id="ccnr_4" class="payment_text ccnr" type="text" value="" maxlength="4" size="4" autocomplete="off" disabled="disabled" />

@@ -146,28 +146,28 @@ Article.pin = function(obj, id, session) {
     
     if (jQuery(obj).css('background-position') == '0px 0px') {
         jQuery(obj).css('background-position','0px 40px');
-        ShopingCard.addArticle(article);
+        ShoppingCart.addArticle(article);
         if (article) {
-            article.addToCard();
+            article.addToCart();
         }
     } else {
         jQuery(obj).css('background-position','0 0');
-        Article.removeFromCard(id);
+        Article.removeFromCart(id);
     }
     
-    ShopingCard.callbackTotalPrice();
+    ShoppingCart.callbackTotalPrice();
     
     if (!session) {
-        modifyShoping_cart();
+        modifyShopping_cart();
     }
 }
 
-Article.prototype.addToCard = function() {
-    var strHTML = '<section class="articleAtCard" id="articleAtCard' + this.id + '">';
-    strHTML    +=     '<div class="articleAtCardTitle" title="' + this.name + '">' + Article.cutTitle(this.name, 30) + '</div><div class="articleAtCardClose" onclick="Article.pin(jQuery(\'#article' +  this.id + ' .pin\'), ' + this.id + ', false);">x</div>';
+Article.prototype.addToCart = function() {
+    var strHTML = '<section class="articleAtCart" id="articleAtCart' + this.id + '">';
+    strHTML    +=     '<div class="articleAtCartTitle" title="' + this.name + '">' + Article.cutTitle(this.name, 30) + '</div><div class="articleAtCartClose" onclick="Article.pin(jQuery(\'#article' +  this.id + ' .pin\'), ' + this.id + ', false);">x</div>';
     strHTML    +=     '<div class="clear"></div>'
-    strHTML    +=     '<div class="articleAtCardPrice"><div>price </div><div class="euro"> &euro;</div><span>' + this.preis.replace('.', '.') + '</span></div>';
-    strHTML    +=     '<div class="articleAtCardAmount">';
+    strHTML    +=     '<div class="articleAtCartPrice"><div>price </div><div class="euro"> &euro;</div><span>' + this.preis.replace('.', '.') + '</span></div>';
+    strHTML    +=     '<div class="articleAtCartAmount">';
     strHTML    +=         '<div class="amountElements">';
     strHTML    +=              '<div class="amountSelect" onclick="Article.increseAmount(' + this.id + ', false);" >+</div>';
     strHTML    +=              '<div class="amountSelect" onclick="Article.decreseAmount(' + this.id + ');">-</div>';
@@ -179,20 +179,20 @@ Article.prototype.addToCard = function() {
     jQuery('#basket').append(strHTML);
 }
 
-Article.removeFromCard = function(id) {
-    ShopingCard.removeArticle(id);
-    jQuery('#articleAtCard' + id).detach();
+Article.removeFromCart = function(id) {
+    ShoppingCart.removeArticle(id);
+    jQuery('#articleAtCart' + id).detach();
 }
 
 Article.increseAmount = function(id, session) {
-    var amount = jQuery('#articleAtCard' + id + ' input').val();
+    var amount = jQuery('#articleAtCart' + id + ' input').val();
     if (parseInt(Article.findArticleById(id).verfuegbar) > amount) {
         ++amount;
-        jQuery('#articleAtCard' + id + ' input').val(amount);
-        ShopingCard.getArticle(id).verfuegbar = amount;
+        jQuery('#articleAtCart' + id + ' input').val(amount);
+        ShoppingCart.getArticle(id).verfuegbar = amount;
         Article.calculatePrice(id, amount);
         if (!session) {
-            modifyShoping_cart();
+            modifyShopping_cart();
         }
     } else {
         systemessages({
@@ -202,26 +202,26 @@ Article.increseAmount = function(id, session) {
 }
 
 Article.decreseAmount = function(id) {
-    var amount = jQuery('#articleAtCard' + id + ' input').val();
+    var amount = jQuery('#articleAtCart' + id + ' input').val();
     if (amount > 1) {
         --amount;
-        jQuery('#articleAtCard' + id + ' input').val(amount);
-        ShopingCard.getArticle(id).verfuegbar = amount;
+        jQuery('#articleAtCart' + id + ' input').val(amount);
+        ShoppingCart.getArticle(id).verfuegbar = amount;
         Article.calculatePrice(id, amount);
-        modifyShoping_cart();
+        modifyShopping_cart();
     }  
 }
 
 Article.calculatePrice = function(id, amount) {
     
-    var priceSpan  = jQuery('#articleAtCard' + id + ' .articleAtCardPrice span'); 
+    var priceSpan  = jQuery('#articleAtCart' + id + ' .articleAtCartPrice span'); 
     var price = Article.findArticleById(id).preis * amount;
     price = price.toFixed(2) + '';
     if (!price.match(/[0-9]{1,}\.[0-9]{2}/)) {
         price += '.00';
     }
     priceSpan.html(price);
-    ShopingCard.callbackTotalPrice();
+    ShoppingCart.callbackTotalPrice();
 }
 
 Article.prototype.getJSONstring = function() {
