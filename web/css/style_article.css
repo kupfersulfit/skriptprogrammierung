@@ -182,6 +182,13 @@
     min-height: 143px;
 }
 
+.articleDescription span {
+    color: cornflowerblue;
+    font-size: 12px;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
 .articleDetails ul{
     background-color: #FFFFFF;
     margin: 0;

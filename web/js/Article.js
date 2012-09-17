@@ -114,7 +114,7 @@ Article.cutTitle = function(title, length) {
 Article.cutDescription = function(description, id) {
     if (description != null) {
         if ( description.length > 200) {
-            return 'description="' + description.replace(/\"/g, '&quot;') + '" onmouseover="Article.longdescription(this, ' + id + ');" onmouseout="Article.longdescription(this, ' + id + ');" >' + description.substring(0,197) + '...';     
+            return 'description="' + description.replace(/\"/g, '&quot;') + '" onclick="Article.longdescription(this, ' + id + ');" title="click for whole description">' + description.substring(0,186) + '... <span>click for more</span>';     
             
         } else {
             return '>' + description;
