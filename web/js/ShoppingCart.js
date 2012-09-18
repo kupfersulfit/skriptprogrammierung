@@ -60,7 +60,8 @@ var ShoppingCart = {
             price += ShoppingCart.articles[i].verfuegbar * ShoppingCart.articles[i].price;
         }
         
-        ShoppingCart.price = price.toFixed(2);
+        price = price.toFixed(2);
+        ShoppingCart.price = price;
         
         price += '';
         if (!price.match(/[0-9]{1,}\.[0-9]{2}/)) {

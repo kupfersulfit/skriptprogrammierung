@@ -164,7 +164,7 @@ Article.pin = function(obj, id, session) {
 
 Article.prototype.addToCart = function() {
     var strHTML = '<section class="articleAtCart" id="articleAtCart' + this.id + '">';
-    strHTML    +=     '<div class="articleAtCartTitle" title="' + this.name + '">' + Article.cutTitle(this.name, 30) + '</div><div class="articleAtCartClose" onclick="Article.pin(jQuery(\'#article' +  this.id + ' .pin\'), ' + this.id + ', false);">x</div>';
+    strHTML    +=     '<div class="articleAtCartTitle" title="' + this.name + '">' + Article.cutTitle(this.name, 25) + '</div><div class="articleAtCartClose" onclick="Article.pin(jQuery(\'#article' +  this.id + ' .pin\'), ' + this.id + ', false);">x</div>';
     strHTML    +=     '<div class="clear"></div>'
     strHTML    +=     '<div class="articleAtCartPrice"><div>price </div><div class="euro"> &euro;</div><span>' + this.preis.replace('.', '.') + '</span></div>';
     strHTML    +=     '<div class="articleAtCartAmount">';
