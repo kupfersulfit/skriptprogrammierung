@@ -196,7 +196,7 @@ function renderOrders(json) {
         strHTML    +=   '</div>';
         strHTML    +=   '<div class="order_foot state' + bestellungMetaData.statusid + '">';
         
-        totalPrice = '' + totalPrice;
+        totalPrice = '' + totalPrice.toFixed(2);
         if (!totalPrice.match(/[0-9]{1,}\.[0-9]{2}/)) {
             totalPrice += '.00';
         }
